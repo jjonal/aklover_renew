@@ -1,0 +1,6 @@
+
+발급인원
+SELECT date_format(hero_today, '%Y-%m') m, count(*) FROM `superpass` group by m
+
+사용인원
+SELECT date_format(hero_today, '%Y-%m') m, count(*) FROM `superpass` where hero_use_yn = 'Y' group by m

@@ -1,0 +1,151 @@
+/* CSS Document */
+
+.titleLine{float:left; margin:0 7px 4px 6px; color:#f68427;font-size:18px; font-weight:bold;}
+.titleText{font-size: 18px; margin-bottom:20px !important; font-weight:bold;}
+.titleText2{font-size:15px;margin:0 0 0 10px;font-weight:500}
+.titleText3{font-size: 16px; margin-bottom:18px !important; font-weight:bold;}
+.pointPestival{margin:30px 0; font-size:14px; color:#666;letter-spacing:0.5px; line-height:20px;}
+.pointPestivalP{letter-spacing:0.5px;line-height:20px;}
+.numberCircle {display:inline-block; width:24px; height:24px; border-radius:50%; background:#f68427; font-size:16px; font-weight:bold; color:#fff; text-align:center; line-height:24px; margin-right:8px;}
+
+.mgl10{margin-left:10px;}
+.mgl20{margin-left:20px;}
+.mgl70{margin-left:70px;}
+.mgl100{margin-left:100px;}
+.mgl140{margin-left:140px;}
+.mgl150{margin-left:150px;}
+.mgt10{margin-top:10px;} 
+.mgt40{margin-top:40px;} 
+.mgt60{margin-top:60px;}
+
+.introduceTab ul{border-bottom:1px solid #bebebe; height:43px;}
+.introduceTab ul li{float:left; margin-right:10px; border:1px solid #dcdcdc; border-bottom:none; background-color:#f5f5f5; font-size:15px; padding:10px 0 10px 0; color:#a2a2a2; font-weight:500; text-align:center; cursor:pointer;}
+.introduceTab ul li.on{background-color:#fff; border:1px solid #bebebe; border-bottom:1px solid #fff; color:#000;}
+
+.introduceTab ul.storyTab li{width:130px; }
+.introduceTab ul.activityTab li{width:170px;}
+.introduceTab ul.activityTab li a{display:block; width:100%;}
+.introduceTab ul.activityTab li.on a{color:#000; display:block; width:100%;}
+.introduceTab ul.pointTab li{width:230px; }
+.introduceTab ul.historyTab li{width:230px; }
+
+
+.tabbox{display:none;}
+
+.logolist {width:654px; margin:auto;}
+.logolist li{float:left; margin:10px 15px; height:120px; display:inline-block; width:186px;}
+
+.logotitle{ margin-top:15px;}
+
+#akloverIntro {width:100%; margin-top:50px;}
+#akloverIntro > p > img{margin-top:30px;}
+#akloverIntro div.bonus{margin:50px 0 0 0;}
+#akloverIntro div.bonus:first-child{margin-top:0;}
+#akloverIntro div.bonus span.title{color:#000; font-size:14px; font-weight:600; margin:0 0 0 18px;}
+#akloverIntro div.bonus ul{margin:0 0 0 0;}
+#akloverIntro div.bonus ul:after{content:''; clear:both; display:block;}
+#akloverIntro div.bonus ul li{float:left; width:365px; margin:16px 0 0 0;}
+#akloverIntro div.bonus ul li span{font-weight:600; margin:0 0 0 10px;font-size:12px;}
+#akloverIntro div.bonus ul li span.bigText{color:#000; font-size:17px; display:inline-block; padding:18px 0 0 0;}
+#akloverIntro div.adminKyunga{border-radius:5px; width:520px; margin:0 auto; margin-top:50px; padding:40px 15px 30px 165px; background:url('/image2/model_kyung001.png') 35px 10px no-repeat; background-color:#f68427;}
+#akloverIntro div.adminKyunga .title{color:#fff;font-size:17px;}
+#akloverIntro div.adminKyunga .title span{font-weight:bold;}
+#akloverIntro div.adminKyunga .content{color:#fff;font-size:15px;line-height:20px;}
+
+
+#activity {position:relative;}
+/*#activity .tab_content ul:after{content:''; clear:both; display:block;}
+#activity .tab_content ul{float:left;}*/
+#activity .tab_content ul li{float:left;background:url('../image2/intro/activity/activityArrow.png') no-repeat 150px 50px; width:200px; }
+#activity .tab_content ul li img{cursor:pointer;}
+#activity .tab_content ul li:last-child{width:100px;}
+#activity .tab_content p img{margin-top:50px;}
+#activity .tab_content .widgetType p img{margin-top:0;}
+#activity .tab_content .superpass p img{margin-top:0;}
+#activity .top{background-color: rgba(0,0,0,0.7); color:#fff; font-size:14px; font-weight:bold; text-align:center; padding:10px 8px; position:fixed; left: 86%; bottom: 50px; border-radius:5px 5px; display:none;}
+#activity .widgetCopy{position:absolute; top:390px; left:100px;}
+#activity .widgetText{position:absolute; top:390px; left:450px;}
+#activity .widgetInsert{clear:both; }
+span.black{color:#000; font-weight:bold;}
+span.juhwang{color:#f68428; font-weight:bold;}
+
+
+#guide_main { font-size: 17.5px;height: 58px;padding: 57px 0 0 22px;float: left;width: 442px;font-weight: 800;letter-spacing: -0.7px;line-height: 30px; }
+#guide_main span { color:#EC6022;font-size:22px; }
+
+.guide_2 {  border: 1px solid #EBE2DC;width: 100%;text-align: center;font-size: 13px;font-weight: 800;margin: 5px 0; }
+.guide_2 tr { height: 38px; }
+.guide_2 tr th{background:#FDE6D2;border:1px solid #EBE2DC; font-weight:bold;}
+.guide_2 tr td { border: 1px solid #EBE2DC;border-bottom: 0px; border:1px solid #EBE2DC; font-weight:normal; padding:5px 10px; line-height:18px;}
+.guide_2 tr td.left{text-align:left;}
+.guide_2 tr td.font12{font-size:12px;}
+
+#guide_2_1 { padding:10px; }
+#guide_2_1 li { /*height: 23px;*/font-size: 13px;font-weight: 800; }
+
+#guide_2_2 { border-top: 2px solid #9B9B9B;border-bottom: 1px solid #9B9B9B;width: 100%;text-align: center;font-size: 13px;font-weight: 800;margin: 20px 0; }
+#guide_2_2 tr { height: 30px; }
+#guide_2_2 tr td { border: 1px solid #EBE2DC;border-left: 0px;border-bottom: 0px; }
+#guide_2_2 tr td.first { background:#FEF2E8; }
+#guide_2_2 tr td.last { border-right:0px; }
+#guide_2_2 tr td img { position: relative;width: 25px;top: 4px; }
+
+
+/* (s) 20170623 진정성 추가 */
+.trulyWrap{ margin-left:33px}
+.trulyWrap .tit{color:#f68427; font-size:16px; font-weight:bold;}
+.trulyWrap .sub_tit{ color:#747474; font-size:14px;}
+.trulyWrap .text{ color:#f57f1b; font-size:15px; margin:5px 0 25px 13px;}
+.trulyWrap .img{margin:0 0 30px 0;}
+.trulyWrap .section {border:1px solid #efefef; padding:15px 15px; box-shadow: 0 1px 10px 0 rgb(0 0 0 / 10%), 0 10px 20px 0 rgb(0 0 0 / 10%)}   
+.trulyWrap .sympathy{margin-top:40px;}
+.trulyWrap .help{margin-top:40px;}
+.trulyWrap .section .tit{color:#f68427; font-size:20px; font-weight:bold;}
+.trulyWrap .section .box{background:#f4f4f4; margin:5px 15px 20px; text-align:center; font-size:14px; color:#000; padding:12px 0; line-height:26px;}
+.trulyWrap .section .box em{color:#f68427; font-size:17px; line-height:20px; font-weight:bold;}
+.trulyWrap .section .txt01{text-align:center; font-size:13px; color:#666; line-height:22px;}
+.trulyWrap .section .picture01{margin:20px 0 0 0;}
+.trulyWrap .section .picture01 p{text-align:center;}
+.trulyWrap .section .txt_writer{margin-top:20px; font-size:13px; color:#666; text-align:center}
+.trulyWrap .section .first{border-bottom:1px solid #e4e4e4; padding-bottom:40px;}
+.trulyWrap .section .second{padding:25px 0 0 0;}
+.trulyWrap .section .last{padding-bottom:40px;}
+
+/* (e) 20170623 진정성 추가 */
+
+/* (s) 20170626 체험단 신청 배너프로세스 */
+#tab04 .bannerWrap p img{ margin-top:0}
+#tab04 .bannerWrap p.img_pos{margin:35px 0 0 15px;}
+#tab04 .bannerWrap p.mgt70{margin-top:70px;}
+#tab04 .bannerWrap p.txt{color:#000; font-size:15px; line-height:24px;}
+#tab04 .bannerWrap p.tit{color:#000; font-size:14px; font-weight:bold;} 
+#tab04 .bannerWrap .txt_emphasis2{color:#f68428}
+/* (e) 20170626 체험단 신청 배너프로세스 */
+
+.superpass .icon_area{ width:100%; line-height: 180%;}
+.superpass .icon_area .thumbArea{display:flex;}
+.superpass .icon_area .thumbArea .thumbnail{display:flex; width:210px;}
+.superpass .icon_area .thumbArea .thumbnail img{width:190px; height:111px;}
+.superpass .icon_area .thumbArea .text{display:flex; flex-direction:column;}
+.superpass .text_area{display:inline-block; width:100%; word-break:break-all; margin-left:10px; line-height:20px;}
+.superpass .red{color:#f00;}
+
+.experienceTypeWrap{}
+.experienceTypeWrap .list{display:flex; flex-shrink:0;width:100%;}
+.experienceTypeWrap .list .icon_area{flex-shrink:0;width:100px;}
+.experienceTypeWrap .list .text_area{flex-shrink:1;}
+.experienceTypeWrap .list .text_area .title{color:#000; font-size:17px; font-weight:600;}
+.experienceTypeWrap .list .text_area .text{margin-top:6px; font-size:16px;}
+
+/* aklover 연혁 */
+.historyWrap .tab_content dl.list:after{display:block; clear:both;  content:'';}
+.historyWrap .tab_content dl.list{border-bottom:1px solid #e5e5e5; padding:20px 0;}
+.historyWrap .tab_content dl.list:last-child{border-bottom:none;}
+.historyWrap .tab_content dl.list > dt{float:left; width:250px; text-align:center;}
+.historyWrap .tab_content dl.list > dd{float:left; width:480px; }
+.historyWrap .tab_content dl.list > dd em{color:#000; font-size:18px; font-weight:bold;}
+.historyWrap .tab_content dl.list > dd > dl.monthList{margin:20px 0 0 0;}
+.historyWrap .tab_content dl.list > dd > dl > dt{float:left; width:40px; font-size:14px; color:#333; line-height:20px;}
+.historyWrap .tab_content dl.list > dd > dl > dd{float:left; width:440px; font-size:14px; color:#333; line-height:20px;}
+
+

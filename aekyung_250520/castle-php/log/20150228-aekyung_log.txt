@@ -1,0 +1,20 @@
+175.244.142.34 - [28/Feb/2015:15:31:33 +0900] /main/index.php: command = &lt;div style=\"text-align: justify\"&gt;&lt;font face=\"TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+175.244.142.34 - [28/Feb/2015:15:36:28 +0900] /main/index.php: command = &lt;div style=\"text-align: justify\"&gt;&lt;font face=\"TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+175.244.142.34 - [28/Feb/2015:15:37:16 +0900] /main/index.php: command = &lt;div style=\"text-align: justify\"&gt;&lt;font face=\"TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+175.244.142.34 - [28/Feb/2015:15:38:13 +0900] /main/index.php: command = &lt;div style=\"text-align: justify\"&gt;&lt;font face=\"TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+59.10.97.14 - [28/Feb/2015:18:45:11 +0900] /main/index.php: hero_03 = 지인/////김영은, 010-8986-3993\r\n서울특별시 강남구 개포동 1242 : TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]

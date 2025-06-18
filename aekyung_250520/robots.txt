@@ -1,0 +1,4 @@
+User-agent: Yeti
+Disallow: /admin/
+Disallow: /sub_member/
+Disallow: /freebest/

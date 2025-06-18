@@ -1,0 +1,102 @@
+<?
+######################################################################################################################################################
+//HERO BOARD 시작 (개발자 : 이진영)2013년 08월 07일
+######################################################################################################################################################
+if(!defined('_HEROBOARD_'))exit;
+######################################################################################################################################################
+if(!strcmp($_SESSION['temp_level'], '')){
+    $my_level = '0';
+}else{
+    $my_level = $_SESSION['temp_level'];
+}
+if(!strcmp($my_level,'0')){msg('권한이 없습니다.','location.href="'.PATH_HOME.'?board=login"');exit;}
+$cut_count_name = '6';
+$cut_title_name = '48';
+######################################################################################################################################################
+if(strcmp($_POST['kewyword'], '')){
+    $search = ' and '.$_POST['select'].' like \'%'.$_POST['kewyword'].'%\'';
+    $search_next = '&select='.$_POST['select'].'&kewyword='.$_POST['kewyword'];
+}else if(strcmp($_GET['kewyword'], '')){
+    $search = ' and '.$_GET['select'].' like \'%'.$_GET['kewyword'].'%\'';
+    $search_next = '&select='.$_GET['select'].'&kewyword='.$_GET['kewyword'];
+}
+######################################################################################################################################################
+$sql = 'select * from mission_review where hero_code=\''.$_SESSION['temp_code'].'\''.$search.'';
+sql($sql);
+$total_data = @mysql_num_rows($out_sql);
+######################################################################################################################################################
+$list_page=10;
+$page_per_list=5;
+if(!strcmp($_GET['page'], '')){$page = '1';}else{$page = $_GET['page'];}
+$start = ($page-1)*$list_page;
+$next_path="board=".$_GET['board'].$search_next;
+######################################################################################################################################################
+$sql = 'select * from hero_group where hero_order!=\'0\' and hero_use=\'1\' and hero_board =\''.$_GET['board'].'\';';//desc
+sql($sql);
+$right_list                             = @mysql_fetch_assoc($out_sql);
+?>
+    <div class="contents_area">
+        <div class="page_title">
+            <h2><img src="<?=str($right_list['hero_right']);?>" alt="<?=$right_list['hero_title'];?>" /></h2>
+            <ul class="nav">
+                <li><img src="../image/common/icon_nav_home.gif" alt="home" /></li>
+                <li>&gt;</li>
+                <li><?=$right_list['hero_top_title']?></li>
+                <li>&gt;</li>
+                <li class="current"><?=$right_list['hero_title']?></li>
+            </ul>
+        </div>
+        <div class="contents">
+            <table border="0" cellpadding="0" cellspacing="0" class="bbs_list">
+                <colgroup>
+                    <col width="90px" />
+                    <col width="*" />
+                    <col width="90px" />
+                    <col width="70px" />
+                </colgroup>
+                <tr class="bbshead">
+                    <th class="first"><img src="../image/bbs/bbs_t_no.gif" alt="날짜" /></th>
+                    <th><img src="../image/bbs/bbs_t_subject.gif" alt="제목" /></th>
+                    <th><img src="../image/bbs/bbs_t_writer.gif" alt="작성자" /></th>
+                    <th class="last"><img src="../image/bbs/bbs_t_date.gif" alt="날짜" /></th>
+                </tr>
+<?
+//$sql = 'select * from mission_review where hero_code=\''.$_SESSION['temp_code'].'\''.$search.' order by hero_today desc limit '.$start.','.$list_page.';';
+
+$sql = 'select new_board.* from(
+    select hero_idx, hero_code, hero_table, hero_name, hero_nick, hero_today, hero_title, hero_05 as hero_old_idx, hero_use from board union all
+    select hero_idx, hero_code, hero_table, hero_name, hero_nick, hero_today, hero_title, hero_old_idx, hero_use from mission_review
+) as new_board where new_board.hero_table in (\'group_04_05\', \'group_04_06\', \'group_04_07\', \'group_04_08\', \'group_04_09\')
+and new_board.hero_code=\''.$_SESSION['temp_code'].'\' 
+'.$search.' order by hero_today desc limit '.$start.','.$list_page.';';
+
+sql($sql);//echo $cc = mysql_num_rows($out_sql);//    $out_row = @mysql_fetch_row($out_sql);//mysql_fetch_assoc//mysql_fetch_array//
+$i=0;
+while($list                             = @mysql_fetch_assoc($out_sql)){
+$num=$total_data - $start-$i;
+$i++;
+$mission_sql = 'select * from mission where hero_idx=\''.$list['hero_old_idx'].'\';';
+$out_mission_sql = @mysql_query($mission_sql);
+$mission_list                             = @mysql_fetch_assoc($out_mission_sql);
+$mission_list['hero_title'];
+if(!strcmp($list['lot_01'], '1')){
+    $lot_01 = '<font color=orange>[리뷰 참여가능자]</font>';
+}else{
+    $lot_01 = '';
+}
+//http://aklover.co.kr/main/index.php?board=group_04_05&view=step_02&idx=6
+?>
+                <tr onclick="location.href='<?=PATH_HOME;?>?board=<?=$list['hero_table']?>&view=step_02&idx=<?=$list['hero_old_idx'];?>'" style="cursor:pointer;">
+                    <td><?=$num;?></td>
+                    <td class="tl">
+                    <?=cut($mission_list['hero_title'], $cut_title_name);?> <strong><?=$lot_01;?></strong>
+                    </td>
+                    <td><?=cut($list['hero_nick'], $cut_count_name);?></td>
+                    <td><?=date( "y-m-d", strtotime($list['hero_today']));?></td>
+                </tr>
+<?}?>
+            </table>
+<? include_once BOARD_INC_END.'button.php';?>
+<? include_once BOARD_INC_END.'search.php';?>
+        </div>
+    </div>

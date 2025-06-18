@@ -1,0 +1,28 @@
+<div id="hero_edit" CONTENTEDITABLE autocomplete="on" onKeyUp="javascript:hero_show()">http://naver.com</div>
+<textarea name="hero_view" id="hero_view" autocomplete="on"></textarea>
+<script>
+var edit = document.getElementById("hero_edit");
+var view = document.getElementById("hero_view");
+function hero_show(){
+view.value = edit.innerHTML;
+}
+</script>
+<style>
+#hero_edit{
+font-size:11px;
+font-family: "µ¸¿ò","µ¸¿òÃ¼";
+width:700px;min-height:300px;
+background-color:white;/*#cccccc*/
+word-wrap: break-word;white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap;word-break:break-all;
+border:1px solid #b4b4b4;
+}
+#hero_view{
+font-size:11px;
+font-family: "µ¸¿ò","µ¸¿òÃ¼";
+width:700px;min-height:300px;
+
+background-color:white;
+word-wrap: break-word;white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap;word-break:break-all;
+border:1px solid #b4b4b4;
+}
+</style>

@@ -1,0 +1,256 @@
+html,body{
+   margin: 0px;
+   padding: 0px;
+   -webkit-text-size-adjust:none;
+  }
+
+*{
+	margin: 0px;
+	padding: 0px;
+    }
+ul{list-style:none;}
+body{
+	font: 12px "맑은 고딕", "Malgun Gothic", "돋움체", "돋움";
+	
+    }
+
+a {
+	text-decoration:none;
+    }
+
+#page_number a{text-decoration:none; color:#939393;}
+#page_number a:hover{color:#939393;}
+#viewer_text a{text-decoration:none; color:#6c6c6c;}
+#viewer_text a:hover{color:#6c6c6c;}
+.viewer_box a{text-decoration:none; color:#747474;}
+.viewer_box a:hover{color:#747474;}
+
+img{
+    border:0px;
+    }
+
+#header{
+    position:relative;
+	display: block;
+    }
+
+
+#header li img{
+    width:100%;
+	}
+	
+
+#header li{
+    float: left;
+	list-style:none;
+	}	
+
+.top_bg{
+	position:relative;
+    }
+	
+.top_bg span{
+	position:absolute;
+	line-height:12px;
+	left:3px;
+	bottom:15%;
+	font-size:11px;
+	font-weight:bold;
+	letter-spacing:-1px;
+	word-spacing:0px;
+	color:#fff;
+    }	
+
+#title{
+    width:100%;
+	height:45px;
+    background-image:url(../img/general/title_bg.jpg);
+	background-repeat:repeat-x;
+	color:#f78429;
+	font-size:18px;
+	font-weight:bold;
+	text-align:center;
+	}
+
+#title p{
+    padding-top:13px;
+	}
+
+
+#guide{
+    width:100%;
+	height:52px;
+    background-image:url(../img/general/guide_bg.jpg);
+	background-repeat:repeat-x;
+	padding-top:6px;
+	color:#868686;
+	font-weight:bold;
+	letter-spacing:-1px;
+	border-bottom:1px solid #e5e5e5;
+	}
+	
+#guide ul{
+display:table;
+}
+
+#guide li{
+    list-style:none;
+	float:left;
+	}
+
+.guide_text{
+display:table;
+}
+
+	
+.guide_text p{
+	display:table-cell;
+	height:40px;
+	vertical-align:middle;
+    }
+
+
+#viewer_title{
+	letter-spacing:-1px;
+	color:#555453;
+	font-size:13px;
+	font-weight:bold;
+    }
+
+
+#viewer_title img{
+vertical-align:middle;
+margin-top:-4px;
+}	
+
+#viewer_text .text1, #viewer_text .text2{
+    color:#6c6c6c;
+	font-weight:bold;
+	letter-spacing:-1px;	
+	}
+
+#viewer_text li{
+    list-style:none;
+	float:left;
+	letter-spacing:-1px;
+	line-height:20px;
+	}
+
+.viewer_box{
+    border:1px solid #ababab;
+	color:#747474;
+	font-weight:bold;
+	letter-spacing:-1px;
+	position:relative;
+	line-height:20px;
+    }
+
+.viewer_box li{
+    list-style:none;
+    }
+
+.viewer_box > span{
+    position:absolute;
+	left:-6px;
+	top:11px;
+	}
+.viewer_box a img {
+	width:94%;
+}
+
+#bottom_logout, #bottom_login{
+    width:100%;
+ 	background:#464646;
+	height:45px;
+	}
+
+
+#bottom_logout ul{
+    width:230px;
+	padding:0px;
+    margin:auto;
+	padding-top:14px;
+	}
+
+#bottom_login ul{
+    width:150px;
+	padding:0px;
+    margin:auto;
+	padding-top:14px;
+	}
+
+
+#bottom_logout li, #bottom_login li{
+	float:left;
+	list-style:none;
+	}
+	
+.btn img{
+	width:65px;
+	}	
+
+.search img{
+	width:20px;
+	}
+	
+#copyright{
+	width:100%;
+ 	background:#333333;
+	height:60px;
+    }
+
+	
+#copyright p{
+	text-align:center;
+	color:#909090;
+	margin:auto;
+	padding-top:9px;
+	font-size:10px;
+    }
+
+	
+.clear{
+    clear:both; height:0px;width:100%;
+	}
+	
+/* 미션상세개편 160919 */
+.mission_wrap{width:100%; padding:0 10px;}
+.mission_wrap .mission_view_img{width:80%; margin:0 0 20px 10%; border:1px solid #dcdcdc;}
+.mission_wrap .mission_view_img img{width:100%;}
+.mission_wrap .mission_view_title{width:100%;}
+.mission_wrap .mission_view_title p{text-align:left; font-weight:bold;}
+.mission_wrap .mission_view_title p.top_title{color:#f8840b; font-size:18px; margin:0 0 5px 0;}
+.mission_wrap .mission_view_title span.type_check{display:inline; padding:2px 8px 2px 8px; font-size:13px; color: white; background-color: orange; font-weight: bold; border-radius: 4px;}
+.mission_wrap .mission_view_title p.top_title2{font-size:13px; margin:0 0 10px 0;}
+.mission_wrap .mission_view_title table{width:100%;}
+.mission_wrap .mission_view_title table th{width:20%;height: 20px; color:#f8840b; font-size:13px; text-align: left; font-weight:bold; vertical-align:top;}
+.mission_wrap .mission_view_title table td{width:80%; color:#333333; font-size:13px; word-break:break-all; text-align:left; vertical-align:top;}
+.mission_wrap .m_content_date{ width:100%; height:78px;  margin:20px 0 20px 0; padding:0 5px}
+.mission_wrap .m_content_date table{border:1px solid #dcdcdc; width:100%; height: 100%;}
+.mission_wrap .m_content_date tr{border:1px solid #dcdcdc; width:100%; height: 100%; background-color: #fafafa; border:none; }
+.mission_wrap .m_content_date table th{padding:15px 0 0 0; border:1px solid #dcdcdc; border-bottom: none; text-align: center; font-size:11px; color: #333333; font-weight: bold;}
+.mission_wrap .m_content_date table th.orange{color:#f9850c;}
+.mission_wrap .m_content_date table th.red{color:#ff0000;}
+.mission_wrap .m_content_date table td{padding:0 0 14px 0; border:1px solid #dcdcdc; border-bottom: none; border-top: none; text-align: center; font-size:12px; color: #666666;}
+.mission_wrap .m_content_guide{margin:20px 0 0 0; border-bottom: 1px solid #dcdcdc; width:100%;}
+.mission_wrap .m_content_guide table th{border-left:2px solid #f78c35; text-align: left; padding:0 0 0 3%; color:#f8840b; font-size:14px; line-height: 16px;}
+.mission_wrap .m_content_guide table td{font-size:14px; line-height:20px; color:#000; text-align:left; padding:8px 0 20px;}
+.mission_wrap .m_content_guide .notice_bottom{margin:10px 0 20px 0; font-size:14px; color:#666;}
+.mission_wrap .m_content_guide .notice_bottom img{width:100% !important; height:100% !important;}
+.mission_wrap .m_content_guide .notice_bottom iframe{width:100%;}
+.mission_wrap .more_div{text-align:center}
+.mission_wrap .more_div a.product_more{text-align:center; display:inline-block; padding:10px 0; width:50%;text-align:center; background:#F6F6F6; border: 1px solid #000; border-radius:3px; color:#000;margin-top:30px;}
+.mission_wrap a.banner_more{text-align:center; display:inline-block; padding:10px 0; width:50%;text-align:center; background:#f78c35;color:#fff;}
+.download_btn{display:inline-block;padding:10px 10px;border:1px solid #CCC; color:#000 !important;text-align:center;border-radius:5px 5px;}
+
+
+
+/* 20170502 추가*/
+.mission_wrap ul.tabArea{margin:20px 0 0 0;}
+.mission_wrap ul.tabArea:after{display:block; clear:both; content:'';}
+.mission_wrap ul.tabArea li{float:left; width:33.3%;}
+.mission_wrap ul.tabArea li a{display:block; background:#e3e3e3; color:#333333; padding:10px 20px; border-radius:5px 5px 0 0; border-left:1px solid #fff; text-decoration:none; letter-spacing:-1px;}
+.mission_wrap ul.tabArea li a:child-first{border:none;}
+.mission_wrap ul.tabArea li a.on{background:#f68427; color:#fff; }
+.mission_wrap .m_content_guide .tabBtnArea2{display:none;}
+.mission_wrap .m_content_guide .tabBtnArea3{display:none;}

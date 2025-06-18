@@ -1,0 +1,16 @@
+1.246.165.106 - [13/Jan/2015:09:59:26 +0900] /main/index.php: hero_03 = 매일 사용하는 치약 은은한 향이 나는 향긋한 치약으로 닦으면 어떤 : TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+59.4.78.77 - [13/Jan/2015:15:42:52 +0900] /main/index.php: hero_03 = 매일 하는 양치를 하면서 좀더 건강하고 믿을수 있는 제품으로 쓰고 : TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+59.4.78.77 - [13/Jan/2015:15:45:20 +0900] /main/index.php: hero_03 = 매일 써야하는 치약을 좀더 믿을수 있고 좋은제품으로 느끼고 싶어요: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+59.4.78.77 - [13/Jan/2015:15:48:11 +0900] /main/index.php: hero_03 = 매일 써야하는 치약을 좀더 믿을수 있고 좋은제품으로 느끼고 싶어요: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]

@@ -1,0 +1,16 @@
+123.142.91.205 - [30/Jan/2015:12:27:59 +0900] /main/index.php: hero_03 = 매일하는 화장 늘 지우는게 걱정인데 더군다나 겨울철이라 각질도 많: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+123.142.91.205 - [30/Jan/2015:12:28:07 +0900] /main/index.php: hero_03 = 매일하는 화장 늘 지우는게 걱정인데 더군다나 겨울철이라 각질도 많: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+118.219.82.193 - [30/Jan/2015:21:24:57 +0900] /main/index.php: hero_03 = 평소 과잉피지 타입인 제피부로 각질스크럽에 관심이 많아요..\r\n예: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+118.219.82.193 - [30/Jan/2015:21:25:05 +0900] /main/index.php: hero_03 = 평소 과잉피지 타입인 제피부로 각질스크럽에 관심이 많아요..\r\n예: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]

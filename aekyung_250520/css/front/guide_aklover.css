@@ -1,0 +1,161 @@
+.aklove_page {
+
+}
+.aklove_page .left {
+    width: 42rem;
+}
+.aklove_page .right {
+    width: calc(100% - 56.3rem);
+    margin-bottom: 20rem;
+}
+@media(max-width: 1260px) {
+   .aklove_page .left {
+       width: 360px;
+   }
+   .aklove_page .right {
+       width: calc(100% - 380px);
+   }   
+}
+.content_info {
+    border-top: 1px solid #000;
+    padding-top: 2.8rem;
+}
+
+.content_info h3 {
+    font-size: 2.15rem;
+    line-height: 1.5;
+    font-weight: bold;
+}
+
+.content_info h3 .step {
+    color: #ff4c05;
+    text-decoration: underline;
+    margin-right: 1.4rem;
+}
+
+.content_info p {
+    margin-top: 3.2rem;
+    font-size: 1.65rem;
+    line-height: 1.5;
+    letter-spacing: -0.045rem;
+    font-weight: 500;
+    opacity: 0.7;
+}
+
+.image_content {
+    grid-row-gap: 4.9rem;
+}
+
+.image_content .profile {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.image_content .con_image {
+    border: solid 1px #ececec;
+    border-radius: 0.5rem;
+    height: 30rem;
+    padding: 1.6rem 2rem;
+}
+
+.image_content .con_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image_content .con_tit {
+    margin-top: 1.8rem;
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: -0.1rem;
+}
+
+.image_content .profile .con_tit {
+    margin-top: 1rem;
+}
+
+.image_content .number {
+    display: inline-block;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 0.3rem;
+    background-color: #ff4c05;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 800;
+    text-align: center;
+    line-height: 2.1rem;
+    margin-right: 1rem;
+    vertical-align: text-bottom;
+}
+
+.image_content .cont_des {
+    margin-top: 1.8rem;
+    font-size: 1.65rem;
+    letter-spacing: -0.083rem;
+    line-height: 1.58;
+    color: #373737;
+}
+
+.image_content .btn_moreview {
+    margin-top: 3rem;
+    width: fit-content;
+    border: 1px solid #e5e5e5;
+    border-radius: 4rem;
+}
+
+.image_content .btn_moreview a {
+    display: block;
+    padding: 1.6rem 3rem;
+    font-size: 1.7rem;
+    font-weight: 600;
+    line-height: 1.71;
+    letter-spacing: -0.085rem;
+}
+
+.look_content li {
+    margin-bottom: 2rem;
+}
+
+.look_content li:last-child {
+    margin-bottom: 0;
+}
+
+.look_content .lc_image {
+    width: 30rem;
+    height: 30rem;
+}
+
+.look_content .lc_des {
+    padding: 2.8rem 2.4rem;
+}
+
+.look_content .lc_des h3 a, 
+.look_content .lc_des h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: -0.06rem;
+}
+
+.look_content .lc_des .arrow {
+    margin-left: 0.55rem;
+}
+.look_content .lc_des .arrow img {
+    vertical-align: top;
+    width: 1.1rem;
+}
+.look_content .lc_des p {
+    margin-top: 2.4rem;
+    font-size: 1.65rem;
+    line-height: 1.58;
+    letter-spacing: -0.083rem;
+    color: #373737;
+}
+
+

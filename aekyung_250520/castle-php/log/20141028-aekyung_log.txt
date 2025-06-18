@@ -1,0 +1,20 @@
+124.53.101.28 - [28/Oct/2014:11:07:14 +0900] /admin/index.php: manual_file = AK LOVER_허용되지 않은 확장자 파일 업로드
+ -&gt; [Method: FILE]
+ -&gt; [Policy: 파일정책]
+ -&gt; [Pattern: check filetype]
+124.53.101.28 - [28/Oct/2014:11:07:42 +0900] /admin/index.php: manual_file = bookmarks_14. 9. 23..html: 차단된 이름 파일 업로드
+ -&gt; [Method: FILE]
+ -&gt; [Policy: 파일정책]
+ -&gt; [Pattern: check filename]
+124.53.101.28 - [28/Oct/2014:11:07:48 +0900] /admin/index.php: manual_file = bookmarks_14. 9. 23..html: 차단된 이름 파일 업로드
+ -&gt; [Method: FILE]
+ -&gt; [Policy: 파일정책]
+ -&gt; [Pattern: check filename]
+58.151.151.67 - [28/Oct/2014:14:27:54 +0900] /main/index.php: command = &lt;div align=\"center\"&gt;&lt;strong&gt;TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+58.151.151.67 - [28/Oct/2014:14:34:24 +0900] /main/index.php: command = &lt;div&gt;&lt;strong&gt;TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]

@@ -1,0 +1,12 @@
+1.243.187.56 - [04/Feb/2015:09:17:32 +0900] /m/action.php: image1 = 1423008724822.jpeg: 허용되지 않은 확장자 파일 업로드
+ -&gt; [Method: FILE]
+ -&gt; [Policy: 파일정책]
+ -&gt; [Pattern: check filetype]
+1.222.122.221 - [04/Feb/2015:10:16:02 +0900] /main/index.php: hero_03 = 명절날 가족들과 함께 만나면 선물하고 싶어요\r\n무릎수술하신지 얼: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+1.222.122.221 - [04/Feb/2015:10:45:41 +0900] /main/index.php: hero_03 = 명절날 가족들과 함께 만나면 선물하고 싶어요\r\n무릎수술하신지 얼: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]

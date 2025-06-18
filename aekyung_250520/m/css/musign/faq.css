@@ -1,0 +1,39 @@
+.faq_popups .inner {
+    width: 90%;
+    min-height: auto;
+    height: auto;
+    padding: 2.5rem 1.5rem;
+    border-radius: 1rem;
+}
+
+.faq_popups .faq_popup_con .q_num {
+    width: fit-content;
+    padding: 1rem 2rem;
+    background-color: #ff4c05;
+    border-radius: 2.4rem;
+    color: #fff;
+    font-size: var(--fz12);
+    font-weight: bold;
+    margin: 0 auto 1rem;
+}
+
+.faq_popups .faq_popup_con .faq_qes {
+    border: 1px solid #e5e5e5;
+    background-color: #fcfcfc;
+    padding: 2rem 1rem;
+    font-size: var(--fz13);
+    font-weight: 600;
+    border-radius: 1rem;
+}
+
+.faq_popups .faq_popup_con .faq_ans {
+    margin-top: 0.8rem;
+    border: 1px solid #f4f4f4;
+    padding: 2.5rem 1rem;
+    font-size: var(--fz12);
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: -0.09rem;
+    border-radius: 1rem;
+    opacity: 0.92;
+}

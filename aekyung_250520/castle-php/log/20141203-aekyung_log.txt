@@ -1,0 +1,20 @@
+123.142.91.205 - [03/Dec/2014:17:18:55 +0900] /main/index.php: hero_title = 점심에 회사에서 삼겹살 먹었어요../ㅋㅋ: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+123.142.91.205 - [03/Dec/2014:17:19:03 +0900] /main/index.php: hero_title = 점심에 회사에서 삼겹살 먹었어요../ㅋㅋ: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+123.142.91.205 - [03/Dec/2014:17:19:07 +0900] /main/index.php: hero_title = 점심에 회사에서 삼겹살 먹었어요../ㅋㅋ: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+123.142.91.205 - [03/Dec/2014:17:19:13 +0900] /main/index.php: hero_title = 점심에 회사에서 삼겹살 먹었어요../ㅋㅋ: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+123.142.91.205 - [03/Dec/2014:17:19:23 +0900] /main/index.php: hero_title = 점심에 회사에서 삼겹살 먹었어요../ㅋㅋ: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]

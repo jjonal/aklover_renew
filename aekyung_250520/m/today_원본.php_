@@ -1,0 +1,665 @@
+<?
+######################################################################################################################################################
+//HERO BOARD 시작 (개발자 : 이진영)2013년 08월 07일
+######################################################################################################################################################
+define('_HEROBOARD_', TRUE);//HEROBOARD오픈
+include_once                                                        $HTTP_SERVER_VARS['DOCUMENT_ROOT'].'/freebest/head.php';
+include_once                                                        FREEBEST_INC_END.'hero.php';
+include_once                                                        FREEBEST_INC_END.'function.php';
+#####################################################################################################################################################
+?>
+<head>
+<meta charset="euc-kr">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+<title>♡AK LOVER 애경 서포터즈</title>
+<link href="css/today.css" rel="stylesheet" type="text/css">
+<link href="css/down_menu.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="common.js" ></script>
+<script language=javascript>        
+        function downMenu() {
+            var $menu = $("#down_menu");
+            if($menu.css("display") == "block"){
+                $menu.slideUp(500, function(){
+                    $(".main_menu_btn").prop("src", "img/menu.jpg");
+                });
+            }else{
+                $menu.slideDown(500, function(){
+                    $(".main_menu_btn").prop("src", "img/menu1.jpg");
+                });
+            }
+        }
+        </script>
+        </head>
+        
+<body>
+
+<!--헤더시작-->
+      <div id="header" style="width:100%; background-color:#f78429; line-height:0px">
+           <ul style="width:100%">
+           <li style="width:19.3%; float:left"><a href="main.php"><img src="img/logo1.jpg" alt=AK LOVER 로고""/></a></li>
+           <li class="top_bg" style="width:63.2%"><img src="img/top_bg.jpg" alt=""/><span>AK를 사랑하는 일원으로 다양하고 특별한 체험과 이벤트를 경험해보세요</span></li>
+           <li style="width:17.5%; float:right"><a href="#none" onClick="downMenu();"><img src="img/menu.jpg" alt="메뉴" class="main_menu_btn" /></a></li>
+           </ul>
+           <div class="clear"></div> 
+      </div>       
+<!--헤더 종료-->
+
+<?include_once "down_menu.php";?>
+
+<!--컨텐츠 시작-->
+<div id="title"><p>오늘하루</p></div>
+     
+<div><img src="img/shadow1.jpg" alt="" width="100%" height="2px"/></div>
+  
+
+<div id="guide">
+       <div id="guide_left" style="float:left; width:70%">
+         <ul style="width:100%">
+         <li style="width:20%; margin-left:5%"><img src="img/today/note3.png" alt="" width="42px"/></li>
+         <li class="guide_text" style="width:75%"><p>오늘 하루 일상을 남겨주세요.</p></li>
+        </ul> 
+</div>
+
+  <div id="guide_right" style="float:right; margin-right:4%">
+        <span><select name="" class="guide_select"><option>정렬방식</option></select></span>
+  </div>
+             <div class="clear"></div>  
+</div>   
+
+
+<div id="today_list">
+
+<!--펼침메뉴 리스트 시작-->
+<div id="today_list1" class="tabbtn" onClick="openLayer1('5','./img/today/list_arrow1','1','_1');">
+       <div class="title_left" style="float:left; width:85%; margin-left:3%;">
+          <ul style="width:100%">
+          <li style="width:100%; margin-bottom:2px"><img src="img/today/notice_btn.jpg" alt="전체공지" width="60px"/></li>
+          <li class="new_btn" style="width:100%; margin-bottom:1px"><img src="img/today/new_btn.png" alt="" height="14px"/>&nbsp;아토피 때문에 고민이 많아요..</li>       
+          <li class="date" style="width:100%">작성일 2013.09.30</li>
+          </ul>
+       </div>  
+    
+      <div class="title_right" style="float:right; margin-right:3%;">
+        <img id="img1" src="img/today/list_arrow1.png" alt="" width="24"/>
+      </div>
+</div>
+
+<div id="tab1" class="tabcon" style="background:#fff;">
+
+    <!--펼침메뉴 내용 시작-->
+    <div><img src="img/shadow1.jpg" alt="" width="100%" height="2px"/></div>
+    
+    <div class="list_content">
+        <img src="img/review/list_photo1.jpg" alt="" width="70%"/>
+        <p>애경이 빈센트 반 고흐의 작품을 생활용품에 반영한 `반 고흐 컬렉션'을 추석 선물세트로 출시하였습니다.700여 점이 넘는 반 고흐의 작품 가운데 `아몬드 꽃', `도비니 정원', `아이리스', `해바라기' 등의 작품 5개를 선정해 제품에 반영하였습니다.<br/><br/>
+    
+    반 고흐 컬렉션 추석선물 세트는 '반 고흐 뮤지엄 컬렉션 1호', '반 고흐 뮤지엄 컬렉션 2호', '케라시스 반 고흐 리미티드 에디션', '반 고흐 비누에디션' 등 총 4가지 제품라인으로 각각 고유의 그림이 반영되어 있습니다.<br/>
+    
+    각각의 그림은 서로 다른 메시지를 나타내고 있어 선물을 받는 사람에 따라 다양한 제품 구입이 가능하도록 구성하였습니다.<br/><br/>
+    
+    세계적인 명화를 통해 생활용품 선물세트에 감성을 입히고 선물세트에 의미와 메시지를 담기 위해 `사랑(愛)과 존경(敬)'이라는 애경의 기업이념에 적절한 화풍의 화가를 찾았고 최종적으로 반 고흐를 선정하였습니다.
+        </p>
+    </div>
+    
+    
+    <div class="list_previous" style="width:90%; margin:auto">
+            <a href="#">
+            <ul style="width:100%">
+            <li style="width:19%; padding-left:2%">이전글&nbsp;&nbsp;<img src="img/review/arrow1.png" alt=""/></li>
+            <li style="width:79%">애경 홈페이지 오픈 이벤트 당첨 후기 남깁니다!</li>
+            </ul>
+            </a>     
+    </div>
+    
+    <div class="list_next" style="width:90%; margin:auto">
+            <a href="#">
+            <ul style="width:100%">
+            <li style="width:19%; padding-left:2%">다음글&nbsp;&nbsp;<img src="img/review/arrow2.png" alt=""/></li>
+            <li style="width:79%">애경 홈페이지 오픈 이벤트 당첨 후기 남깁니다!</li>
+            </ul>     
+            </a>  
+    </div>
+         
+    <div class="clear"></div> 
+         
+         
+    <div class="list_btn" style="width:90%; margin:auto; margin-top:20px; margin-bottom:20px">
+        <ul style="width:100%">
+        <li style="width:40%; float:left">
+            <a href="review.php"><img src="img/review/list_btn.jpg" alt="목록" width="70px"/></a></li>
+        <li style="width:60%; float:right; text-align:right">
+            <a href="https://aklover.co.kr:11486/main/index.php?board=group_04_09&view=write&action=write&page=" target="_blank"><img src="img/review/modify_btn.jpg" alt="수정" width="70px"/></a>&nbsp;
+            <a href="review.php"><img src="img/review/delete_btn.jpg" alt="삭제" width="70px"/></a></li>
+        </ul>
+            <div class="clear"></div>        
+    </div>
+    
+    
+    
+    <div class="reply" style="width:90%; margin:auto">
+            <ul style="width:100%">
+            <li style="width:75%; float:left"><textarea name="" cols="" rows="" class="reply_box"></textarea></li>
+            <li style="float:right"><a href="#"><img src="img/review/input_btn.jpg" alt="댓글입력" width="70px"/></a></li>
+            </ul>
+            <div class="clear"></div> 
+    </div>
+    
+    
+    <div class="reply_view" style="width:90%; margin:auto">
+            <ul style="width:100%">
+            <li class="nickname" style="width:23%"><img src="img/level1.png" alt="" height="13px"/>&nbsp;지나까꿍</li>
+            <li style="width:51%; padding-left:2%; padding-right:2%">와~ 멋져요~!! 이런 이벤트를~
+            정열적인 그림처럼 맛도 느껴지네요~!! 우와~</li>
+            <li style="width:22%; text-align:right"><a href="review_viewer.php"><img src="img/review/modify_btn1.jpg" alt="수정" width="30px"/></a>&nbsp;<a href="#"><img src="img/review/delete_btn1.jpg" alt="삭제" width="30px"/></a><br/>2013-11-14</li>
+            </ul>      
+            <div class="clear"></div> 
+    </div>
+    
+    <div class="reply_view" style="width:90%; margin:auto">
+            <ul style="width:100%">
+            <li class="nickname" style="width:23%"><img src="img/level1.png" alt="" height="13px"/>&nbsp;지나</li>
+            <li style="width:51%; padding-left:2%; padding-right:2%">와~ 멋져요~!! 이런 이벤트를~
+            정열적인 그림처럼 맛도 느껴지네요~!! 우와~</li>
+            <li style="width:22%; text-align:right">&nbsp;<a href="review_viewer.php"><img src="img/review/reply_btn.jpg" alt="댓글" width="30px"/></a><br/>2013-11-14</li>
+            </ul>      
+            <div class="clear"></div> 
+    </div>
+    
+    
+    
+    <div class="reply_view" style="width:90%; margin:auto; margin-bottom:40px">
+            <ul style="width:100%">
+            <li class="nickname" style="width:23%"><span class="reply_arrow"><img src="img/review/reply_arrow.png" alt="" height="13px"/></span>&nbsp;<img src="img/level1.png" alt="" height="13px"/>&nbsp;하하하하하하</li>
+            <li style="width:51%; padding-left:2%; padding-right:2%">좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!</li>
+            <li style="width:22%; text-align:right">&nbsp;<a href="review_viewer.php"><img src="img/review/reply_btn.jpg" alt="댓글" width="30px"/></a><br/>2013-11-14</li>
+            </ul>      
+            <div class="clear"></div> 
+    </div>
+    
+    <div style="border-bottom:1px solid #c8c8c8"><img src="img/shadow1.jpg" alt="" width="100%" height="2px"/></div>
+    
+      <div class="clear"></div>  
+      <!--펼침메뉴 내용 종료-->           
+</div>
+<!--펼침메뉴 리스트 종료-->
+
+
+<!--펼침메뉴 리스트 시작-->
+<div id="today_list2" class="tabbtn" onClick="openLayer1('5','./img/today/list_arrow1','2','_1');">
+       <div class="title_left" style="float:left; width:85%; margin-left:3%;">
+          <ul style="width:100%">
+          <li style="width:100%; margin-bottom:2px"><img src="img/today/notice_btn.jpg" alt="전체공지" width="60px"/></li>
+          <li class="new_btn" style="width:100%; margin-bottom:1px"><img src="img/today/new_btn.png" alt="" height="14px"/>&nbsp;아토피 때문에 고민이 많아요..</li>       
+          <li class="date" style="width:100%">작성일 2013.09.30</li>
+          </ul>
+       </div>  
+    
+      <div class="title_right" style="float:right; margin-right:3%;">
+        <img id="img2" src="img/today/list_arrow1.png" alt="" width="24"/>
+      </div>
+</div>
+
+<div id="tab2" class="tabcon" style="background:#fff;">
+
+    <!--펼침메뉴 내용 시작-->
+    <div><img src="img/shadow1.jpg" alt="" width="100%" height="2px"/></div>
+    
+    <div class="list_content">
+        <img src="img/review/list_photo1.jpg" alt="" width="70%"/>
+        <p>애경이 빈센트 반 고흐의 작품을 생활용품에 반영한 `반 고흐 컬렉션'을 추석 선물세트로 출시하였습니다.700여 점이 넘는 반 고흐의 작품 가운데 `아몬드 꽃', `도비니 정원', `아이리스', `해바라기' 등의 작품 5개를 선정해 제품에 반영하였습니다.<br/><br/>
+    
+    반 고흐 컬렉션 추석선물 세트는 '반 고흐 뮤지엄 컬렉션 1호', '반 고흐 뮤지엄 컬렉션 2호', '케라시스 반 고흐 리미티드 에디션', '반 고흐 비누에디션' 등 총 4가지 제품라인으로 각각 고유의 그림이 반영되어 있습니다.<br/>
+    
+    각각의 그림은 서로 다른 메시지를 나타내고 있어 선물을 받는 사람에 따라 다양한 제품 구입이 가능하도록 구성하였습니다.<br/><br/>
+    
+    세계적인 명화를 통해 생활용품 선물세트에 감성을 입히고 선물세트에 의미와 메시지를 담기 위해 `사랑(愛)과 존경(敬)'이라는 애경의 기업이념에 적절한 화풍의 화가를 찾았고 최종적으로 반 고흐를 선정하였습니다.
+        </p>
+    </div>
+    
+    
+    <div class="list_previous" style="width:90%; margin:auto">
+            <a href="#">
+            <ul style="width:100%">
+            <li style="width:19%; padding-left:2%">이전글&nbsp;&nbsp;<img src="img/review/arrow1.png" alt=""/></li>
+            <li style="width:79%">애경 홈페이지 오픈 이벤트 당첨 후기 남깁니다!</li>
+            </ul>
+            </a>     
+    </div>
+    
+    <div class="list_next" style="width:90%; margin:auto">
+            <a href="#">
+            <ul style="width:100%">
+            <li style="width:19%; padding-left:2%">다음글&nbsp;&nbsp;<img src="img/review/arrow2.png" alt=""/></li>
+            <li style="width:79%">애경 홈페이지 오픈 이벤트 당첨 후기 남깁니다!</li>
+            </ul>     
+            </a>  
+    </div>
+         
+    <div class="clear"></div> 
+         
+         
+    <div class="list_btn" style="width:90%; margin:auto; margin-top:20px; margin-bottom:20px">
+         <ul style="width:100%">
+        <li style="width:40%; float:left">
+            <a href="review.php"><img src="img/review/list_btn.jpg" alt="목록" width="70px"/></a></li>
+        <li style="width:60%; float:right; text-align:right">
+            <a href="https://aklover.co.kr:11486/main/index.php?board=group_04_09&view=write&action=write&page=" target="_blank"><img src="img/review/modify_btn.jpg" alt="수정" width="70px"/></a>&nbsp;
+            <a href="review.php"><img src="img/review/delete_btn.jpg" alt="삭제" width="70px"/></a></li>
+        </ul>
+            <div class="clear"></div>        
+    </div>
+    
+    
+    
+    <div class="reply" style="width:90%; margin:auto">
+            <ul style="width:100%">
+            <li style="width:75%; float:left"><textarea name="" cols="" rows="" class="reply_box"></textarea></li>
+            <li style="float:right"><a href="#"><img src="img/review/input_btn.jpg" alt="댓글입력" width="70px"/></a></li>
+            </ul>
+            <div class="clear"></div> 
+    </div>
+    
+    
+    <div class="reply_view" style="width:90%; margin:auto">
+            <ul style="width:100%">
+            <li class="nickname" style="width:23%"><img src="img/level1.png" alt="" height="13px"/>&nbsp;지나까꿍</li>
+            <li style="width:51%; padding-left:2%; padding-right:2%">와~ 멋져요~!! 이런 이벤트를~
+            정열적인 그림처럼 맛도 느껴지네요~!! 우와~</li>
+            <li style="width:22%; text-align:right"><a href="review_viewer.php"><img src="img/review/modify_btn1.jpg" alt="수정" width="30px"/></a>&nbsp;<a href="#"><img src="img/review/delete_btn1.jpg" alt="삭제" width="30px"/></a><br/>2013-11-14</li>
+            </ul>      
+            <div class="clear"></div> 
+    </div>
+    
+    <div class="reply_view" style="width:90%; margin:auto">
+            <ul style="width:100%">
+            <li class="nickname" style="width:23%"><img src="img/level1.png" alt="" height="13px"/>&nbsp;지나</li>
+            <li style="width:51%; padding-left:2%; padding-right:2%">와~ 멋져요~!! 이런 이벤트를~
+            정열적인 그림처럼 맛도 느껴지네요~!! 우와~</li>
+            <li style="width:22%; text-align:right">&nbsp;<a href="review_viewer.php"><img src="img/review/reply_btn.jpg" alt="댓글" width="30px"/></a><br/>2013-11-14</li>
+            </ul>      
+            <div class="clear"></div> 
+    </div>
+    
+    
+    
+    <div class="reply_view" style="width:90%; margin:auto; margin-bottom:40px">
+            <ul style="width:100%">
+            <li class="nickname" style="width:23%"><span class="reply_arrow"><img src="img/review/reply_arrow.png" alt="" height="13px"/></span>&nbsp;<img src="img/level1.png" alt="" height="13px"/>&nbsp;하하하하하하</li>
+            <li style="width:51%; padding-left:2%; padding-right:2%">좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!</li>
+            <li style="width:22%; text-align:right">&nbsp;<a href="review_viewer.php"><img src="img/review/reply_btn.jpg" alt="댓글" width="30px"/></a><br/>2013-11-14</li>
+            </ul>      
+            <div class="clear"></div> 
+    </div>
+    
+    <div style="border-bottom:1px solid #c8c8c8"><img src="img/shadow1.jpg" alt="" width="100%" height="2px"/></div>
+    
+      <div class="clear"></div>  
+      <!--펼침메뉴 내용 종료-->      
+</div>
+<!--펼침메뉴 리스트 종료-->
+
+
+<!--펼침메뉴 리스트 시작-->
+<div id="today_list3" class="tabbtn" onClick="openLayer1('5','./img/today/list_arrow1','3','_1');">
+       <div class="title_left" style="float:left; width:85%; margin-left:3%;">
+          <ul style="width:100%">
+          <li style="width:100%; margin-bottom:2px"><img src="img/today/notice_btn.jpg" alt="전체공지" width="60px"/></li>
+          <li class="new_btn" style="width:100%; margin-bottom:1px"><img src="img/today/new_btn.png" alt="" height="14px"/>&nbsp;아토피 때문에 고민이 많아요..</li>       
+          <li class="date" style="width:100%">작성일 2013.09.30</li>
+          </ul>
+       </div>  
+    
+      <div class="title_right" style="float:right; margin-right:3%;">
+        <img id="img3" src="img/today/list_arrow1.png" alt="" width="24"/>
+      </div>
+</div>
+
+<div id="tab3" class="tabcon" style="background:#fff;">
+
+    <!--펼침메뉴 내용 시작-->
+    <div><img src="img/shadow1.jpg" alt="" width="100%" height="2px"/></div>
+    
+    <div class="list_content">
+        <img src="img/review/list_photo1.jpg" alt="" width="70%"/>
+        <p>애경이 빈센트 반 고흐의 작품을 생활용품에 반영한 `반 고흐 컬렉션'을 추석 선물세트로 출시하였습니다.700여 점이 넘는 반 고흐의 작품 가운데 `아몬드 꽃', `도비니 정원', `아이리스', `해바라기' 등의 작품 5개를 선정해 제품에 반영하였습니다.<br/><br/>
+    
+    반 고흐 컬렉션 추석선물 세트는 '반 고흐 뮤지엄 컬렉션 1호', '반 고흐 뮤지엄 컬렉션 2호', '케라시스 반 고흐 리미티드 에디션', '반 고흐 비누에디션' 등 총 4가지 제품라인으로 각각 고유의 그림이 반영되어 있습니다.<br/>
+    
+    각각의 그림은 서로 다른 메시지를 나타내고 있어 선물을 받는 사람에 따라 다양한 제품 구입이 가능하도록 구성하였습니다.<br/><br/>
+    
+    세계적인 명화를 통해 생활용품 선물세트에 감성을 입히고 선물세트에 의미와 메시지를 담기 위해 `사랑(愛)과 존경(敬)'이라는 애경의 기업이념에 적절한 화풍의 화가를 찾았고 최종적으로 반 고흐를 선정하였습니다.
+        </p>
+    </div>
+    
+    
+    <div class="list_previous" style="width:90%; margin:auto">
+            <a href="#">
+            <ul style="width:100%">
+            <li style="width:19%; padding-left:2%">이전글&nbsp;&nbsp;<img src="img/review/arrow1.png" alt=""/></li>
+            <li style="width:79%">애경 홈페이지 오픈 이벤트 당첨 후기 남깁니다!</li>
+            </ul>
+            </a>     
+    </div>
+    
+    <div class="list_next" style="width:90%; margin:auto">
+            <a href="#">
+            <ul style="width:100%">
+            <li style="width:19%; padding-left:2%">다음글&nbsp;&nbsp;<img src="img/review/arrow2.png" alt=""/></li>
+            <li style="width:79%">애경 홈페이지 오픈 이벤트 당첨 후기 남깁니다!</li>
+            </ul>     
+            </a>  
+    </div>
+         
+    <div class="clear"></div> 
+         
+         
+    <div class="list_btn" style="width:90%; margin:auto; margin-top:20px; margin-bottom:20px">
+        <ul style="width:100%">
+        <li style="width:40%; float:left">
+            <a href="review.php"><img src="img/review/list_btn.jpg" alt="목록" width="70px"/></a></li>
+        <li style="width:60%; float:right; text-align:right">
+            <a href="https://aklover.co.kr:11486/main/index.php?board=group_04_09&view=write&action=write&page=" target="_blank"><img src="img/review/modify_btn.jpg" alt="수정" width="70px"/></a>&nbsp;
+            <a href="review.php"><img src="img/review/delete_btn.jpg" alt="삭제" width="70px"/></a></li>
+        </ul>
+            <div class="clear"></div>        
+    </div>
+    
+    
+    
+    <div class="reply" style="width:90%; margin:auto">
+            <ul style="width:100%">
+            <li style="width:75%; float:left"><textarea name="" cols="" rows="" class="reply_box"></textarea></li>
+            <li style="float:right"><a href="#"><img src="img/review/input_btn.jpg" alt="댓글입력" width="70px"/></a></li>
+            </ul>
+            <div class="clear"></div> 
+    </div>
+    
+    
+    <div class="reply_view" style="width:90%; margin:auto">
+            <ul style="width:100%">
+            <li class="nickname" style="width:23%"><img src="img/level1.png" alt="" height="13px"/>&nbsp;지나까꿍</li>
+            <li style="width:51%; padding-left:2%; padding-right:2%">와~ 멋져요~!! 이런 이벤트를~
+            정열적인 그림처럼 맛도 느껴지네요~!! 우와~</li>
+            <li style="width:22%; text-align:right"><a href="review_viewer.php"><img src="img/review/modify_btn1.jpg" alt="수정" width="30px"/></a>&nbsp;<a href="#"><img src="img/review/delete_btn1.jpg" alt="삭제" width="30px"/></a><br/>2013-11-14</li>
+            </ul>      
+            <div class="clear"></div> 
+    </div>
+    
+    <div class="reply_view" style="width:90%; margin:auto">
+            <ul style="width:100%">
+            <li class="nickname" style="width:23%"><img src="img/level1.png" alt="" height="13px"/>&nbsp;지나</li>
+            <li style="width:51%; padding-left:2%; padding-right:2%">와~ 멋져요~!! 이런 이벤트를~
+            정열적인 그림처럼 맛도 느껴지네요~!! 우와~</li>
+            <li style="width:22%; text-align:right">&nbsp;<a href="review_viewer.php"><img src="img/review/reply_btn.jpg" alt="댓글" width="30px"/></a><br/>2013-11-14</li>
+            </ul>      
+            <div class="clear"></div> 
+    </div>
+    
+    
+    
+    <div class="reply_view" style="width:90%; margin:auto; margin-bottom:40px">
+            <ul style="width:100%">
+            <li class="nickname" style="width:23%"><span class="reply_arrow"><img src="img/review/reply_arrow.png" alt="" height="13px"/></span>&nbsp;<img src="img/level1.png" alt="" height="13px"/>&nbsp;하하하하하하</li>
+            <li style="width:51%; padding-left:2%; padding-right:2%">좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!</li>
+            <li style="width:22%; text-align:right">&nbsp;<a href="review_viewer.php"><img src="img/review/reply_btn.jpg" alt="댓글" width="30px"/></a><br/>2013-11-14</li>
+            </ul>      
+            <div class="clear"></div> 
+    </div>
+    
+    <div style="border-bottom:1px solid #c8c8c8"><img src="img/shadow1.jpg" alt="" width="100%" height="2px"/></div>
+    
+      <div class="clear"></div>  
+      <!--펼침메뉴 내용 종료-->            
+</div>
+<!--펼침메뉴 리스트 종료-->
+
+
+<!--펼침메뉴 리스트 시작-->
+<div id="today_list4" class="tabbtn" onClick="openLayer1('5','./img/today/list_arrow1','4','_1');">
+    <div class="title_left" style="float:left; width:85%; margin-left:3%;">
+        <ul style="width:100%">
+        <li class="nickname" style="width:100%; margin-bottom:6px"><img src="img/level1.png" alt="" height="14px"/>&nbsp;애이케이러</li>
+        <li class="new_btn" style="width:100%; margin-bottom:3px"><img src="img/today/new_btn.png" alt="" height="13px"/>&nbsp;정말 피곤해요</li>       
+        <li class="date" style="width:100%">작성일 2013.09.30</li>
+        </ul>
+    </div>  
+    
+    <div class="title_right" style="float:right; margin-right:3%;">
+        <img id="img4" src="img/today/list_arrow1.png" alt="" width="24"/>
+    </div>
+</div>
+
+<div id="tab4" class="tabcon" style="background:#fff;">
+
+
+    <!--펼침메뉴 내용 시작-->
+    <div><img src="img/shadow1.jpg" alt="" width="100%" height="2px"/></div>
+    
+    <div class="list_content">
+        <img src="img/review/list_photo1.jpg" alt="" width="70%"/>
+        <p>애경이 빈센트 반 고흐의 작품을 생활용품에 반영한 `반 고흐 컬렉션'을 추석 선물세트로 출시하였습니다.700여 점이 넘는 반 고흐의 작품 가운데 `아몬드 꽃', `도비니 정원', `아이리스', `해바라기' 등의 작품 5개를 선정해 제품에 반영하였습니다.<br/><br/>
+    
+    반 고흐 컬렉션 추석선물 세트는 '반 고흐 뮤지엄 컬렉션 1호', '반 고흐 뮤지엄 컬렉션 2호', '케라시스 반 고흐 리미티드 에디션', '반 고흐 비누에디션' 등 총 4가지 제품라인으로 각각 고유의 그림이 반영되어 있습니다.<br/>
+    
+    각각의 그림은 서로 다른 메시지를 나타내고 있어 선물을 받는 사람에 따라 다양한 제품 구입이 가능하도록 구성하였습니다.<br/><br/>
+    
+    세계적인 명화를 통해 생활용품 선물세트에 감성을 입히고 선물세트에 의미와 메시지를 담기 위해 `사랑(愛)과 존경(敬)'이라는 애경의 기업이념에 적절한 화풍의 화가를 찾았고 최종적으로 반 고흐를 선정하였습니다.
+        </p>
+    </div>
+    
+    
+    <div class="list_previous" style="width:90%; margin:auto">
+            <a href="#">
+            <ul style="width:100%">
+            <li style="width:19%; padding-left:2%">이전글&nbsp;&nbsp;<img src="img/review/arrow1.png" alt=""/></li>
+            <li style="width:79%">애경 홈페이지 오픈 이벤트 당첨 후기 남깁니다!</li>
+            </ul>
+            </a>     
+    </div>
+    
+    <div class="list_next" style="width:90%; margin:auto">
+            <a href="#">
+            <ul style="width:100%">
+            <li style="width:19%; padding-left:2%">다음글&nbsp;&nbsp;<img src="img/review/arrow2.png" alt=""/></li>
+            <li style="width:79%">애경 홈페이지 오픈 이벤트 당첨 후기 남깁니다!</li>
+            </ul>     
+            </a>  
+    </div>
+         
+    <div class="clear"></div> 
+         
+         
+    <div class="list_btn" style="width:90%; margin:auto; margin-top:20px; margin-bottom:20px">
+        <ul style="width:100%">
+        <li style="width:40%; float:left">
+            <a href="review.php"><img src="img/review/list_btn.jpg" alt="목록" width="70px"/></a></li>
+        <li style="width:60%; float:right; text-align:right">
+            <a href="https://aklover.co.kr:11486/main/index.php?board=group_04_09&view=write&action=write&page=" target="_blank"><img src="img/review/modify_btn.jpg" alt="수정" width="70px"/></a>&nbsp;
+            <a href="review.php"><img src="img/review/delete_btn.jpg" alt="삭제" width="70px"/></a></li>
+        </ul>            <div class="clear"></div>        
+    </div>
+    
+    
+    
+    <div class="reply" style="width:90%; margin:auto">
+            <ul style="width:100%">
+            <li style="width:75%; float:left"><textarea name="" cols="" rows="" class="reply_box"></textarea></li>
+            <li style="float:right"><a href="#"><img src="img/review/input_btn.jpg" alt="댓글입력" width="70px"/></a></li>
+            </ul>
+            <div class="clear"></div> 
+    </div>
+    
+    
+    <div class="reply_view" style="width:90%; margin:auto">
+            <ul style="width:100%">
+            <li class="nickname" style="width:23%"><img src="img/level1.png" alt="" height="13px"/>&nbsp;지나까꿍</li>
+            <li style="width:51%; padding-left:2%; padding-right:2%">와~ 멋져요~!! 이런 이벤트를~
+            정열적인 그림처럼 맛도 느껴지네요~!! 우와~</li>
+            <li style="width:22%; text-align:right"><a href="review_viewer.php"><img src="img/review/modify_btn1.jpg" alt="수정" width="30px"/></a>&nbsp;<a href="#"><img src="img/review/delete_btn1.jpg" alt="삭제" width="30px"/></a><br/>2013-11-14</li>
+            </ul>      
+            <div class="clear"></div> 
+    </div>
+    
+    <div class="reply_view" style="width:90%; margin:auto">
+            <ul style="width:100%">
+            <li class="nickname" style="width:23%"><img src="img/level1.png" alt="" height="13px"/>&nbsp;지나</li>
+            <li style="width:51%; padding-left:2%; padding-right:2%">와~ 멋져요~!! 이런 이벤트를~
+            정열적인 그림처럼 맛도 느껴지네요~!! 우와~</li>
+            <li style="width:22%; text-align:right">&nbsp;<a href="review_viewer.php"><img src="img/review/reply_btn.jpg" alt="댓글" width="30px"/></a><br/>2013-11-14</li>
+            </ul>      
+            <div class="clear"></div> 
+    </div>
+    
+    
+    
+    <div class="reply_view" style="width:90%; margin:auto; margin-bottom:40px">
+            <ul style="width:100%">
+            <li class="nickname" style="width:23%"><span class="reply_arrow"><img src="img/review/reply_arrow.png" alt="" height="13px"/></span>&nbsp;<img src="img/level1.png" alt="" height="13px"/>&nbsp;하하하하하하</li>
+            <li style="width:51%; padding-left:2%; padding-right:2%">좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!</li>
+            <li style="width:22%; text-align:right">&nbsp;<a href="review_viewer.php"><img src="img/review/reply_btn.jpg" alt="댓글" width="30px"/></a><br/>2013-11-14</li>
+            </ul>      
+            <div class="clear"></div> 
+    </div>
+    
+    <div style="border-bottom:1px solid #c8c8c8"><img src="img/shadow1.jpg" alt="" width="100%" height="2px"/></div>
+    
+      <div class="clear"></div>  
+      <!--펼침메뉴 내용 종료-->    
+</div>
+<!--펼침메뉴 리스트 종료-->
+
+
+
+<!--펼침메뉴 리스트 시작-->
+<div id="today_list5" class="tabbtn" onClick="openLayer1('5','./img/today/list_arrow1','5','_1');">
+    <div class="title_left" style="float:left; width:85%; margin-left:3%;">
+        <ul style="width:100%">
+        <li class="nickname" style="width:100%; margin-bottom:6px"><img src="img/level1.png" alt="" height="14px"/>&nbsp;애이케이러</li>
+        <li class="new_btn" style="width:100%; margin-bottom:3px"><img src="img/today/new_btn.png" alt="" height="13px"/>&nbsp;정말 피곤해요</li>       
+        <li class="date" style="width:100%">작성일 2013.09.30</li>
+        </ul>
+    </div>  
+    
+    <div class="title_right" style="float:right; margin-right:3%;">
+        <img id="img5" src="img/today/list_arrow1.png" alt="" width="24"/>
+    </div>
+</div>
+
+<div id="tab5" class="tabcon" style="background:#fff;">
+
+
+    <!--펼침메뉴 내용 시작-->
+    <div><img src="img/shadow1.jpg" alt="" width="100%" height="2px"/></div>
+    
+    <div class="list_content">
+        <img src="img/review/list_photo1.jpg" alt="" width="70%"/>
+        <p>애경이 빈센트 반 고흐의 작품을 생활용품에 반영한 `반 고흐 컬렉션'을 추석 선물세트로 출시하였습니다.700여 점이 넘는 반 고흐의 작품 가운데 `아몬드 꽃', `도비니 정원', `아이리스', `해바라기' 등의 작품 5개를 선정해 제품에 반영하였습니다.<br/><br/>
+    
+    반 고흐 컬렉션 추석선물 세트는 '반 고흐 뮤지엄 컬렉션 1호', '반 고흐 뮤지엄 컬렉션 2호', '케라시스 반 고흐 리미티드 에디션', '반 고흐 비누에디션' 등 총 4가지 제품라인으로 각각 고유의 그림이 반영되어 있습니다.<br/>
+    
+    각각의 그림은 서로 다른 메시지를 나타내고 있어 선물을 받는 사람에 따라 다양한 제품 구입이 가능하도록 구성하였습니다.<br/><br/>
+    
+    세계적인 명화를 통해 생활용품 선물세트에 감성을 입히고 선물세트에 의미와 메시지를 담기 위해 `사랑(愛)과 존경(敬)'이라는 애경의 기업이념에 적절한 화풍의 화가를 찾았고 최종적으로 반 고흐를 선정하였습니다.
+        </p>
+    </div>
+    
+    
+    <div class="list_previous" style="width:90%; margin:auto">
+            <a href="#">
+            <ul style="width:100%">
+            <li style="width:19%; padding-left:2%">이전글&nbsp;&nbsp;<img src="img/review/arrow1.png" alt=""/></li>
+            <li style="width:79%">애경 홈페이지 오픈 이벤트 당첨 후기 남깁니다!</li>
+            </ul>
+            </a>     
+    </div>
+    
+    <div class="list_next" style="width:90%; margin:auto">
+            <a href="#">
+            <ul style="width:100%">
+            <li style="width:19%; padding-left:2%">다음글&nbsp;&nbsp;<img src="img/review/arrow2.png" alt=""/></li>
+            <li style="width:79%">애경 홈페이지 오픈 이벤트 당첨 후기 남깁니다!</li>
+            </ul>     
+            </a>  
+    </div>
+         
+    <div class="clear"></div> 
+         
+         
+    <div class="list_btn" style="width:90%; margin:auto; margin-top:20px; margin-bottom:20px">
+        <ul style="width:100%">
+        <li style="width:40%; float:left">
+            <a href="review.php"><img src="img/review/list_btn.jpg" alt="목록" width="70px"/></a></li>
+        <li style="width:60%; float:right; text-align:right">
+            <a href="https://aklover.co.kr:11486/main/index.php?board=group_04_09&view=write&action=write&page=" target="_blank"><img src="img/review/modify_btn.jpg" alt="수정" width="70px"/></a>&nbsp;
+            <a href="review.php"><img src="img/review/delete_btn.jpg" alt="삭제" width="70px"/></a></li>
+        </ul>
+            <div class="clear"></div>        
+    </div>
+    
+    
+    
+    <div class="reply" style="width:90%; margin:auto">
+            <ul style="width:100%">
+            <li style="width:75%; float:left"><textarea name="" cols="" rows="" class="reply_box"></textarea></li>
+            <li style="float:right"><a href="#"><img src="img/review/input_btn.jpg" alt="댓글입력" width="70px"/></a></li>
+            </ul>
+            <div class="clear"></div> 
+    </div>
+    
+    
+    <div class="reply_view" style="width:90%; margin:auto">
+            <ul style="width:100%">
+            <li class="nickname" style="width:23%"><img src="img/level1.png" alt="" height="13px"/>&nbsp;지나까꿍</li>
+            <li style="width:51%; padding-left:2%; padding-right:2%">와~ 멋져요~!! 이런 이벤트를~
+            정열적인 그림처럼 맛도 느껴지네요~!! 우와~</li>
+            <li style="width:22%; text-align:right"><a href="review_viewer.php"><img src="img/review/modify_btn1.jpg" alt="수정" width="30px"/></a>&nbsp;<a href="#"><img src="img/review/delete_btn1.jpg" alt="삭제" width="30px"/></a><br/>2013-11-14</li>
+            </ul>      
+            <div class="clear"></div> 
+    </div>
+    
+    <div class="reply_view" style="width:90%; margin:auto">
+            <ul style="width:100%">
+            <li class="nickname" style="width:23%"><img src="img/level1.png" alt="" height="13px"/>&nbsp;지나</li>
+            <li style="width:51%; padding-left:2%; padding-right:2%">와~ 멋져요~!! 이런 이벤트를~
+            정열적인 그림처럼 맛도 느껴지네요~!! 우와~</li>
+            <li style="width:22%; text-align:right">&nbsp;<a href="review_viewer.php"><img src="img/review/reply_btn.jpg" alt="댓글" width="30px"/></a><br/>2013-11-14</li>
+            </ul>      
+            <div class="clear"></div> 
+    </div>
+    
+    
+    
+    <div class="reply_view" style="width:90%; margin:auto; margin-bottom:40px">
+            <ul style="width:100%">
+            <li class="nickname" style="width:23%"><span class="reply_arrow"><img src="img/review/reply_arrow.png" alt="" height="13px"/></span>&nbsp;<img src="img/level1.png" alt="" height="13px"/>&nbsp;하하하하하하</li>
+            <li style="width:51%; padding-left:2%; padding-right:2%">좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!좋아요!</li>
+            <li style="width:22%; text-align:right">&nbsp;<a href="review_viewer.php"><img src="img/review/reply_btn.jpg" alt="댓글" width="30px"/></a><br/>2013-11-14</li>
+            </ul>      
+            <div class="clear"></div> 
+    </div>
+    
+    <div style="border-bottom:1px solid #c8c8c8"><img src="img/shadow1.jpg" alt="" width="100%" height="2px"/></div>
+    
+      <div class="clear"></div>  
+      <!--펼침메뉴 내용 종료-->    
+</div>
+<!--펼침메뉴 리스트 종료-->
+
+
+</div>
+
+
+     <div id="page_number">
+          <a href="#"><img src="img/general/previous_btn.jpg" alt="이전페이지" width="17px"/></a>
+          &nbsp;&nbsp&nbsp;<a href="#">1</a> <a href="#">&nbsp;2</a> <a href="#">&nbsp;3</a> <a href="#">&nbsp;4</a> <a href="#">&nbsp;5</a>
+          &nbsp;&nbsp;&nbsp;<a href="#"><img src="img/general/next_btn.jpg" alt="다음페이지" width="17px"/></a>
+          
+          <span class="gallery_btn">
+          <a href="https://aklover.co.kr:11486/main/index.php?board=group_02_01&view=write&action=write&page=" target="_blank"><img src="img/general/write_btn.jpg" alt="글쓰기" width="70px"></a>
+          </span> 
+      </div>
+
+ 
+<!--컨텐츠 종료-->
+<?include_once "tail.php";?>

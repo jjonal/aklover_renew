@@ -1,0 +1,184 @@
+#content {
+    padding: 10rem 10px 15rem;
+}
+.calbox {
+    gap: 10rem;
+}
+.cal_left {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+.cal_right {
+    flex: 1;
+}
+.ym_btn {
+    margin-top: 50px;
+    width: 100%;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 18px;
+}
+.check_today {
+    background-color: var(--main_color) !important;
+}
+.check_today img {
+    width: 16px;
+    margin-left: 10px;
+}
+.yearmonth {
+    margin: 0 46px;
+    display: block;
+}
+.cal_left .ym_arr {
+    font-size: 0;
+    width: 6px;
+}
+.cal_left .ym_arr img {
+    width: 100%;
+}
+.chk_tit {
+    font-size: 24px;
+    line-height: 1;
+    text-align: center;
+}
+.text_check  {
+    margin-top: 10px;
+}
+.text_check > span {    
+    line-height: 1.4;
+    margin-bottom: 25px;
+    display: block;
+    font-size: 12px;
+    text-align: center;  
+    color: rgba(0, 0, 0, 0.8);
+}
+.check_today {}
+.cal_group .brown {
+    font-size: var(--fz19);  
+    font-weight: 800;  
+    color: #fe4c04;    
+    display: inline-block;
+    padding: 0 .9rem;
+    margin-right: .1rem;
+    border-bottom: 2px solid #fe4c04;
+}
+.cal_group .text_check {
+    /* position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%; */
+}
+.check_grade {
+    width: 100%;
+    margin-top: 25px;
+    padding: 4px 20px;
+    border: 1px solid var(--border);
+}
+.check_grade li {
+    padding: 15px 0;
+}
+.check_grade li + li {
+    border-top: 1px solid var(--border);
+}
+.cal_right thead tr {
+    /* border-bottom: 1px solid #e5e5e5; */
+}
+.cal_right thead tr td {
+    padding-top: .5rem;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+.cal_right table tbody tr {
+    border: 0;
+}
+.cal_right tbody tr td {
+    font-size: 0;
+    padding: 6px 2.5px;
+}
+.cal_right table tbody tr:first-child td {
+    padding-top: 2rem;
+}
+.cal_right tbody tr td span {
+    font-size: 0;
+}
+.cal_right tbody tr td img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+}
+.chk_status {
+    position: relative;
+}
+.chk_date {
+    border: 2px dashed #e5e5e5;
+    border-radius: 50%;
+    width: 100%;
+    aspect-ratio: auto 1/1;
+    margin: 0 auto;
+    text-align: center;
+    font-size: clamp(1.3rem, 2.8vw, 2.6rem);
+    color: #dadada;
+    font-weight: 800;
+}
+.cal_right tbody tr:last-child td.last_day .chk_status::after {
+    content: 'ALL √‚ºÆ';
+    position: absolute;
+    bottom: -3.4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95px;
+    height: 29px;
+    background: url(/m/img/musign/icon/check_add2.png) no-repeat center;
+    background-size: contain;
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff; 
+    line-height: 35px;
+    text-align: left;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+.cal_right tbody tr:last-child td.last_day .chk_status::before {
+    content: '+50P';
+    position: absolute;
+    bottom: -3.4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95px;
+    height: 29px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--main_color);  
+    line-height: 35px;
+    text-align: right;
+    padding: 0 1.2rem;
+    box-sizing: border-box;
+    z-index: 7;
+}
+.cal_right tbody tr:last-child td:first-child .chk_status::after {        
+    left: 0;
+    transform: translateX(0%);
+    background: url(/m/img/musign/icon/check_add.png) no-repeat center;
+    background-size: contain;
+} 
+.cal_right tbody tr:last-child td:first-child .chk_status::before {        
+    left: 0;
+    transform: translateX(0%);
+} 
+.cal_right tbody tr:last-child td:last-child .chk_status::after {        
+    left: auto;
+    right: 0;
+    transform: translateX(0%);
+    background: url(/m/img/musign/icon/check_add3.png) no-repeat center;
+    background-size: contain;
+} 
+.cal_right tbody tr:last-child td:last-child .chk_status::before {        
+    left: auto;
+    right: 0;
+    transform: translateX(0%);
+} 

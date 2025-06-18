@@ -1,0 +1,330 @@
+
+.blog_article2 { margin-bottom:10px;padding:0 10px;float:left; }
+.blog_article2 ul { border: 1px solid #b6b6b6; }
+.blog_article2 ul .noticeTit { background-color: #494949;padding: 10px;font-weight: 800;font-size:1.3em;color:white; }
+.blog_article2 ul li { font-size:1.2em;padding: 6px 10px; }
+.goods { float:left; width:50%; }
+.goods ul { border:1px solid #b6b6b6; }
+.goods ul li { font-size:1.4em;text-align:center;padding:2px 5px; }
+.goods ul li .buy_button { width:20%;min-width:90px; }
+
+
+#cluetip { margin:0 2%; }
+
+html,body{
+   margin: 0px;
+   padding: 0px;
+  }
+
+*{
+	margin: 0px;
+	padding: 0px;
+    }
+ul{list-style:none;}
+body{
+	font: 12px "���� ���", "Malgun Gothic", "����ü", "����";
+	
+    }
+
+a {
+	text-decoration:none;
+	color:#FFF;
+    }
+
+#page_number a{text-decoration:none; color:#939393;}
+#page_number a:hover{color:#939393;}
+
+
+img{
+    border:0px;
+    }
+
+#header{
+    position:relative;
+	display: block;
+    }
+
+
+#header li img{
+    width:100%;
+	}
+	
+
+#header li{
+    float: left;
+	list-style:none;
+	}	
+
+.top_bg{
+	position:relative;
+    }
+	
+.top_bg span{
+	position:absolute;
+	line-height:12px;
+	left:3px;
+	bottom:15%;
+	font-size:11px;
+	font-weight:bold;
+	letter-spacing:-1px;
+	word-spacing:0px;
+	color:#fff;
+    }	
+
+#title{
+    width:100%;
+	height:45px;
+    background-image:url(../img/general/title_bg.jpg);
+	background-repeat:repeat-x;
+	color:#f78429;
+	font-size:18px;
+	font-weight:bold;
+	text-align:center;
+	}
+
+#title p{
+    padding-top:13px;
+	}
+
+
+#guide{
+    width:100%;
+	height:52px;
+    background-image:url(../img/general/guide_bg.jpg);
+	background-repeat:repeat-x;
+	padding-top:6px;
+	color:#868686;
+	font-weight:bold;
+	letter-spacing:-1px;
+	margin-bottom: 10px;
+	}
+	
+#guide ul{
+display:table;
+}
+
+#guide li{
+    list-style:none;
+	float:left;
+	}
+
+.guide_text{
+display:table;
+}
+
+	
+.guide_text p{
+	display:table-cell;
+	height:40px;
+	vertical-align:middle;
+}
+
+
+/*������ ����*/
+#gallery{
+	position:relative;
+	width:90%;
+	height:auto;
+	margin:auto;
+
+}
+
+#gallery ul{
+    margin:auto;
+	width:100%;
+	}
+
+#gallery li{
+	margin-bottom:5px;
+	float: left;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	width:30%;
+}
+
+
+#gallery li a span{
+	display: block;
+}
+
+.gallery_left{
+	border-left:1px solid #cccccc;
+    border-top:1px solid #cccccc;
+	border-bottom:1px solid #cccccc;
+	border-right:1px solid #cccccc;
+	}
+
+.gallery_center{
+    border-top:1px solid #cccccc;
+	border-bottom:1px solid #cccccc;
+	border-right:1px solid #cccccc;
+	height:180px;
+	}
+	
+.gallery_right{
+    border-top:1px solid #cccccc;
+	border-bottom:1px solid #cccccc;
+	border-right:1px solid #cccccc;
+	height:180px;
+	}
+
+.gallery_left1{
+    border-left:1px solid #cccccc; 
+	border-right:1px solid #cccccc;
+	border-bottom:1px solid #cccccc;
+	}
+	
+.gallery_center1{
+	border-bottom:1px solid #cccccc;
+	border-right:1px solid #cccccc;
+	}	
+	
+.gallery_right1{
+	border-right:1px solid #cccccc;
+	border-bottom:1px solid #cccccc;
+	}
+	
+.thumb img{
+	width: 100%;
+}
+
+
+.gallery_title1{
+    width:100%;
+	color:#515151;
+	font-size:12px;
+	font-weight:bold;
+	margin-top:5%;
+}
+
+.gallery_title1 img, .nickname img{
+vertical-align:middle;
+margin-top:-3px;
+}
+
+.gallery_title2{
+	color:#929292;
+	font-size:12px;
+	margin-bottom:4%;
+	text-align:center;
+}
+
+
+.date{
+	font-size:12px;
+	color:#937347;
+	font-weight:bold;
+	margin-top:1%;
+	letter-spacing:-1px;
+	text-align:center;
+}
+
+.nickname{
+	font-size:12px;
+	color:#937347;
+	font-weight:bold;
+	margin-top:1%;
+	letter-spacing:-1px;
+	text-align:center;
+}
+
+.more{
+	float:right;
+}
+
+
+#page_number{
+     font-size:12px;
+	 color:#939393;
+	 width:100%;
+	 height:34px;
+	 letter-spacing:1px;
+	 text-align:center;
+	 font-weight:bold;
+	 margin-top:20px;
+	 position:relative;
+	 }
+
+	 	
+#page_number li{
+     list-style:none;
+	 float:left;
+     }
+
+#page_number img{
+vertical-align:middle;
+margin-top:-3px;
+}
+	 
+.gallery_btn{
+position:absolute;
+right:10px;
+top:-1px;
+}	 
+
+/*������ ����*/
+
+
+#bottom_logout, #bottom_login{
+    width:100%;
+ 	background:#464646;
+	height:45px;
+	}
+
+
+#bottom_logout ul{
+	text-align:center;
+    width:200px;
+	padding:0px;
+    margin:auto;
+	padding-top:14px;
+	}
+
+#bottom_login ul{
+    width:305px;
+	padding:0px;
+    margin:auto;
+	padding-top:14px;
+	}
+
+
+#bottom_logout li, #bottom_login li{
+	float:left;
+	list-style:none;
+	}
+	
+.btn img{
+	width:65px;
+	}	
+
+.search img{
+	width:20px;
+	}
+	
+#copyright{
+	width:100%;
+ 	background:#333333;
+	height:60px;
+    }
+
+	
+#copyright p{
+	text-align:center;
+	color:#909090;
+	margin:auto;
+	padding-top:9px;
+	font-size:10px;
+    }
+
+	
+.clear{
+    clear:both; height:0px;width:100%;
+	}
+
+.goodsList{border:1px solid #b6b6b6; text-align:center; padding-bottom:10px;}
+
+.goodsList:nth-child(n+2){margin-top:10px;}
+.goodsList .tit{margin:10px 0 0 0; color:#333; font-size:14px; min-height:54px;}
+.goodsList .btn_buy{min-height:23px;}
+

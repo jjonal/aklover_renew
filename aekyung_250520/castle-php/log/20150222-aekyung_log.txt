@@ -1,0 +1,16 @@
+219.249.27.76 - [22/Feb/2015:12:02:10 +0900] /main/index.php: hero_03 = 세안시 거품을 내야하는 번거로움도 덜어주고, 손보다 자극이 적으면: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+219.249.27.76 - [22/Feb/2015:12:02:23 +0900] /main/index.php: hero_03 = 세안시 거품을 내야하는 번거로움도 덜어주고, 손보다 자극이 적으면: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+180.70.129.71 - [22/Feb/2015:13:02:36 +0900] /main/index.php: command = &lt;div align=\"center\" style=\"margin: 0px; text-align: center\"&gt;: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+180.70.129.71 - [22/Feb/2015:13:02:50 +0900] /main/index.php: command = &lt;div align=\"center\" style=\"margin: 0px; text-align: center\"&gt;: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]

@@ -1,0 +1,8 @@
+61.101.96.233 - [30/Nov/2014:12:12:34 +0900] /main/index.php: command = &lt;div align=\"center\"&gt;TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+221.146.186.138 - [30/Nov/2014:15:19:59 +0900] /main/index.php: command = &lt;p&gt;&lt;/p&gt;\r\n&lt;div style=\"text-align: center\"&gt;&lt;img width=\"640\" : TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]

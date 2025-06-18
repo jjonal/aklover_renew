@@ -1,0 +1,20 @@
+121.180.10.173 - [25/Feb/2015:10:16:22 +0900] /main/index.php: hero_03 = ÀÌÁ¦ °Ü¿ï¿¡ ÀÔ´ø ´Ù¾çÇÑ ´ÏÆ®¸¦ ¼¼Å¹¼Ò¿¡ ¸Ã±âÁö ¾Ê°íµµ ±ú²ýÇÏ°Ô ¾: TAG °ø°Ý ÆÐÅÏ Å½Áö
+ -&gt; [Method: POST]
+ -&gt; [Policy: ±âº»Á¤Ã¥]
+ -&gt; [Pattern: \.\./]
+211.179.60.67 - [25/Feb/2015:20:41:38 +0900] /main/index.php: hero_03 = Ç×»ó »ç¿ëÇÏ´Â Á¦Ç°ÀÎµ¥ ÀÌ·¸°Ô Ã¼Çè´ÜÀ» ÁøÇàÇÏ°í ÀÖ¾î¼­ ´Ù½Ã »ç¿ë: TAG °ø°Ý ÆÐÅÏ Å½Áö
+ -&gt; [Method: POST]
+ -&gt; [Policy: ±âº»Á¤Ã¥]
+ -&gt; [Pattern: \.\./]
+121.186.254.49 - [25/Feb/2015:23:15:54 +0900] /main/index.php: hero_03 = ÀúÈñÁý ¿å½Ç¿¡ °õÆÎÀÌ°¡ ¸¹ÀÌ Æì¼­ Ã»¼Ò ÇÒ¶§¸¶´Ù ¶ô½º ³¿»õ¶§¹®¿¡ °: TAG °ø°Ý ÆÐÅÏ Å½Áö
+ -&gt; [Method: POST]
+ -&gt; [Policy: ±âº»Á¤Ã¥]
+ -&gt; [Pattern: \.\./]
+121.186.254.49 - [25/Feb/2015:23:16:29 +0900] /main/index.php: hero_03 = ÀúÈñÁý ¿å½Ç¿¡ °õÆÎÀÌ°¡ ¸¹ÀÌ Æì¼­ Ã»¼Ò ÇÒ¶§¸¶´Ù ¶ô½º ³¿»õ¶§¹®¿¡ °: TAG °ø°Ý ÆÐÅÏ Å½Áö
+ -&gt; [Method: POST]
+ -&gt; [Policy: ±âº»Á¤Ã¥]
+ -&gt; [Pattern: \.\./]
+121.186.254.49 - [25/Feb/2015:23:17:45 +0900] /main/index.php: hero_03 = ÀúÈñÁý ¿å½Ç¿¡ °õÆÎÀÌ°¡ ¸¹ÀÌ Æì¼­ Ã»¼Ò ÇÒ¶§¸¶´Ù ¶ô½º ³¿»õ¶§¹®¿¡ °: TAG °ø°Ý ÆÐÅÏ Å½Áö
+ -&gt; [Method: POST]
+ -&gt; [Policy: ±âº»Á¤Ã¥]
+ -&gt; [Pattern: \.\./]

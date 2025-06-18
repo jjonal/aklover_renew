@@ -1,0 +1,34 @@
+div.cate span span {
+	font-weight: normal;
+	letter-spacing: 1px;
+	text-decoration: none;
+	padding: 7px;
+	padding-left: 7px;
+	padding-right: 7px;
+	margin-right: 7px;
+	cursor: hand;
+	cursor: pointer;
+
+}
+
+div.cate span.active {
+	background: #f58320;
+	color: #fff;
+	border: 1px #f05f1f solid;
+}
+div.cate span.active:hover {
+	background: #f05f1f;
+	color: #fff;
+	border: 1px #f05f1f solid;
+}
+
+div.cate span.inactive {
+	background: #ddd;
+	color: #888;
+	border: 1px #bbb solid;
+}
+div.cate span.inactive:hover {
+	background: #bbb;
+	color: #fff;
+	border: 1px #888 solid;
+}

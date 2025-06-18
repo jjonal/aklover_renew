@@ -1,0 +1,138 @@
+<?
+######################################################################################################################################################
+//HERO BOARD 시작 (개발자 : 이진영)2013년 08월 07일
+######################################################################################################################################################
+//header("Content-type: text/html; charset=euc-kr");
+define('_HEROBOARD_', TRUE);//HEROBOARD오픈
+echo "test";
+include_once                                                        './head.php';
+
+echo "test123";
+include_once                                                        './function.php';
+
+echo "test12344";
+?>
+<style type="text/css">
+BODY{
+    COLOR: #7f7f7f;
+    FONT-FAMILY: "Dotum","DotumChe","Arial";
+    BACKGROUND-COLOR: #ffffff;
+}
+</style>
+</head>
+<body>
+<?php
+$sSiteCode = "H505";
+//$sSitePw = "80236458";
+$sSitePw = "ak6458*lover";
+$sEncData = $_REQUEST['enc_data'];
+
+//////////////////////////////////////////////// 문자열 점검///////////////////////////////////////////////
+if(preg_match("/[#\&\\-%@\\\:;,\.\'\"\^`~\_|\!\?\*$#<>()\[\]\{\}]/i", $sEncData, $match)) {echo "문자열 점검 : ".$match[0]; exit;}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////    
+$sModulePath = FREEBEST_INC_END."IPIN2Client";
+
+$sCPRequest = $_SESSION['CPREQUEST'];
+$sDecData = "";
+$sRtnMsg = "";
+if ($sEncData != ""){
+    $sDecData = `$sModulePath RES $sSiteCode $sSitePw $sEncData`;
+    if($sDecData == -9){
+        $sRtnMsg = "입력값 오류 : 복호화 처리시, 필요한 파라미터값의 정보를 정확하게 입력해 주시기 바랍니다.";
+    }else if($sDecData == -12){
+        $sRtnMsg = "NICE신용평가정보에서 발급한 개발정보가 정확한지 확인해 보세요.";
+    }else{
+        $arrData = split(":", $sDecData);
+        $iCount = count($arrData);
+        if($iCount >= 5){
+            $strResultCode = GetValue($sDecData,"RESULT_CODE");
+            if($strResultCode == 1){
+                $strCPRequest = GetValue($sDecData, "CPREQUESTNO");
+                if($sCPRequest == $strCPRequest){
+                    $sRtnMsg = "사용자 인증 성공";
+                    $strVnumber = GetValue($sDecData, "VNUMBER");
+                    $strUserName = GetValue($sDecData, "NAME");
+                    $strDupInfo = GetValue($sDecData, "DUPINFO");
+                    $strGender = GetValue($sDecData, "GENDERCODE");
+                    $strAgeInfo = GetValue($sDecData, "AGECODE");
+                    $strBirthDate = GetValue($sDecData, "BIRTHDATE");
+                    $strNationalInfo = GetValue($sDecData, "NATIONALINFO");
+                    
+                    $strAuthInfo = GetValue($sDecData, "AUTHMETHOD");
+                    $strCoInfo = GetValue($sDecData, "COINFO1");
+                    $strCIUpdate = GetValue($sDecData, "CIUPDATE");
+                }else{
+                    $sRtnMsg = "CP 요청번호 불일치 : 세션에 넣은 $sCPRequest 데이타를 확인해 주시기 바랍니다.";
+                }
+            }else{
+                $sRtnMsg = "리턴값 확인 후, NICE신용평가정보 개발 담당자에게 문의해 주세요. [$strResultCode]";
+            }
+        }else{
+            $sRtnMsg = "리턴값 확인 후, NICE신용평가정보 개발 담당자에게 문의해 주세요.";
+        }
+    }
+}else{
+    $sRtnMsg = "처리할 암호화 데이타가 없습니다.";
+}
+
+echo $sRtnMsg;
+
+function GetValue($str , $name){
+    $pos1 = 0;
+    $pos2 = 0;
+    while($pos1 <= strlen($str)){
+        $pos2 = strpos($str, ":", $pos1);
+        $len = substr($str, $pos1, $pos2 - $pos1);
+        $key = substr($str, $pos2 + 1, $len);
+        $pos1 = $pos2 + $len + 1;
+        if($key == $name){
+            $pos2 = strpos($str, ":", $pos1);
+            $len = substr($str, $pos1, $pos2 - $pos1);
+            $value = substr($str, $pos2 + 1, $len);
+            return $value;
+        }else{
+            $pos2 = strpos($str, ":", $pos1);
+            $len = substr($str, $pos1, $pos2 - $pos1);
+            $pos1 = $pos2 + $len + 1;
+        }
+    }
+}
+?>
+<form name="user" method="post">
+<input type="hidden" name="enc_data" value="<?= $sEncData ?>"><br>
+</form>
+<?
+if(strcmp($strUserName, "")){
+?>
+<script language='javascript'>
+function fnLoad(){
+var wheretogo = parent.opener.parent.document.form_chk.wheretogo.value;
+parent.opener.parent.document.form_chk.param_r1.value = "<?= $strUserName ?>";
+parent.opener.parent.document.form_chk.param_r2.value = "<?= $strBirthDate ?>";
+parent.opener.parent.document.form_chk.param_r3.value = "<?= $strGender ?>";
+parent.opener.parent.document.form_chk.param_r4.value = "<?= $strAuthInfo ?>";
+parent.opener.parent.document.form_chk.param_r5.value = "<?= $strDupInfo ?>";
+parent.opener.parent.document.form_chk.param_r6.value = "<?= $strCoInfo ?>";
+parent.opener.parent.document.form_chk.target = "Parent_window";
+parent.opener.parent.document.form_chk.action = "<?=MAIN_HOME.'?board='?>"+wheretogo;
+parent.opener.parent.document.form_chk.submit();
+self.close();
+}
+</script>
+</head>
+<body onLoad="fnLoad()">
+<?
+}else{
+?>
+<body onLoad='window.open("about:blank","_self").close();'>
+<body>
+<center>
+<br><br><br>
+<p><p><p><p>
+본인인증이 완료 되었습니다.<br><br>
+<a href='javascript:window.open("about:blank","_self").close();' class="btn_blue2"><?=img2('IMAGE_END||member||btn_without.gif||완료');?></a></td>
+    </tr>
+</form><!--fnLoad();window.open("about:blank","_self").close();-->
+<?
+}
+?>

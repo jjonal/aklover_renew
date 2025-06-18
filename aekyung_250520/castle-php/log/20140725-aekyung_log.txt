@@ -1,0 +1,1 @@
+112.145.142.2 - [25/Jul/2014:23:45:33 +0900] /main/index.php: command = &lt;div&gt;XSS 공격 패턴 탐지

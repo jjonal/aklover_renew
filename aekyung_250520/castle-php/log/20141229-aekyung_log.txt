@@ -1,0 +1,8 @@
+182.226.115.162 - [29/Dec/2014:23:30:26 +0900] /main/index.php: command = &lt;p align=\"center\" style=\"text-align: center\"&gt;TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+182.226.115.162 - [29/Dec/2014:23:31:59 +0900] /main/index.php: command = &lt;p align=\"center\" style=\"text-align: center\"&gt;TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]

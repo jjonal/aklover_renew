@@ -1,0 +1,28 @@
+182.218.37.34 - [23/Sep/2014:09:53:26 +0900] /main/index.php: view = view\" onMouseOver=alert(15379)//: XSS 공격 패턴 탐지
+ -&gt; [Method: GET]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: onMouseOver[[:space:]]*=]
+182.218.37.34 - [23/Sep/2014:10:04:47 +0900] /main/index.php: view = view\" onMouseOver=alert(15379)//: XSS 공격 패턴 탐지
+ -&gt; [Method: GET]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: onMouseOver[[:space:]]*=]
+182.218.37.34 - [23/Sep/2014:10:05:18 +0900] /main/index.php: board = =&gt;\"\'&gt;&lt;script&gt;alert(2857)&lt;/script&gt;: XSS 공격 패턴 탐지
+ -&gt; [Method: GET]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;script]
+182.218.37.34 - [23/Sep/2014:10:05:51 +0900] /main/index.php: idx = &gt;\"\'&gt;&lt;script&gt;alert(2857)&lt;/script&gt;: XSS 공격 패턴 탐지
+ -&gt; [Method: GET]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;script]
+182.218.37.34 - [23/Sep/2014:10:09:01 +0900] /main/index.php: idx = 114\" onMouseOver=alert(15673)//: XSS 공격 패턴 탐지
+ -&gt; [Method: GET]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: onMouseOver[[:space:]]*=]
+182.218.37.34 - [23/Sep/2014:10:09:34 +0900] /main/index.php: view = =view\'\"&gt;&lt;iframe src=http://demo.testfire.net/phishing: TAG 공격 패턴 탐지
+ -&gt; [Method: GET]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+182.218.37.34 - [23/Sep/2014:10:10:16 +0900] /main/index.php: board = group_04_05\'\"&gt;&lt;iframe src=http://demo.testfire.net/phishing.ht: TAG 공격 패턴 탐지
+ -&gt; [Method: GET]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]

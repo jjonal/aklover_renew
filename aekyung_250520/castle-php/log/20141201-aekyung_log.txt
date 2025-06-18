@@ -1,0 +1,12 @@
+183.99.197.139 - [01/Dec/2014:17:07:34 +0900] /main/index.php: hero_04 = http://blog.naver.com/ckdbsal0607/220190176385\r\n&lt;div id=\"fb-r: XSS 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;script]
+183.99.197.139 - [01/Dec/2014:17:07:51 +0900] /main/index.php: hero_04 = http://blog.naver.com/ckdbsal0607/220190176385\r\n&lt;div id=\"fb-r: XSS 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;script]
+183.99.197.139 - [01/Dec/2014:17:08:39 +0900] /main/index.php: hero_04 = http://blog.naver.com/ckdbsal0607/220190176385\r\n&lt;div id=\"fb-r: XSS 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;script]

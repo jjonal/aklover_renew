@@ -1,0 +1,52 @@
+123.191.29.105 - [20/Aug/2014:18:32:35 +0900] /freebest/download.php: hero = ../freebest/download.php: TAG 공격 패턴 탐지
+ -&gt; [Method: GET]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+119.147.146.189 - [20/Aug/2014:18:32:37 +0900] /freebest/download.php: hero = ../freebest/download.php: TAG 공격 패턴 탐지
+ -&gt; [Method: GET]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+123.191.29.105 - [20/Aug/2014:18:32:40 +0900] /freebest/download.php: hero = ../../freebest/download.php: TAG 공격 패턴 탐지
+ -&gt; [Method: GET]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+123.191.29.105 - [20/Aug/2014:18:32:44 +0900] /freebest/download.php: hero = ../../../freebest/download.php: TAG 공격 패턴 탐지
+ -&gt; [Method: GET]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+123.191.29.105 - [20/Aug/2014:18:32:48 +0900] /freebest/download.php: hero = ../../../../freebest/download.php: TAG 공격 패턴 탐지
+ -&gt; [Method: GET]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+123.191.29.105 - [20/Aug/2014:18:32:51 +0900] /freebest/download.php: hero = ../../../../../freebest/download.php: TAG 공격 패턴 탐지
+ -&gt; [Method: GET]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+123.191.29.105 - [20/Aug/2014:18:32:54 +0900] /freebest/download.php: hero = ../../../../../../freebest/download.php: TAG 공격 패턴 탐지
+ -&gt; [Method: GET]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+123.191.29.105 - [20/Aug/2014:18:33:02 +0900] /freebest/download.php: hero = ../../../../../../freebest/download.php: TAG 공격 패턴 탐지
+ -&gt; [Method: GET]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+123.191.29.105 - [20/Aug/2014:18:33:07 +0900] /freebest/download.php: hero = ../../../../../../freebest/download.php: TAG 공격 패턴 탐지
+ -&gt; [Method: GET]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+123.191.29.105 - [20/Aug/2014:18:33:14 +0900] /freebest/download.php: hero = ../../../../../../../freebest/download.php: TAG 공격 패턴 탐지
+ -&gt; [Method: GET]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+123.191.29.105 - [20/Aug/2014:18:33:17 +0900] /freebest/download.php: hero = ../../../../../../../../freebest/download.php: TAG 공격 패턴 탐지
+ -&gt; [Method: GET]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+123.191.29.105 - [20/Aug/2014:18:33:20 +0900] /freebest/download.php: hero = ../../../../../../../../../freebest/download.php: TAG 공격 패턴 탐지
+ -&gt; [Method: GET]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+123.191.29.105 - [20/Aug/2014:18:33:24 +0900] /freebest/download.php: download = ../freebest/download.php: TAG 공격 패턴 탐지
+ -&gt; [Method: GET]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]

@@ -1,0 +1,4 @@
+1.215.127.100 - [06/Feb/2015:10:31:16 +0900] /main/index.php: hero_03 = http://blog.naver.com/sooki0628/220264491758\r\nhttps://www.face: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]

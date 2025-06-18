@@ -1,0 +1,168 @@
+<?
+######################################################################################################################################################
+//HERO BOARD 시작 (개발자 : 이진영)2013년 08월 07일
+######################################################################################################################################################
+define('_HEROBOARD_', TRUE);//HEROBOARD오픈
+include_once                                                        $HTTP_SERVER_VARS['DOCUMENT_ROOT'].'/freebest/head.php';
+include_once                                                        FREEBEST_INC_END.'hero.php';
+include_once                                                        FREEBEST_INC_END.'function.php';
+#####################################################################################################################################################
+?>
+<head>
+<meta charset="euc-kr">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+<title>♡AK LOVER 애경 서포터즈</title>
+<link href="css/review.css" rel="stylesheet" type="text/css">
+<link href="css/down_menu.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+<script language=javascript>        
+        function downMenu() {
+            var $menu = $("#down_menu");
+            if($menu.css("display") == "block"){
+                $menu.slideUp(500, function(){
+                    $(".main_menu_btn").prop("src", "img/menu.jpg");
+                });
+            }else{
+                $menu.slideDown(500, function(){
+                    $(".main_menu_btn").prop("src", "img/menu1.jpg");
+                });
+            }
+        }
+        </script>
+        </head>
+        
+<body>
+
+<!--헤더시작-->
+      <div id="header" style="width:100%; background-color:#ffa800; line-height:0px">
+           <ul style="width:100%">
+           <li style="width:19.3%; float:left"><a href="main.php"><img src="img/logo1.jpg" alt=AK LOVER 로고""/></a></li>
+           <li class="top_bg" style="width:63.2%"><img src="img/top_bg.jpg" alt=""/><span>AK를 사랑하는 일원으로 다양하고 특별한 체험과 이벤트를 경험해보세요</span></li>
+           <li style="width:17.5%; float:right"><a href="#none" onClick="downMenu();"><img src="img/menu.jpg" alt="메뉴" class="main_menu_btn" /></a></li>
+           </ul>
+           <div class="clear"></div> 
+      </div>       
+<!--헤더 종료-->
+
+<?include_once "down_menu.php";?>
+
+<!--컨텐츠 시작-->
+     <div id="title"><p>생생후기</p></div>
+     
+     <div><img src="img/shadow1.jpg" alt="" width="100%" height="2px"/></div>
+     
+<div id="guide">
+         <ul style="width:100%">
+         <li style="width:13%; margin-left:5%"><img src="img/general/note1.png" alt="" width="45px"/></li>
+         <li class="guide_text" style="width:82%"><p>미션에 대한 후기를 남겨주세요.</p></li>
+        </ul> 
+</div>
+             <div class="clear"></div>  
+
+       <!-- gallery 시작 -->
+    <div id="gallery">
+      <ul>
+        <a href="review_viewer.php">
+        <li class="gallery_left">
+              <ul class="gallery_box" style="width:100%">
+                 <li class="thumb" style="width:100%"><img src="img/general/photo1.jpg" alt=""/></li>
+                 <li class="gallery_title1" style="width:90%; padding-left:5%"><img src="img/review/new_btn.png" width="13"/>&nbsp;케라시스 비타에너지 샴푸 리얼 후기^^</li>
+                 <li class="gallery_title2" style="width:90%; padding-left:5%">이번에 케라시스 비타에너지 구입 이벤트를 하길래 마침 샴푸도 떨어지고</li>
+                 <!--등록시간<li class="date" style="width:100%">2013-11-13-22:39</li>-->
+                 <li class="nickname" style="width:100%; margin-bottom:5%"><img src="img/level1.png" alt="" height="13px"/>&nbsp;울림</li>
+               </ul>
+                 <!--<span class="more"><a href="general_viewer"><img src="img/general/more.jpg" alt="더보기"/></a></span>-->
+        </li>
+        </a>  
+          
+        <a href="review_viewer.php"> 
+        <li class="gallery_center">
+            <ul class="gallery_box" style="width:100%">
+                 <li class="thumb" style="width:100%"><img src="img/general/photo1.jpg" alt=""/></li>
+                 <li class="gallery_title1" style="width:90%; padding-left:5%"><img src="img/review/new_btn.png" width="13"/>&nbsp;케라시스 비타에너지 샴푸 리얼 후기^^</li>
+                 <li class="gallery_title2" style="width:90%; padding-left:5%">이번에 케라시스 비타에너지 구입 이벤트를 하길래 마침 샴푸도 떨어지고</li>
+                 <!--등록시간<li class="date" style="width:100%">2013-11-13-22:39</li>-->
+                 <li class="nickname" style="width:100%; margin-bottom:5%"><img src="img/level1.png" alt="" height="13px"/>&nbsp;울림</li>
+               </ul>
+                 <!--<span class="more"><a href="general_viewer"><img src="img/general/more.jpg" alt="더보기"/></a></span>-->
+        </li>
+        </a>
+        
+        
+        <a href="review_viewer.php">
+        <li class="gallery_right">
+            <ul class="gallery_box" style="width:100%">
+                 <li class="thumb" style="width:100%"><img src="img/general/photo1.jpg" alt=""/></li>
+                 <li class="gallery_title1" style="width:90%; padding-left:5%"><img src="img/review/new_btn.png" width="13"/>&nbsp;케라시스 비타에너지 샴푸 리얼 후기^^</li>
+                 <li class="gallery_title2" style="width:90%; padding-left:5%">이번에 케라시스 비타에너지 구입 이벤트를 하길래 마침 샴푸도 떨어지고</li>
+                 <!--등록시간<li class="date" style="width:100%">2013-11-13-22:39</li>-->
+                <li class="nickname" style="width:100%; margin-bottom:5%"><img src="img/level1.png" alt="" height="13px"/>&nbsp;울림</li>
+               </ul>
+                 <!--<span class="more"><a href="general_viewer"><img src="img/general/more.jpg" alt="더보기"/></a></span>-->
+        </li>
+        </a>
+        
+        
+        <a href="review_viewer.php">
+        <li class="gallery_left1">
+           <ul class="gallery_box" style="width:100%">
+                 <li class="thumb" style="width:100%"><img src="img/general/photo1.jpg" alt=""/></li>
+                 <li class="gallery_title1" style="width:90%; padding-left:5%">케라시스 비타에너지 샴푸 리얼 후기^^</li>
+                 <li class="gallery_title2" style="width:90%; padding-left:5%">이번에 케라시스 비타에너지 구입 이벤트를 하길래 마침 샴푸도 떨어지고</li>
+                 <!--등록시간<li class="date" style="width:100%">2013-11-13-22:39</li>-->
+                 <li class="nickname" style="width:100%; margin-bottom:5%"><img src="img/level1.png" alt="" height="13px"/>&nbsp;울림</li>
+               </ul>
+                 <!--<span class="more"><a href="general_viewer"><img src="img/general/more.jpg" alt="더보기"/></a></span>-->
+        </li>
+        </a>
+        
+        
+        <a href="review_viewer.php">
+        <li class="gallery_center1">
+            <ul class="gallery_box" style="width:100%">
+                 <li class="thumb" style="width:100%"><img src="img/general/photo1.jpg" alt=""/></li>
+                 <li class="gallery_title1" style="width:90%; padding-left:5%">케라시스 비타에너지 샴푸 리얼 후기^^</li>
+                 <li class="gallery_title2" style="width:90%; padding-left:5%">이번에 케라시스 비타에너지 구입 이벤트를 하길래 마침 샴푸도 떨어지고</li>
+                 <!--등록시간<li class="date" style="width:100%">2013-11-13-22:39</li>-->
+                <li class="nickname" style="width:100%; margin-bottom:5%"><img src="img/level1.png" alt="" height="13px"/>&nbsp;울림</li>
+               </ul>
+                 <!--<span class="more"><a href="general_viewer"><img src="img/general/more.jpg" alt="더보기"/></a></span>-->
+        </li>
+        </a>
+        
+        
+        <a href="review_viewer.php">
+        <li class="gallery_right1">
+            <ul class="gallery_box" style="width:100%">
+                 <li class="thumb" style="width:100%"><img src="img/general/photo1.jpg" alt=""/></li>
+                 <li class="gallery_title1" style="width:90%; padding-left:5%">케라시스 비타에너지 샴푸 리얼 후기^^</li>
+                 <li class="gallery_title2" style="width:90%; padding-left:5%">이번에 케라시스 비타에너지 구입 이벤트를 하길래 마침 샴푸도 떨어지고</li>
+                 <!--등록시간<li class="date" style="width:100%">2013-11-13-22:39</li>-->
+                 <li class="nickname" style="width:100%; margin-bottom:5%"><img src="img/level1.png" alt="" height="13px"/>&nbsp;울림</li>
+               </ul>
+                 <!--<span class="more"><a href="general_viewer"><img src="img/general/more.jpg" alt="더보기"/></a></span>-->
+        </li>
+        </a>
+     </ul>
+   </div>
+     
+     <div class="clear"></div> 
+     
+     <div><img src="img/shadow1.jpg" alt="" width="100%" height="2px"/></div>    
+     
+     
+     <div id="page_number">
+          <a href="#"><img src="img/general/previous_btn.jpg" alt="이전페이지" width="17px"/></a>
+          &nbsp;&nbsp&nbsp;<a href="#">1</a> <a href="#">&nbsp;2</a> <a href="#">&nbsp;3</a> <a href="#">&nbsp;4</a> <a href="#">&nbsp;5</a>
+          &nbsp;&nbsp;&nbsp;<a href="#"><img src="img/general/next_btn.jpg" alt="다음페이지" width="17px"/></a>
+          
+          <span class="gallery_btn">
+          <a href="https://aklover.co.kr:11486/main/index.php?board=group_04_09&view=write&action=write&page=" target="_blank"><img src="img/general/write_btn.jpg" alt="글쓰기" width="70px"></a>
+          </span> 
+      </div>
+      
+       <!-- gallery 종료 --> 
+      
+    
+<!--컨텐츠 종료-->
+<?include_once "tail.php";?>

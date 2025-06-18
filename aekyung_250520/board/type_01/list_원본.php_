@@ -1,0 +1,124 @@
+<?
+######################################################################################################################################################
+//HERO BOARD 시작 (개발자 : 이진영)2013년 08월 07일
+######################################################################################################################################################
+if(!defined('_HEROBOARD_'))exit;
+######################################################################################################################################################
+$cut_count_name = '4';
+$cut_title_name = '34';//40
+######################################################################################################################################################
+if(strcmp($_POST['kewyword'], '')){
+    $search = ' and '.$_POST['select'].' like \'%'.$_POST['kewyword'].'%\'';
+    $search_next = '&select='.$_POST['select'].'&kewyword='.$_POST['kewyword'];
+}else if(strcmp($_GET['kewyword'], '')){
+    $search = ' and '.$_GET['select'].' like \'%'.$_GET['kewyword'].'%\'';
+    $search_next = '&select='.$_GET['select'].'&kewyword='.$_GET['kewyword'];
+}
+######################################################################################################################################################
+$sql = 'select * from board where hero_table=\''.$_GET['board'].'\''.$search.' order by hero_notice desc, hero_idx desc;';
+sql($sql);
+$total_data = @mysql_num_rows($out_sql);
+######################################################################################################################################################
+$list_page=8;
+$page_per_list=10;
+if(!strcmp($_GET['page'], '')){$page = '1';}else{$page = $_GET['page'];}
+$start = ($page-1)*$list_page;
+$next_path="board=".$_GET['board'].$search_next;
+######################################################################################################################################################
+$sql = 'select * from hero_group where hero_order!=\'0\' and hero_use=\'1\' and hero_board =\''.$_GET['board'].'\';';//desc
+sql($sql);
+$right_list                             = @mysql_fetch_assoc($out_sql);
+?>
+    <div class="contents_area">
+        <div class="page_title">
+            <h2><img src="<?=str($right_list['hero_right']);?>" alt="<?=$right_list['hero_title'];?>" /></h2>
+            <ul class="nav">
+                <li><img src="../image/common/icon_nav_home.gif" alt="home" /></li>
+                <li>&gt;</li>
+                <li><?=$right_list['hero_top_title']?></li>
+                <li>&gt;</li>
+                <li class="current"><?=$right_list['hero_title']?></li>
+            </ul>
+        </div>
+        <div class="contents">
+            <table border="0" cellpadding="0" cellspacing="0" class="bbs_list">
+                <colgroup>
+                    <col width="90px" />
+                    <col width="*" />
+                    <col width="90px" />
+                    <col width="70px" />
+                </colgroup>
+                <tr class="bbshead">
+                    <th class="first"><img src="../image/bbs/bbs_t_no.gif" alt="날짜" /></th>
+                    <th><img src="../image/bbs/bbs_t_subject.gif" alt="제목" /></th>
+                    <th><img src="../image/bbs/bbs_t_writer.gif" alt="작성자" /></th>
+                    <th class="last"><img src="../image/bbs/bbs_t_date.gif" alt="날짜" /></th>
+                </tr>
+<?
+$sql = 'select * from board where hero_table=\'hero\' and hero_order =\'0\' order by hero_order asc;';
+sql($sql);
+while($hero_list                             = @mysql_fetch_assoc($out_sql)){
+
+$main_review_sql_01 = 'select * from review where hero_old_idx=\''.$hero_list['hero_idx'].'\'';
+$out_main_review_sql_01 = @mysql_query($main_review_sql_01);
+$main_review_data_01 = @mysql_num_rows($out_main_review_sql_01);
+if(strcmp($main_review_data_01, '0')){
+    $re_count_total = "<strong><font color='orange'>[".$main_review_data_01."]</font></strong>";
+}else{
+    $re_count_total = "";
+}
+
+    $pk_sql = 'select a.hero_level,a.hero_nick,b.hero_img_new from member as a, level as b  where b.hero_level = a.hero_level and a.hero_code = \''.$hero_list['hero_code'].'\'';
+    $out_pk_sql = mysql_query($pk_sql);
+    $pk_row                             = @mysql_fetch_assoc($out_pk_sql);
+
+if(!strcmp(y."-".m."-".d, date( "y-m-d", strtotime($hero_list['hero_today'])))){
+    $new_img_view = " <img src='".DOMAIN_END."image/sub_new.jpg' alt='new' />";
+}else{
+    $new_img_view = "";
+}
+?>
+                <tr class="notice" onclick="location.href='<?=PATH_HOME;?>?board=<?=$_GET['board']?>&next_board=hero&page=<?=$page?>&view=view&idx=<?=$hero_list['hero_idx'];?>'" style="cursor:pointer;">
+                    <td><img src="../image/bbs/icon_notice.gif" alt="공지" /></td>
+                    <td class="tl"><?=cut($hero_list['hero_title'], $cut_title_name);?> <?=$re_count_total.$new_img_view?></td>
+                    <td><img src="<?=str($pk_row['hero_img_new'])?>" /><strong><?=cut($pk_row['hero_nick'], $cut_count_name);?></strong></td>
+                    <td><?=date( "y-m-d", strtotime($hero_list['hero_today']));?></td>
+                </tr>
+<?
+}
+$sql = 'select * from board where hero_table=\''.$_GET['board'].'\''.$search.' order by hero_notice desc, hero_idx desc limit '.$start.','.$list_page.';';
+sql($sql);
+$i=0;
+while($list                             = @mysql_fetch_assoc($out_sql)){
+$num=$total_data - $start-$i;
+$i++;
+$main_review_sql = 'select * from review where hero_old_idx=\''.$list['hero_idx'].'\'';
+$out_main_review_sql = @mysql_query($main_review_sql);
+$main_review_data = @mysql_num_rows($out_main_review_sql);
+if(strcmp($main_review_data, '0')){
+    $re_count_total = "<strong><font color='orange'>[".$main_review_data."]</font></strong>";
+}else{
+    $re_count_total = "";
+}
+$pk_sql = 'select a.hero_level,a.hero_nick,b.hero_img_new from member as a, level as b  where b.hero_level = a.hero_level and a.hero_code = \''.$list['hero_code'].'\'';
+$out_pk_sql = mysql_query($pk_sql);
+$pk_row                             = @mysql_fetch_assoc($out_pk_sql);
+
+if(!strcmp(y."-".m."-".d, date( "y-m-d", strtotime($list['hero_today'])))){
+    $new_img_view = " <img src='".DOMAIN_END."image/sub_new.jpg' alt='new' />";
+}else{
+    $new_img_view = "";
+}
+?>
+                <tr<?if(!strcmp($list['hero_notice'], '1')){?> class="notice"<?}?> onclick="location.href='<?=PATH_HOME;?>?board=<?=$_GET['board']?>&page=<?=$page?>&view=view&idx=<?=$list['hero_idx'];?>'" style="cursor:pointer;">
+                    <td><?if(!strcmp($list['hero_notice'], '1')){echo '<img src="../image/bbs/icon_notice.gif" alt="공지" />';}else{echo $num;}?></td>
+                    <td class="tl"><?=cut($list['hero_title'], $cut_title_name);?> <?=$re_count_total.$new_img_view?></td>
+                    <td><img src="<?=str($pk_row['hero_img_new'])?>" /><?if(!strcmp($list['hero_notice'], '1')){?><strong><?=cut($pk_row['hero_nick'], $cut_count_name);?></strong><?}else{echo cut($pk_row['hero_nick'], $cut_count_name);}?></td>
+                    <td><?=date( "y-m-d", strtotime($list['hero_today']));?></td>
+                </tr>
+<?}?>
+            </table>
+<? include_once BOARD_INC_END.'button.php';?>
+<? include_once BOARD_INC_END.'search.php';?>
+        </div>
+    </div>

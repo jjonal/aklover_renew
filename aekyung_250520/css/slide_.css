@@ -1,0 +1,157 @@
+/*#container {
+	width:580px;
+	padding:10px;
+	margin:0 auto;
+	position:relative;
+	z-index:0;
+}*/
+
+#mainBanner {
+	width:1000px;
+	position:relative;
+	margin-top:22px;
+	height:300px;
+}
+
+#slides {
+  display: none;
+}
+
+#slides .slidesjs-navigation {
+  margin-top:5px;
+}
+
+
+a.slidesjs-next {
+	background-image: url(../image2/main/btn_mb_right.png);
+	background-repeat: no-repeat;
+	width:40px;
+	height:50px;
+	position:absolute;
+	left:1043px;
+	top:120px;
+	text-indent: -9999px;
+	
+}
+a.slidesjs-previous {
+	background-image: url(../image2/main/btn_mb_left.png);
+	background-repeat: no-repeat;
+	width:40px;
+	height:50px;
+	position:absolute;
+	left:-95px;
+	top:120px;
+	text-indent: -9999px;
+}
+
+/*a.slidesjs-next {
+  margin-right:10px;
+  background-position: -3px 0;
+}
+
+a:hover.slidesjs-next {
+  background-position: -12px -18px;
+}
+
+a.slidesjs-previous {
+  background-position: 0 0;
+}
+
+a:hover.slidesjs-previous {
+  background-position: 0 -18px;
+}*/
+
+a.slidesjs-play {
+  width:14px;
+  background-position: -5px -4px;
+}
+
+/*a:hover.slidesjs-play {
+  background-position: -25px -18px;
+}*/
+
+a.slidesjs-stop {
+  width:17px;
+  background-position: -20px -4px;
+}
+
+/*a:hover.slidesjs-stop {
+  background-position: -41px -18px;
+}*/
+
+a.slidesjs-play,
+a.slidesjs-stop {
+  background-image: url(../image2/main/btn_stop_play.png);
+  background-repeat: no-repeat;
+  display:block;
+  height:18px;
+  overflow: hidden;
+  text-indent: -9999px;
+  margin-left:4px;
+  position:relative;
+  left:47%;
+  float:left;
+}
+
+.slidesjs-pagination {
+  margin:1px auto;
+  list-style: none;
+  text-align:center;
+  position: relative;
+  left:47%;
+  float:left;
+}
+
+.slidesjs-pagination li {
+   display: inline-block;
+   margin: 0 1px;
+}
+
+.slidesjs-pagination li a {
+  display: block;
+  width: 13px;
+  height: 0px;
+  padding-top: 13px;
+  background-image: url(../image/btn_rolling.png);
+  background-position: 0 0;
+  float: left;
+  overflow: hidden;
+
+}
+
+.slidesjs-pagination li a.active,
+.slidesjs-pagination li a:hover.active {
+  background-position: 0 -13px;
+  padding-top: 12px;
+}
+
+.slidesjs-pagination li a:hover {
+  background-position: 0 -13px;
+  padding-top: 12px;
+}
+
+#slides div.slide a{
+	border:1px solid #dcdcdc; display:block; position:relative; float:left; width:314px; height:280px;
+}
+/*#slides .slidesjs-control a{
+	border:1px solid #dcdcdc; display:block; position:relative; float:left; width:314px; height:280px;
+}*/
+#slides div.slide a div.bg{
+	width:314px;height:280px; background:#000; position:absolute; top:0; left:0; z-index:91;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)"; /* IE 8 */
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60); /* IE 7 and olders */
+    opacity: .6
+}
+
+#slides div.slide a div.text{
+	position:absolute; top:60px; left:40px; z-index:92; color:#fff; font-size:16px;
+}
+
+#slides div.slide a div.text p{
+	height:45px;
+}
+
+
+.navbar {
+  overflow: hidden
+}

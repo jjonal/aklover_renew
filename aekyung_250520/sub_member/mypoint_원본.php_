@@ -1,0 +1,106 @@
+<?
+######################################################################################################################################################
+//HERO BOARD 시작 (개발자 : 이진영)2013년 08월 07일
+######################################################################################################################################################
+if(!defined('_HEROBOARD_'))exit;
+######################################################################################################################################################
+if(!strcmp($_SESSION['temp_level'], '')){
+    $my_level = '0';
+}else{
+    $my_level = $_SESSION['temp_level'];
+}
+if(!strcmp($my_level,'0')){msg('권한이 없습니다.','location.href="'.PATH_HOME.'?board=login"');exit;}
+######################################################################################################################################################
+$sql = 'select * from hero_group where hero_order!=\'0\' and hero_use=\'0\' and hero_board =\''.$_GET['board'].'\';';//desc
+sql($sql);
+$right_list                             = @mysql_fetch_assoc($out_sql);
+######################################################################################################################################################
+?>
+    <div class="contents_area">
+        <div class="page_title">
+            <h2><img src="<?=str($right_list['hero_right']);?>" alt="<?=$right_list['hero_title'];?>" /></h2>
+            <ul class="nav">
+                <li><img src="../image/common/icon_nav_home.gif" alt="home" /></li>
+                <li>&gt;</li>
+                <li><?=$right_list['hero_top_title']?></li>
+                <li>&gt;</li>
+                <li class="current"><?=$right_list['hero_title']?></li>
+            </ul>
+        </div>
+        <div class="contents">
+<?
+$sql = '
+SELECT a.hero_id,
+a.hero_name, a.hero_nick,
+a.hero_point, b.point_sum FROM member AS a
+LEFT JOIN ( SELECT hero_id,hero_code, SUM(hero_point) AS point_sum FROM point 
+where DATE_FORMAT(hero_today,\'%Y-%m\')=\''.$new_today_check.'\' GROUP BY hero_code ) AS b
+ON ( a.hero_code = b.hero_code ) where hero_level<=\''.$_SESSION['temp_level'].'\';';
+
+https://aklover.co.kr:11486/main/index.php?board=mypoint
+
+
+
+SELECT A.hero_id, SUM(A.hero_point) AS point
+FROM point as A
+LEFT JOIN point as B ON (A.hero_code = B.hero_code) 
+
+where B.hero_id='hero' group by B.hero_id order by point desc LIMIT 0, 10
+
+
+
+SELECT DATE_FORMAT(hero_today,'%Y-%m') AS hero_y_m, SUM(hero_point) AS totalment
+    FROM point
+    WHERE hero_id='admin'
+    GROUP BY DATE_FORMAT(hero_today,'%Y-%m') 
+
+
+
+SELECT SUM(a.hero_point), 
+b.hero_y_m, 
+b.totalment FROM point AS a
+LEFT JOIN 
+(
+SELECT 
+DATE_FORMAT(hero_today,'%Y-%m') AS hero_y_m, 
+SUM(hero_point) AS totalment
+FROM point
+WHERE hero_id='admin'
+GROUP BY DATE_FORMAT(hero_today,'%Y-%m') 
+) AS b;
+
+
+
+SELECT DATE_FORMAT(hero_today,'%Y-%m') AS hero_y_m, SUM(hero_point) AS totalment
+    FROM point
+    WHERE hero_id='admin'
+    GROUP BY DATE_FORMAT(hero_today,'%Y-%m') 
+
+SELECT DATE_FORMAT(SIGNDATE,'%Y-%m') AS 연월, ID AS 업체, SUM(REALTOTAMT) AS totalment
+    FROM `table`
+    WHERE YEAR(SIGNDATE) = 2010
+    GROUP BY DATE_FORMAT(SIGNDATE,'%Y-%m') 
+
+select sum(point) from 테이블 where year(trade_day) = '2012' group by month(trade_day) 
+//##################################################################################################################################################//
+$member_sql = 'select * from member where hero_id=\''.$_SESSION['temp_id'].'\';';
+$out_member_sql = mysql_query($member_sql);
+$member_list                             = @mysql_fetch_assoc($out_member_sql);
+$hero_mail = explode('@', $member_list['hero_mail']);
+//##################################################################################################################################################//
+$level_sql = 'select * from level where hero_level=\''.$member_list['hero_level'].'\';';
+$out_level_sql = mysql_query($level_sql);
+$level_list                             = @mysql_fetch_assoc($out_level_sql);
+?>
+            <table class="member">
+                <colgroup>
+                    <col width="160px" />
+                    <col width="*" />
+                </colgroup>
+                <tr class="first">
+                    <th><img src="../image/member/fd15s.gif" alt="개인별 포인트/등급" /></th>
+                    <td><span class="c_brown bold"><?=$member_list['hero_point']?></span> 점 / <span class="c_brown bold"><?=$level_list['hero_name']?></span> 등급</td>
+                </tr>
+            </table>
+        </div>
+    </div>

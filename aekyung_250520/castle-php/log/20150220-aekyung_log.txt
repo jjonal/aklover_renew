@@ -1,0 +1,36 @@
+219.249.27.76 - [20/Feb/2015:16:11:28 +0900] /main/index.php: hero_03 = 세안시 거품을 내야하는 번거로움을 덜 수 있으며, 손보다 더 자극이: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+219.249.27.76 - [20/Feb/2015:16:11:47 +0900] /main/index.php: hero_03 = 세안시 거품을 내야하는 번거로움을 덜 수 있으며, 손보다 더 자극이: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+219.249.27.76 - [20/Feb/2015:16:11:54 +0900] /main/index.php: hero_03 = 세안시 거품을 내야하는 번거로움을 덜 수 있으며, 손보다 더 자극이: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+219.249.27.76 - [20/Feb/2015:16:14:19 +0900] /main/index.php: hero_03 = 세안시 거품을 내야하는 번거로움도 덜어주고, 손보다 자극이 적으면: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+219.249.27.76 - [20/Feb/2015:16:15:02 +0900] /main/index.php: hero_03 = 세안시 거품을 내야하는 번거로움도 덜어주고, 손보다 자극이 적으면: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+219.249.27.76 - [20/Feb/2015:16:15:16 +0900] /main/index.php: hero_03 = 세안시 거품을 내야하는 번거로움도 덜어주고, 손보다 자극이 적으면: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+219.249.27.76 - [20/Feb/2015:16:17:08 +0900] /main/index.php: hero_03 = 세안시 거품을 내야하는 번거로움도 덜어주고, 손보다 자극이 적으면: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+219.249.27.76 - [20/Feb/2015:21:32:12 +0900] /main/index.php: hero_03 = 세안시 거품을 내야하는 번거로움도 덜어주고, 손보다 자극이 적으면: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+219.249.27.76 - [20/Feb/2015:21:32:41 +0900] /main/index.php: hero_03 = 세안시 거품을 내야하는 번거로움도 덜어주고, 손보다 자극이 적으면: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]

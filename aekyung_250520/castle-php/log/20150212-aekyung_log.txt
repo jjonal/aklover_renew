@@ -1,0 +1,24 @@
+121.180.10.173 - [12/Feb/2015:09:56:15 +0900] /main/index.php: hero_03 = ¸ÅÀÏ ¾çÄ¡¸¦ ÇØ¾ß ÇÏ´Âµ¥ Á»´õ ÁÁÀº Ä¡¾àÀ¸·Î ±ú²ýÇÏ°í Ã»°áÇÑ ÀÔ¼ÓÀ: TAG °ø°Ý ÆÐÅÏ Å½Áö
+ -&gt; [Method: POST]
+ -&gt; [Policy: ±âº»Á¤Ã¥]
+ -&gt; [Pattern: \.\./]
+121.180.10.173 - [12/Feb/2015:09:57:44 +0900] /main/index.php: hero_03 = ¸ÅÀÏ ¾çÄ¡¸¦ ÇØ¾ß ÇÏ´Âµ¥ Á»´õ ÁÁÀº Ä¡¾àÀ¸·Î ±ú²ýÇÏ°í Ã»°áÇÑ ÀÔ¼ÓÀ: TAG °ø°Ý ÆÐÅÏ Å½Áö
+ -&gt; [Method: POST]
+ -&gt; [Policy: ±âº»Á¤Ã¥]
+ -&gt; [Pattern: \.\./]
+121.180.10.173 - [12/Feb/2015:09:59:07 +0900] /main/index.php: hero_03 = ¸ÅÀÏ ¾çÄ¡¸¦ ÇØ¾ß ÇÏ´Âµ¥ Á»´õ ÁÁÀº Ä¡¾àÀ¸·Î ±ú²ýÇÏ°í Ã»°áÇÑ ÀÔ¼ÓÀ: TAG °ø°Ý ÆÐÅÏ Å½Áö
+ -&gt; [Method: POST]
+ -&gt; [Policy: ±âº»Á¤Ã¥]
+ -&gt; [Pattern: \.\./]
+1.236.72.37 - [12/Feb/2015:16:38:17 +0900] /main/index.php: command = &lt;div&gt;TAG °ø°Ý ÆÐÅÏ Å½Áö
+ -&gt; [Method: POST]
+ -&gt; [Policy: ±âº»Á¤Ã¥]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+1.236.72.37 - [12/Feb/2015:16:39:24 +0900] /main/index.php: command = &lt;div&gt;TAG °ø°Ý ÆÐÅÏ Å½Áö
+ -&gt; [Method: POST]
+ -&gt; [Policy: ±âº»Á¤Ã¥]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+1.236.72.37 - [12/Feb/2015:17:02:27 +0900] /main/index.php: command = &lt;div&gt;TAG °ø°Ý ÆÐÅÏ Å½Áö
+ -&gt; [Method: POST]
+ -&gt; [Policy: ±âº»Á¤Ã¥]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]

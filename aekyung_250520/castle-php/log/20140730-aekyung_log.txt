@@ -1,0 +1,1 @@
+180.69.110.169 - [30/Jul/2014:00:21:30 +0900] /main/index.php: command = &lt;div&gt;TAG 공격 패턴 탐지

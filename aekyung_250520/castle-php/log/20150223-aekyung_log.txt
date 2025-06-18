@@ -1,0 +1,24 @@
+219.249.27.76 - [23/Feb/2015:12:17:57 +0900] /main/index.php: hero_03 = 세안시 거품을 내야 하는 번거로움도 덜어주고, 손보다 자극이 적으�: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+219.249.27.76 - [23/Feb/2015:12:24:54 +0900] /main/index.php: hero_03 = 겨울철 옷정리 이제 조금씩 해야 해서, 울샴푸로 니트의류 손질하고 : TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+180.70.129.71 - [23/Feb/2015:13:58:24 +0900] /main/index.php: command = &lt;div align=\"center\" style=\"text-align: center\"&gt;TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+180.70.129.71 - [23/Feb/2015:13:58:56 +0900] /main/index.php: command = &lt;div align=\"center\" style=\"text-align: center\"&gt;TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+218.239.46.47 - [23/Feb/2015:21:32:40 +0900] /main/index.php: hero_03 = 겨울옷 정리해서 넣을때가 되어 가는데 울샴푸가 많이 필요할것 같아: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+219.249.27.76 - [23/Feb/2015:21:35:49 +0900] /main/index.php: hero_03 = 세안시 거품을 내야 하는 번거로움도 덜어주고, 손보다 자극이 적으�: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]

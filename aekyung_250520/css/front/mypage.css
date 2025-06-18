@@ -1,0 +1,717 @@
+/* mypage_head mypage_nav */
+.mypage .right {
+    min-height: 60vh;
+}
+.mypage .sub_title {
+    padding-bottom: 8rem;
+}
+.sub_wrap h1 {
+    letter-spacing: -3.4px;
+}
+.my_nav {
+    margin-top: 10rem;
+}
+.my_info {
+    background-color: var(--main_color);
+    border-radius: 1rem;
+    flex: 1;
+    padding: 1.4rem 1.4rem 1.4rem 6rem;
+    margin-top: -1rem;
+}
+.my_profile {
+
+}
+.my_profile .real-upload {
+    display: none;
+}
+.profile_img {    
+    width: 11.7rem;
+    height: 11.7rem;
+    margin-right: 1.5rem;
+}
+.profile_img .upload {
+    width: 3rem;
+    height: 3rem;
+    background-color: antiquewhite;
+    position: absolute;
+    right: 0;
+    bottom: 0;  
+    border-radius: 100%;  
+    cursor: pointer;
+}
+.profile_img .image-preview {
+    width: 100%;
+    border-radius: 100%;  
+    overflow: hidden;
+}
+.profile_img .image-preview img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+.my_support_wrap {    
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+}
+.my_support {
+    border-radius: .4rem;
+    background-color: #fff;
+    padding: 0 .8rem;
+    margin-bottom: 2.1rem;
+}
+.my_support li {
+    font-size: var(--f14);  
+    font-weight: 600;
+    position: relative;
+    height: 2.4rem;
+    line-height: 2.4rem;
+}
+.my_support li img {
+    margin-right: .2rem;
+}
+/* .my_support li:last-child {
+    margin-left: 1rem;
+    padding-left: 1rem;
+}
+.my_support li:last-child::after {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 1.1rem;
+    background-color: #000;
+    opacity: .3;
+    content: '';
+} */
+.my_id p {
+    color: #fff;
+}
+.my_id p + p {
+    margin-top: .7rem;
+}
+.card_bx {
+    width: 43rem;
+    padding: 2.6rem 4rem;
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0px 6px 7.4px 0.6px rgba(0, 0, 0, 0.09);
+}
+.card_bx + .card_bx  {
+    margin-left: 1.3rem;
+}
+.card_bx li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+} 
+.card_bx li + li {
+    margin-top: 1.6rem;
+}
+.card_bx li p {
+    font-size: var(--fz15);
+    font-weight: 600;
+}
+.card_bx li .point span {
+    display: inline-block;
+    vertical-align: middle;
+}
+.card_bx li p:not(.point) span {
+    font-weight: normal;
+    color: rgba(0, 0, 0, 0.7);
+    display: inline-block;
+    margin-left: .3rem;
+}
+.card_bx li .card_icon {
+    margin-right: 1.2rem;
+}
+.card_bx.sns_card li span {
+    color: rgba(0, 0, 0, 1);
+    vertical-align: middle;
+    cursor: pointer;
+    transition: .4s;
+}
+.card_bx.sns_card li p.none_sns {
+    opacity: .5;
+}
+.super_info {
+    position: absolute;
+    left: 0;
+    bottom: 9%;
+    width: 100%;
+    padding: 0 9%;
+}
+.click_arr {
+    opacity: 0;
+    transition: .4s;
+    margin-left: .5rem;
+}
+.card_bx li p,
+.card_bx li a {
+    display: flex;
+    transition: .4s;
+    align-items: center;
+}
+.card_bx li p:hover .click_arr,
+.card_bx li a:hover .click_arr {
+    opacity: 1;
+}
+.card_bx li p:hover span,
+.card_bx li a:hover {
+    text-decoration: underline;
+}
+
+/* 페이지 내용 */
+.mypage .page_tit {
+    margin-bottom: 4rem;
+}
+.alrampage .datebox {
+    display: none;
+}
+.mypage .mu_searchbox form {
+    display: flex;
+    align-items: center;
+}
+.mypage .mu_searchbox {
+    border-top: 0;
+    padding-top: 0;
+    margin-bottom: 3rem;
+}
+.mypage .search_cont {
+    margin-bottom: 0;
+    flex: 1;
+    margin-left: 1.5rem;
+    display: flex;
+}
+.mypage .mu_searchbox .title {
+    margin-bottom: 0;
+    font-size: var(--fz16);  
+    font-weight: 800;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.black_btn .mu_search_btn {
+    position: relative;
+    right: initial;
+    top: initial;
+    transform: initial;
+    width: 10rem;
+    height: 4.2rem;
+    line-height: 4.2rem;
+    border-radius: 2.1rem;
+    background: #000;
+    color: #fff;
+    margin-left: .6rem;
+    flex:  0 0 auto;
+    text-align: center;
+}
+.black_btn .mu_search_btn.screen_out {
+    overflow: hidden;
+    color: #fff;
+    line-height: 4.2rem;
+    text-indent: 0;
+    font-size: var(--fz17);
+}
+.alrampage .mu_searchbox select {
+    display: block;
+    position: absolute;
+    left: 1.5rem;
+    top: 0;
+    height: 4.2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    width: 12rem;
+    padding: 0 1rem 0 1.5rem;
+    background: url(/img/front/main/btn_dw.png) no-repeat right;
+    background-size: 1.2rem;
+}
+.alrampage .mu_searchbox input[type=text] {
+    padding-left: 14.6rem;
+}
+.date_ver .mu_searchbox .datebox {
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    margin-left: 3.8rem;
+}
+.date_ver .mu_searchbox .datebox .title {
+    margin-right: 1.5rem;
+}
+.date_ver .date_check_list {
+    display: none !important;
+}
+.date_ver .date_check_list.direct {
+    display: flex !important;
+    margin-top: 0;
+}
+.date_ver .mu_searchbox .search_input.call-datepicker {
+    background-color: #f9f9f9;
+    border: 1px solid  #f9f9f9;
+}
+.mypage .paging {
+    margin-top: 8rem;
+}
+.mypage  table thead th {
+    font-weight: 600;
+    font-size: var(--fz16);
+}
+.mypage  table tbody tr td {
+    padding: 3rem 0;
+    color: #000;
+}
+
+/* 슈퍼패스 */
+.open_pop {
+    cursor: pointer;
+}
+.mypage .btn_list  {
+    margin-bottom: 4rem;
+}
+.mypage .btn_list span {
+    display: block;
+    margin-left: 2rem;
+}
+.mypage .file {
+    padding-bottom: 4.4rem;
+}
+.mypage .view_cont {
+    border-bottom: 1px solid var(--border);
+}
+
+
+/* 나의 체험단 */
+.mypage table tbody tr td.mission_td {
+    padding-left: 5rem;
+    padding-right: 5rem;
+}
+.mission_td .board_title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.mission_td .board_title img {
+    margin-right: 2.5rem;
+    width: 10rem;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+.mission_td .board_title .ribon {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+.mission_td .board_title .ribon > span:first-child {
+    padding: 0 1rem;
+    height: 2rem;
+    line-height: 2rem;
+    border-radius: .5rem;
+    font-size: 1.3rem;
+}
+.mission_td .board_title .ribon .type1 {
+    background-color: #ff2975;
+}
+.mission_td .board_title .ribon .type2 {
+    background-color: #2f65ff;
+}
+.mission_td .board_title .ribon .type3 {    
+    background-color: #444444;
+}
+.mission_td .board_title .ribon span.mu_bar {
+    color: #000;
+    padding-left: 1rem;
+    margin-left: 1rem;
+}
+.review_btn:has(a) {
+    font-size: 1.25rem;
+    color: rgba(0, 0, 0, 0.6);
+}
+.review_btn a + a{
+    margin-top: 0.4rem;
+}
+
+
+.mission_td .board_title .tit {
+    font-size: var(--fz16);
+}
+.date_ver .mu_searchbox.point_search .date_check_list.direct {
+    gap: 2.1rem;
+    margin-right: 4rem;
+}
+.date_ver .mu_searchbox.point_search .datebox {
+    margin-left: 0; 
+}
+.date_ver .mu_searchbox.point_search .search_input.call-datepicker {
+    width: 20rem;
+    text-align: left !important;
+}
+.point_state {
+    height: 4.4rem;
+    border-radius: 2.2rem;
+    background: #f9f9f9;
+    padding: 0 3rem;
+}
+.mu_searchbox .point_state.direct::before {
+    display: none;
+}
+.date_ver .mu_searchbox.point_search .point_state.direct {
+    gap: 3rem;
+    margin-right: 0;
+}
+.today_point {
+    margin-bottom: 2.4rem;  
+    color: rgba(0, 0, 0, 0.8);
+    line-height: 1.6;
+}
+.mypage table.point_table tbody tr td {
+    padding: 3rem 0;
+    color: rgba(0, 0, 0, 0.8);
+}
+.mypage table.point_table tbody tr td.t_tit > div {
+    color: rgba(0, 0, 0, 1);
+    width: 44rem;
+    font-weight: 500;
+    display: block;
+    margin: 0 auto;
+}
+.point_table .icon_point span {
+    width: 5.7rem;
+    height: 3.2rem;
+    line-height: 3.2rem;
+    background-color: var(--main_color);
+    color: #fff;
+    display: block;
+    border-radius: .5rem;
+    margin: 0 auto;
+}
+.point_table .icon_point.minus span {    
+    background-color: #e4e4e4;
+    color: #7c7c7c;
+}
+.num_pint span.minus {
+    color: rgba(0, 0, 0, 0.8);  
+    font-weight: normal;
+}
+/* 포인트 축제 구매 내역 */
+.buy_adress {
+    margin-bottom: 4.5rem;
+}
+.buy_adress .card {
+    padding: 2.7rem 3rem;
+    width: 45rem;
+    height: 13rem;
+    border:  1px solid var(--border);
+    margin-right: 1rem;
+}
+.buy_adress .card + .card {
+    margin-right: 2rem;
+}
+.buy_adress .card .tit {
+    font-weight: 800;
+}
+.buy_adress .card  span {
+    color: rgba(0, 0, 0, 0.8);
+    display: block;
+    margin-top: 1rem;  
+    font-weight: 600;
+    line-height: 1.5;
+}
+.edit_my {
+    line-height: 1.5;
+    color: rgba(0, 0, 0, 0.8);
+}
+.edit_my a {    
+    display: block;
+    margin-top: 1.4rem;
+}
+.edit_my a span {
+    vertical-align: middle;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #000;
+    margin-right: .5rem;
+    display: inline;
+    text-decoration: underline;
+}
+.oder_table.point_table .icon_point span {
+    width: 8.3rem;
+}
+.oder_table.point_table .icon_point.done span {
+    background-color: #000;
+    color: #fff;
+} 
+.oder_table .btn_cancel a {
+    display: block;
+    border-radius: .5rem;
+    border: 1px solid var(--border);
+    font-size: 1.4rem;
+    color: rgba(0, 0, 0, 0.5);
+    height: 3.2rem;
+    line-height: 3rem;
+    width: 9.8rem;
+    margin: 0 auto;
+}
+
+/* 내가 쓴 댓글 페이지 */
+.replypage .mu_search_btn.my_post {
+    display: none !important;
+}
+.replypage .btngroup .btn_r > a {
+    display: none !important;
+}
+.replypage .replybox {
+    border-radius: 1rem;
+    background-color: #f8f8f8;
+    padding: 6rem;
+    margin-bottom: 6rem;
+}
+.replypage .replybox .textstyle {
+    padding: 5rem 2rem 10rem;
+}
+/* 회원정보수정 */
+.member_wrap {
+    border-radius: 1rem;
+    background-color: #f6f6f6;
+    padding: 7.2rem 22.4rem;
+}
+.member_wrap .inner {
+    background-color: #fff;
+    border-radius: .5rem;
+    padding: 3rem 11.6rem;
+}
+.member_wrap .inner > div {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+.member_wrap .inner > div input {
+    border-bottom: 1px solid #000;
+    padding-bottom: 1rem;
+    margin-top: 2rem;
+    width: 100%;
+}
+.replypage .btn_submit,
+.member_wrap .btn_submit {
+    margin: 0 auto;
+}
+.info_box {
+    border-radius: 1.5rem;
+    border: solid 1px #e5e5e5;
+    padding: 6rem;
+    margin-bottom: 6rem;
+}
+.info_box .cont {
+    padding-left: 13rem;
+    width: 68rem;
+}
+.sns_wrap .info_box .cont {
+    flex: 1;
+}
+.info_box .box_tit {
+    text-decoration: underline;
+}
+.info_box .cont .tit {
+    margin-bottom: 1.9rem;
+}
+.info_box .cont .my_profile .tit {
+    margin-bottom: 1.3rem;
+}
+.info_box .box_line {
+    margin-bottom: 5rem;
+}
+.info_box .profile_img {
+    width: 10rem;
+    height: 10rem;
+}
+.info_box .profile_img_wrap {    
+    border: 1px solid var(--border);
+    border-radius: 1.4rem;
+    padding: 3.2rem;
+    width: 16.5rem;
+}
+.mypage.mu_member {
+    max-width: none;
+    padding-top: 70px;
+    margin: auto;
+}
+.btn_post {
+    height: 4.2rem;
+    line-height: 4.2rem;
+    border-radius: 2.1rem;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 0 2.3rem;
+    margin-left: 1rem;
+}
+.mypage .choice .div_tr {
+    display: flex;
+}
+.mypage .choice .div_td {
+    width: 55rem;
+}
+.mypage .choice .div_tr .tit {
+    width: 21.5rem;
+    padding-top: 4.1rem;  
+    font-weight: 500;
+}
+.mypage.mu_member .txt_emphasis {
+    font-size: var(--fz14);
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.8);
+    margin-top: 3.3rem;
+    display: block;
+}
+.mypage.mu_member .txt_default {
+    padding-left: 21.5rem;
+    font-size: var(--fz14);
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.8);
+    margin-top: .8rem;
+
+}
+.mypage.mu_member .agree_chk_box {
+    margin-top: 2rem;
+}
+.etc_info {
+    margin-top: 4rem;
+}
+.etc_info dd {
+    display: flex;
+    gap: 1.8rem;
+    flex-flow: column;
+    margin-bottom: 4rem;
+}
+.etc_info dd label {    
+    font-size: var(--fz16);
+    font-weight: 500;
+}
+.children ul {
+    width: 100%;
+    padding: 2.2rem 3.2rem;
+    border-radius: .5rem;
+    background-color: #fff;
+}
+.choice .children ul li {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+}
+.choice .children ul li > div {
+    margin-top: .3rem;
+}
+.choice .children ul li select {
+    width: 20rem !important;
+}
+
+/* 회원탈퇴 */
+.without textarea {
+    width: 100%;
+    margin-top: 1.7rem;
+    border: 1px solid var(--border);
+    background-color: #fafafa;
+    border-radius: .5rem;
+    resize: none;
+    padding: 2rem;
+}
+.without .btngroup .btn_pop {
+    width: 27rem;
+    margin: 0 auto;
+}
+.without .info_box .cont {
+    padding-left: 0;
+    margin: 0 auto;
+    width: 55rem;
+}
+#without_pop > .inner {
+    width: 55.6rem;
+    min-height: 36.3rem;
+    padding: 8rem 7rem 6rem;
+} 
+#without_pop .desc {
+    opacity: .7;
+    margin-top: 2.6rem;
+    line-height: 1.3;
+    margin-bottom: 6.7rem;
+}
+#without_pop .btngroup {
+    gap: 1.1rem;
+}
+#without_pop .btngroup > * {
+    flex: 1;
+}
+
+/* 비밀번호 변경 */
+.pwedit .info_box {  
+    border-radius: 1rem;
+    background-color: #f6f6f6;
+    border: 1px solid #f6f6f6;
+    padding: 4rem 2rem;
+}
+.pwedit .cont.mu_member {  
+    background-color: #fff;
+    width: 65.2rem;
+    margin: 0 auto;
+    border-radius: .5rem;
+    padding: 3rem 2rem;      
+    max-width: none;
+}
+.pwedit .cont .cont_tit {
+    margin-bottom: 4rem;
+    text-align: center;
+}
+.pwedit .cont > div {
+    width: 42rem;
+    margin: 0 auto;
+}
+.pwedit .cont > form {
+    margin-bottom: 1rem;
+}
+.pwedit .info_box .cont .tit {
+    margin-bottom: 1rem;
+}
+.pwedit #newPwText,
+.pwedit #chNewPwText {
+    display: block;
+    margin-top: .6rem;
+}
+.pwedit .info_box .box_line {
+    margin-bottom: 3rem;
+}
+
+/* sns 연동 */
+#infoEditSns .info_sns {
+    padding: 0 2.5rem;
+}
+#infoEditSns .info_sns img {
+    margin-right: 1rem;
+}
+#infoEditSns #naver_id_login {
+    width: 7.7rem;
+    height: 7.7rem; 
+    background: url(/img/front/icon/edit_naver.png) no-repeat center;
+    background-size: contain;
+    margin-right: 1rem;
+}
+#infoEditSns #naver_id_login img {
+    display: none !important;
+}
+#infoEditSns .info_sns.naver_wrap {
+    display: flex;
+}
+
+@media(max-width: 1680px) {
+    /* 마이페이지 */
+    .card_bx {
+        width: 37rem;
+        padding: 2.6rem 2rem;
+    }
+    .mypage .my_info {
+        background-color: var(--main_color);
+        border-radius: 1rem;
+        flex: 1;
+        padding: 1.4rem;
+        margin-top: -1rem;
+    } 
+}

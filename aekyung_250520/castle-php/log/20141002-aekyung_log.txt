@@ -1,0 +1,12 @@
+121.143.75.1 - [02/Oct/2014:10:27:53 +0900] /main/zip_new.php: input_chat = &lt;div id=\"fb-root\"&gt;&lt;/div&gt; &lt;script&gt;(function(d, s, id) { var js,: XSS 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;script]
+121.143.75.1 - [02/Oct/2014:10:29:21 +0900] /main/index.php: command = &lt;div id=\"fb-root\"&gt;&lt;/div&gt; &lt;script&gt;(function(d: XSS 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;script]
+121.143.75.1 - [02/Oct/2014:10:31:55 +0900] /main/index.php: command = &lt;div id=\"fb-root\"&gt;&lt;/div&gt; &lt;script&gt;(function(d: XSS 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;script]

@@ -1,0 +1,243 @@
+body{font: 12px "¸¼Àº °íµñ", "Malgun Gothic", "µ¸¿òÃ¼", "µ¸¿ò";}
+
+a{text-decoration:none;}
+
+#page_number a{text-decoration:none; color:#939393;}
+#page_number a:hover{color:#939393;}
+
+ul{list-style:none;}
+
+img{
+    border:0px;
+    }
+
+#header{
+    position:relative;
+	display: block;
+    }
+
+
+#header li img{
+    width:100%;
+	}
+	
+
+#header li{
+    float: left;
+	list-style:none;
+	}	
+
+.top_bg{
+	position:relative;
+    }
+	
+.top_bg span{
+	position:absolute;
+	line-height:12px;
+	left:3px;
+	bottom:15%;
+	font-size:11px;
+	font-weight:bold;
+	letter-spacing:-1px;
+	word-spacing:0px;
+	color:#fff;
+    }	
+
+#title{
+    width:100%;
+	height:45px;
+	background-color:#eeeeee;
+    /*background-image:url(../img/general/title_bg.jpg);*/
+	/*background-repeat:repeat-x;*/
+	color:#f78429;
+	font-size:18px;
+	font-weight:bold;
+	text-align:center;
+	}
+
+#title p{
+    padding-top:13px;
+	}
+
+
+#guide{
+    width:100%;
+	height:52px;
+    background-image:url(../img/general/guide_bg.jpg);
+	background-repeat:repeat-x;
+	padding-top:6px;
+	color:#868686;
+	font-weight:bold;
+	letter-spacing:-1px;
+	margin-bottom: 10px;
+	
+}
+
+	
+#guide ul{
+display:table;
+}
+
+#guide li{
+    list-style:none;
+	float:left;
+	}
+
+.guide_text{
+display:table;
+}
+
+	
+.guide_text p{
+	display:table-cell;
+	height:40px;
+	vertical-align:middle;
+}
+
+
+#gallery{
+	position:relative;
+	width:90%;
+	height:auto;
+	margin:auto;
+	font-family:"¸¼Àº °íµñ", "Malgun Gothic",
+}
+
+#page_number{
+     font-size:12px;
+	 color:#939393;
+	 width:100%;
+	 height:30px;
+	 letter-spacing:1px;
+	 text-align:center;
+	 font-weight:bold;
+	 margin-top:15px;
+	 position:relative;
+	 }
+
+	 	
+#page_number li{
+     list-style:none;
+	 float:left;
+     }
+
+#page_number img{
+vertical-align:middle;
+margin-top:-3px;
+}
+
+	 
+.gallery_btn{
+position:absolute;
+right:10px;
+top:-4px;
+}	 
+
+
+
+#bottom_logout, #bottom_login{
+    width:100%;
+ 	background:#464646;
+	height:45px;
+	}
+
+
+#bottom_logout ul{
+    width:230px;
+	padding:0px;
+    margin:auto;
+	padding-top:14px;
+	}
+
+#bottom_login ul{
+    width:305px;
+	padding:0px;
+    margin:auto;
+	padding-top:14px;
+	}
+
+
+#bottom_logout li, #bottom_login li{
+	float:left;
+	list-style:none;
+	}
+	
+.btn img{
+	width:65px;
+	}	
+
+.search img{
+	width:20px;
+	}
+	
+#copyright{
+	width:100%;
+ 	background:#333333;
+	height:60px;
+    }
+
+	
+#copyright p{
+	text-align:center;
+	color:#909090;
+	margin:auto;
+	padding-top:9px;
+	font-size:10px;
+    }
+
+	
+.clear{
+    clear:both; height:0px;width:100%;
+	}
+.mobileMissionList{zoom:1; width:100%; position:relative;}
+.mobileMissionList:after{content:''; display:block; clear:both;}
+.mobileMissionList li{float:left; width:47%; border:1px solid #cccccc; margin:0 0 5px 2%; position:relative;}
+.mobileMissionList li a{text-decoration:none;}
+.mobileMissionList li .thumb{margin:0 0 7px 0;}
+.mobileMissionList li .thumb img{width:100%;}
+.mobileMissionList li:nth-child(odd){margin-right:2%;}
+.mobileMissionList li .status{margin:5px 5px 0 5px;}
+.mobileMissionList li .type_check{display:inline; padding:2px 8px 2px 8px; font-size:11px; color: white; background-color: orange; margin-left: 5px; border-radius: 4px;}
+.mobileMissionList li .color_1{color:#ff9900}
+.mobileMissionList li .color_2{color:#ff00ff}
+.mobileMissionList li .color_3{color:#33cc33}
+.mobileMissionList li .color_4{color:#6699ff}
+.mobileMissionList li .color_5{color:#888888}
+.mobileMissionList li span.period{color:#000; font-weight:bold; font-size:12px; display:inline; display:inline; margin:8px 0 0 10px;}
+.mobileMissionList li div.title{font-size:14px;letter-spacing:-1.5px;text-align:left;margin:0 10px; padding:0 0 10px 0;color:#000; min-height:16px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.mobileMissionList li div.date{font-size:14px;color:#000;margin:3px 10px; min-height:20px;}
+
+.mobileMissionList .ribon{position:absolute; right:0; top:0; background:#f78c35; padding:3px 2%; color:#fff; font-size:10px;}
+.mobileMissionList .mission_use{position:absolute; left:0; top:0; background:#666; padding:3px 2%; color:#fff; font-size:10px;}
+.mobileMissionList .mission_com{position:absolute; left:0; top:0; background-color:#eeeeee; opacity:0.8; width:100%; height:100%; z-index:10;}
+.mobileMissionList .mission_com img{margin:20px;}
+.mobileMissionList .mission_ribbon{position:absolute;top:0;right:0;z-index:5; background:#f38653; height:18px; width:76px; height:18px; line-height:18px; font-size:11px; color:#fff; text-align:center;}
+.mobileMissionList .bg_hero_type_3{background:#33cc33 !important}
+.mobileMissionList .bg_hero_type_5{background:#2d69ac !important}
+.mobileMissionList .typeBg{background:#2d69ac !important}
+.mobileMissionList .ribon_ak{background:#0e426f}
+
+#missionStatus{zoom:1; width:100%; margin-bottom: 15px; margin-left:2%;}
+#missionStatus:after{content:''; display:block; clear:both;}
+#missionStatus li{float:left; border:1px solid #d4d4d4; text-align:center; padding:10px 1%; width:20%; margin-left:-1px; cursor:pointer; font-size:9px;}
+#missionStatus li.on{border:1px solid #f78c35; color:#f78c35; position:relative; z-index:100; font-weight:bold;}
+
+#blankList{width:98%;border-top:1px solid #d4d4d4; border-bottom:1px solid #d4d4d4; background:#fff; margin-left:2%; margin-bottom: 15px; padding:10px; text-align: center;}
+.writeWrap{padding:0 10px 20px 10px;}
+.writeWrap div, .writeWrap label{box-sizing:border-box; padding:0 !important;}
+.writeWrap .form-horizontal .form-group label{margin:15px 0 6px;}
+.writeWrap .form-actions{margin:40px 0 0 0; text-align:center;}
+.writeWrap .form-actions button+button{margin-left:10px;}
+.form-horizontal .form-group{margin:0 !important;}
+
+.youtuberListWrap .youtuberList{margin:0 10px;}
+.youtuberListWrap .youtuberList:after{display:block; content:''; clear:both;}
+.youtuberListWrap .youtuberList li{float:left; width:45%; margin:20px 2.5%;}
+.youtuberListWrap .youtuberList li a dl:after{display:block; content:''; clear:both;}
+.youtuberListWrap .youtuberList li a dl dt{float:left; width:36%;}
+.youtuberListWrap .youtuberList li a dl dt img{border-radius:50%; width:90%;}
+.youtuberListWrap .youtuberList li a dl dd{float:left; width:64%;}
+.youtuberListWrap .youtuberList li a dl dd .tit{color:#333; font-size:14px; padding:3px 0 0 0; margin:0;}
+.youtuberListWrap .youtuberList li a dl dd .subscriber{color:#666; font-size:13px; margin:3px 0 0 0; overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.youtuberListWrap .youtuberList li a dl dd .icon{color:#f00; font-size:12px; margin:3px 0 0 0;}
+.youtuberListWrap .youtuberList li a dl dd .icon img{width:15%;}

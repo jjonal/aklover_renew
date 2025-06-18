@@ -1,0 +1,4 @@
+<? 
+if(empty($_SERVER['HTTP_REFERER'])) echo("window.open"); 
+else echo("a href"); 
+?> 

@@ -1,0 +1,177 @@
+html,body{
+   margin: 0px;
+   padding: 0px;
+   -webkit-text-size-adjust:none;
+  }
+
+*{
+	margin: 0px;
+	padding: 0px;
+    }
+ul{list-style:none;}
+body{
+	font: 12px "맑은 고딕", "Malgun Gothic", "돋움체", "돋움";
+	color:#FFF;
+	
+    }
+
+a {
+	text-decoration:none;
+	color:#FFF;
+    }
+
+#page_number a{text-decoration:none; color:#939393;}
+#page_number a:hover{color:#939393;}
+#viewer_text a{text-decoration:none; color:#6c6c6c;}
+#viewer_text a:hover{color:#6c6c6c;}
+.viewer_box a{text-decoration:none; color:#747474;}
+.viewer_box a:hover{color:#747474;}
+
+img{
+    border:0px;
+    }
+
+#header{
+    position:relative;
+	display: block;
+    }
+
+
+#header li img{
+    width:100%;
+	}
+	
+
+#header li{
+    float: left;
+	list-style:none;
+	}	
+
+.top_bg{
+	position:relative;
+    }
+	
+.top_bg span{
+	position:absolute;
+	line-height:12px;
+	left:3px;
+	bottom:15%;
+	font-size:11px;
+	font-weight:bold;
+	letter-spacing:-1px;
+	word-spacing:0px;
+	color:#fff;
+    }	
+
+#title{
+    width:100%;
+	height:45px;
+    background-image:url(../img/general/title_bg.jpg);
+	background-repeat:repeat-x;
+	color:#f78429;
+	font-size:18px;
+	font-weight:bold;
+	text-align:center;
+	}
+
+#title p{
+    padding-top:13px;
+	}
+
+
+#guide{
+    width:100%;
+	height:42px;
+    background-image:url(../img/general/guide_bg.jpg);
+	background-repeat:repeat-x;
+	padding-top:6px;
+	color:#868686;
+	font-weight:bold;
+	letter-spacing:-1px;
+	border-bottom:1px solid #e5e5e5;
+	}
+	
+#guide ul{
+display:table;
+}
+
+#guide li{
+    list-style:none;
+	float:left;
+	}
+
+.guide_text{
+display:table;
+}
+
+	
+.guide_text p{
+	display:table-cell;
+	height:40px;
+	vertical-align:middle;
+    }
+
+
+#content_bg p{
+    font-size:18px;
+	font-weight:bold;
+	color:#565656;
+	margin-bottom:10%;
+	}
+
+
+
+#bottom_logout, #bottom_login{
+    width:100%;
+ 	background:#464646;
+	height:45px;
+	}
+
+
+#bottom_logout ul{
+    width:230px;
+	padding:0px;
+    margin:auto;
+	padding-top:14px;
+	}
+
+#bottom_login ul{
+    width:150px;
+	padding:0px;
+    margin:auto;
+	padding-top:14px;
+	}
+
+
+#bottom_logout li, #bottom_login li{
+	float:left;
+	list-style:none;
+	}
+	
+.btn img{
+	width:65px;
+	}	
+
+.search img{
+	width:20px;
+	}
+	
+#copyright{
+	width:100%;
+ 	background:#333333;
+	height:60px;
+    }
+
+	
+#copyright p{
+	text-align:center;
+	color:#909090;
+	margin:auto;
+	padding-top:9px;
+	font-size:10px;
+    }
+
+	
+.clear{
+    clear:both; height:0px;width:100%;
+	}

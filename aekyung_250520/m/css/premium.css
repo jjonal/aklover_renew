@@ -1,0 +1,292 @@
+html,body{
+   margin: 0px;
+   padding: 0px;
+  }
+
+*{
+	margin: 0px;
+	padding: 0px;
+    }
+ul{list-style:none;}
+body{
+	font: 12px "맑은 고딕", "Malgun Gothic", "돋움체", "돋움";
+	/* color:#FFF; */
+	
+    }
+
+a {
+	text-decoration:none;
+	color:#FFF;
+    }
+
+#page_number a{text-decoration:none; color:#939393;}
+#page_number a:hover{color:#939393;}
+
+
+img{
+    border:0px;
+    }
+
+#header{
+    position:relative;
+	display: block;
+    }
+
+
+#header li img{
+    width:100%;
+	}
+	
+
+#header li{
+    float: left;
+	list-style:none;
+	}	
+
+.top_bg{
+	position:relative;
+    }
+	
+.top_bg span{
+	position:absolute;
+	line-height:12px;
+	left:3px;
+	bottom:15%;
+	font-size:11px;
+	font-weight:bold;
+	letter-spacing:-1px;
+	word-spacing:0px;
+	color:#fff;
+    }	
+
+#title{
+    width:100%;
+	height:45px;
+    background-image:url(../img/general/title_bg.jpg);
+	background-repeat:repeat-x;
+	color:#f78429;
+	font-size:18px;
+	font-weight:bold;
+	text-align:center;
+	}
+
+#title p{
+    padding-top:13px;
+	}
+
+
+#guide{
+    width:100%;
+	height:42px;
+    background-image:url(../img/general/guide_bg.jpg);
+	background-repeat:repeat-x;
+	padding-top:6px;
+	color:#868686;
+	font-weight:bold;
+	letter-spacing:-1px;
+	}
+	
+#guide ul{
+display:table;
+}
+
+#guide li{
+    list-style:none;
+	float:left;
+	}
+
+.guide_text{
+display:table;
+}
+
+	
+.guide_text p{
+	display:table-cell;
+	height:40px;
+	vertical-align:middle;
+}
+
+
+/*媛ㅻ�щ━ ����*/
+#gallery{
+	position:relative;
+	width:100%;
+	height:auto;
+	
+}
+
+#gallery ul{
+    margin:auto;
+	width:100%;
+	}
+
+#gallery li{
+	width: 33%;
+	float: left;
+}
+
+
+#gallery li a span{
+	display: block;
+}
+
+.gallery_left{
+	border-left:1px solid #cccccc;
+    border-top:1px solid #cccccc;
+	border-bottom:1px solid #cccccc;
+	border-right:1px solid #cccccc;
+	margin-left:0.4%;
+	}
+
+.gallery_center{
+    border-top:1px solid #cccccc;
+	border-bottom:1px solid #cccccc;
+	border-right:1px solid #cccccc;
+	}
+	
+.gallery_right{
+    border-top:1px solid #cccccc;
+	border-bottom:1px solid #cccccc;
+	border-right:1px solid #cccccc;
+	}
+
+.gallery_left1{
+    border-left:1px solid #cccccc; 
+	border-right:1px solid #cccccc;
+	border-bottom:1px solid #cccccc;
+	margin-left:0.4%;
+	}
+	
+.gallery_center1{
+	border-bottom:1px solid #cccccc;
+	border-right:1px solid #cccccc;
+	}	
+	
+.gallery_right1{
+	border-right:1px solid #cccccc;
+	border-bottom:1px solid #cccccc;
+	}
+	
+.thumb img{
+	width: 100%;
+}
+
+
+.gallery_title1{
+    width:100%;
+	color:#f58320;
+	font-size:12px;
+	font-weight:bold;
+	margin-top:5%;
+}
+
+.gallery_title2{
+	color:#515151;
+	font-size:12px;
+	font-weight:bold;
+	height:43px;
+	display:block;
+	overflow:scroll;
+	margin-top:5%;
+}
+
+.date{
+	font-size:12px;
+	color:#937347;
+	font-weight:bold;
+	margin-top:5%;
+	letter-spacing:-1px;
+}
+
+.more{
+	float:right;
+	margin-top:5%;
+}
+
+
+#page_number{
+     font-size:12px;
+	 color:#939393;	 
+	 width:100%;
+	 height:32px;
+	 letter-spacing:1px;
+	 text-align:center;
+	 font-weight:bold;
+	 margin-top:15px;
+	 position:relative;
+	 }
+	
+#page_number ul{
+	 width:166px;
+     padding:0px;
+	 margin:auto;
+     }	
+	
+#page_number li{
+     list-style:none;
+	 float:left;
+     }
+	 
+.gallery_btn{
+position:absolute;
+right:10px;
+top:-4px;
+}	 
+
+/*媛ㅻ�щ━ 醫�猷�*/
+
+
+#bottom_logout, #bottom_login{
+    width:100%;
+ 	background:#464646;
+	height:45px;
+	}
+
+
+#bottom_logout ul{
+    width:230px;
+	padding:0px;
+    margin:auto;
+	padding-top:14px;
+	}
+
+#bottom_login ul{
+    width:150px;
+	padding:0px;
+    margin:auto;
+	padding-top:14px;
+	}
+
+
+#bottom_logout li, #bottom_login li{
+	float:left;
+	list-style:none;
+	}
+	
+.btn img{
+	width:65px;
+	}	
+
+.search img{
+	width:20px;
+	}
+	
+#copyright{
+	width:100%;
+ 	background:#333333;
+	height:60px;
+    }
+
+	
+#copyright p{
+	text-align:center;
+	color:#909090;
+	margin:auto;
+	padding-top:9px;
+	font-size:10px;
+    }
+
+	
+.clear{
+    clear:both; height:0px;width:100%;
+	}

@@ -1,0 +1,155 @@
+<?
+######################################################################################################################################################
+//HERO BOARD 시작 (개발자 : 이진영)2013년 08월 07일
+######################################################################################################################################################
+define('_HEROBOARD_', TRUE);//HEROBOARD오픈
+include_once                                                        $HTTP_SERVER_VARS['DOCUMENT_ROOT'].'/freebest/head.php';
+include_once                                                        FREEBEST_INC_END.'hero.php';
+include_once                                                        FREEBEST_INC_END.'function.php';
+#####################################################################################################################################################
+?>
+<head>
+<meta charset="euc-kr">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+<title>♡AK LOVER 애경 서포터즈</title>
+<link href="css/general.css" rel="stylesheet" type="text/css">
+<link href="css/down_menu.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+<script language=javascript>        
+        function downMenu() {
+            var $menu = $("#down_menu");
+            if($menu.css("display") == "block"){
+                $menu.slideUp(500, function(){
+                    $(".main_menu_btn").prop("src", "img/menu.jpg");
+                });
+            }else{
+                $menu.slideDown(500, function(){
+                    $(".main_menu_btn").prop("src", "img/menu1.jpg");
+                });
+            }
+        }
+        </script>
+        </head>
+        
+<body>
+
+<!--헤더시작-->
+      <div id="header" style="width:100%; background-color:#ffa800; line-height:0px">
+           <ul style="width:100%">
+           <li style="width:19.3%; float:left"><a href="main.php"><img src="img/logo1.jpg" alt=AK LOVER 로고""/></a></li>
+           <li class="top_bg" style="width:63.2%"><img src="img/top_bg.jpg" alt=""/><span>AK를 사랑하는 일원으로 다양하고 특별한 체험과 이벤트를 경험해보세요</span></li>
+           <li style="width:17.5%; float:right"><a href="#none" onClick="downMenu();"><img src="img/menu.jpg" alt="메뉴" class="main_menu_btn" /></a></li>
+           </ul>
+           <div class="clear"></div> 
+      </div>       
+<!--헤더 종료-->
+
+<?include_once "down_menu.php";?>
+
+<!--컨텐츠 시작-->
+     <div id="title"><p>일반미션</p></div>
+     
+     <div><img src="img/shadow1.jpg" alt="" width="100%" height="2px"/></div>
+     
+<div id="guide">
+         <ul style="width:100%">
+         <li style="width:13%; margin-left:5%"><img src="img/general/note1.png" alt="" width="45px"/></li>
+         <li class="guide_text" style="width:82%"><p>나눔 등급부터 모든 분들이 참여할 수 있는 미션이예요.</p></li>
+        </ul> 
+</div>
+             <div class="clear"></div>  
+
+       <!-- gallery 시작 -->
+    <div id="gallery">
+      <ul>
+        <li class="gallery_left">
+              <ul class="gallery_box" style="width:100%">
+                 <li class="thumb" style="width:100%"><a href="general_viewer.php"><img src="img/general/photo1.jpg" alt=""/></a></li>
+                 <a href="general_viewer.php"><li class="gallery_title1" style="width:90%; padding-left:5%"><img src="img/review/new_btn.png" width="13"/>&nbsp;[발표]</li></a>
+                 <li class="gallery_title2" style="width:90%; padding-left:5%">보헤미안 패션 상품 발표회보헤미안 패션 상품 발표회보헤미안 패션 상품 발표회보헤미안 패션 상품 발표회보헤미안 패션 상품 발표회보헤미안 패션 상품 발표회</li>
+                 <a href="general_viewer.php"><li class="date" style="width:100%">미션 신청</li></a>
+                <a href="general_viewer.php"> <li class="date" style="width:100%; margin-bottom:5%">10월15일 - 11월30일</li></a>
+               </ul>
+                 <!--<span class="more"><a href="general_viewer"><img src="img/general/more.jpg" alt="더보기"/></a></span>-->
+        </li>
+          
+          
+        <li class="gallery_center">
+            <ul class="gallery_box" style="width:100%">
+                 <li class="thumb" style="width:100%"><a href="general_viewer.php"><img src="img/general/photo2.jpg" alt=""/></a></li>
+                 <a href="general_viewer.php"><li class="gallery_title1" style="width:90%; padding-left:5%"><img src="img/review/new_btn.png" width="13"/>&nbsp;[진행중]</li></a>
+                 <li class="gallery_title2" style="width:90%; padding-left:5%">자외선 차단제에 피부수분을 공급해주는 제품출시</li>
+                 <a href="general_viewer.php"><li class="date" style="width:100%">리뷰 등록</li></a>
+                 <a href="general_viewer.php"><li class="date" style="width:100%; margin-bottom:5%">10월15일 - 11월30일</li></a>
+               </ul>
+                 <!--<span class="more"><a href="general_viewer"><img src="img/general/more.jpg" alt="더보기"/></a></span>-->
+        </li>
+        
+        
+        <li class="gallery_right">
+            <ul class="gallery_box" style="width:100%">
+                 <li class="thumb" style="width:100%"><a href="general_viewer.php"><img src="img/general/photo3.jpg" alt=""/></a></li>
+                 <a href="general_viewer.php"><li class="gallery_title1" style="width:90%; padding-left:5%"><img src="img/review/new_btn.png" width="13"/>&nbsp;[진행중]</li></a>
+                 <li class="gallery_title2" style="width:90%; padding-left:5%">오프라인 모임 관련 설문 이벤트</li>
+                 <a href="general_viewer.php"><li class="date" style="width:100%">미션 신청</li></a>
+                <a href="general_viewer.php"><li class="date" style="width:100%; margin-bottom:5%">10월15일 - 11월30일</li></a>
+               </ul>
+                 <!--<span class="more"><a href="general_viewer"><img src="img/general/more.jpg" alt="더보기"/></a></span>-->
+        </li>
+        
+        
+        <li class="gallery_left1">
+            <ul class="gallery_box" style="width:100%">
+                 <li class="thumb" style="width:100%"><a href="general_viewer.php"><img src="img/general/photo4.jpg" alt=""/></a></li>
+                 <a href="general_viewer.php"><li class="gallery_title1" style="width:90%; padding-left:5%">[발표]</li></a>
+                 <li class="gallery_title2" style="width:90%; padding-left:5%">울샴푸 아웃도어 제품 체험</li>
+                 <a href="general_viewer.php"><li class="date" style="width:100%">&nbsp;</li></a>
+                 <a href="general_viewer.php"><li class="date" style="width:100%; margin-bottom:5%">10월15일 - 11월30일</li></a>
+               </ul>
+                 <!--<span class="more"><a href="general_viewer"><img src="img/general/more.jpg" alt="더보기"/></a></span>-->
+        </li>
+        
+        
+        <li class="gallery_center1">
+            <ul class="gallery_box" style="width:100%">
+                 <li class="thumb" style="width:100%"><a href="general_viewer.php"><img src="img/general/photo5.jpg" alt=""/></a></li>
+                <a href="general_viewer.php"> <li class="gallery_title1" style="width:90%; padding-left:5%">[진행중]</li></a>
+                 <li class="gallery_title2" style="width:90%; padding-left:5%">에어후레쉬 크리스탈 체험 미션</li>
+                 <a href="general_viewer.php"><li class="date" style="width:100%">&nbsp;</li></a>
+                 <a href="general_viewer.php"><li class="date" style="width:100%; margin-bottom:5%">10월15일 - 11월30일</li></a>
+               </ul>
+                 <!--<span class="more"><a href="general_viewer"><img src="img/general/more.jpg" alt="더보기"/></a></span>-->
+        </li>
+        
+        <li class="gallery_right1">
+            <ul class="gallery_box" style="width:100%">
+                 <li class="thumb" style="width:100%"><a href="general_viewer.php"><img src="img/general/photo6.jpg" alt=""/></a></li>
+                 <a href="general_viewer.php"><li class="gallery_title1" style="width:90%; padding-left:5%">[발표]</li></a>
+                 <li class="gallery_title2" style="width:90%; padding-left:5%">에이지투웨니스 품평회 참여</li>
+                 <a href="general_viewer.php"><li class="date" style="width:100%">&nbsp;</li></a>
+                 <a href="general_viewer.php"><li class="date" style="width:100%; margin-bottom:5%">10월15일 - 11월30일</li></a>
+               </ul>
+                 <!--<span class="more"><a href="general_viewer"><img src="img/general/more.jpg" alt="더보기"/></a></span>-->
+        </li>
+     </ul>
+     <div class="clear"></div> 
+
+     
+     
+     
+     <div><img src="img/shadow1.jpg" alt="" width="100%" height="2px"/></div>    
+     
+     
+     <div id="page_number" style="text-align:center">
+          <a href="#"><img src="img/general/previous_btn.jpg" alt="이전페이지" width="17px"/></a>
+          &nbsp;&nbsp&nbsp;<a href="#">1</a> <a href="#">&nbsp;2</a> <a href="#">&nbsp;3</a> <a href="#">&nbsp;4</a> <a href="#">&nbsp;5</a>
+          &nbsp;&nbsp;&nbsp;<a href="#"><img src="img/general/next_btn.jpg" alt="다음페이지" width="17px"/></a>
+      </div>
+      </div>
+
+      
+       <!-- gallery 종료 --> 
+      
+    
+<!--컨텐츠 종료-->
+<?include_once "tail.php";?>

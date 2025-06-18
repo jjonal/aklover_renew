@@ -1,0 +1,135 @@
+<?
+######################################################################################################################################################
+//HERO BOARD 시작 (개발자 : 이진영)2013년 08월 07일
+######################################################################################################################################################
+define('_HEROBOARD_', TRUE);//HEROBOARD오픈
+include_once                                                        $HTTP_SERVER_VARS['DOCUMENT_ROOT'].'/freebest/head.php';
+include_once                                                        FREEBEST_INC_END.'hero.php';
+include_once                                                        FREEBEST_INC_END.'function.php';
+#####################################################################################################################################################
+?>
+<head>
+<meta charset="euc-kr">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+<title>♡AK LOVER 애경 서포터즈</title>
+<link href="css/general_viewer.css" rel="stylesheet" type="text/css">
+<link href="css/down_menu.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+<script language=javascript>        
+        function downMenu() {
+            var $menu = $("#down_menu");
+            if($menu.css("display") == "block"){
+                $menu.slideUp(500, function(){
+                    $(".main_menu_btn").prop("src", "img/menu.jpg");
+                });
+            }else{
+                $menu.slideDown(500, function(){
+                    $(".main_menu_btn").prop("src", "img/menu1.jpg");
+                });
+            }
+        }
+        </script>
+        </head>
+        
+<body>
+
+<!--헤더시작-->
+<div id="header" style="width:100%; background-color:#ffa800; line-height:0px">
+       <ul style="width:100%">
+           <li style="width:19.3%; float:left"><a href="main.php"><img src="img/logo1.jpg" alt=AK LOVER 로고""/></a></li>
+           <li class="top_bg" style="width:63.2%"><img src="img/top_bg.jpg" alt=""/><span>AK를 사랑하는 일원으로 다양하고 특별한 체험과 이벤트를 경험해보세요</span></li>
+           <li style="width:17.5%; float:right"><a href="#none" onClick="downMenu();"><img src="img/menu.jpg" alt="메뉴" class="main_menu_btn" /></a></li>
+       </ul>
+       <div class="clear"></div> 
+</div>       
+<!--헤더 종료-->
+
+<?include_once "down_menu.php";?>
+
+<!--컨텐츠 시작-->
+<div id="content">
+    <div id="title"><p>일반미션</p></div>
+     
+    <div><img src="img/shadow1.jpg" alt="" width="100%" height="2px"/></div>
+     
+    <div id="guide">
+         <ul style="width:100%">
+         <li style="width:13%; margin-left:5%"><img src="img/general/note1.png" alt="" width="45px"/></li>
+         <li class="guide_text" style="width:82%"><p>나눔 등급부터 모든 분들이 참여할 수 있는 미션이예요.</p></li>
+        </ul> 
+    </div>
+    <div class="clear"></div>  
+
+ 
+    <div style="width:100%; text-align:center; margin-top:12px; margin-bottom:8px;">
+        <a href="https://aklover.co.kr:11486/main/index.php?board=group_04_05&view=step_02&idx=31" target="_blank"><img src="img/general/viewer_btn1.jpg" alt="리뷰어 신청자" width="80px"/></a>&nbsp;&nbsp;
+        <a href="https://aklover.co.kr:11486/main/index.php?board=group_04_05&view=step_05&page=1&idx=28" target="_blank"><img src="img/general/viewer_btn2.jpg" alt="리뷰등록확인" width="80px"/></a></div>
+
+  <div id="viewer_title" style="width:93%; padding-left:7%; margin-bottom:25px;"><img src="img/review/new_btn.png" width="13"/><span style="color:#ffa700">&nbsp;[진행중]</span> &nbsp;오프라인 모임 관련 설문이벤트</div>
+
+    <div style="text-align:center; margin-bottom:25px">
+  <img src="img/general/viewer_img1.jpg" alt="" width="70%"/>
+    </div>   
+
+
+    <div id="viewer_text" style="width:85%; margin:auto">
+       <span class="text1">본 설문 조사는 AK LOVER 분들의 오프라인 활동과 관련하여 AK LOVER 분들의 다양한 소리를 들어보고자 합니다. 오프라인 활동과 관련하여 설문조사에 참여해주시면 해당 자료를 가지고 즐겁고 다양한 오프라인 활동을 만들 수 있도록 하겠습니다.</span>
+   
+       <ul style="width:100%; padding-top:15px;">
+          <li class="text2" style="width:20%">설문 일정 :</li><li style="width:80%">11월 05일 (화) ~ 11월 30일 (토)</li>
+       </ul>
+   
+       <ul style="width:100%; padding-top:25px;">
+          <li class="text2" style="width:20%">설문 대상 :</li><li style="width:80%">AK LOVER 전원</li>
+       </ul>
+   
+       <ul style="width:100%; padding-top:25px;">
+          <li class="text2" style="width:24%">참여자 혜택 :</li><li style="width:76%">참여자 전원 포인트 100점</li>
+       </ul>
+   
+       <ul style="width:100%; padding-top:25px;">
+          <li class="text2" style="width:20%">참여 방법 :</li>
+          <li style="width:80%; margin-bottom:20px">
+               <ul style="width:100%">
+                  <li style="width:100%">① ▼ 아래 링크를 클릭</li>
+                  <li style="width:100%; margin-bottom:5px">&nbsp;&nbsp;&nbsp;<a href="http://me2.do/5VRSjH3h">http://me2.do/5VRSjH3h</a></li>
+                  <li style="width:100%; margin-bottom:5px">② 설문조사 진행</li>
+                  <li style="width:100%">③ 설문을 완료하시면 설문지 하단에 "제출하기" 버튼을 클릭해주세요.</li>
+              </ul>
+           </li>   
+        </ul>
+    </div>  
+ 
+    <div class="clear"></div> 
+  
+    <div class="viewer_box" style="width:60%; margin:auto; background-color:#f6f6f6; padding-top:15px; padding-bottom:12px; padding-left:95px; padding-right:2%; margin-bottom:10px">
+리뷰어 신청 : 11월 05일 ~ 11월 30일 까지
+       <span><img src="img/general/viewer_img2.png" alt="참여일정" width="90px"/></span>
+   </div> 
+
+   <div class="viewer_box" style="width:60%; margin:auto; background-color:#f6f6f6; padding-top:15px; padding-bottom:12px; padding-left:95px; padding-right:2%; margin-bottom:10px">
+      <ul style="width:100%">
+         <li style="width:100%">① ▼ 아래 링크를 클릭</li>
+         <li style="width:100%; margin-bottom:5px">&nbsp;&nbsp;&nbsp;<a href="http://me2.do/5VRSjH3h">http://me2.do/5VRSjH3h</a></li>
+         <li style="width:100%; margin-bottom:5px">② 설문조사 진행</li>
+         <li style="width:100%">③ 설문을 완료하시면 설문지 하단에 "제출하기" 버튼을 클릭해주세요.</li>
+      </ul>
+      <span><img src="img/general/viewer_img3.png" alt="참여방법" width="90px"/></span>
+   </div> 
+
+   <div class="viewer_box" style="width:60%; margin:auto; background-color:#f6f6f6; padding-top:15px; padding-bottom:12px; padding-left:95px; padding-right:2%; margin-bottom:20px">
+필수태그 필수태그 필수태그 필수태그 필수태그 필수태그 필수태그 필수태그 필수태그 필수태그 필수태그 필수태그 필수태그 필수태그 필수태그 
+   <span><img src="img/general/viewer_img4.png" alt="필수태그" width="90px"/></span>
+   </div> 
+
+   <div style="text-align:center; margin-bottom:20px">
+      <a href="general_application.php"><img src="img/general/viewer_btn3.jpg" alt="미션참여하기" width="110px"/></a>
+   </div>
+
+   <div><img src="img/shadow1.jpg" alt="" width="100%" height="2px"/></div>
+
+</div> 
+     
+   <div class="clear"></div>
+<!--컨텐츠 종료-->
+<?include_once "tail.php";?>

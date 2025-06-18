@@ -1,0 +1,32 @@
+<?
+ini_set('register_globals','1');
+ini_set('session.bug_compat_42','1');
+ini_set('session.bug_compat_warn','0');
+ini_set('session.auto_start','1');
+ini_set('session.gc_maxlifetime', '86400'); //세션의 시간설정 3600은 60초*60분이다
+ini_set("upload_max_filesize","100M");
+ini_set('max_upload_size', '100M');
+ini_set('memory_limit', '100M');
+ini_set("post_max_size","100M");
+set_time_limit(0); 
+?>
+<div id="re_list">
+<form name="main_form" action="a.php" enctype="multipart/form-data" method="post" onsubmit="return false;">
+<input type="file" name="hero_file" value="">
+</form>
+</div>
+
+<div id="re_icon">
+  <ul>
+    <li><a href="#" onClick="javascript:go_submit(main_form)"><img src="img/reservation/icon1.jpg" alt="저장"/></a></li>
+  </ul>
+</div>
+    <script>
+        function go_submit(new_form) {
+            new_form.submit();
+            return true;
+//##################################################################################################################################################//
+        }
+//var newDay = new Date(to_year,to_month,"");
+//var lastDay newDay.getDate();
+    </script>

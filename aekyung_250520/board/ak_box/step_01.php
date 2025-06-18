@@ -1,0 +1,710 @@
+<?
+// #####################################################################################################################################################
+// HERO BOARD 시작 (개발자 : 이진영)2013년 08월 07일
+// #####################################################################################################################################################
+if (! defined ( '_HEROBOARD_' ))
+	exit ();
+	// #####################################################################################################################################################
+if (! strcmp ( $_SESSION ['temp_level'], '' )) {
+	$my_level = '0';
+	$my_write = '0';
+	$my_view = '0';
+	$my_update = '0';
+	$my_rev = '0';
+} else {
+	$my_level = $_SESSION ['temp_level'];
+	$my_write = $_SESSION ['temp_write'];
+	$my_view = $_SESSION ['temp_view'];
+	$my_update = $_SESSION ['temp_update'];
+	$my_rev = $_SESSION ['temp_rev'];
+}
+// #####################################################################################################################################################
+$cut_title_name = '26';
+$_GET ['board'];
+$sql = 'select * from mission where hero_table = \'' . $_GET ['board'] . '\' and hero_idx=\'' . $_GET ['idx'] . '\';';
+sql ( $sql, 'on' );
+$out_row = @mysql_fetch_assoc ( $out_sql ); // mysql_fetch_row
+                                         // #####################################################################################################################################################
+$sql = 'select * from hero_group where hero_order!=\'0\' and hero_use=\'1\' and hero_board =\'' . $_GET ['board'] . '\';'; // desc
+sql ( $sql );
+$right_list = @mysql_fetch_assoc ( $out_sql );
+// echo $right_list['hero_view'];
+// echo $_SESSION['temp_level'];
+// if( ( ($right_list['hero_view'] >= $_SESSION['temp_level']) and (strcmp($_SESSION['temp_level'], '')) ) or (!strcmp($right_list['hero_view'], '99')) ){
+if ($right_list ['hero_view'] <= $my_view) {
+	// #####################################################################################################################################################
+	$temp_id = $_SESSION ['temp_id'];
+	$temp_code = $_SESSION ['temp_code'];
+	$temp_title = $right_list ['hero_title'];
+	$temp_point = $right_list ['hero_view_point'];
+	$temp_idx = $_GET ['idx'];
+	
+	$view_sql = 'select * from point where hero_table=\'' . $_GET ['board'] . '\' and hero_old_idx=\'' . $temp_idx . '\' and hero_type=\'' . $_GET ['view'] . '\' and hero_id = \'' . $temp_id . '\' order by hero_today desc limit 0,1;';
+	$view_out_sql = mysql_query ( $view_sql );
+	$view_list = @mysql_fetch_assoc ( $view_out_sql );
+	$last_day = date ( "Ymd", strtotime ( $view_list ['hero_today'] ) );
+	$to_day = date ( "Ymd", time () );
+	// echo $out_row['hero_code'];
+	// echo $temp_code;
+	// if(strcmp($to_day, $last_day)){
+	// #####################################################################################################################################################
+	if (! strcmp ( $_GET ['type'], 'edit' )) {
+		$data_i = '1';
+		
+		$drop_check = explode ( '||', $_POST ['hero_drop'] );
+		foreach($drop_check as $drop_key => $drop_val) {
+			unset ( $_POST [$drop_val] );
+		}
+		
+		// 이미 참여하였는지 확인
+		$sql_ch = "select * from (select count(*) as count_registered from mission_review where hero_old_idx=" . $_GET ['idx'] . " and hero_code='" . $temp_code . "') as A, (select hero_number from mission_review where hero_old_idx='".$_GET['idx']."' order by hero_number desc limit 0,1) as B";
+		$sql_ch_res = mysql_query ( $sql_ch );
+		$sql_ch_rs = mysql_fetch_assoc ( $sql_ch_res );
+		if ($sql_ch_rs ['count_registered'] != 0) {
+			
+			echo "<script>alert('미션에 이미 참여하셨습니다');location.href='" . PATH_HOME . "?board=" . $_GET ['board'] . "&view=step_02&idx=" . $_GET ['idx'] . "';</script>";
+			exit ();
+		}
+		
+		//미션 신청 고유 번호 생성
+		if($sql_ch_rs['hero_number']==0)	$hero_number = 1;
+		else								$hero_number = $sql_ch_rs['hero_number']+1;
+		
+		$sql_one = "hero_number, ";
+		$sql_two = $hero_number.", ";
+		
+		$count = @count ( $_POST );
+		foreach($_POST as $post_key => $post_val) {
+			if (! strcmp ( $count, $data_i )) {
+				$comma = '';
+			} else {
+				$comma = ', ';
+			}
+			$sql_one .= $post_key . $comma;
+			$sql_two .= '\'' . $_POST [$post_key] . '\'' . $comma;
+			$data_i ++;
+		}
+		$sql = 'INSERT INTO mission_review (' . $sql_one . ') VALUES (' . $sql_two . ');';
+		mysql_query ( $sql );
+		// ##################################################################################################################################################//
+		$temp_id = $_SESSION ['temp_id'];
+		$temp_code = $_SESSION ['temp_code'];
+		$temp_top_title = $right_list ['hero_title'];
+		$temp_title = $out_row ['hero_title'];
+		$temp_point = $right_list ['hero_mission_point'];
+		$temp_idx = $_GET ['idx'];
+		if (! strcmp ( $temp_point, '' )) {
+			$temp_point = '0';
+		} else {
+			$temp_point = $temp_point;
+		}
+		if ((! strcmp ( $my_level, '0' )) or (! strcmp ( $temp_point, '0' ))) {
+			// 포인트는 없다
+		} else {
+			$sql = 'select * from point where hero_table=\'' . $_GET ['board'] . '\' and hero_code = \'' . $temp_code . '\' and hero_type=\'' . $_GET ['view'] . '\' and hero_old_idx=\'' . $_GET ['idx'] . '\' order by hero_today desc limit 0,1;';
+			sql ( $sql, 'on' );
+			$today_list = @mysql_fetch_assoc ( $out_sql );
+			$last_day = date ( "Ymd", strtotime ( $today_list ['hero_today'] ) );
+			$to_day = date ( "Ymd", time () );
+			if (! strcmp ( $to_day, $last_day )) {
+			} else {
+				$member_sql = 'select * from member where hero_code=\'' . $temp_code . '\'';
+				$out_member = mysql_query ( $member_sql );
+				$member_list = @mysql_fetch_assoc ( $out_member );
+				$total_point = $member_list ['hero_point'];
+				$total = $total_point + $temp_point;
+				
+				$today_sql = 'select * from point where date(hero_today)=\'' . date ( "Y-m-d", time () ) . '\' and hero_code=\'' . $temp_code . '\' and not hero_title="월출석개근";';
+				$out_today_sql = mysql_query ( $today_sql );
+				$today_total_point = '0';
+				while ( $today_today_list = @mysql_fetch_assoc ( $out_today_sql ) ) {
+					$today_total_point = $today_total_point + $today_today_list ['hero_point'];
+				}
+				if (! strcmp ( $today_total_point, '' )) {
+					$today_total_point = '0';
+				} else {
+					$today_total_point = $today_total_point;
+				}
+				$admin_today_sql = 'select * from today where hero_type=\'hero_total\'';
+				$out_admin_today_sql = mysql_query ( $admin_today_sql );
+				$admin_today_today_list = @mysql_fetch_assoc ( $out_admin_today_sql );
+				if ($admin_today_today_list ['hero_point'] > $today_total_point) {
+					$level_sql = 'select * from level where hero_level!=\'0\' and hero_point_01<=\'' . $total . '\' and hero_point_02>=\'' . $total . '\'';
+					$out_level = mysql_query ( $level_sql );
+					$level_list = @mysql_fetch_assoc ( $out_level );
+					$level_up_sql = 'select * from level_up';
+					$out_level_up = mysql_query ( $level_up_sql );
+					if ($member_list ['hero_level'] <= $level_list ['hero_level']) {
+						// #####################################################################################################################################################
+						$out_level_up_count = @mysql_num_rows ( $out_level_up );
+						if (strcmp ( $out_level_up_count, '0' )) {
+							
+							while ( $level_up_list = @mysql_fetch_assoc ( $out_level_up ) ) {
+								if (! strcmp ( $member_list ['hero_level'], $level_up_list ['hero_level'] )) {
+									$check_point_sql = 'select * from point where hero_table=\'' . $level_up_list ['hero_table'] . '\' and hero_type=\'' . $level_up_list ['hero_type'] . '\' and hero_code=\'' . $temp_code . '\';';
+									$out_check_point_sql = mysql_query ( $check_point_sql );
+									$out_check_point_count = @mysql_num_rows ( $out_check_point_sql );
+									if ($level_up_list ['hero_number'] <= $out_check_point_count) {
+										$level_up_ok = $level_up_ok + '0';
+									} else {
+										$level_up_ok = $level_up_ok + '1';
+									}
+								} else {
+									$level_up_ok = '0';
+								}
+							}
+						} else {
+							$level_up_ok = '0';
+						}
+						// #####################################################################################################################################################
+						if (! strcmp ( $level_up_ok, '0' )) {
+							$sql_one_write = 'hero_old_idx, hero_code, hero_table, hero_type, hero_id, hero_top_title, hero_title, hero_name, hero_nick, hero_point, hero_today';
+							$sql_two_write = '\'' . $_GET ['idx'] . '\', \'' . $temp_code . '\', \'' . $_GET ['board'] . '\', \'' . $_GET ['view'] . '\', \'' . $temp_id . '\', \'' . $temp_top_title . '\', \'' . $temp_title . '\', \'' . $_SESSION ['temp_name'] . '\', \'' . $_SESSION ['temp_nick'] . '\', \'' . $temp_point . '\', \'' . Ymdhis . '\'';
+							$sql = 'INSERT INTO point (' . $sql_one_write . ') VALUES (' . $sql_two_write . ');';
+							mysql_query ( $sql );
+							if (! strcmp ( $_SESSION ['temp_drop'], '' )) {
+								$user_level_up = $level_list ['hero_level'];
+								$user_write_up = $level_list ['hero_level'];
+								$user_view_up = $level_list ['hero_level'];
+								$user_update_up = $level_list ['hero_level'];
+								$user_rev_up = $level_list ['hero_level'];
+							} else {
+								$user_level_up = $level_list ['hero_level'];
+								$user_write_up = $my_write;
+								$user_view_up = $my_view;
+								$user_update_up = $my_update;
+								$user_rev_up = $my_rev;
+							}
+							$temp_level_sql = 'select * from level where hero_level=\'' . $user_level_up . '\'';
+							$out_temp_level = mysql_query ( $temp_level_sql );
+							$temp_level_list = @mysql_fetch_assoc ( $out_temp_level );
+							// $msg = '축하 합니다. 레벨 상승하셨습니다.\n 현재 등급은 : ['.$temp_level_list['hero_name'].']';
+							if ($level_list ['hero_level'] > $_SESSION ['temp_level']) {
+								$msg = '축하 합니다. 레벨 상승하셨습니다.';
+								$sql = 'UPDATE member SET hero_level=\'' . $user_level_up . '\', hero_write=\'' . $user_write_up . '\', hero_view=\'' . $user_view_up . '\', hero_update=\'' . $user_update_up . '\', hero_rev=\'' . $user_rev_up . '\', hero_point=\'' . $total . '\' WHERE hero_code = \'' . $_SESSION ['temp_code'] . '\';' . PHP_EOL;
+								mysql_query ( $sql );
+								// msg($msg,'');
+							} else {
+								$sql = 'UPDATE member SET hero_point=\'' . $total . '\' WHERE hero_code = \'' . $_SESSION ['temp_code'] . '\';' . PHP_EOL;
+								mysql_query ( $sql );
+							}
+							$_SESSION ['temp_level'] = $user_level_up;
+							$_SESSION ['temp_write'] = $user_write_up;
+							$_SESSION ['temp_view'] = $user_view_up;
+							$_SESSION ['temp_update'] = $user_update_up;
+							$_SESSION ['temp_rev'] = $user_rev_up;
+						} else {
+							$sql_one_write = 'hero_old_idx, hero_code, hero_table, hero_type, hero_id, hero_top_title, hero_title, hero_name, hero_nick, hero_point, hero_today';
+							$sql_two_write = '\'' . $_GET ['idx'] . '\', \'' . $temp_code . '\', \'' . $_GET ['board'] . '\', \'' . $_GET ['view'] . '\', \'' . $temp_id . '\', \'' . $temp_top_title . '\', \'' . $temp_title . '\', \'' . $_SESSION ['temp_name'] . '\', \'' . $_SESSION ['temp_nick'] . '\', \'' . $temp_point . '\', \'' . Ymdhis . '\'';
+							$sql = 'INSERT INTO point (' . $sql_one_write . ') VALUES (' . $sql_two_write . ');';
+							mysql_query ( $sql );
+							$sql = 'UPDATE member SET hero_point=\'' . $total . '\' WHERE hero_code = \'' . $_SESSION ['temp_code'] . '\';' . PHP_EOL;
+							mysql_query ( $sql );
+						}
+					} else {
+						$sql_one_write = 'hero_old_idx, hero_code, hero_table, hero_type, hero_id, hero_top_title, hero_title, hero_name, hero_nick, hero_point, hero_today';
+						$sql_two_write = '\'' . $_GET ['idx'] . '\', \'' . $temp_code . '\', \'' . $_GET ['board'] . '\', \'' . $_GET ['view'] . '\', \'' . $temp_id . '\', \'' . $temp_top_title . '\', \'' . $temp_title . '\', \'' . $_SESSION ['temp_name'] . '\', \'' . $_SESSION ['temp_nick'] . '\', \'' . $temp_point . '\', \'' . Ymdhis . '\'';
+						$sql = 'INSERT INTO point (' . $sql_one_write . ') VALUES (' . $sql_two_write . ');';
+						mysql_query ( $sql );
+						$sql = 'UPDATE member SET hero_point=\'' . $total . '\' WHERE hero_code = \'' . $_SESSION ['temp_code'] . '\';' . PHP_EOL;
+						mysql_query ( $sql );
+					}
+				} else {
+					$sql_one_write = 'hero_old_idx, hero_code, hero_table, hero_type, hero_id, hero_top_title, hero_title, hero_name, hero_nick, hero_point, hero_today';
+					$sql_two_write = '\'' . $_GET ['idx'] . '\', \'' . $temp_code . '\', \'' . $_GET ['board'] . '\', \'' . $_GET ['view'] . '\', \'' . $temp_id . '\', \'' . $temp_top_title . '\', \'' . $temp_title . '(당일 포인트 초과)\', \'' . $_SESSION ['temp_name'] . '\', \'' . $_SESSION ['temp_nick'] . '\', \'0\', \'' . Ymdhis . '\'';
+				}
+			}
+		}
+		// ##################################################################################################################################################//
+		msg ( '등록 되었습니다.', 'location.href="' . PATH_HOME . '?board=' . $_GET ['board'] . '&view=step_02&idx=' . $_GET ['idx'] . '"' );
+		exit ();
+	}
+	?>
+<script type="text/javascript">
+
+//20140410 선택할 수 있는 블로그의 갯수 
+	var hero_blog = []; //hero_blog.length;
+	
+	$(document).ready(function(){
+		
+		ch_blog();
+	});
+
+//20140410 처음에 들어왔을 경우 블로그 데이터 검색 -> disabled
+	function ch_blog(){
+			hero_blog.push($("#hero_blog_00").val());
+				hero_blog.push($("#hero_blog_01").val());
+				hero_blog.push($("#hero_blog_02").val());
+				hero_blog.push($("#hero_blog_03").val());
+				hero_blog.push($("#hero_blog_04").val());
+				hero_blog.push($("#hero_blog_05").val());
+				for (var i=hero_blog.length-1;i>=0 ;i-- ){					
+					if (hero_blog[i]!=''){
+						$("#hero_blog_0"+i).removeAttr("disabled");
+					}else{
+						$("#hero_blog_0"+i).attr('disabled','disabled');
+					}
+				}
+	}
+//20140410 저장할 블로그 선택 변경시 disabled 변경
+	function ch_disabled(value_item){
+		
+		for (var i=0; i<hero_blog.length ;i++ ){
+			$('#hero_blog_0'+i).attr('disabled','disabled');
+		}
+			var sel_number = $("#hero_01_01 option:selected").attr('id');
+
+			$('#hero_blog_'+sel_number).removeAttr("disabled"); 
+	}
+
+
+    function showzip(){
+        $('.layer_zip').show();
+    }
+    function inputzip(){
+        $('.layer_zip').hide();
+    }
+    function fnLoad_01(a,b,c,d,e,f){
+        document.getElementById("hero_address_01").value=a;
+        document.getElementById("hero_address_02").value=b + ' ' + c + d + e;
+        $('.layer_zip').hide();
+    }
+    function go_submit(form) {
+//##################################################################################################################################################//
+//        var hero_02 = form.hero_02;
+        var new_name    	= form.hero_new_name;
+        var hero_03 		= $('.hero_03');
+        var address_01 		= form.hero_address_01;
+        var address_02 		= form.hero_address_02;
+       
+	   //20140410 name 변경
+	    //var hero_01_01 = form.hero_01;
+		var hero_01_01 		= document.getElementById('hero_01_01');
+		var hero_blog_01 	= form.hero_blog_01;
+		var hero_blog_02 	= form.hero_blog_02;
+		var hero_blog_03 	= form.hero_blog_03;
+		var hero_blog_04	= form.hero_blog_04;
+		var hero_blog_05 	= form.hero_blog_05;
+
+		var hp_01 			= form.hero_hp_01;
+        var hp_02 			= form.hero_hp_02;
+        var hp_03 			= form.hero_hp_03;
+//##################################################################################################################################################//
+/*
+        if(hero_02.value == ""){
+            alert("신청 내용을 입력해주세요.");
+            hero_02.style.border = '1px solid red';
+            hero_02.focus();
+            return false;
+        }else{
+            hero_02.style.border = '1px solid #e4e4e4';
+        }
+
+*/
+
+		<?php
+	// 20141216 블로그 강제 여부 기능 추가
+	if ($out_row ['hero_type'] == 0) {
+		?>
+			//20140410 블로그 선택 요구
+			if(hero_01_01.value == '선택'){
+	            alert("개인 URL을 선택해주세요.");
+				hero_01_01.focus();
+				return false;
+	        }
+			
+			//20140410 블로그 입력 요구
+			var sel_number = $("#hero_01_01 option:selected").attr('id');
+			var sel_blog_val = $('#hero_blog_'+sel_number).val();
+			
+			if(sel_blog_val == ''){
+	            alert("개인 URL을 입력해주세요.");
+				$('#hero_blog_'+sel_number).focus();
+				return false;
+	        }else{
+				for (var i=0;i<hero_blog.length ;i++ ){
+					var tempI =	sel_number.charAt(sel_number.length-1);
+					if(i==tempI){
+						$('#hero_blog_0'+i).prop("name","hero_01"); 
+					}
+				}
+				//alert("11111");
+				//var hero_01 = $('#hero_blog_'+sel_number).val();
+				
+			}
+			
+		<?php
+	}
+	?>
+
+		var ft = 0;
+		hero_03.each(function( index ) {
+	        if($(this).val() == ""){
+
+		        alert("신청필수정보를 입력해주세요.");
+	            $(this).css('border','1px solid red');
+	            $(this).focus();
+	            ft = 1;
+	            return false;
+	            
+	        }else{
+	        	$(this).css('border','1px solid #e4e4e4');
+	        }
+		});
+
+		if(ft==1){
+			return false;
+		}
+		
+        if(new_name.value == ""){
+            alert("받으시는분 이름을 입력해주세요.");
+            new_name.style.border = '1px solid red';
+            new_name.focus();
+            return false;
+        }else{
+            new_name.style.border = '1px solid #e4e4e4';
+        }
+        if(address_01.value == ""){
+            alert("배송지 주소 입력해주세요.");
+            address_01.style.border = '1px solid red';
+            address_01.focus();
+            return false;
+        }else{
+            address_01.style.border = '1px solid #e4e4e4';
+        }
+        if(address_02.value == ""){
+            alert("배송지 주소 입력해주세요.");
+            address_02.style.border = '1px solid red';
+            address_02.focus();
+            return false;
+        }else{
+            address_02.style.border = '1px solid #e4e4e4';
+        }
+       if(hp_01.value == ""){
+            alert("연락처를 입력해주세요.");
+            hp_01.style.border = '1px solid red';
+            hp_01.focus();
+            return false;
+        }else{
+            hp_01.style.border = '1px solid #e4e4e4';
+        }
+        if(hp_02.value == ""){
+            alert("연락처를 입력해주세요.");
+            hp_02.style.border = '1px solid red';
+            hp_02.focus();
+            return false;
+        }else{
+            hp_02.style.border = '1px solid #e4e4e4';
+        }
+        if(hp_03.value == ""){
+            alert("연락처를 입력해주세요.");
+            hp_03.style.border = '1px solid red';
+            hp_03.focus();
+            return false;
+        }else{
+            hp_03.style.border = '1px solid #e4e4e4';
+        }
+				
+				//개인정보 활용 동의
+		if(!form.hero_new_agreement.checked){
+			alert("컨텐츠 활용에 동의하여 주세요.");
+        	form.hero_new_agreement.focus();
+            return false;				
+		}
+
+		var i_ask=0;
+		var total_ask = "";		
+		hero_03.each(function( index ) {
+
+			var hero_03 = $(this).val();
+			if(hero_03!=null){
+				hero_03 = $.trim(hero_03);
+				if(i_ask==0)		total_ask += hero_03;
+				else				total_ask += "/////"+hero_03;
+				
+				i_ask++;
+			}
+		});
+
+		$('#hero_03').val(total_ask);
+
+
+		
+        form.submit();
+//##################################################################################################################################################//
+        return true;
+    }
+</script>
+<div class="contents_area">
+	<div class="page_title">
+		<h2>
+			<img src="<?=str($right_list['hero_right']);?>"
+				alt="<?=$right_list['hero_title'];?>" />
+		</h2>
+		<ul class="nav">
+			<li><img src="../image/common/icon_nav_home.gif" alt="home" /></li>
+			<li>&gt;</li>
+			<li><?=$right_list['hero_top_title']?></li>
+			<li>&gt;</li>
+			<li class="current"><?=$right_list['hero_title']?></li>
+		</ul>
+	</div>
+	<div class="contents">
+		<img src="../image/mission/spm_txt_reviewer.gif" alt="리뷰어신청자" />
+		<form name="form_next"	action="<?=PATH_HOME.'?'.get('','type=edit');?>" method="post"	enctype="multipart/form-data" onsubmit="return false;">
+			<input type="hidden" name="hero_drop" value="hero_drop||hero_new_agreement" /> 
+			<input type="hidden" name="hero_code" value="<?=$_SESSION['temp_code'];?>"> 
+			<input type="hidden" name="hero_old_idx" value="<?=$_GET['idx'];?>"> 
+			<input type="hidden" name="hero_table" value="<?=$_GET['board'];?>"> 
+			<input type="hidden" name="hero_name" value="<?=$_SESSION['temp_name'];?>">
+			<input type="hidden" name="hero_nick" value="<?=$_SESSION['temp_nick'];?>"> 
+			<input type="hidden" name="hero_id" value="<?=$_SESSION['temp_id'];?>"> 
+			<input type="hidden" name="hero_today" value="<?=Ymdhis?>"> 
+			<input type="hidden" name="hero_ip" value="<?=$_SERVER['REMOTE_ADDR']?>">
+			<input type="hidden" name="hero_03" id="hero_03" value="">
+			
+			<div class="spm">
+				<img src="../image/mission/spm_infobg_1.gif" alt="top" />
+			</div>
+			<div class="spm_txt spm_step2">
+				
+				<?php
+           		$number=1;
+           		//일반미션일 경우 
+           		if($out_row['hero_type']==0){
+            	?>
+					<dl>
+	                	<dt><span style="background-color:#686868;padding:10px;font-size:20px;font-weight:800;color:#feb007;border-radius:30px;margin-left:10px;">0<? echo $number++;?></span></dt>
+	
+						<dd>
+							<!--<label for=""><img src="../image/mission/txt_regblog.gif" alt="등록된 블로그" /></label>-->
+							<!--20140410 라벨 변경-->
+							<label style="width: 30%" for=""><li class="c_orange">대표 블로그 선택</li></label>
+							<select id="hero_01_01" onchange="ch_disabled(this.value)"	style="padding: 3px;">
+								<!--<select name="hero_01">-->
+							    <?
+									$sql = 'select * from member where hero_id=\'' . $_SESSION ['temp_id'] . '\''; // desc//asc// limit 0,5
+								                                                                          // $sql = out($sql);
+									sql ( $sql );
+									$site_list = @mysql_fetch_assoc ( $out_sql );
+								?>
+									<option value="선택" selected='selected'>선택</option>
+									<option id="00">블로그 URL</option>
+									<option id="01">페이스북 URL</option>
+									<option id="02">트위터 URL</option>
+									<option id="03">미투데이 URL</option>
+									<option id="04">그외 SNS URL</option>
+									<option id="05">카카오스토리 URL</option>
+									<!--20140410 옵션 변경-->
+									<!--                 <option value="<?=url($site_list['hero_blog_00']);?>">블로그 URL</option>
+				                  <option value="<?=url($site_list['hero_blog_01']);?>">페이스북 URL</option>
+				                  <option value="<?=url($site_list['hero_blog_02']);?>">트위터 URL</option>
+				                  <option value="<?=url($site_list['hero_blog_04']);?>">미투데이 URL</option>
+				                  <option value="<?=url($site_list['hero_blog_05']);?>">그외 SNS URL</option>
+				                  <option value="<?=url($site_list['hero_blog_03']);?>">카카오스토리 URL</option>-->
+							</select>
+							
+							<br/>
+							
+							
+						<!--20140410 블로그 url 폼 변경-->
+						<table>
+							<tr>
+								<td>블로그 URL :</td>
+								<td><input type='text' id="hero_blog_00" class="hero_blog"
+									value="<?=url($site_list['hero_blog_00']);?>"
+									style="width: 250px; margin: 5px;"></td>
+							
+							
+							<tr>
+							</tr>
+							<td>페이스북 URL :</td>
+							<td><input type='text' id="hero_blog_01" class="hero_blog"
+								value="<?=url($site_list['hero_blog_01']);?>"
+								style="width: 250px; margin: 5px;"></td>
+							<tr>
+							</tr>
+							<td>트위터 URL :</td>
+							<td><input type='text' id="hero_blog_02" class="hero_blog"
+								value="<?=url($site_list['hero_blog_02']);?>"
+								style="width: 250px; margin: 5px;"></td>
+							<tr>
+							</tr>
+							<td>미투데이 URL :</td>
+							<td><input type='text' id="hero_blog_03" class="hero_blog"
+								value="<?=url($site_list['hero_blog_03']);?>"
+								style="width: 250px; margin: 5px;"></td>
+							<tr>
+							</tr>
+							<td>그외 SNS URL :</td>
+							<td><input type='text' id="hero_blog_04" class="hero_blog"
+								value="<?=url($site_list['hero_blog_04']);?>"
+								style="width: 250px; margin: 5px;"></td>
+							<tr>
+							</tr>
+							<td>카카오스토리 URL :</td>
+							<td><input type='text' id="hero_blog_05" class="hero_blog"
+								value="<?=url($site_list['hero_blog_05']);?>"
+								style="width: 250px; margin: 5px;"></td>
+							</tr>
+						</table>
+
+						<!-- 블로그 URL : <?=url($site_list['hero_blog_00']);?><br>
+						페이스북 URL : <?=url($site_list['hero_blog_01']);?><br>
+						트위터 URL : <?=url($site_list['hero_blog_02']);?><br>
+						미투데이 URL : <?=url($site_list['hero_blog_03']);?><br>
+						그외 SNS URL : <?=url($site_list['hero_blog_04']);?><br>
+						카카오스토리 URL : <?=url($site_list['hero_blog_05']);?><br>
+						<a href="#"><img src="../image/mission/btn_blogedit.gif" alt="수정하기" /></a> -->
+					</dd>
+				</dl>
+				<div class="bddot"></div>
+			<?php }?>
+				<dl>
+					<dt><span style="background-color:#686868;padding:10px;font-size:20px;font-weight:800;color:#feb007;border-radius:30px;margin-left:10px;">0<? echo $number++;?></span></dt>
+					<dd>
+						<ul>
+							<li class="c_orange" style="margin-bottom:10px;">신청시 아래사항을 확인해주세요.</li>
+							<?php 
+							
+								$hero_ask = explode("/////",$out_row['hero_ask']);
+								
+								while($hero_ask_ele = each($hero_ask)) {
+									
+									?>
+									<li style="margin-bottom:10px;">
+										<pre style='word-wrap: break-word;'><?php echo $hero_ask_ele['value'];?></pre>
+                    				</li>
+                    				<li style="margin-bottom:10px;">
+										<textarea class="hero_03" style="width: 400px;height: 50px;margin-left: 17px;"></textarea>
+									</li>
+									<?php 
+								}
+							
+							?>
+							
+							<li style="margin:30px 0;">
+										<pre style='word-wrap: break-word;font-weight:800;'><?=$out_row['hero_ask_notice'];?></pre>
+                    		</li>
+							
+						</ul>
+					</dd>
+				</dl>
+				<div class="bddot"></div>
+				<!--
+                <dl>
+                <dt><img src="../image/mission/spm_st2_txt3.gif" alt="항목3" /></dt>
+                <dd> 
+                <ul>
+                <li class="c_orange">신청 내용을 남겨주세요.</li>
+                <li>
+                <textarea name="hero_02" id="hero_02" cols="30" rows="10" style="width:560px;"></textarea>
+                </li>
+                </ul>
+                </dd>
+                </dl>
+                <div class="bddot"></div>
+-->
+				<dl>
+					<dt><span style="background-color:#686868;padding:10px;font-size:20px;font-weight:800;color:#feb007;border-radius:30px;margin-left:10px;">0<? echo $number++;?></span></dt>
+					<dd>
+						<ul>
+							<li class="c_orange">리뷰 상품을 배송 받을 주소를 입력해주세요.</li>
+							<li><label for="">받으시는분</label> <input type="text"
+								name="hero_new_name" id="hero_new_name" style="width: 186px;"></li>
+							<li><label for="">배송지 주소</label> <input type="text"
+								name="hero_address_01" id="hero_address_01"
+								value="<?=$site_list['hero_address_01']?>"
+								onclick="javascript:showzip()" readonly /> <a
+								href="javascript:showzip()"><img
+									src="../image/member/btn_zipcode.gif" alt="우편번호찾기" /></a><br />
+								<label for=""></label> <input type="text" name="hero_address_02"
+								id="hero_address_02" value="<?=$site_list['hero_address_02']?>"
+								style="width: 186px;" onclick="javascript:showzip()" readonly />
+								<input type="text" name="hero_address_03" id="hero_address_03"
+								value="<?=$site_list['hero_address_03']?>" style="width: 186px;">
+							</li>
+<?
+	$next = str_ireplace ( '-', '', $site_list ['hero_hp'] );
+	$next = str_ireplace ( '~', '', $next );
+	$next = str_ireplace ( '_', '', $next );
+	$next = str_ireplace ( '/', '', $next );
+	// substr($site_list['hero_hp'], '0', '3');
+	?>
+                        <li><label for="">연락처</label> <input type="text"
+								name="hero_hp_01" id="hero_hp_01"
+								value="<?=substr($next, '0', '3');?>"
+								onKeyUp="if(this.value.length >= 3)hero_hp_02.focus();"
+								maxlength="3" style="ime-mode: disabled;" /> - <input
+								type="text" name="hero_hp_02" id="hero_hp_02"
+								value="<?=substr($next, '3', '4');?>"
+								onKeyUp="if(this.value.length >= 4)hero_hp_03.focus();"
+								maxlength="4" style="ime-mode: disabled;" /> - <input
+								type="text" name="hero_hp_03" id="hero_hp_03"
+								value="<?=substr($next, '7', '4');?>" maxlength="4"
+								style="ime-mode: disabled;" /></li>
+						</ul>
+					</dd>
+				</dl>
+				<div class="clearfix"></div>
+				<div class="bddot"></div>
+				<dl>
+					<dt><span style="background-color:#686868;padding:10px;font-size:20px;font-weight:800;color:#feb007;border-radius:30px;margin-left:10px;">0<? echo $number++;?></span></dt>
+					<dd>
+						<ul>
+							<li>컨텐츠 활용 동의 : AK LOVER에서 진행되는 모든 미션을 통해 생성된 컨텐츠(컨텐츠에 포함된 초상권
+								포함)<br /> 들은 이후 브랜드 사이트,홈쇼핑방송, 온라인/오프라인 광고, 홍보, 마케팅자료 등을 통하여 활용할
+								수 있다.
+							</li>
+							<li class="c_orange">위 내용에 동의하십니까? <input type="checkbox"
+								name="hero_new_agreement" id="hero_new_agreement"
+								style="width: 20px;"><label for="hero_new_agreement"
+								style="width: 20px;">예</label>
+							</li>
+						</ul>
+					</dd>
+				</dl>
+				<div class="clearfix"></div>
+
+			</div>
+			<div class="spm">
+				<img src="../image/mission/spm_infobg_3.gif" alt="top" />
+			</div>
+			<div class="btn_group tc mt60">
+				<!--            <a href="javascript:form_next.submit();" class="btn_blue2"><img src="../image/mission/btn_mission_jion.gif" alt="미션참여하기" /></a>-->
+				<input type="image" src="../image/mission/btn_mission_jion.gif"
+					alt="미션참여하기" onClick="go_submit(this.form)" />
+			</div>
+		</form>
+	</div>
+</div>
+<div class="layer_zip">
+	<dl>
+		<form name="login_form" action="<?=PATH_HOME?>?board=result"
+			onsubmit="return false;">
+			<dt>
+				<img src="../image/member/zip1.gif" alt="우편번호 찾기" />
+			</dt>
+			<dd>
+				<input id="addr" type="text" class="addr" /><input type="image"
+					src="../image/member/btn_findzip.gif" alt="주소찾기"
+					onclick="hero_ajax('zip.php', 'view_list', 'addr', 'zip'); return false;" />
+			</dd>
+			<dd class="list">
+				<div id="view_list"></div>
+			</dd>
+			<dd class="tc">
+				<a href="javascript:inputzip();"><img
+					src="../image/member/btn_cancel.gif" alt="입력" /></a>
+			</dd>
+		</form>
+	</dl>
+</div>
+<?
+} else {
+	$msg = '권한';
+	$action_href = PATH_HOME . '?' . get ( 'view' );
+	msg ( $msg . ' 없습니다.', 'location.href="' . $action_href . '"' );
+	exit ();
+}
+?>

@@ -1,0 +1,16 @@
+121.55.68.173 - [03/Sep/2014:23:03:44 +0900] /main/index.php: command = &lt;p align=\"center\" style=\"text-align: center\"&gt;&nbsp;&lt;/p&gt;\r\n&lt;: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+121.55.68.173 - [03/Sep/2014:23:04:22 +0900] /main/index.php: command = &lt;p align=\"center\" style=\"text-align: center\"&gt;&nbsp;&lt;/p&gt;\r\n&lt;: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+121.55.68.173 - [03/Sep/2014:23:06:24 +0900] /main/index.php: command = &lt;p align=\"center\" style=\"text-align: center\"&gt;&nbsp;&lt;/p&gt;\r\n&lt;: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+121.55.68.173 - [03/Sep/2014:23:28:42 +0900] /main/index.php: command = &lt;p align=\"center\" style=\"text-align: center\"&gt;&nbsp;&lt;/p&gt;\r\n&lt;: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]

@@ -1,0 +1,89 @@
+                        <table class="t_list">
+                            <thead>
+                                <tr>
+                                    <th width="5%">idx</th>
+                                    <th width="5%">레벨</th>
+                                    <th width="15%">레벨명</th>
+                                    <th width="11%">시작포인트</th>
+                                    <th width="11%">종료포인트</th>
+                                    <th width="*">이미지</th>
+                                    <th width="10%">순서</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <form name="form_next" action="<?=PATH_HOME.'?'.get('','view=03_01&type=edit');?>" method="post" enctype="multipart/form-data"> 
+                        <?
+                        $sql = 'select * from level order by hero_order asc;';//desc
+                        $user_sql = mysql_query($sql);
+                        $point = '0';
+                        while($list                             = @mysql_fetch_assoc($user_sql)){
+                        ?>
+                                <tr onmouseover="this.style.background='#B9DEFF'" onmouseout="this.style.background='white'">
+                                    <td><input type="hidden" name="hero_idx[]" id="hero_idx[]" value="<?=$list['hero_idx'];?>"><?=$list['hero_idx'];?></td>
+                                    <td><input type="text" name="hero_level[]" id="hero_level[]" style="width:30px;text-align:center" value="<?=$list['hero_level'];?>"></td>
+                                    <td><input type="text" name="hero_name[]" id="hero_name[]" style="width:150px;text-align:center" value="<?=$list['hero_name'];?>"></td>
+                                    <td><input type="text" name="hero_point_01[]" id="hero_point_01[]" style="width:100px;text-align:center" value="<?=$list['hero_point_01'];?>"></td>
+                                    <td><input type="text" name="hero_point_02[]" id="hero_point_02[]" style="width:100px;text-align:center" value="<?=$list['hero_point_02'];?>"></td>
+                                    <td><input type="text" name="hero_img_new[]" id="hero_img_new[]" style="width:95%;text-align:center" value="<?=$list['hero_img_new'];?>"></td>
+                                    <td><input type="text" name="hero_order[]" id="hero_order[]" style="width:30px;text-align:center" value="<?=$list['hero_order'];?>"></td>
+                                </tr>
+                        <?
+                        }
+                        ?>
+                                <tr>
+                                    <td colspan="7">
+                                        <a href="javascript:form_next.submit();" class="btn_blue2">설정수정</a>
+                                        <a href="javascript:location.href='<?=PATH_HOME.'?'.get('','view=03_00&type=write');?>'" class="btn_blue2">추가</a>
+                                    </td>
+                                </tr>
+                                </form>
+                            </tbody>
+                        </table>
+<?
+######################################################################################################################################################
+?>
+                        <table class="t_list">
+                            <thead>
+                                <tr>
+                                    <th width="5%">idx</th>
+                                    <th width="5%">레벨</th>
+                                    <th width="15%">레벨명</th>
+                                    <th width="11%">시작포인트</th>
+                                    <th width="11%">종료포인트</th>
+                                    <th width="*">이미지</th>
+                                    <th width="10%">순서</th>
+                                    <th width="10%">설정</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                        <?
+                        $sql = 'select * from level order by hero_order asc;';//desc
+                        $user_sql = mysql_query($sql);
+                        $i = '0';
+                        while($list                             = @mysql_fetch_assoc($user_sql)){
+                        ?>
+                            <form name="form_next<?=$i?>" action="<?=PATH_HOME.'?'.get('','view=03_01&type=edit');?>" method="post" enctype="multipart/form-data"> 
+                            <input type='hidden' name='hero_table' value="level">
+                                <tr onmouseover="this.style.background='#B9DEFF'" onmouseout="this.style.background='white'">
+                                    <td><input type="hidden" name="hero_idx" id="hero_idx" value="<?=$list['hero_idx'];?>"><?=$list['hero_idx'];?></td>
+                                    <td><input type="text" name="hero_level" id="hero_level" style="width:30px;text-align:center" value="<?=$list['hero_level'];?>"></td>
+                                    <td><input type="text" name="hero_name" id="hero_name" style="width:150px;text-align:center" value="<?=$list['hero_name'];?>"></td>
+                                    <td><input type="text" name="hero_point_01" id="hero_point_01" style="width:100px;text-align:center" value="<?=$list['hero_point_01'];?>"></td>
+                                    <td><input type="text" name="hero_point_02" id="hero_point_02" style="width:100px;text-align:center" value="<?=$list['hero_point_02'];?>"></td>
+                                    <td><input type="text" name="hero_img_new" id="hero_img_new" style="width:95%;text-align:center" value="<?=$list['hero_img_new'];?>"></td>
+                                    <td><input type="text" name="hero_order" id="hero_order" style="width:30px;text-align:center" value="<?=$list['hero_order'];?>"></td>
+                                    <td><a href="javascript:form_next<?=$i?>.submit();" class="btn_blue2">설정수정</a></td>
+                                </tr>
+                            </form>
+                        <?
+                        $i++;
+                        }
+                        ?>
+                                <tr>
+                                    <td colspan="8">
+                                        <a href="javascript:location.href='<?=PATH_HOME.'?'.get('','view=03_00&type=write');?>'" class="btn_blue2">추가</a>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>

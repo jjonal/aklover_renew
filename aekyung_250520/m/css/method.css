@@ -1,0 +1,299 @@
+
+.method_container {
+    counter-reset: section;
+}
+
+.method_container > h2 {
+    font-size: clamp(2rem, 5vw, 3.6rem);
+}
+
+.method_container .contents {
+    margin-top: 4rem;
+    margin-top: clamp(2rem, 5.56vw , 4rem);
+}
+
+.contents .left {
+    border-top: 1px solid #000;
+}
+
+.contents .left > li {
+    position: relative;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.contents .left > li:last-child {
+    border-bottom: 0;
+}
+
+.contents .left > li.border:last-child {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.contents .left > li > a {
+    display: block;
+    cursor: pointer;
+    padding: 2rem 0;
+    font-size: clamp(1.7rem, 2.7vw , 1.95rem);
+    font-weight: 600;
+    color: rgba(0,0,0,0.7);
+}
+
+.contents .left a.cursor_none {
+    cursor: initial;
+}
+
+.contents .left li.active::after {
+    content:url("/img/front/board/arr_black.webp");
+    display: block;
+    position: absolute;
+    top: 2rem;
+    right: 2%;
+}
+
+.contents .left li.active a {
+    font-weight: 600;
+    color: #000;
+}
+
+.contents .tab_list {
+    background-color: #f9f9f9;
+    padding: 2.7rem 3rem;
+}
+
+.contents .tab_list > li {
+    position: relative;
+    margin-bottom: 2.9rem;
+}
+
+.contents .tab_list > li.active::after {
+    top: 0rem;
+}
+
+.contents .tab_list > li:last-child {
+    margin-bottom: 0;
+}
+
+.contents .tab_list a {
+    cursor: pointer;
+    color: rgba(0,0,0,0.7);
+    font-size: clamp(1.6rem, 2.5vw, 1.8rem);
+    letter-spacing: -0.09rem;
+}
+
+.contents .right {
+
+}
+
+.contents .tab_wrap .tab_cont {
+    display: none;
+}
+
+
+/* tab contents style */
+.tab_wrap .tab_cont .description {
+    background-color: #fcfcfc;
+    border: 1px solid #e5e5e5;
+    padding: 2.7rem 0;
+    font-size: 1.5rem;
+    letter-spacing: -0.075rem;
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 500;
+    line-height: 1.47;
+}
+
+.tab_wrap .tab_cont .point {
+    color:#ff4c05;
+    text-decoration: underline;
+}
+
+/* step */
+.tab_cont .tab_step {
+    margin-top: 2rem;
+    background-color: #ff4c05;
+    padding: 1.8rem 2.2rem;
+    border-radius: 0.5rem;
+    gap: 2rem;
+}
+
+.tab_cont .tab_step li {
+    flex: 1;
+}
+
+.tab_cont .tab_step .step_num {
+    position: relative;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    font-size: 1.2rem;
+    padding: 0.6rem 0;
+    opacity: 0.5;
+}
+
+.tab_cont .tab_step li.select .step_num {
+    opacity: 1;
+}
+
+.tab_cont .tab_step .step_num::before {
+    content:url("/img/front/board/list_circle.webp");
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.tab_cont .tab_step .step_num::after {
+    content:url("/img/front/board/arr_white.webp");
+    display: block;
+    position: absolute;
+    top: 1.85rem;
+    right: -0.5rem;
+}
+
+.tab_cont .tab_step li:last-child .step_num::after {
+    display: none;
+}
+
+.tab_cont .tab_step p {
+    color: #fff;
+    font-size: 1.2rem;
+    line-height: 1.58;
+    margin-top: 0.7rem;
+    opacity: 0.5;
+}
+
+.tab_cont .tab_step li.select p {
+    opacity: 1;
+}
+
+/* step contents */
+.step_cont {
+    margin-top: 4rem;
+}
+
+.step_cont .step_item {
+    display: none;
+}
+
+.step_cont .con_tit {
+    font-size: clamp(2rem ,2.22vw , 2.4rem);
+    font-weight: bold;
+    line-height: 0.81;
+    letter-spacing: -0.12rem;
+    padding: 1.4rem 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.step_cont .con_item {
+    position: relative;
+    padding: 2rem 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.step_cont .con_item > div:first-child {
+    width: 100%;
+}
+
+.step_cont .con_item .sub_tit{
+    /* font-size: 1.8rem; */
+    font-size: clamp(1.5rem, 2.5vw, 1.8rem);
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: -0.09rem;
+}
+
+.step_cont .con_item .sub_tit .list_num {
+    display: inline-block;
+    width: 21px;
+    height: 21px;
+    background-color: #ff4c05;
+    font-size: 1.4rem;
+    font-weight: 800;
+    text-align: center;
+    line-height: 21px;
+    color:#fff;
+    border-radius: 0.3rem;
+    margin-right: 1.2rem;
+}
+
+.step_cont .con_item .sub_des {
+    margin-top: 2rem;
+    font-size: 1.6rem;
+    color: rgba(0, 0, 0, 0.8);
+    line-height: 1.56;
+    letter-spacing: -0.08rem;
+    margin-left: 3.3rem;
+}
+
+.step_cont .con_item .sub_des_gray {
+    margin-top: 1.7rem;
+    opacity: 0.5;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    letter-spacing: -0.08rem;
+    margin-left: 3.3rem;
+}
+
+.step_cont .con_item .copy_btn {
+    background-color: #000;
+    width: fit-content;
+    border-radius: 0.5rem;
+    margin-top: 3rem;
+}
+
+.step_cont .con_item .copy_btn a {
+    color: #fff;
+    display: block;
+    padding: 1.5rem 2.3rem;
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    font-weight: 600;
+    letter-spacing: -0.09rem;
+}
+
+.step_cont .con_item .copy_btn img {
+    vertical-align: inherit;
+    margin-left: 1rem;
+}
+
+.step_cont .con_item > div:last-child{
+    margin-top: 3rem;
+    width: 100%;
+    height: 20rem;
+    background-color: #000;
+    border-radius: 0.5rem;
+}
+
+.step_cont .notice {
+    margin-top: 3rem;
+    opacity: 0.7;
+    font-size: 1.4rem;
+    line-height: 1.57;
+    font-weight: 500;
+}
+
+.step_cont .btn {
+    padding: 3rem 0;
+    gap: 1.2rem;
+}
+
+.step_cont .btn > div {
+    border-radius: 2.4rem;
+}
+
+.step_cont .btn .prev {
+    background-color: #f8f8f8;
+}
+
+.step_cont .btn a {
+    display: block;
+    padding: 1.6rem 4rem;
+    cursor: pointer;
+    font-size: clamp(1.55rem, 2.36vw, 1.7rem);
+    font-weight: 600;
+    letter-spacing: -0.085rem;
+}
+
+.step_cont .btn .next {
+    background-color: #000;
+    color: #fff;
+}
+
+.step_cont .btn .next a {
+    color: #fff;
+}

@@ -1,0 +1,8 @@
+123.142.91.205 - [06/Dec/2014:13:57:54 +0900] /main/index.php: command = 동생 말인 즉슨\r\n&lt;div&gt;날씨가 너무 추워서 갈때가 없어서&lt;/div&gt;\r\: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+123.142.91.205 - [06/Dec/2014:14:08:33 +0900] /main/index.php: command = 동생 말인 즉슨\r\n&lt;div&gt;날씨가 너무 추워서 갈때가 없어서&lt;/div&gt;\r\: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]

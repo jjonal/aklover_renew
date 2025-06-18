@@ -1,0 +1,398 @@
+/* cscenter 공통 */
+.cscenter {
+    margin-bottom: 17rem;
+}
+.cscenter .board_wrap .right {
+    width: calc(100% - 56rem);
+    margin-bottom: 0;
+}
+.sub_menu {
+    border-top: 1px solid #000; 
+    margin-bottom: 5rem;   
+}
+.sub_menu li {
+    border-bottom: 1px solid var(--border);    
+}
+.sub_menu li a {
+    height: 6.4rem;
+    line-height: 6.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--fz20);
+    color: #585858;
+    font-weight: 500;
+}
+.sub_menu li img {
+    display: none;
+}
+.sub_menu li.on img {
+    display: block;
+}
+.sub_menu li.on a {
+    font-weight: 600;  
+    color: #000;
+}
+.cscenter .mu_searchbox {
+    border-top: 0;
+}
+.cscenter .caution h3 {
+    margin-bottom: 1.5rem;
+}
+.cscenter .caution > div {
+    padding: 2.6rem 2rem;  
+    background-color: #f8f8f8;
+}
+.cscenter .caution p {    
+    line-height: 1.57;  
+}
+.cscenter .caution .info {
+    line-height: 1.57;  
+    display: block;
+    background-color: #fff;
+    padding: 1.5rem 2.7rem;
+    border-radius: .5rem;
+    margin-top: 2rem;
+}
+.cscenter .caution > div img {
+    margin-right: .9rem;
+}
+.cscenter .datebox {
+    display: none !important;
+}
+.cscenter .mu_searchbox select {
+    display: block;
+    position: absolute;
+    left: 1.5rem;
+    padding: 0 1.5rem;
+    top: 0;
+    height: 4.4rem;
+    line-height: 4.4rem;  
+    font-size: var(--fz15);
+    font-weight: 600;
+    color: var(--gray08);
+    background: url(/img/front/main/btn_dw.png) no-repeat right center;
+    width: 9rem;
+}
+.cscenter .search_btn {
+    display: none;
+}
+.cscenter .mu_searchbox input[type=text] {
+    padding-left: 11.7rem;
+}
+.contents > .cont_top {
+    margin-bottom: 2rem;
+}
+.contents > .cont_top a {
+    display: block;
+    height: 4.8rem;
+    line-height: 4.8rem;
+    border: 1px solid #e5e5e5;
+    border-radius: 2.4rem;
+    padding: 0 5.2rem;
+    margin-top: -10px;
+}
+.cscenter .bbs_list {
+    margin-bottom: 2rem;
+}
+.cscenter .bbs_list .input_chk_label:before {
+    margin-right: 0;
+}
+.cscenter .bbs_list tr td.color_1 span {
+    height: 3rem;
+    line-height: 3rem;
+    background-color: var(--main_color);
+    color: #fff;
+    border-radius: .8rem;
+    padding: 0 1.6rem;
+    display: inline-block;
+}
+/* faq */
+.best_qna_slide {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 12rem;
+    position: relative;
+    padding-bottom: 3.8rem;
+    text-align: center;
+}
+.best_qna_slide .swiper-wrapper {
+    text-align: left;
+}
+.best_qna_slide .swbtn::after {
+    display: none;
+}
+.best_qna_slide .swiper-slide {
+    border-radius: 1rem;
+    background-color: #ff4c05;
+    cursor: pointer;
+    padding: 3rem 3.4rem;
+}
+.best_qna_slide .swiper-slide .icon {
+    margin-right: 2rem;
+}
+.best_qna_slide .swiper-slide .arr {
+    opacity: 0.3;
+    transition: .4s;
+    margin-left: .9rem;
+}
+.best_qna_slide .swiper-slide:hover .arr {
+    opacity: 1;
+}
+.best_qna_slide .quest span {
+    background-color: #fff;
+    color: var(--main_color);
+    font-size: var(--fz13);
+    font-weight: 800;
+    height: 2rem;
+    line-height: 2rem;
+    border-radius: 1rem;
+    padding: 0 1rem;
+    margin-bottom: .9rem;
+    display: inline-block;
+}
+.best_qna_slide .quest p {
+    /* font-size: var(--fz20);
+    font-weight: 600; */
+    color: #fff;  
+    letter-spacing: -0.98px;
+    line-height: 1.33;
+}
+.best_qna_slide .swiper-pagination-bullet {
+    opacity: 0.1;
+}
+.best_qna_slide .swiper-pagination-bullet-active {
+    opacity: 0.5;
+    background-color: #000;
+}
+.best_qna_slide .swbtn {
+    width: .8rem;
+    height: 1.5rem;
+    background: url(/img/front/icon/cs_sd_left.png) no-repeat center;
+    background-size: contain;
+    top: 2px;
+    margin-top: 0;
+    left: -2.1rem;
+}
+.best_qna_slide .swbtn.swiper-button-next {
+    background: url(/img/front/icon/cs_sd_right.png) no-repeat center;
+    background-size: contain;    
+    right: -2.1rem;
+    left: auto;
+}
+.best_qna_slide .swbtn_wrap {
+    margin: 3.8rem auto 0;
+    width: auto;
+    display: inline-block;
+}
+.best_qna_slide .swiper-pagination {
+    position: relative;
+    left: initial;
+    top: initial;
+    bottom: initial;
+    right: initial;
+    margin: 0 auto;
+    display: inline-block;
+    width: auto;
+}
+.faq_list {
+    padding: 1.5rem 6rem 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 1.5rem;
+    margin-bottom: 2rem;
+    min-height: 10rem;
+}
+.faq_list .cate {
+    margin: 0 4rem;
+    width: 10.3rem;
+    display: block;
+}
+.faq_list .q .q_tit {
+    padding: 4.5rem 0;
+}
+.faq_list .q .tit {
+    cursor: pointer;
+}
+.faq_list .answer {
+    padding: 6rem 6rem 5rem;
+    border-radius: 1rem;
+    background-color: #f8f8f8;
+}
+.faq_list .answer .tit_a {
+    width: 14rem;
+}
+.faq_list .answer .cont_a {
+    flex: 1;
+}
+.faq_list .answer div,
+.faq_list .answer p, 
+.faq_list .answer span {
+    font-size: var(--fz16);  
+    line-height: 1.58;
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.8);
+}
+.faq_list .answer .btn_wrap a {
+    display: inline-block;
+    height: 3rem;
+    line-height: 2.8rem;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    font-size: var(--fz13);
+    padding: 0 2rem;
+    margin-right: .5rem;
+    margin-top: 2rem;
+}
+.faq_list .q_tit {
+    border-bottom: 1px solid var(--border);
+    background: url(/img/front/main/btn_dw_gray.png) no-repeat right center;
+}
+.faq_list .q_tit.active {
+    border-bottom: 0;
+    background: url(/img/front/main/btn_up.png) no-repeat right center;
+}
+.faq_list .q:last-child .q_tit {
+    border-bottom: 0;
+}
+
+/* 1:1문의 */
+.inquiry .contents > .cont_top:not(.slide_top) {
+    margin-bottom: 8rem;
+}
+.inquiry table {
+    margin-bottom: 2rem;
+}
+.inquiry table tbody tr td {    
+    padding: 3.2rem 0;
+}
+.inquiry .viewbox .tit {
+  margin-bottom: 5rem;  
+} 
+.inquiry .viewbox .writer {
+    padding-bottom: 2.2rem;
+    border-bottom: 1px solid var(--border);
+}
+.inquiry .viewbox .profile {
+    width: 2.8rem;
+    margin-right: .8rem;
+}
+.inquiry .viewbox  {
+    margin-top: 8rem;
+}
+.inquiry .viewbox .nick {
+    margin-right: 1rem;
+    padding-right: 1rem;
+    display: block;
+    position: relative;
+}
+.inquiry .viewbox .nick::after {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: .8rem;
+    background: var(--border);
+    content: '';
+}
+.inquiry .viewbox .cont {
+    padding-bottom: 4rem;
+}
+.inquiry .textstyle {    
+    font-size: var(--fz16);  
+    line-height: 1.58;
+    color: rgba(0, 0, 0, 0.8);
+}
+.inquiry .viewbox .cont_inner {
+    padding: 10rem 2rem;  
+}
+.inquiry .file a {
+    display: block;
+    height: 4.4rem;
+    line-height: 4.4rem;
+    border-radius: 2.2rem;
+    padding: 0 3rem;
+    background-color: #f6f6f6;
+    font-size: var(--fz16);
+    font-weight: 500;    
+    color: rgba(0, 0, 0, 0.6);
+    margin-left: 4rem;
+}
+.inquiry .replybox {
+    border-radius: 1rem;
+    background-color: #f8f8f8;
+    padding: 6rem;
+    margin-bottom: 6rem;
+}
+.inquiry .replybox .textstyle {
+    padding: 5rem 2rem 10rem;
+}
+.viewbox .btn_r {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    text-align: center;
+}
+.viewbox .btn_submit {
+    width: 18rem;  
+    border: solid 1px #e5e5e5;
+}
+.viewbox .btngroup {
+    position: relative;
+} 
+.viewbox .admin_btn .btn_delete {
+    right: 0;
+}
+.viewbox .admin_btn {
+    position: inherit;
+}
+
+/* list button */
+.custom_btn .btn_r {
+    position: absolute;
+    right: 0;
+    top: -.6rem;
+}
+.custom_btn .btn_del {
+    position: absolute;
+    right: 13.3rem;
+    top: -.6rem;
+}
+.cscenter .paging {
+    margin-top: 7rem;
+}
+
+
+
+/* 1:1문의 카테고리 */
+.subcategory .wr_select {
+    padding-left: 1rem;
+    margin-left: -1rem;
+    border-bottom: 0;
+    position: relative;
+}
+.subcategory .selcet_wrap::after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: calc(100% - 2rem);
+    height: 1px;
+    background: #000;
+    content: '';
+}
+
+.mobile_auth #misson_confirm {
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 6rem 3rem;
+    width: 100%;
+}
+.mobile_auth .txt_check {
+    font-size: var(--fz16);
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.4;
+}
+.mobile_auth .btn_submit {
+    margin: 5rem auto;
+}

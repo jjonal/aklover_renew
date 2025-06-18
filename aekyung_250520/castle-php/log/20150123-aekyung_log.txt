@@ -1,0 +1,12 @@
+106.247.232.98 - [23/Jan/2015:09:39:25 +0900] /main/index.php: hero_03 = 네.../////http://rabbit2091.blog.me//////네/////네/////네: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+106.247.232.98 - [23/Jan/2015:09:40:08 +0900] /main/index.php: hero_03 = 네.../////http://rabbit2091.blog.me//////네/////네/////네: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+106.247.232.98 - [23/Jan/2015:09:40:23 +0900] /main/index.php: hero_03 = 네.../////http://rabbit2091.blog.me//////네/////네/////네: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]

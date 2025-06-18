@@ -1,0 +1,58 @@
+/* CSS Document */
+
+.guide_1_txt1 {margin-top:50px;margin-bottom:8px; height:33px;}
+
+.research{ width:100%; height:205px; border:1px solid #cfe38c; margin-bottom:26px; position:relative; background:url(../image/guide/guide5_research.gif) no-repeat 30px 20px;}
+.research .btn{ position:absolute; bottom:25px; left:42px;}
+.research dl{ position:absolute; top:25px; right:25px; width:490px; overflow:hidden;}
+.research dl dt{margin-bottom:5px;}
+.research dl dd{ line-height:35px; font-weight:bold;}
+.research dl dd.green{color:#657d13; font-size:14px;}
+.research dl dd.gray{color:#3e3e3e; font-size:14px;}
+.research dl dd span{color:#f58320;}
+
+.ym_btn{ position:relative; width:100%; height:10px;}
+.btn1{position:absolute; top:-20px; right:130px;}
+.btn2{position:absolute; top:-20px;; right:0;}
+.yearmonth{position:absolute; top:-28px; right:25px; font-size:25px; font-weight:bold;}
+.cal_group{border-top:2px solid #ffd97f; height:45px; padding-top:15px; }
+.cal_info{border-bottom:2px solid #ffd97f; height:25px; padding:5px auto; text-align:center; margin-top:15px;}
+.cal_info li{float:left; display:inline-block; width:125px; margin-left:10px;}
+.cal_info li img{vertical-align:middle; margin-top:-1px;}
+.cal_info .brown{margin:0 5px; display:inline-block; color:#a16309; }
+
+.calendar {width:100%;}
+.calendar tr.we1 td{background:#fff0cc;}
+.calendar tr.we2 td{background:#ffe199;}
+.calendar tr.we3 td{background:#ffd166;}
+.calendar tr.we4 td{background:#ffc233;}
+.calendar tr.we5 td{background:#ffb300;}
+.calendar td{height:94px;border-right:2px solid #fff;border-bottom:2px solid #fff;  text-align:center;}
+.calendar tr td.today{ background:url(../image/guide/bg_today.gif);}
+.calendar td div{position:relative; width:100%; height:100%;}
+.calendar td div img{position:absolute;top:15px; left:15px;}
+.calendar td div span{position:absolute;color:#636363; display:inline-block; right:10px; top:10px; font-size:13px; height:15px;}
+.calendar td div span.c_blue{color:#00c6f7;}
+.calendar td div span.c_red{ color:#ff0000;}
+
+#activity .bannerWrap .txt_emphasis{color:#f00; margin-top:10px;}
+
+/* 
+.guimg{ display:none; z-index:10;}
+.guibox{ width:100%; position:relative; margin-bottom:80px; z-index:10;}
+.guibox ul{width:140px; height:335px; position:absolute; top:625px; left:20px; z-index:100;}
+.guibox ul li{height:41px; line-height:41px; width:100%; margin-bottom:5px; cursor:pointer;font-size:30px; text-align:center; overflow:hidden; } 
+*/
+/*
+.guidebox {font-size:16px;}
+.guidebox ul {height:40px;cursor:pointer;}
+.guidebox ul li{background-color:#e3e3e3; width:180px;float:left;margin-right:2px; color:#515151;text-align:center;  padding: 8px 0;}
+.guidebox ul .guideCateOn {background-color:#f68427;color:#fff;}
+.guidebox #guideCopy { color:#272626; padding:30px 0;}
+.guidebox #guideCopy .guideImg {text-align:center;}
+.guidebox #guideCopy .guideImg img {cursor:pointer;}
+.guidebox .guideTitle {font-size:18px;}
+.guidebox .guideTitle span {float:left; margin:0 7px 4px 6px; color:#f68427;font-size:18px; font-weight:bold;}
+.guidebox .guideSub {font-size:15px; padding: 8px 0 0 6px;}
+.guidebox .guideSub span {border: 1px solid #FF7300;color: #FF7300;font-size: 12px;padding: 2px 5px;cursor:pointer;}
+*/

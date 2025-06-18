@@ -1,0 +1,8 @@
+112.154.252.154 - [16/Mar/2015:14:26:08 +0900] /main/index.php: command = &lt;div align=\"center\" style=\"text-align: center\"&gt;&lt;strong&gt;&lt;span: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+112.154.252.154 - [16/Mar/2015:14:29:08 +0900] /main/index.php: command = &lt;div align=\"center\" style=\"text-align: center\"&gt;&lt;strong&gt;&lt;span: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]

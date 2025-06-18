@@ -1,0 +1,326 @@
+﻿癤욜�ㅿ옙html,body{
+   margin: 0px;
+   padding: 0px;
+   -webkit-text-size-adjust:none;
+  }
+
+*{
+	margin: 0px;
+	padding: 0px;
+    }
+ul{list-style:none;}
+body{
+	font: 12px "맑은 고딕", "Malgun Gothic", "돋움체", "돋움";
+	/* color:#FFF; */
+	
+    }
+
+a {
+	text-decoration:none;
+	color:#FFF;
+    }
+
+img{
+    border:0px;
+    }
+
+#header{
+    position:relative;
+	display: block;
+    }
+
+
+#header li img{
+    width:100%;
+	}
+	
+
+#header li{
+    float: left;
+	list-style:none;
+	}	
+
+.top_bg{
+	position:relative;
+    }
+	
+.top_bg span{
+	position:absolute;
+	line-height:12px;
+	left:3px;
+	bottom:15%;
+	font-size:11px;
+	font-weight:bold;
+	letter-spacing:-1px;
+	word-spacing:0px;
+	color:#fff;
+    }	
+
+
+#icon{
+	width:100%;
+	height:auto;
+	margin-top:7%;
+	margin-bottom:7%;
+	}
+	
+#icon ul{
+	width: 85%;
+	height:auto;
+	margin:auto;
+    text-align:center;
+    }
+
+#icon li{
+    width: 58px;/*	width: 23%;*/
+/*	float: left;*/
+    display:inline;
+	list-style:none;
+	margin:auto;
+	padding-left:10px;
+    line-height:25px;
+    }
+
+#icon img{
+	width: 55px;
+    }
+
+
+	
+#icon .clear{
+    clear:both; height:0px;
+	}
+
+
+#tab{
+    color:#fff;
+	font-size:14px;
+	width:100%;
+	font-weight:bold;
+    }
+
+#tab ul{
+    padding:0px;
+    margin:0px;
+	width:100%;
+    }
+
+#tab li{
+    list-style:none;
+    float:left;
+	text-align:center;
+	vertical-align:middle;
+	position:relative;
+    }
+
+#tab p{
+   vertical-align:middle;
+   }
+
+
+
+#love1{
+    width:90%;
+	margin:auto;
+	margin-top:30px;
+	}
+	
+#love1 ul{
+    width:100%;
+	margin:0px;
+	padding:0px;
+	}
+
+#love1 li{
+	float:left;
+	list-style:none;
+    letter-spacing:-1px;
+    }
+
+#love1 p{
+    margin-top:20px;
+    }
+
+.orange{
+    color:#f78429;
+	font-weight:bold;
+    }
+	
+#love2{
+    width:90%;
+	margin:auto;
+	}
+
+
+
+#love2 table{
+	float:left;
+	list-style:none;
+    letter-spacing:-1px;
+	line-height:16px;
+	font-size:12px;
+	margin-bottom:35px;
+    }
+
+#love2 table td{
+    padding-top:10px;
+	padding-bottom:10px;
+    }
+
+#love2 table p{
+    margin-bottom:3px;
+    }
+
+.love2_left{
+    text-align:center;
+    background-color:#fef2e8;
+	border-bottom:1px solid #dedede;
+	border-right:1px solid #dedede;
+	color:#4c4c4c;
+	font-weight:bold;
+    }
+	
+.love2_right{
+    padding-top:10px;
+	border-bottom:1px solid #dedede;
+	padding-left:2%;
+	color:#707070;
+    }
+
+
+.list_left img{
+	vertical-align:middle;
+	margin-top:-3px;
+}
+
+.list_left{
+	margin-top:16px;
+	font-size:12px;
+	color:#5c5c5c;
+	margin-left:3%;
+	width:18%;
+	}
+
+.list_center{
+	margin-left:10px;
+	margin-top:17px;
+	font-size:12px;
+	color:#5c5c5c;
+	margin-left:5%;
+	margin-right:3%;
+	width:52%;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	}
+
+.list_center img{
+vertical-align:middle;
+margin-top:-4px;
+}	
+
+
+.list_right{
+    margin-top:17px;
+	color:#b5b5b5;
+	}
+
+
+#bottom_logout, #bottom_login{
+    width:100%;
+ 	background:#464646;
+	height:45px;
+	}
+
+
+#bottom_logout ul{
+    width:230px;
+	padding:0px;
+    margin:auto;
+	padding-top:14px;
+	}
+
+#bottom_login ul{
+    width:150px;
+	padding:0px;
+    margin:auto;
+	padding-top:14px;
+	}
+
+
+#bottom_logout li, #bottom_login li{
+	float:left;
+	list-style:none;
+	}
+	
+.btn img{
+	width:65px;
+	}	
+
+.search img{
+	width:20px;
+	}
+	
+#copyright{
+	width:100%;
+ 	background:#333333;
+	height:60px;
+    }
+
+	
+#copyright p{
+	text-align:center;
+	color:#909090;
+	margin:auto;
+	padding-top:9px;
+	font-size:10px;
+    }
+
+	
+.clear{
+    clear:both; height:0px;width:100%;
+	}
+	
+		* {margin:0; padding:0; }
+	img {border:0; vertical-align:bottom; }
+	li {list-style:none; }
+	body {font:12px "占쏙옙占쏙옙�⑨옙占쏙옙", "占쏙옙占쏙옙", dotum; color:#fff; }
+
+	#header {width:100%; height:65px; background:#f1710c; }
+	#header img {height:65px; width:auto; }
+	#header h1 {float:left; }
+	#header li {float:left; }
+	#header li.text {margin:18px 0 0 5px;}
+
+	#silde {float:left; }
+
+	#icons{overflow:hidden;}
+	#tabs{overflow:hidden;}
+	#slide_contents{ overflow:hidden;min-height:220px;}
+
+	#icons ul {width:100%; height:auto; float:left; border-top:1px solid #d8d8d8; border-bottom:1px solid #d8d8d8; }
+	#icons ul li {width:25%; float:left; background:#000; }
+
+	#tabs {width:100%; font-size:14px; font-weight:bold; }
+	#tabs li {float:left; width:25%; } 
+	.tab_button{ cursor:pointer;}
+	.main_lists ul {background:#f5f5f5; float: left; color:#6d6d6d; height:45px; border-bottom:1px solid #b2b2b2; width:100%; }
+	.main_lists li {position:relative; letter-spacing:-1px; word-spacing:1px; float:left; }
+	.lists_left img {vertical-align:middle; margin-top:2px; }
+	.lists_left {margin-top:15px; font-size:14px; color:#5c5c5c; margin-left:3%; width:22%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+	.lists_center {margin-left:18px; margin-top:15px; font-size:14px; color:#5c5c5c; margin-left:3%; margin-right:5%; width:45%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+	.lists_center img {vertical-align:middle; margin-top:-4px; }
+	.lists_right{margin-top:17px; color:#a0a0a0; font-size:14px; float:right; padding-right:3%; width:19% }
+
+
+	#bottoms_logout, #bottom_login{width:100%; background:#464646; height:45px; float:left; }
+	#bottoms_logout ul{width:235px; margin:auto; padding-top:14px; padding-left:10px; }
+	#bottom_login ul{width:295px; margin:auto; padding-top:14px; padding-left:10px; }
+	#bottoms_logout li, #bottom_login li{float:left; margin-right:5px;}
+	
+	
+	.btn img{width:65px; height:auto; }	
+	.search img{width:20px; height:auto; }
+	
+	#copyrights{width:100%; background:#333333; height:60px; float:left; }
+	#copyrights p{text-align:center; color:#909090; padding-top:25px; font-size:10px; }

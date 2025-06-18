@@ -1,0 +1,147 @@
+#container {
+	width:580px;
+	padding:10px;
+	margin:0 auto;
+	position:relative;
+	z-index:0;
+}
+
+#mainBanner {
+	width:1000px;
+	position:relative;
+	margin-top:22px;
+	height:300px;
+}
+
+#ribbon {
+	position:absolute;
+	top:-3px;
+	left:-15px;
+	z-index:500;
+}
+
+#frame {
+	position:absolute;
+	z-index:0;
+	width:739px;
+	height:341px;
+	top:-3px;
+	left:-80px;
+}
+
+/*
+	Slideshow
+*/
+
+#slides {
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:90;
+}
+
+/*
+	Slides container
+	Important:
+	Set the width of your slides container
+	Set to display none, prevents content flash
+*/
+
+.slides_container {
+	width:1000px;
+	overflow:hidden;
+	position:relative;
+	display:none;
+}
+
+/*
+	Each slide
+	Important:
+	Set the width of your slides
+	If height not specified height will be set by the slide content
+	Set to display block
+*/
+
+.slides_container div.slide {
+	width:1000px;
+	height:282px;
+	display:block;
+}
+
+.slides_container div.slide a{
+	border:1px solid #dcdcdc; display:block; position:relative; float:left; width:314px; height:280px;
+}
+
+.slides_container div.slide a div.bg{
+	width:314px;height:280px; background:rgba(0,0,0,0.701961); position:absolute; top:0; left:0; z-index:91;
+}
+
+.slides_container div.slide a div.text{
+	position:absolute; top:60px; left:40px; z-index:92; color:#fff; font-size:16px;
+}
+
+.slides_container div.slide a div.text p{
+	height:45px;
+}
+
+.slides_container div.slide a div.text span{}
+
+/*
+	Next/prev buttons
+*/
+
+#slides .next,#slides .prev {
+	position:absolute;
+	top:108px;
+	left:-71px;
+	display:block;
+	z-index:91;
+}
+
+#slides .next {
+	left:1025px;
+}
+
+/*
+	Pagination
+*/
+
+.pagination {
+	margin:26px auto 0;
+	width:100px;
+}
+
+.pagination li {
+	float:left;
+	margin:0 1px;
+	list-style:none;
+}
+
+.pagination li a {
+	display:block;
+	width:13px;
+	height:0;
+	padding-top:14px;
+	margin:0 2px;
+	background-image:url(../image/btn_rolling.png);
+	background-position:0 0;
+	float:left;
+	overflow:hidden;
+}
+
+/*.pagination li:last-child a {
+	display:block;
+	width:13px;
+	height:0;
+	padding-top:14px;
+	margin:0 2px;
+	background:url(../image2/main/btn_stop.png) 0 0 no-repeat;
+	background-position:0 0;
+	float:left;
+	overflow:hidden;
+}*/
+
+.pagination li.current a {
+	background-position:0 -13px;
+	padding-top:12px;
+}

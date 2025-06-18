@@ -1,0 +1,16 @@
+180.227.41.72 - [14/Jan/2015:09:57:03 +0900] /main/index.php: hero_03 = 제가 지금 블로그 이벤트 중인데..제 이웃분들과 나누고 싶어요.////: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+180.227.41.72 - [14/Jan/2015:10:03:15 +0900] /main/index.php: hero_03 = 몇개 안되는 샘플인줄 알았는데 양이 어마어마 하네요?\r\n제가 지금: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+27.117.44.15 - [14/Jan/2015:23:54:57 +0900] /main/index.php: command = &nbsp; \r\n&lt;div id=\"quick_menu\"&gt;&lt;div class=\"on\" id=\"quick_b: XSS 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: location.href[[:space:]]*=]
+27.117.44.15 - [14/Jan/2015:23:56:42 +0900] /main/index.php: command = &nbsp; \r\n&lt;div id=\"quick_menu\"&gt;&lt;div class=\"on\" id=\"quick_b: XSS 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: location.href[[:space:]]*=]

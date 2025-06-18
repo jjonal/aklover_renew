@@ -1,0 +1,33 @@
+.imageBox, .imageBoxHighlighted {
+	width: 124px;
+	height: 94px;
+	margin: 3px;
+	float:left;
+	background: #FFFFFF;
+	cursor: pointer;
+}
+.imageBox_theImage,.imageBox_theImage_over {
+	width:100%;
+	height:100%;
+}
+.imageBox .imageBox_theImage{
+	border: 1px solid #ddd;
+	background-image: url('/cheditor/icons/dot.gif');
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+.imageBox .imageBox_theImage_over {
+	border: 1px solid #000;
+	background-image: url('/cheditor/icons/dot.gif');
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+.imageBoxHighlighted .imageBox_theImage {
+	border: 1px solid #ff6600;
+}
+.imageBoxHighlighted .imageBox_theImage_over {
+	border: 1px solid #ff6600;
+	background-image: url('/cheditor/icons/dot.gif');
+	background-position: center center;
+	background-repeat: no-repeat;
+}

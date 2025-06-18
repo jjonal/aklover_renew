@@ -1,0 +1,154 @@
+<?
+######################################################################################################################################################
+//HERO BOARD 시작 (개발자 : 이진영)2013년 08월 07일
+######################################################################################################################################################
+if(!defined('_HEROBOARD_'))exit;
+######################################################################################################################################################
+$sql = 'select * from hero_group where hero_order!=\'0\' and hero_use=\'1\' and hero_board =\''.$_GET['board'].'\';';//desc
+sql($sql);
+$right_list                             = @mysql_fetch_assoc($out_sql);
+######################################################################################################################################################
+?>
+    <div class="contents_area">
+        <div class="page_title">
+            <h2><img src="<?=str($right_list['hero_right']);?>" alt="<?=$right_list['hero_title'];?>" /></h2>
+            <ul class="nav">
+                <li><img src="../image/common/icon_nav_home.gif" alt="home" /></li>
+                <li>&gt;</li>
+                <li><?=$right_list['hero_top_title']?></li>
+                <li>&gt;</li>
+                <li class="current"><?=$right_list['hero_title']?></li>
+            </ul>
+        </div>
+        <div class="contents">
+            <div class="section_blog"><!---블로그 상단-->
+                <div class="thimg">
+                    <a href=""><img src="../image/main/img1.gif" alt="" width="269" height="240"></a><!--w267*h240-->
+                    <div class="graybg"></div>
+                    <div class="graybox">
+                        <img src="../image/common/best.png" alt="icon" /> HOT BLOG
+                    </div>
+                </div>
+                <div class="seclist">
+                    <dl>
+                        <dt><a href="#"><span class="c_orange">[블로그]</span>무더위가 작렬할때 필요한 건 뭐?!</a><span class="name">[장동건]</span></dt>
+                        <dd><a href="#"><strong>[발표]</strong> 7월 비스프리로 만드는...<span>[홍길동]</span></a></dd>
+                        <dd><a href="#"><strong></strong> 이보다 귀여울순 없다. 우리집 강아지..<strong>[10]</strong><span class="name">[송중기]</span></a></dd>
+                        <dd><a href="#"><strong>[발표]</strong> 구름빵 영어뮤지컬 체험 미션 수행<span class="name">[홍길동]</span></a></dd>
+                        <dd><a href="#"><strong></strong> 준비된자여~ 떠나라! 바캉스용품을 싸게 구입처<span class="name">[송중기]</span></a></dd>
+                        <dd><a href="#"><strong></strong> [발표] 7월 비스프리로 만드는 맛있는 요리 강습<span class="name">[홍길동]</span></a></dd>
+                        <dd><a href="#"><strong>[발표]</strong> 가슴까지 시원한 썸머 페스티벌 참가하자<span class="name">[송중기]</span></a></dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="blog_box2">
+                <ul class="blog_article">
+                    <li>
+                        <a href="#">
+                            <img src="../image/main/img1.gif" alt=""><!--w:175*h:155-->
+                            <span class="title">스페인 근현대 공연</span>
+                            <span class="txt">자외선으로 인한 피부에팰요한 순수자극 영향 자외선으로 인한 피부에팰요한 순수자극 영향...</span>
+                            <span class="date">2013.07.29 15:50</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="../image/main/img2.gif" alt="">
+                            <span class="title">스페인 근현대 공연</span>
+                            <span class="txt">자외선으로 인한 피부에팰요한 순수자극 영향 자외선으로 인한 피부에팰요한 순수자극 영향...</span>
+                            <span class="date">2013.07.29 15:50</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="../image/main/img1.gif" alt="">
+                            <span class="title">스페인 근현대 공연</span>
+                            <span class="txt">자외선으로 인한 피부에팰요한 순수자극 영향 자외선으로 인한 피부에팰요한 순수자극 영향...</span>
+                            <span class="date">2013.07.29 15:50</span>
+                        </a>
+                    </li>
+                    <li class="last">
+                        <a href="#">
+                            <img src="../image/main/img2.gif" alt="">
+                            <span class="title">스페인 근현대 공연</span>
+                            <span class="txt">자외선으로 인한 피부에팰요한 순수자극 영향 자외선으로 인한 피부에팰요한 순수자극 영향...</span>
+                            <span class="date">2013.07.29 15:50</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="../image/main/img1.gif" alt=""><!--w:175*h:155-->
+                            <span class="title">스페인 근현대 공연</span>
+                            <span class="txt">자외선으로 인한 피부에팰요한 순수자극 영향 자외선으로 인한 피부에팰요한 순수자극 영향...</span>
+                            <span class="date">2013.07.29 15:50</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="../image/main/img2.gif" alt="">
+                            <span class="title">스페인 근현대 공연</span>
+                            <span class="txt">자외선으로 인한 피부에팰요한 순수자극 영향 자외선으로 인한 피부에팰요한 순수자극 영향...</span>
+                            <span class="date">2013.07.29 15:50</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="../image/main/img1.gif" alt="">
+                            <span class="title">스페인 근현대 공연</span>
+                            <span class="txt">자외선으로 인한 피부에팰요한 순수자극 영향 자외선으로 인한 피부에팰요한 순수자극 영향...</span>
+                            <span class="date">2013.07.29 15:50</span>
+                        </a>
+                    </li>
+                    <li class="last">
+                        <a href="#">
+                            <img src="../image/main/img2.gif" alt="">
+                            <span class="title">스페인 근현대 공연</span>
+                            <span class="txt">자외선으로 인한 피부에팰요한 순수자극 영향 자외선으로 인한 피부에팰요한 순수자극 영향...</span>
+                            <span class="date">2013.07.29 15:50</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+            <div class="btngroup"><!--페이징 버튼 그룹-->
+                <div class="btn_l">
+                    <a href=""><img src="../image/bbs/btn_write.gif" alt="글쓰기" /></a>
+                </div>
+                <div class="paging">
+                    <a href="" class="img"><img src="../image/bbs/page_ppre.gif" alt="첫페이지" /></a>
+                    <a href="" class="img"><img src="../image/bbs/page_pre.gif" alt="이전페이지" /></a>
+                    <a href="">1</a>
+                    <a href="">2</a>
+                    <a href="" class="current">3</a>
+                    <a href="">4</a>
+                    <a href="">5</a>
+                    <a href="" class="img"><img src="../image/bbs/page_next.gif" alt="다음페이지" /></a>
+                    <a href="" class="img"><img src="../image/bbs/page_nnext.gif" alt="마지막페이지" /></a>
+                </div>
+                <div class="btn_r">
+                    <a href=""><img src="../image/bbs/btn_edit.gif" alt="수정" /></a>
+                    <a href=""><img src="../image/bbs/btn_del.gif" alt="삭제" /></a>
+                    <!--<a href=""><img src="../image/bbs/btn_list.gif" alt="목록" /></a>
+                    <a href=""><img src="../image/bbs/btn_del.gif" alt="삭제" /></a>
+                    <a href=""><img src="../image/bbs/btn_edit.gif" alt="수정" /></a>
+                    <a href=""><img src="../image/bbs/btn_cancle.gif" alt="취소" /></a>
+                    <a href=""><img src="../image/bbs/btn_confrim.gif" alt="확인" /></a>-->
+                </div>
+            </div>
+<!--
+            <div class="searchbox">
+                <div class="wrap_1">
+                <form action="" method="" >
+                    <select name="" id="">
+                        <option value="제목">제목</option>
+                        <option value="내용">내용</option>
+                        <option value="작성자">작성자</option>
+                    </select>
+                    <input type="text" class="kewyword">
+                    <input type="image" src="../image/bbs/btn_search.gif" alt="검색" class="bd0">
+                </form>
+                </div>
+            </div>
+-->
+        </div>
+    </div>

@@ -1,0 +1,83 @@
+<?
+######################################################################################################################################################
+//HERO BOARD 시작 (개발자 : 이진영)2013년 08월 07일
+######################################################################################################################################################
+define('_HEROBOARD_', TRUE);//HEROBOARD오픈
+include_once                                                        $HTTP_SERVER_VARS['DOCUMENT_ROOT'].'/freebest/head.php';
+include_once                                                        FREEBEST_INC_END.'hero.php';
+include_once                                                        FREEBEST_INC_END.'function.php';
+#####################################################################################################################################################
+?>
+<head>
+<meta charset="euc-kr">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+<title>♡AK LOVER 애경 서포터즈</title>
+<link href="css/general_completion.css" rel="stylesheet" type="text/css">
+<link href="css/down_menu.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+<script language=javascript>        
+        function downMenu() {
+            var $menu = $("#down_menu");
+            if($menu.css("display") == "block"){
+                $menu.slideUp(500, function(){
+                    $(".main_menu_btn").prop("src", "img/menu.jpg");
+                });
+            }else{
+                $menu.slideDown(500, function(){
+                    $(".main_menu_btn").prop("src", "img/menu1.jpg");
+                });
+            }
+        }
+        </script>
+        </head>
+        
+<body>
+
+<!--헤더시작-->
+<div id="header" style="width:100%; background-color:#ffa800; line-height:0px">
+       <ul style="width:100%">
+           <li style="width:19.3%; float:left"><a href="main.php"><img src="img/logo1.jpg" alt=AK LOVER 로고""/></a></li>
+           <li class="top_bg" style="width:63.2%"><img src="img/top_bg.jpg" alt=""/><span>AK를 사랑하는 일원으로 다양하고 특별한 체험과 이벤트를 경험해보세요</span></li>
+           <li style="width:17.5%; float:right"><a href="#none" onClick="downMenu();"><img src="img/menu.jpg" alt="메뉴" class="main_menu_btn" /></a></li>
+       </ul>
+       <div class="clear"></div> 
+</div>       
+<!--헤더 종료-->
+
+<?include_once "down_menu.php";?>
+
+<!--컨텐츠 시작-->
+<div id="content">
+    <div id="title"><p>일반미션</p></div>
+     
+    <div><img src="img/shadow1.jpg" alt="" width="100%" height="2px"/></div>
+     
+    <div id="guide">
+         <ul style="width:100%">
+         <li style="width:13%; margin-left:5%"><img src="img/general/note1.png" alt="" width="45px"/></li>
+         <li class="guide_text" style="width:82%"><p>나눔 등급부터 모든 분들이 참여할 수 있는 미션이예요.</p></li>
+        </ul> 
+    </div>
+    <div class="clear"></div>  
+
+ 
+ 
+    <div id="content_bg" style="position:relative">
+         <img src="img/general/completion_bg.jpg" alt="" width="100%"/>
+   
+    
+         <span style="width:100%; margin:auto; text-align:center; position:absolute; top:60%">
+          <p><span style="color:#404040">리뷰어 신청</span>이 완료되었습니다.</p>
+            <a href="general.php"><img src="img/general/list_btn.jpg" alt="목록보기" width="90px"/></a>
+            &nbsp;&nbsp;<a href="general_application.php"><img src="img/general/modify_btn.jpg" alt="수정" width="90px"/></a>
+            &nbsp;&nbsp;<a href="general.php"><img src="img/general/delete_btn.jpg" alt="삭제" width="90px"/></a>
+         </span>
+    </div>
+   
+   <div><img src="img/shadow1.jpg" alt="" width="100%" height="2px"/></div>
+    
+</div> 
+     
+   <div class="clear"></div>
+<!--컨텐츠 종료-->
+<?include_once "tail.php";?>

@@ -1,0 +1,4 @@
+61.255.191.183 - [09/Dec/2014:21:40:20 +0900] /main/zip_new.php: input_chat = 감기조심하세요../: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]

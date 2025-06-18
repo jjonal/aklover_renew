@@ -1,0 +1,28 @@
+115.95.230.68 - [10/Dec/2014:09:58:26 +0900] /main/index.php: command = 삶이 힘겨울때 ~~~~~~~~&lt;br /&gt;새벽시장에 한번 가보십시요..&lt;br /&gt;밤: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+115.95.230.68 - [10/Dec/2014:10:24:12 +0900] /main/index.php: command = 삶이 힘겨울때 ~~~~~~~~&lt;br /&gt;새벽시장에 한번 가보십시요..&lt;br /&gt;밤: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+115.95.230.68 - [10/Dec/2014:10:26:25 +0900] /main/index.php: command = 삶이 힘겨울때 ~~~~~~~~&lt;br /&gt;새벽시장에 한번 가보십시요..&lt;br /&gt;밤: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+115.95.230.68 - [10/Dec/2014:10:26:49 +0900] /main/index.php: command = 삶이 힘겨울때 ~~~~~~~~&lt;br /&gt;새벽시장에 한번 가보십시요..&lt;br /&gt;밤: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+115.95.230.68 - [10/Dec/2014:10:27:36 +0900] /main/index.php: command = 삶이 힘겨울때 ~~~~~~~~&lt;br /&gt;새벽시장에 한번 가보십시요..&lt;br /&gt;밤: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+115.95.230.68 - [10/Dec/2014:10:30:05 +0900] /main/index.php: command = 삶이 힘겨울때 ~~~~~~~~&lt;br /&gt;새벽시장에 한번 가보십시요..&lt;br /&gt;밤: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+115.95.230.68 - [10/Dec/2014:10:31:00 +0900] /main/index.php: command = 삶이 힘겨울때 ~~~~~~~~&lt;br /&gt;새벽시장에 한번 가보십시요..&lt;br /&gt;밤: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]

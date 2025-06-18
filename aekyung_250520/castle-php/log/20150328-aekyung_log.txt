@@ -1,0 +1,8 @@
+211.58.15.8 - [28/Mar/2015:07:28:12 +0900] /m/action.php: image1 = 20150325142727337856101_png.html: 차단된 이름 파일 업로드
+ -&gt; [Method: FILE]
+ -&gt; [Policy: 파일정책]
+ -&gt; [Pattern: check filename]
+122.128.191.172 - [28/Mar/2015:14:25:10 +0900] /main/index.php: hero_03 = 아들이 중학생이 되면서 흔히 요즘 광고하듯이사춘기 냄새가 완전 끝: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]

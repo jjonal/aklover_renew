@@ -1,0 +1,20 @@
+118.222.101.145 - [07/Mar/2015:22:06:26 +0900] /m/action.php: image1 = 1425733490073.jpeg: 허용되지 않은 확장자 파일 업로드
+ -&gt; [Method: FILE]
+ -&gt; [Policy: 파일정책]
+ -&gt; [Pattern: check filetype]
+118.222.101.145 - [07/Mar/2015:22:07:22 +0900] /m/action.php: image1 = 1425733490073.jpeg: 허용되지 않은 확장자 파일 업로드
+ -&gt; [Method: FILE]
+ -&gt; [Policy: 파일정책]
+ -&gt; [Pattern: check filetype]
+118.222.101.145 - [07/Mar/2015:22:11:20 +0900] /m/action.php: image1 = 1425733692154.jpeg: 허용되지 않은 확장자 파일 업로드
+ -&gt; [Method: FILE]
+ -&gt; [Policy: 파일정책]
+ -&gt; [Pattern: check filetype]
+118.222.101.145 - [07/Mar/2015:22:11:42 +0900] /m/action.php: image1 = 1425733692154.jpeg: 허용되지 않은 확장자 파일 업로드
+ -&gt; [Method: FILE]
+ -&gt; [Policy: 파일정책]
+ -&gt; [Pattern: check filetype]
+118.222.101.145 - [07/Mar/2015:22:12:17 +0900] /m/action.php: image1 = 1425733692154.jpeg: 허용되지 않은 확장자 파일 업로드
+ -&gt; [Method: FILE]
+ -&gt; [Policy: 파일정책]
+ -&gt; [Pattern: check filetype]

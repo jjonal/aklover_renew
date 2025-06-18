@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<feed xmlns='http://webmastertool.naver.com'>
+	<id>http://www.aklover.co.kr/</id>
+	<title>AEKYUNG SYNDICATION DOCUMENTt</title>
+	<author>
+		<name>test</name>
+		<email>joooniii12@unipics.com</email>
+	</author>
+	<updated>2014-08-26T20:10:45+09:00</updated>
+	<link rel='site' href='http://www.aklover.co.kr' title='AEKYUNG TEST SERVER SYNDICATION DOCUMENT'/>
+	<entry>
+		<id>
+			https://aklover.co.kr:11486/main/index.php?board=group_01_01&amp;page=4&amp;view=view&amp;idx=13143
+		</id>
+		<title>
+			<![CDATA[ 다기능 미용비누,뷰티비누,헤어비누,두피비누,다이어트비누 등 비누의 세계 ]]>
+		</title>
+		<author>
+			<name>재키</name>
+		</author>
+		<updated>2014-03-03T20:10:45+09:00</updated>
+		<published>2014-03-03T20:10:45+09:00</published>
+		<link rel='via' href='http://www.aklover.co.kr/main/index.php?board=group_01_01&amp;page=4' title='꽃미녀팁'/>
+		<link rel='mobile' href='http://www.aklover.co.kr/m/board_view_00.php?board=group_01_01&amp;page=18&amp;hero_idx=13143'/>
+		<content type='html'>
+			<![CDATA[
+				<div style='text-align: center'><strong><font color='#005766'><br></font></strong>모유 비누가 뭐야? 사실 이 모유비누는 매스컴에도 여러번 소개됐던 터라 아시는 분도 많을거에요.<br>진짜 모유를 받아서 만든 비누입니다. 아토피처럼 문제성피부인 아이들이 사용하면 피부트러블이 많이 줄어듭니다.<br>모유에 면역 강화 성분인 면역글로블린이 풍부하여 항균력이 있는 비누가 된다고 하네요.<br>수유중인 엄마 본인의 모유를 보내주면 비누로 만들어준대요. 산모들 사이에서 인기가 높은 비누래요.<br>피부에 트러블이 있는 아기가 있는 집이라면 관심 가져볼만하죠. 정말 신기한 비누에요.<br>보통 100그람 제작에 8천원선이라고 합니다.</div>
+			]]>
+		</content>
+		<summary type='text'>
+			<![CDATA[
+				1. 모유 비누		모유 비누가 뭐야? 사실 이 모유비누는 매스컴에도 여러번 소개됐던 터라 아시는 분도 많을거에요.	진짜 모유를 받아서 만든 비누입니다. 아토피처럼 문제성피부인 아이들이 사용하면 피부트러블이 많이 줄어듭니다. 모유에 면역 강화 성분인 면역글로블린이 풍부하여 항균력이 있는 비누가 된다고 하네요. 수유중인 엄마 본인의 모유를 보내주면 비누로 만들어준대요. 산모들 사이에서 인기가 높은 비누래요. 피부에 트러블이 있는 아기가 있는 집이라면 관심 가져볼만하죠. 정말 신기한 비누에요.	보통 100그람 제작에 8천원선이라고 합니다. 모유성분이 들어있어서 아기들이 좋아한다고 해요. 단, 수유중인 엄마들만 의뢰할 수 있는 비누라서 특별한 비누라고 할 수 있죠.
+			]]>
+		</summary>
+		<category term='search_info' label='검색정보'/>
+	</entry>
+</feed>

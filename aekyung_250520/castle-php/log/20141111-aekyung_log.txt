@@ -1,0 +1,44 @@
+211.219.87.129 - [11/Nov/2014:10:39:36 +0900] /admin/index.php: manual_file = AK LOVER (140903).pptx: 허용되지 않은 확장자 파일 업로드
+ -&gt; [Method: FILE]
+ -&gt; [Policy: 파일정책]
+ -&gt; [Pattern: check filetype]
+211.219.87.129 - [11/Nov/2014:10:41:10 +0900] /admin/index.php: manual_file = AK LOVER (140903).pptx: 허용되지 않은 확장자 파일 업로드
+ -&gt; [Method: FILE]
+ -&gt; [Policy: 파일정책]
+ -&gt; [Pattern: check filetype]
+112.158.6.140 - [11/Nov/2014:10:50:31 +0900] /admin/index.php: manual_file = AK LOVER (140903).pptx: 허용되지 않은 확장자 파일 업로드
+ -&gt; [Method: FILE]
+ -&gt; [Policy: 파일정책]
+ -&gt; [Pattern: check filetype]
+112.158.6.140 - [11/Nov/2014:10:52:26 +0900] /admin/index.php: manual_file = AKLOVER (140903).pptx: 허용되지 않은 확장자 파일 업로드
+ -&gt; [Method: FILE]
+ -&gt; [Policy: 파일정책]
+ -&gt; [Pattern: check filetype]
+112.158.6.140 - [11/Nov/2014:10:53:24 +0900] /admin/index.php: manual_file = AKLOVER(140903).pptx: 허용되지 않은 확장자 파일 업로드
+ -&gt; [Method: FILE]
+ -&gt; [Policy: 파일정책]
+ -&gt; [Pattern: check filetype]
+112.158.6.140 - [11/Nov/2014:10:56:26 +0900] /admin/index.php: manual_file = AKLOVER(140903).pptx: 허용되지 않은 확장자 파일 업로드
+ -&gt; [Method: FILE]
+ -&gt; [Policy: 파일정책]
+ -&gt; [Pattern: check filetype]
+112.158.6.140 - [11/Nov/2014:10:56:44 +0900] /admin/index.php: manual_file = AKLOVER(140903).pptx: 허용되지 않은 확장자 파일 업로드
+ -&gt; [Method: FILE]
+ -&gt; [Policy: 파일정책]
+ -&gt; [Pattern: check filetype]
+112.158.6.140 - [11/Nov/2014:10:56:51 +0900] /admin/index.php: manual_file = AKLOVER(140903).pptx: 허용되지 않은 확장자 파일 업로드
+ -&gt; [Method: FILE]
+ -&gt; [Policy: 파일정책]
+ -&gt; [Pattern: check filetype]
+112.158.6.140 - [11/Nov/2014:10:57:01 +0900] /admin/index.php: manual_file = AKLOVER(140903).pptx: 허용되지 않은 확장자 파일 업로드
+ -&gt; [Method: FILE]
+ -&gt; [Policy: 파일정책]
+ -&gt; [Pattern: check filetype]
+112.158.6.140 - [11/Nov/2014:10:57:25 +0900] /admin/index.php: manual_file = AKLOVER(140903).pptx: 허용되지 않은 확장자 파일 업로드
+ -&gt; [Method: FILE]
+ -&gt; [Policy: 파일정책]
+ -&gt; [Pattern: check filetype]
+112.158.6.140 - [11/Nov/2014:10:58:10 +0900] /admin/index.php: manual_file = AKLOVER(140903).pptx: 허용되지 않은 확장자 파일 업로드
+ -&gt; [Method: FILE]
+ -&gt; [Policy: 파일정책]
+ -&gt; [Pattern: check filetype]

@@ -1,0 +1,62 @@
+<?
+####################################################################################################################################################
+//HERO BOARD 시작 (개발자 : 이진영)2013년 08월 07일
+####################################################################################################################################################
+if(!defined('_HEROBOARD_'))exit;
+####################################################################################################################################################
+if($_SESSION['temp_code']){
+	error_historyBack("로그인이 되어 있습니다. 로그 아웃 후에 다시 시도해 주세요.");
+	exit;
+}
+
+include_once $_SERVER['DOCUMENT_ROOT']."/combined/authInit.php";
+?>
+
+    <script language='javascript'>
+    window.name ="Parent_window";
+    </script>
+	<script type="text/javascript" src="<?=JS_END;?>authInit.js" ></script>
+<!--
+    <script type="text/javascript">
+    function checkid(v){
+        $('.idcheck a').removeClass('active');
+        if (v==1){
+            $('.idcheck a').eq(0).addClass('active');
+        }else{
+            $('.idcheck a').eq(1).addClass('active');
+        }
+    }
+    </script>
+-->
+    <div class="contents_area">
+        <div class="page_title">
+            <h2><img src="../image/title/title_7_1.gif" alt="로그인" /></h2>
+            <ul class="nav">
+                <li><img src="../image/common/icon_nav_home.gif" alt="home" /></li>
+                <li>&gt;</li>
+                <li class="current">회원가입</li>
+            </ul>
+        </div>
+        <div class="contents">
+            <img src="../image/member/title_check.gif" alt="회원가입인증" />
+            <div class="idcheck">
+            <form name="form_chk" method="post">
+                <input type="hidden" name="m" value="checkplusSerivce">
+                <input type="hidden" name="EncodeData" value="<?= $enc_data ?>">
+                <input type="hidden" name="m" value="pubmain">
+                <input type="hidden" name="enc_data" value="<?= $sEncData ?>">
+                <input type="hidden" name="param_r1" value="">
+                <input type="hidden" name="param_r2" value="">
+                <input type="hidden" name="param_r3" value="">
+                <input type="hidden" name="param_r4" value="">
+                <input type="hidden" name="param_r5" value="">
+                <input type="hidden" name="param_r6" value="">
+
+                <a href="javascript:auth.hp_Popup(this.form_chk);" style="margin-left:150px;" ><img src="../image/member/btn_mobile.gif" alt="핸드폰 인증" /></a>
+                <a href="javascript:auth.ip_Popup(this.form_chk);" ><img src="../image/member/btn_ipin.gif" alt="ipin인증" /></a>
+            </form>
+            </div>
+            <div class="c_orange">* 두가지중 하나의 인증만 절차에 따라 진행하여 주시기 바랍니다.(단 인증 완료 후에 회원가입이 진행됩니다.)<br><br>* 핸드폰 인증, I-PIN 인증이 어려우신 분들은 고객센터 (080-024-1357)로 문의하시기 바랍니다.</div>
+            <div class="h265"></div>
+        </div>
+    </div>

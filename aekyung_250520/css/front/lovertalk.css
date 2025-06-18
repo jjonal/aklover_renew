@@ -1,0 +1,105 @@
+.cscenter .lovertalk .caution > div {
+    padding: 3.9rem 3rem;
+    border-radius: 1rem;
+}
+.cscenter .lovertalk .caution h3 {
+    margin-bottom: 1.9rem;
+}
+.cscenter .lovertalk p {
+    letter-spacing: -0.75px;
+}
+.cscenter .lovertalk p.first {
+    margin-bottom: 2rem;
+}
+.cscenter .lovertalk .caution .warn {
+    margin-top: 2.6rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+} 
+.cscenter .lovertalk .quest > div {
+    color: #fff;
+    /* height: 5rem;
+    line-height: 1.3; */
+}
+.cscenter .lovertalk .quest .date {
+    margin-top: 1.2rem;
+    letter-spacing: normal;
+}
+.cscenter .lovertalk .quest span {
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+.lovertalk .cont .reply_c {
+    height: 3.2rem;
+    line-height: 3rem;
+    border-radius: 1.6rem;
+    border: 1px solid var(--border);
+    padding: 0 2rem;
+    margin-top: 2rem;
+} 
+.lovertalk .cont .profile {
+    width: 5.4rem;
+    height: 5.4rem;
+    margin-right: 2.1rem;
+    margin-left: .5rem;
+}
+.lovertalk .cont .tit_bx {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+}
+.lovertalk .cont .tit {
+    margin: 1.3rem 0 1.7rem;
+    position: relative;
+}
+.lovertalk .cont .tit span {
+    position: absolute;
+    right: -3rem;
+    top: -1px;
+}
+.lovertalk .table_list {
+    padding: 3.2rem 0;
+    border-bottom: 1px solid var(--border);
+}
+.lovertalk .table_list .mu_bar::before {
+    top: .6rem;
+}
+.lovertalk .table_list .desc {
+    line-height: 1.3;
+    width: 50%;
+}
+.lovertalk .table_list .desc span {
+    color: inherit !important;
+    font-size: 100%  !important;
+    font-weight: inherit !important;
+    line-height: inherit !important;
+    letter-spacing: inherit !important;
+}
+.lovertalk .boardTabMenuWrap {
+    margin-bottom: 0;
+}
+.lovertalk .table_wrap {
+    margin-bottom: 8rem;
+}
+
+/* ¾²±â */
+#subpage.talk_write {
+    background: #f8f8f8;
+}
+#subpage.talk_write .sub_wrap {    
+    max-width: 116rem;
+    padding: 0 3rem;
+    background-color: #fff;
+}
+#subpage.talk_write .board_wrap .right {
+    width: 100%;
+    margin-bottom: 7.7rem;
+    padding-top: 4rem;
+}
+#subpage.talk_write .cont_top h2 .en {
+    letter-spacing: normal;
+}
+#subpage.talk_write .write_cont .cont_top {
+    margin-bottom: 4rem;
+}
+

@@ -1,0 +1,4 @@
+175.211.25.55 - [29/Sep/2014:21:45:21 +0900] /main/index.php: command = &lt;div style=\"color: #000000; font-family: Times; font-size: medi: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]

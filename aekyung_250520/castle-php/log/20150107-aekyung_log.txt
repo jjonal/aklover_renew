@@ -1,0 +1,12 @@
+123.142.91.205 - [07/Jan/2015:08:59:27 +0900] /main/index.php: hero_03 = 치주염으로 고생중인 식구들과 저에게 꼭 필요합니다. 구취와 충치에: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+123.142.91.205 - [07/Jan/2015:08:59:33 +0900] /main/index.php: hero_03 = 치주염으로 고생중인 식구들과 저에게 꼭 필요합니다. 구취와 충치에: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+223.62.234.22 - [07/Jan/2015:10:10:06 +0900] /m/mission_application.php: hero_03 = 청은차 마니아입니다. 어린 아이도 함께 쓸수 있는 향긋한 청은차라�: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]

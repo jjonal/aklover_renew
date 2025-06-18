@@ -1,0 +1,24 @@
+210.220.90.10 - [18/Jan/2015:14:41:16 +0900] /main/index.php: command = &lt;p align=\"center\" style=\"margin: 0px; padding: 0px; line-heig: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+210.220.90.10 - [18/Jan/2015:14:42:00 +0900] /main/index.php: command = &lt;p align=\"center\" style=\"margin: 0px; padding: 0px; line-heig: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+210.220.90.10 - [18/Jan/2015:14:42:06 +0900] /main/index.php: command = &lt;p align=\"center\" style=\"margin: 0px; padding: 0px; line-heig: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+210.220.90.10 - [18/Jan/2015:14:44:34 +0900] /main/index.php: command = &lt;div style=\"text-align: center\"&gt;&lt;img src=\"https://aklover.co.: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+210.220.90.10 - [18/Jan/2015:14:45:58 +0900] /main/index.php: command = &lt;div style=\"text-align: center\"&gt;&lt;img src=\"https://aklover.co.: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+210.220.90.10 - [18/Jan/2015:14:46:47 +0900] /main/index.php: command = &lt;div style=\"text-align: center\"&gt;&lt;img src=\"https://aklover.co.: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]

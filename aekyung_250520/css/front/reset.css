@@ -1,0 +1,516 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap'); */
+/* @import url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT/fonts/static/woff2/SUIT.css'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap'); */
+@import url('https://fonts.cdnfonts.com/css/roman-serif');
+
+@font-face {
+    font-family: 'Welland';
+    font-style: normal;
+    font-weight: normal;
+    src: url('/css/fonts/Welland.otf') format('opentype');
+    src: url('/css/fonts/Welland.woff2') format('woff');
+    src: url('/css/fonts/Welland.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'SUIT';
+    font-style: normal;
+    font-weight: normal;
+    src: url('/css/fonts/SUIT-Regular.otf') format('opentype');
+    src: url('/css/fonts/SUIT-Regular.woff2') format('woff');
+    src: url('/css/fonts/SUIT-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'SUIT';
+    font-style: normal;
+    font-weight: 500;
+    src: url('/css/fonts/SUIT-Medium.otf') format('opentype');
+    src: url('/css/fonts/SUIT-Medium.woff2') format('woff');
+    src: url('/css/fonts/SUIT-Medium.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'SUIT';
+    font-style: normal;
+    font-weight: 600;
+    src: url('/css/fonts/SUIT-SemiBold.otf') format('opentype');
+    src: url('/css/fonts/SUIT-SemiBold.woff2') format('woff');
+    src: url('/css/fonts/SUIT-SemiBold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'SUIT';
+    font-style: normal;
+    font-weight: bold;
+    src: url('/css/fonts/SUIT-Bold.otf') format('opentype');
+    src: url('/css/fonts/SUIT-Bold.woff2') format('woff');
+    src: url('/css/fonts/SUIT-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'SUIT';
+    font-style: normal;
+    font-weight: 800;
+    src: url('/css/fonts/SUIT-ExtraBold.otf') format('opentype');
+    src: url('/css/fonts/SUIT-ExtraBold.woff2') format('woff');
+    src: url('/css/fonts/SUIT-ExtraBold.ttf') format('truetype');
+}
+:root {
+	--main_color: #ff4c05;
+	/* fonts */	
+	--fz68: 6.8rem;
+	--fz64: 6.4rem;
+	--fz55: 5.5rem;
+	--fz48: 4.8rem;
+	--fz44: 4.4rem;
+	--fz42: 4.2rem;
+	--fz38: 3.8rem;
+	--fz34: 3.4rem;
+	--fz32: 3.2rem;
+	--fz30: 3rem;
+	--fz28: 2.8rem;
+	--fz26: 2.6rem;
+	--fz24: 2.4rem;
+	--fz22: 2.2rem;
+	--fz20: 2.0rem;
+	--fz18: 1.8rem;
+	--fz17: 1.7rem;
+	--fz16: 1.6rem;
+	--fz15: 1.5rem;
+	--fz14: 1.4rem;
+	--fz13: 1.3rem;
+	--fz12: 1.2rem;
+
+	
+	--border: rgba(0,0,0,0.1);
+	--black_01: rgba(0,0,0,0.1);
+}
+* {
+	font-family: 'SUIT', sans-serif;
+	line-height: 1;
+	box-sizing: border-box;
+	font-size: 1.5rem;
+	font-weight: normal;
+	font-style: normal;
+	color: #000;
+	letter-spacing: -0.08rem;
+	padding: 0;
+	margin: 0;
+	word-break: keep-all;
+}
+
+html,
+body {
+	width: 100vw;
+	width: 100%;
+	overflow-x: clip;
+	font-size: 62.5%;
+	scroll-behavior: smooth;
+}
+
+
+button {
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	cursor: pointer;
+}
+
+a,
+a:hover,
+a:focus,
+button {
+	text-decoration: none;
+	/* color: inherit; */
+}
+
+img {
+	max-width: 100%;
+	vertical-align: middle;
+	height: auto;
+}
+
+iframe {
+	border: none;
+	/* width: 100%;
+	height: 100%; */
+}
+
+input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0 100px #f6f6f6 inset;
+	-moz-box-shadow: 0 0 0 100px #f6f6f6 inset;
+	box-shadow: 0 0 0 100px #f6f6f6 inset;
+}
+
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border-radius: 0;
+	cursor: pointer;
+}
+
+select::-ms-expand {
+	display: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	/* border-right: 1rem solid transparent; */
+}
+
+header,
+footer,
+aside,
+main,
+section,
+article,
+nav {
+	display: block;
+}
+
+ul,
+li {
+	margin: 0;
+	list-style: none;
+}
+
+::selection {
+	color: #fff;
+	background: rgba(0, 0, 0, 0.99);
+}
+
+*:focus,
+a:hover,
+button:hover,
+input:hover {
+	outline: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-tap-highlight-color: transparent;
+}
+
+span,
+strong,
+b,
+em {
+	color: inherit;
+	font-size: 100%;
+	font-weight: inherit;
+	line-height: inherit;
+	letter-spacing: inherit;
+}
+
+button,
+textarea,
+input,
+select,
+a {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-tap-highlight-color: transparent;
+	border: none;
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	outline: none;
+}
+
+
+button,
+input,
+select,
+a {
+	background-color: transparent;
+}
+
+button,
+textarea,
+input {
+	-webkit-appearance: none;
+	border-radius: 0;
+}
+
+button {
+	border: 0;
+	outline: none;
+	background: none;
+}
+
+font {
+	font-size: inherit;
+	font-weight: inherit;
+	color: inherit;
+	line-height: inherit;
+}
+
+legend {
+	display: block;
+	border: none;
+	padding: 0;
+}
+
+fieldset {
+	border: none;
+	margin: 0;
+	padding: 0;
+	min-width: 0;
+}
+
+body:not(:-moz-handler-blocked) fieldset {
+	display: table-cell;
+}
+
+@supports (-webkit-touch-callout: none) {
+	#header #sidebar .inner,
+	.main_popup {
+		height: -webkit-fill-available;
+	}
+}
+
+.fz86 {
+    font-size: 8.6rem;
+}
+.fz68 {
+    font-size: 6.8rem;
+}
+.fz64 {
+    font-size: 6.4rem;
+}
+.fz72  {
+    font-size: 7.2rem;
+}
+.fz55 {
+    font-size: 5.5rem;
+}
+.fz48 {
+    font-size: 4.8rem;
+}
+.fz44 {
+    font-size: 4.4rem;
+}
+.fz42 {
+    font-size: 4.2rem;
+}
+.fz38 {
+    font-size: 3.8rem;
+}
+.fz36 {
+    font-size: 3.6rem;
+}
+.fz34 {
+    font-size: 3.4rem;
+}
+.fz32 {
+    font-size: 3.2rem;
+}
+.fz30 {
+    font-size: 3rem;
+}
+.fz28 {
+    font-size: 2.8rem;
+}
+.fz26 {
+    font-size: 2.6rem;
+}
+.fz25 {
+    font-size: 2.5rem;
+}
+.fz24 {
+    font-size: 2.4rem;
+}
+.fz22 {
+    font-size: 2.2rem;
+}
+.fz20 {
+    font-size: 2.0rem;
+}
+.fz19 {
+    font-size:  1.9rem;
+}
+.fz18 {
+    font-size:  1.8rem;
+}
+.fz17 {
+    font-size:  1.7rem;
+}
+.fz16 {
+    font-size:  1.6rem;
+}
+.fz15 {
+    font-size:  1.5rem;
+}
+.fz14 {
+    font-size:  1.4rem;
+}
+.fz13 {
+    font-size: 1.3rem;
+}
+.fz12 {
+    font-size: 1.2rem;
+}
+
+
+/* color */
+.main_c {
+	color: #ff4c05 !important;
+}
+.gray {
+	color: rgba(0, 0, 0, 0.5);
+}
+.gray07 {
+	color: rgba(0, 0, 0, 0.7);
+}
+.gray08 {
+	color: rgba(0, 0, 0, 0.8);
+}
+.c_white {
+	color: #fff;
+}
+
+
+
+/* font weight */
+.fw300 {
+	font-weight: 300;
+}
+.fw400 {
+	font-weight: 400;
+}
+.fw500 {
+	font-weight: 500;
+}
+.fw600 {
+	font-weight: 600;
+}
+.fw700 {
+	font-weight: 700;
+}
+.fw800 {
+	font-weight: 800 !important;
+}
+
+
+
+/* button design */
+.label_button {
+	display: block;
+    height: 4.4rem;
+    line-height: 4.4rem;
+    border-radius: 2.2rem;
+    padding: 0 3rem;
+    background-color: #f6f6f6;
+    font-size: var(--fz16);  
+    color: rgba(0, 0, 0, 0.6);
+}
+.btn_submit {
+	width: 18rem;
+	height: 4.7rem;
+	line-height: 4.7rem;
+	border-radius: 2.3rem;
+	display: block;
+	cursor: pointer;
+	text-align: center;
+}
+.btn_submit.small {
+	width: auto;
+	padding: 0 3rem;
+	height: 4.4rem;
+	line-height: 4.4rem;
+}
+.btn_submit.wid {
+	width: 100%;
+}
+.btn_color {
+	color: #fff;
+	background-color: var(--main_color);
+}
+.btn_black {
+	background-color: #000;
+	color: #fff;
+}
+.btn_line {
+	color: #000;
+	line-height: 4.5rem;
+	border: 1px solid var(--border);
+}
+.btn_gray {
+	color: #000;  
+	font-weight: 600;
+	line-height: 4.5rem;
+	border: 1px solid #f8f8f8;
+	background-color: #f8f8f8;
+}
+.btn_white {
+	color: #000 !important;
+	line-height: 4.5rem;
+	border: 1px solid var(--border);
+	background-color: #fff;
+}
+.btn_main_c {
+	color: #fff;
+	border: 1px solid #ff4c05;
+	background-color: #ff4c05;
+}
+.btngroup .btn_r {
+	gap: .5rem;	
+}
+.btn_copy {
+    display: block;
+    height: 3.4rem;
+    line-height: 3.4rem;
+    border-radius: .5rem;
+    background-color: #000;
+    color: #fff;
+    padding: 0 2rem;
+}
+.btn_copy img {
+    margin-left: .7rem;
+}
+/* �Խ��� ������ ���� ��ư */
+.admin_btn {
+	position: relative;
+}
+.admin_btn .btngroup .btn_r {    
+    text-align: right;
+    margin-bottom: 3rem;
+}
+.admin_btn .btn_submit {
+	width: auto;
+    display: inline-block;
+    height: 4.8rem;
+	line-height: 4.6rem;
+	border: 1px solid #000;
+	border-radius: 2.4rem;
+	padding: 0 3rem;
+	padding-left: 5.3rem;
+	background: #000 url(/img/front/icon/write.webp) no-repeat left 3rem center;
+	color: #fff;
+    background-size: 1.9rem;
+}
+.admin_btn .btn_delete {
+	position: absolute;
+	right: 13rem;
+	top: 0;
+	display: inline-block;
+    height: 4.8rem;
+	line-height: 4.6rem;
+	border: 1px solid #000;
+	border-radius: 2.4rem;
+	padding: 0 3rem;
+	padding-left: 5.3rem;
+	background: #fff url(/img/front/icon/delete.webp) no-repeat left 3rem center;
+	color: #000;
+}
+.view_cont .admin_btn .btn_delete {
+	position: relative;
+	right: initial;
+	top: initial;
+}
+#subpage:not(.replypage) .view_cont .admin_btn {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: .8rem;
+} 

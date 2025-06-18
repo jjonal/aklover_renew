@@ -1,0 +1,8 @@
+115.95.230.68 - [29/Jan/2015:12:30:21 +0900] /main/zip_new.php: input_chat = 저도 그럴때있어요..아니면 미루다가 못오고../.: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+180.70.129.76 - [29/Jan/2015:18:26:55 +0900] /main/index.php: command = &lt;div align=\"center\" style=\"text-align: center\"&gt;TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]

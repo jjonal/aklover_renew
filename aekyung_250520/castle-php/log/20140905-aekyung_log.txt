@@ -1,0 +1,8 @@
+1.240.22.65 - [05/Sep/2014:07:58:07 +0900] /main/zip_new.php: input_chat = 저도 며칠전 들었어요 웃겨서 막웃었어요... 근TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+61.83.196.247 - [05/Sep/2014:09:47:38 +0900] /main/index.php: command = &lt;div&gt;&lt;strong&gt;\'TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]

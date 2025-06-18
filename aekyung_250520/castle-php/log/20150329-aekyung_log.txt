@@ -1,0 +1,4 @@
+175.126.94.4 - [29/Mar/2015:19:25:24 +0900] /main/index.php: command = &lt;p align=\"center\"&gt;&lt;img width=\"480\" height=\"360\" class=\"_p: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]

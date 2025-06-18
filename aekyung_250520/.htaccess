@@ -1,0 +1,4 @@
+php_flag allow_url_fopen ON
+AddType application/x-hwp .hwp .frm .hwt
+#에러 로그 on off
+php_flag display_errors on

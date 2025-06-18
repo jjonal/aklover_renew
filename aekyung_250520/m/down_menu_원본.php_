@@ -1,0 +1,123 @@
+<?
+######################################################################################################################################################
+//HERO BOARD 시작 (개발자 : 이진영)2013년 08월 07일
+######################################################################################################################################################
+define('_HEROBOARD_', TRUE);//HEROBOARD오픈
+include_once                                                        $HTTP_SERVER_VARS['DOCUMENT_ROOT'].'/freebest/head.php';
+include_once                                                        FREEBEST_INC_END.'hero.php';
+include_once                                                        FREEBEST_INC_END.'function.php';
+#####################################################################################################################################################
+?>
+<head>
+<meta charset="euc-kr">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+<title>:::한일관 모바일 홈페이지입니다:::</title>
+<link href="css/down_menu.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+<script language=javascript>        
+        function downMenu() {
+            var $menu = $("#down_menu");
+            if($menu.css("display") == "block"){
+                $menu.slideUp(500, function(){
+                    $(".main_menu_btn").prop("src", "img/menu.jpg");
+                });
+            }else{
+                $menu.slideDown(500, function(){
+                    $(".main_menu_btn").prop("src", "img/menu1.jpg");
+                });
+            }
+        }
+        </script>
+        </head>
+
+<body>
+
+<div id="down_menu" style="display:none; position:absolute; z-index:20; background-color:#fff;">
+<div id="main_menu" style="width:310px; height:auto; margin:auto">
+   <form name="form1" method="post" action="">
+  <ul style="width:100%; height:auto">
+  <li style="font-size:16px; font-weight:bold; color:#757575; letter-spacing:-1px; padding-left:8px;">SEARCH</li>
+  <li style="margin-left:10px">
+     <select name="" size="1" class="menu_select">
+       <option>제목</option>
+       <option value="일반미션">일반미션</option>
+       <option value="프리미엄미션">프리미엄미션</option>
+       <option value="활동미션">활동미션</option>
+       <option value="선물상자">선물상자</option>
+       <option value="생생후기">생생후기</option>
+       <option value="러버스타">러버스타</option>
+       <option value="오늘하루">오늘하루</option>
+       <option value="출석체크">출석체크</option>
+       <option value="꽃미녀팁">꽃미녀팁</option>
+       <option value="주부9단팁">주부9단팁</option>
+       <option value="미식가팁">미식가팁</option>
+       <option value="예술가팁">예술가팁</option>
+       <option value="공지사항">공지사항</option>
+       <option value="핫이슈">핫이슈</option>
+       <option value="AK LOVER란?">LOVER란?</option>
+     </select>
+  </li>
+  
+  <li style="margin-left:-1px">
+     <input name="" type="text" class="menu_search">
+  </li>
+  
+  
+  <li style="margin-left:8px; margin-top:12px">
+     <a href="#"><img src="img/search.jpg" alt="검색" width="30px"/></a>
+  </li>
+  </ul>
+</form>
+</div>
+
+            <div id="menu_line"></div>
+            
+                
+            <div id="menu_list" style="width:90%; margin:auto; margin-top:15px">
+               <ul style="width:100%">
+               <li style="width:40%;">
+                  <a href="general.php"><p class="menu_title"><img src="img/arrow.jpg" alt="" width="7px"/> 일반미션</p></a>  
+                  <a href="premium.php"><p class="menu_title"><img src="img/arrow.jpg" alt="" width="7px"/> 프리미엄 미션</p></a>
+                  <a href="activity.php"><p class="menu_title"><img src="img/arrow.jpg" alt="" width="7px"/> 활동미션</p></a>
+                  <a href="gift.php"><p class="menu_title"><img src="img/arrow.jpg" alt="" width="7px"/> 선물상자</p></a>                
+               </li>
+            
+               <li style="width:31%">
+                  <a href="review.php"><p class="menu_title"><img src="img/arrow.jpg" alt="" width="7px"/> 생생후기</p></a>
+                  <a href="star.php"><p class="menu_title"><img src="img/arrow.jpg" alt="" width="7px"/> 러버스타</p></a>
+                  <a href="today.php"><p class="menu_title"><img src="img/arrow.jpg" alt="" width="7px"/> 오늘하루</p></a>
+                  <a href="check.php"><p class="menu_title"><img src="img/arrow.jpg" alt="" width="7px"/> 출석체크</p></a>               
+               </li>
+              
+               <li style="width:29%">
+                  <a href="beauty.php"><p class="menu_title"><img src="img/arrow.jpg" alt="" width="7px"/> 꽃미녀팁</p></a>  
+                  <a href="homemaker.php"><p class="menu_title"><img src="img/arrow.jpg" alt="" width="7px"/> 주부9단팁</p></a>
+                  <a href="epicure.php"><p class="menu_title"><img src="img/arrow.jpg" alt="" width="7px"/> 미식가팁</p></a>
+                   <a href="artist.php"><p class="menu_title"><img src="img/arrow.jpg" alt="" width="7px"/> 예술가팁</p></a>           
+              </li>
+              </ul>
+             
+              <ul style="width:100%">
+              <li style="width:40%">
+                  <a href="notice.php"><p class="menu_title"><img src="img/arrow.jpg" alt="" width="7px"/> 공지사항</p></a>               
+              </li>
+            
+              <li style="width:31%">
+                  <a href="hotissue .php"><p class="menu_title"><img src="img/arrow.jpg" alt="" width="7px"/> 핫이슈</p></a>           
+              </li>
+              
+              <li style="width:29%">
+                  <a href="aklover.php"><p class="menu_title"><img src="img/arrow.jpg" alt="" width="7px"/> AK LOVER란?</p></a>          
+              </li>
+             </ul>
+           </div>
+<?include_once "login.php";?>
+           <div><img src="img/shadow1.jpg" alt="" width="100%" height="2px"/>
+           </div>
+</div>            
+   </body>         
+            
+       
+
+  
+

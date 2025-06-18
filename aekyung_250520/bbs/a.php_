@@ -1,0 +1,75 @@
+<?
+ini_set('register_globals','1');
+ini_set('session.bug_compat_42','1');
+ini_set('session.bug_compat_warn','0');
+ini_set('session.auto_start','1');
+ini_set('session.gc_maxlifetime', '86400'); //세션의 시간설정 3600은 60초*60분이다
+ini_set("upload_max_filesize","100M");
+ini_set('max_upload_size', '100M');
+ini_set('memory_limit', '100M');
+ini_set("post_max_size","100M");
+set_time_limit(0); 
+function hero_action_01($table = null, $type = null, $folder = null){
+######################################################################################################################################################
+    global $_POST, $_GET, $_REQUEST, $HTTP_POST_FILES, $out_action;
+    @reset($_POST);
+    $count = @sizeof($_POST);
+    $data_i = "1";
+######################################################################################################################################################
+    while(list($key, $val) = @each($_POST)){
+       if(!strcmp($key, "hero_idx")){
+            $idx = $_POST["hero_idx"];
+            $data_i++;
+            continue;
+        }
+        if(!strcmp($count, $data_i)){
+            $comma = "";
+        }else{
+            $comma = ", ";
+        }
+        $sql_one .= $key.$comma;
+        $sql_two .= "'$_POST[$key]'".$comma;
+        $sql_up .= $key."='$_POST[$key]'".$comma;
+    $data_i++;
+    }
+######################################################################################################################################################
+    $tmp_name = UrlDecode($HTTP_POST_FILES["hero_file"]["tmp_name"]);
+    $file_name = Y_m_d_h_i_s."_".UrlDecode($HTTP_POST_FILES["hero_file"]["name"]);
+    $tmp_file = $folder.$file_name;
+echo    $file_size = $HTTP_POST_FILES["hero_file"]["size"];
+    if( (!strcmp($file_size, "")) or (!strcmp($file_size, "0")) ){
+    }else{
+        @move_uploaded_file($tmp_name,$tmp_file);
+        $sql_one .= ", hero_file";
+        $sql_two .= ", '$file_name'";
+        $sql_up .= ", hero_file='$file_name'";
+    }
+######################################################################################################################################################
+    if(!strcmp($type, "edit")){
+        if( (!strcmp($file_size, "")) or (!strcmp($file_size, "0")) ){
+        }else{
+            $search = "SELECT hero_file_old, hero_file FROM $table WHERE hero_idx='$idx'";
+            $out_search = @mysql_query($search);
+            $search_row = @mysql_fetch_assoc($out_search);
+            @unlink($folder.$search_row["hero_file"]);
+        }
+        $out_action = "UPDATE $table SET $sql_up WHERE hero_idx = '$idx';";
+    }else if(!strcmp($type, "write")){
+        $out_action = "INSERT INTO $table ($sql_one) VALUES ($sql_two);";
+    }else if(!strcmp($type, "drop")){
+        $search = "SELECT hero_file_old, hero_file FROM $table WHERE hero_idx='$idx'";
+        $out_search = @mysql_query($search);
+        $search_row = @mysql_fetch_assoc($out_search);
+        @unlink($folder.$search_row["hero_file"]);
+
+        $out_action = "DELETE FROM $table WHERE hero_idx = '$idx';";
+    }
+######################################################################################################################################################
+    @mysql_query($out_action);
+//        echo "<script>location.href="'.PATH_HOME.'?'.get('type','').'"</script>";
+//        msg("수정 되었습니다.","location.href="".PATH_HOME."?".get("type","").""");
+######################################################################################################################################################
+    return $out_action;
+}
+hero_action_01("room", "write", "");
+?>

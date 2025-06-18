@@ -1,0 +1,8 @@
+121.186.254.46 - [08/Feb/2015:00:27:23 +0900] /main/index.php: hero_03 = 워낙에 이빨이 약해서 충치도 잘생기고 냄새도 나요..그래서 좋다는 : TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+180.70.129.71 - [08/Feb/2015:10:30:22 +0900] /main/index.php: command = &lt;div&gt;&lt;a class=\"pcol2 itemTagfont _setTop\" href=\"http://blog.n: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]

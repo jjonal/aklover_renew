@@ -1,0 +1,277 @@
+/* 우수후기 */
+.best_reviewbox {
+    padding: 0 10px;
+}
+.reviewpage .caution .info {
+    margin-top: 1.2rem;
+    font-size: var(--fz26);
+}
+.reviewpage .caution > div {
+    margin-bottom: 1rem;
+}
+.reviewpage .board_wrap .right {
+    width: calc(100% - 48.2rem);
+    margin-bottom: 0;
+}
+.reviewpage h4 {
+    letter-spacing: -1.6px;
+}
+.reviewpage .boardTabMenuWrap {
+    margin-top: 0;  
+}
+.reviewpage .btn_r,
+.moim_review .btn_r {
+    position: absolute;
+    right: 0;
+    top: -6rem;
+    z-index: 33;
+}
+.reviewpage .best_reviewbox .btn_r {
+    top: -10rem;
+}
+.review_list li {    
+    margin-bottom: 6rem;
+    position: relative;
+}
+.review_list .thum_img {
+    /* position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); */
+}
+.review_list .txt_bx {
+    position: absolute;
+    left: 2rem;
+    bottom: 2rem;
+    width: calc(100% - 4rem);
+    height: 8.2rem;
+    text-align: left;
+    z-index: 7;
+}
+.review_list .cont_wrap {    
+    width: 100%;
+    aspect-ratio: 1/1;
+    background-color: var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    overflow: hidden;
+}
+.review_list .cont_wrap::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: block;
+    left: 0;
+    top:0;
+    background: url(/img/front/main/best_dim.webp) no-repeat bottom;
+    background-size: contain;
+    transition: .4s; 
+    opacity: 1;
+}
+.review_list .cont_wrap:hover::after {
+    background: url(/img/front/board/dim.png) no-repeat bottom;
+    background-size: contain;
+    opacity: 1;
+}
+.review_list .cont_wrap * {    
+    transition: color .4s; 
+}
+.review_list .cont_wrap:hover * {
+    color: #fff;
+}
+.reviewpage .txt_bx .nick {
+    font-size: var(--fz24);
+    font-weight: 500;
+}
+.reviewpage .txt_bx .nick img {
+    width: 3rem;
+    height: 3rem;
+    margin-right: .6rem;
+}
+.reviewpage .txt_bx .title {
+    font-weight: 500;
+    font-size: var(--fz24);
+    margin-top: .8rem;  
+    line-height: 1.36;
+}
+.moim_review .paging {
+    margin-top: 3.7rem;
+}
+.best_review  {
+    border-radius: .5rem;
+    background-color: rgba(248,248,248, 0.5);
+    padding: 3rem 0 2.4rem 10px ;
+    margin-bottom: 9rem;
+}
+.best_review_slide {
+    overflow: hidden;
+}
+.best_review .titbx .tit {
+    gap: 1.1rem;
+}
+.best_review .titbx .desc {  
+    color: rgba(0, 0, 0, 0.9);
+    padding: 1.8rem 0 3.3rem;
+}
+.best_review .titbx .desc > span {
+    line-height: 1.4;
+}
+.best_review  .swiper-button-next, .best_review .swiper-button-prev {
+    top: -2.5rem;
+    margin-top: 0;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100%;
+} 
+.swiper-button-prev:after, 
+.swiper-button-next:after {
+    display: none;
+    font-size: 0;
+}
+.best_review .swiper-button-prev {
+    background:  #fff url(/img/front/board/page_left.webp) no-repeat center;
+    background-size: .6rem;
+    left: auto;
+    right: 5.4rem;
+}
+.best_review .swiper-button-next {
+    background: #fff url(/img/front/board/page_right.webp) no-repeat center;
+    background-size: .6rem;
+    right: 1rem;
+}
+
+/* 모임후기 */
+.moim .event_img {
+    width: 100%;
+    aspect-ratio: 1 / 0.71;
+    object-fit: cover;
+}
+.moim {
+    padding: 0 10px;
+}
+.moim .btn_edit {
+    line-height: 3rem;
+    height: 3rem;
+    padding: 0 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: .5rem;
+    display: inline-block;
+    cursor: pointer;
+}
+.moim .event_text > div {
+    margin-top: 1.5rem;
+    text-align: right;
+}
+.review_cate_tab {
+    grid-column-gap: .5rem;
+    margin-top: 1.7rem
+}
+.review_cate_tab li {    
+    height: 4.4rem;
+    line-height: 4.2rem;
+    border-radius: 2.2rem;
+    border: 1px solid var(--border);
+    font-size: var(--border);
+    font-weight: 500;
+    color: rgba(28, 28, 28, 0.5);
+    text-align: center;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+.review_cate_tab li.on {
+    border: 1px solid #000;
+    color: #1c1c1c;
+}
+
+
+/* 선정자 후기 확인하러 가기 */
+.support_review .txt_bx {
+    /* position: relative;
+    left: inherit;
+    bottom: inherit; */
+}
+.support_review .review_list a > img {
+    width: 100%;
+}
+
+
+/* 우수후기 */
+.reviewpage .slide_top {
+    margin-top: 0;
+    padding-top: 0;    
+    padding-bottom: 40px;
+    margin-bottom: 60px;
+    border-bottom: 6px solid #f6f6f6;
+}  
+.reviewpage .slide_top .caution {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.caution_cont > div + div {
+    margin-top: 30px;
+}
+.reviewpage .slide_top .caution .info {
+    padding: 1.5rem 1.5rem;
+    margin-top: 1rem;
+}
+
+.reviewpage.moim_review .btnTodayWrap {
+    border-top: 1px solid var(--border);
+}
+.reviewpage.moim_review .btnTodayWrap .mu_searchbox input[type=text] {
+    padding-left: 19px;
+}
+
+
+
+.reviewpage .btn_write {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid var(--border);
+    height: 76px;
+    z-index: 88;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+}
+.reviewpage .btn_write.hide {
+    display: none;
+}
+.reviewpage .btn_write > a {
+    display: block;
+    height: 48px;
+    border-radius: 24px;
+    line-height: 48px;
+    color: #fff;
+    background-color:  var(--main_color);
+    text-align: center;
+    width: 100%;
+}
+
+.none_review {
+    width: 100%;
+    border: 1px solid var(--border); 
+    border-radius: 1rem; 
+    height: 15rem; 
+}
+.none_review li {    
+    line-height: 1.4;
+}
+
+/* 수정하기 박스 */
+.update_bx {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 3;
+}
+
+.update_bx img {
+    width: 100%;
+    max-width: 68px;
+}

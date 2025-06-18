@@ -1,0 +1,4 @@
+58.224.8.201 - [01/Mar/2015:01:35:28 +0900] /main/zip_new.php: input_chat = 우왕~~ 정말 먹고싶어요..지금 엄청배고픈데 꾹..: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]

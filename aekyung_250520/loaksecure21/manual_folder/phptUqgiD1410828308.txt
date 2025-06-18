@@ -1,0 +1,4 @@
+scu 작업 목록
+
+	전반적인 import
+	/corns/idCheck.php 영문으로 변경, Find other Id 

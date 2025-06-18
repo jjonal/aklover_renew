@@ -1,0 +1,8 @@
+222.233.73.189 - [10/Sep/2014:17:02:52 +0900] /main/index.php: command = &lt;div&gt;&nbsp;&lt;/div&gt;\r\n&lt;div&gt;8TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+222.233.73.189 - [10/Sep/2014:17:03:05 +0900] /main/index.php: command = &lt;div&gt;&nbsp;&lt;/div&gt;\r\n&lt;div&gt;8TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]

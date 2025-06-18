@@ -1,0 +1,132 @@
+211.206.16.86 - [19/Jan/2015:00:46:26 +0900] /main/index.php: command = &lt;div class=\"post-view pcol2 _param(1)\" id=\"post-view220244566: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:00:46:56 +0900] /main/index.php: command = &lt;div class=\"post-view pcol2 _param(1)\" id=\"post-view220244566: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:00:48:07 +0900] /main/index.php: command = &lt;div class=\"post-view pcol2 _param(1)\" id=\"post-view220244566: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:00:48:53 +0900] /main/index.php: command = &lt;div class=\"post-view pcol2 _param(1)\" id=\"post-view220244566: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:00:49:32 +0900] /main/index.php: command = &lt;div class=\"post-view pcol2 _param(1)\" id=\"post-view220244566: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:00:49:51 +0900] /main/index.php: command = &lt;div class=\"post-view pcol2 _param(1)\" id=\"post-view220244566: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:00:51:15 +0900] /main/index.php: command = &lt;p align=\"center\" style=\'font: 12px/18px &quot;957317_9&quot;: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:00:51:26 +0900] /main/index.php: command = &lt;p align=\"center\" style=\'font: 12px/18px &quot;957317_9&quot;: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:00:54:58 +0900] /main/index.php: command = &lt;p align=\"center\" style=\"text-align: center\"&gt;&lt;span style=\"c: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:00:55:04 +0900] /main/index.php: command = &lt;p align=\"center\" style=\"text-align: center\"&gt;&lt;span style=\"c: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:00:56:13 +0900] /main/index.php: command = &lt;div class=\"post-view pcol2 _param(1)\" id=\"post-view220244566: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:12:17:22 +0900] /main/index.php: command = &lt;div style=\"text-align: center\"&gt;&lt;font face=\"TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:12:18:36 +0900] /main/index.php: command = &lt;div style=\"text-align: center\"&gt;&lt;font face=\"TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:12:20:02 +0900] /main/index.php: command = &lt;div style=\"text-align: justify\"&gt;&lt;font face=\"TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:12:25:59 +0900] /main/index.php: command = &lt;div style=\"text-align: center\"&gt;&lt;font face=\"TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:12:27:46 +0900] /main/index.php: command = &lt;div style=\"text-align: center\"&gt;&lt;font face=\"TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:12:28:53 +0900] /main/index.php: command = &lt;p align=\"center\"&gt;&lt;span style=\'font: x-large/36px &quot;TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:12:29:04 +0900] /main/index.php: command = &lt;p align=\"center\"&gt;&lt;span style=\'font: x-large/36px &quot;TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:12:29:29 +0900] /main/index.php: command = &lt;div style=\"text-align: center\"&gt;&lt;font face=\"TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:12:32:52 +0900] /main/index.php: command = &lt;p align=\"center\"&gt;&lt;span style=\'font: x-large/36px &quot;TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:12:33:33 +0900] /main/index.php: command = &lt;span style=\'font: x-large/36px &quot;TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:12:34:17 +0900] /main/index.php: command = &lt;div style=\"text-align: center\"&gt;&lt;font face=\"TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:12:43:02 +0900] /main/index.php: command = &lt;font color=\"#ff0000\" face=\"TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:12:51:50 +0900] /main/index.php: command = &lt;p align=\"center\" style=\"text-align: center\"&gt;&lt;font size=\"5\: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:12:52:19 +0900] /main/index.php: command = &lt;p align=\"center\" style=\"text-align: center\"&gt;&lt;font size=\"5\: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:12:52:46 +0900] /main/index.php: command = &lt;p align=\"center\" style=\"text-align: center\"&gt;&lt;font size=\"5\: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:12:53:03 +0900] /main/index.php: command = &lt;p align=\"center\" style=\"text-align: center\"&gt;&lt;font size=\"5\: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:12:53:32 +0900] /main/index.php: command = &lt;p align=\"center\" style=\"text-align: center\"&gt;&lt;font size=\"5\: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:12:58:11 +0900] /main/index.php: command = &lt;p align=\"center\" style=\"text-align: center\"&gt;&lt;font size=\"5\: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:12:58:50 +0900] /main/index.php: command = &lt;p align=\"center\" style=\"text-align: center\"&gt;&lt;font size=\"5\: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:12:59:41 +0900] /main/index.php: command = &lt;p align=\"center\" style=\"text-align: center\"&gt;&lt;font size=\"5\: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:13:00:19 +0900] /main/index.php: command = &lt;p align=\"center\" style=\'font: 13px/20px &quot;Nanum Gothic&q: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+211.206.16.86 - [19/Jan/2015:13:09:26 +0900] /main/index.php: command = &lt;p class=\"0\" style=\"text-align: center; line-height: 15pt; ma: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]

@@ -1,0 +1,309 @@
+﻿<?
+include $_SERVER['DOCUMENT_ROOT']."/corns/conf.php";
+checkAuth(1,$_SESSION[$siteName."_SES_ULEVEL"]);//기본 권한 체크
+
+$UID = $_REQUEST["uid"];//넘어온 PID값
+$NO = $_REQUEST["no"];
+$mode = $_POST["mode"];
+
+$SUBJECT = $_REQUEST["subject"];
+$utype2= $_REQUEST["utype2"];
+$CONTENT = "";
+
+$Q1 = $_REQUEST["q1"];
+if($Q1 && (int)$utype2 >= 1){
+	$CONTENT .= $Q1."#";
+}
+$Q2 = $_REQUEST["q2"];
+if($Q2 && (int)$utype2 >= 2){
+	$CONTENT .= $Q2."#";
+}
+$Q3 = $_REQUEST["q3"];
+if($Q3 && (int)$utype2 >= 3){
+	$CONTENT .= $Q3."#";
+}
+$Q4 = $_REQUEST["q4"];
+if($Q4 && (int)$utype2 >= 4){
+	$CONTENT .= $Q4."#";
+}
+$Q5 = $_REQUEST["q5"];
+if($Q5 && (int)$utype2 >= 5){
+	$CONTENT .= $Q5."#";
+}
+$Q6 = $_REQUEST["q6"];
+if($Q6 && (int)$utype2 >= 6){
+	$CONTENT .= $Q6."#";
+}
+$Q7 = $_REQUEST["q7"];
+if($Q7 && (int)$utype2 >= 7){
+	$CONTENT .= $Q7."#";
+}
+$Q8 = $_REQUEST["q8"];
+if($Q8 && (int)$utype2 >= 8){
+	$CONTENT .= $Q8."#";
+}
+$Q9 = $_REQUEST["q9"];
+if($Q9 && (int)$utype2 >= 9){
+	$CONTENT .= $Q9."#";
+}
+
+$CONTENT = substr($CONTENT,0,strlen($CONTENT)-1);
+$UTYPE = $_REQUEST["utype"];
+
+if($UTYPE == "Y"){
+	$UTYPE = 1;
+}else{
+	$UTYPE = 0;
+}
+
+if($mode == "insert" && $UID){
+	$sql = "select PID, THREAD, PARENT from TBS_EVA_QUESTION where PID = ".$UID." and THREAD='A'";//원글의 PID 및 THREAD값을 추출
+	$result = mysql_query($sql);
+	
+	if(mysql_num_rows($result)){//해당 글이 존재할 경우
+		$rec = mysql_fetch_array($result);
+		$THREAD = $rec["THREAD"];
+		$PID = $rec["PID"];
+		$PARENT = $rec["PARENT"];//강좌아이디
+	}
+	
+	$sql = "select right(THREAD,1) as a from TBS_EVA_QUESTION where PID=".$PID." and ";
+	$sql .= " length(THREAD)=length('".$THREAD."')+1 and locate('".$THREAD."',THREAD)=1 order by THREAD desc limit 1";
+	//들여쓰기 Depth 설정을 위한 THREAD값 파악
+	$result = mysql_query($sql);
+	$rec = mysql_fetch_array($result);
+	$tail = $rec[a];//최종적으로 덫붙여진 알파벳
+	
+	if($tail){
+		$THREAD = $THREAD . ++$tail;//tail을 하나 증가시켜 더하거나
+	}else{
+		$THREAD = $THREAD . "A";//그냥 A를 덫붙인다.
+	}
+	
+	$sql = "insert into TBS_EVA_QUESTION (PID,THREAD,PARENT,SUBJECT,CONTENT,UTYPE) ";
+	$sql .= " values (".$PID.",'".$THREAD."',".$PARENT.",'".$SUBJECT."','".$CONTENT."',".$UTYPE.")";	
+	$result = mysql_query($sql);
+?>
+<script language="javascript">
+<!--
+opener.document.location.reload();
+window.self.close();
+-->
+</script>
+<?
+}
+
+//수정모드
+if($mode == "edit"){
+	$sql = "select * from TBS_EVA_QUESTION where UID=".$NO;
+	$result = mysql_query($sql);
+	$rec = mysql_fetch_array($result);	
+	$CONTENT = $rec["CONTENT"];
+	$CONTENT = explode("#",$CONTENT);
+	$SIZE = sizeof($CONTENT);
+	$UTYPE = $rec["UTYPE"];
+}
+
+//수정실행모드
+if($mode == "modify"){
+	$sql = "update TBS_EVA_QUESTION set SUBJECT='".$SUBJECT."', UTYPE=".$UTYPE.",CONTENT='".$CONTENT."' where UID=".$NO;
+	mysql_query($sql);
+?>
+<script language="javascript">
+<!--
+opener.document.location.reload();
+window.self.close();
+-->
+</script>
+<?
+	exit;
+}
+
+$sql = "select SUBJECT from TBS_EVA_QUESTION where PID=".$UID." order by UID asc limit 1";
+$result = mysql_query($sql);
+$SUBJECT = mysql_result($result,0,0);
+?>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<title>Add New</title>
+<style type="text/css">
+<!--
+@import url(../../see/css/style.css);
+//-->
+</style>
+<script language="javascript">
+function goNext(){
+	var subject = document.frm.subject;
+	var utype = document.frm.utype;
+	var utype2 = document.frm.utype2;
+	var q1 = document.frm.q1;
+	var q2 = document.frm.q2;
+	
+	if(subject.value == ""){
+		alert("Please insert title.");
+		subject.focus();
+		return;
+	}
+	if(utype[1].checked){
+		if(utype2.selectedIndex == 0){
+			alert("Please select question type.");
+			utype2.focus();
+			return;
+		}
+		if(q1.value == "" || q2.value == ""){
+			alert("객관식 선택 내용을 작성해 주십시오.");
+			q1.focus();
+			return;		
+		}
+	}
+	document.frm.submit();
+}
+
+function flash(){
+	document.getElementById('tableHidden1').style.display="none";
+	document.getElementById('tableHidden2').style.display="none";
+	document.getElementById('tableHidden3').style.display="none";
+	document.getElementById('tableHidden4').style.display="none";
+	document.getElementById('tableHidden5').style.display="none";
+	document.getElementById('tableHidden6').style.display="none";
+	document.getElementById('tableHidden7').style.display="none";
+	document.getElementById('tableHidden8').style.display="none";
+	document.getElementById('tableHidden9').style.display="none";
+	
+	for(var i=1;i<=document.frm.utype2.options[document.frm.utype2.selectedIndex].value;i++){
+		var tmp = eval("document.getElementById('tableHidden"+i+"')");
+		tmp.style.display='';
+	}
+}
+
+function changes(utype){
+	switch(utype)
+	{
+		case "N":
+			if(frm.utype[0].checked == true){
+				document.getElementById('tableHidden1').style.display="none";
+				document.getElementById('tableHidden2').style.display="none";
+				document.getElementById('tableHidden3').style.display="none";
+				document.getElementById('tableHidden4').style.display="none";
+				document.getElementById('tableHidden5').style.display="none";
+				document.getElementById('tableHidden6').style.display="none";
+				document.getElementById('tableHidden7').style.display="none";
+				document.getElementById('tableHidden8').style.display="none";
+				document.getElementById('tableHidden9').style.display="none";
+				document.frm.utype2.style.display='none';
+			}
+		break;
+		case "Y":
+			if(frm.utype[1].checked == true){
+				document.frm.utype2.style.display='';
+				document.frm.utype2.selectedIndex=0;
+			}
+		break;
+	}	
+}
+</script>
+</head>
+
+<body bgcolor="#f1f1f1" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" style="overflow:visible;">
+<form method="post" name="frm">				
+<input type="hidden" name="mode" value="<? switch($mode){ case "edit": echo "modify"; break; default: echo "insert"; break;} ?>">
+<input type="hidden" name="no" value="<?=$NO?>">    
+	<table width="400" height="300" border="0" cellpadding="0" cellspacing="0">
+	  <tr>
+		<td><table width="100%" height="300" cellpadding="2" cellspacing="1" bgcolor="#DDDDDD">
+			<tr align="center" bgcolor="#EFF8F7">
+			  <td height="22" valign="middle"> <? switch($mode){ case "edit": echo "Edit the question"; break; default: echo "Input a questionnaire"; break;} ?> </td>
+			</tr>
+				<tr>
+			  <td align="center" valign="top" bgcolor="#f1f1f1" class="textBlackBold"><table width="100%"  border="0" cellspacing="0" cellpadding="3">
+				<tr>
+				  <td colspan="2"><span class="textTitleBold"><?=$SUBJECT?></span> > 하위문항 <? switch($mode){ case "edit": echo "수정"; break; default: echo "등록"; break;} ?></td>
+				</tr>
+				<tr>
+				  <td width="20%" align="center">문항                </td>
+				  <td width="80%"><input name="subject" type="text" id="subject" style="width:300px;" value="<?=$rec["SUBJECT"]?>"></td>
+				</tr>
+				<tr>
+				  <td align="center">형식</td>
+				  <td><input name="utype" type="radio" value="N" <? if(!$UTYPE){ ?>checked<? } ?> onClick="javascript:changes('N');">
+					주관식 
+					  <input name="utype" type="radio" value="Y" <? if($UTYPE){ ?>checked<? } ?> onClick="javascript:changes('Y');">
+					  객관식
+					  <select name="utype2" id="utype2" onChange="flash();" style="<? if(!$UTYPE){ ?>display:none;<? } ?>" >
+										<option value="" selected>선택</option>
+						<option value="2" <? if($SIZE == 2){ ?>selected<? } ?>>2지선다형</option>
+						<option value="3" <? if($SIZE == 3){ ?>selected<? } ?>>3지선다형</option>
+						<option value="4" <? if($SIZE == 4){ ?>selected<? } ?>>4지선다형</option>
+						<option value="5" <? if($SIZE == 5){ ?>selected<? } ?>>5지선다형</option>
+						<!--option value="6" <? if($SIZE == 6){ ?>selected<? } ?>>6지선다형</option>
+						<option value="7" <? if($SIZE == 7){ ?>selected<? } ?>>7지선다형</option>
+						<option value="8" <? if($SIZE == 8){ ?>selected<? } ?>>8지선다형</option>
+						<option value="9" <? if($SIZE == 9){ ?>selected<? } ?>>9지선다형</option-->
+					  </select></td>
+				</tr>
+			  </table>
+				<table width="100%"  border="0" cellspacing="0" cellpadding="3" id="tableHidden1" style="display:<? if($SIZE >= 1 && $UTYPE){ ?><? }else{ ?>none<? } ?>;">
+				  <tr>
+					<td width="20%" align="center">1</td>
+					<td width="80%"><input name="q1" type="text" id="q1" style="width:300px;" <? if($SIZE >= 1){ ?>value="<?=$CONTENT[0]?>"<? } ?>></td>
+				  </tr>
+				</table>
+				<table width="100%"  border="0" cellspacing="0" cellpadding="3" id="tableHidden2" style="display:<? if($SIZE >= 2 && $UTYPE){ ?><? }else{ ?>none<? } ?>;">
+				  <tr>
+					<td width="20%" align="center">2</td>
+					<td width="80%"><input name="q2" type="text" id="q2" style="width:300px;" <? if($SIZE >= 2){ ?>value="<?=$CONTENT[1]?>"<? } ?>></td>
+				  </tr>
+				</table>
+				<table width="100%"  border="0" cellspacing="0" cellpadding="3" id="tableHidden3" style="display:<? if($SIZE >= 3 && $UTYPE){ ?><? }else{ ?>none<? } ?>;">
+				  <tr>
+					<td width="20%" align="center">3</td>
+					<td width="80%"><input name="q3" type="text" id="q3" style="width:300px;" <? if($SIZE >= 3){ ?>value="<?=$CONTENT[2]?>"<? } ?>></td>
+				  </tr>
+				</table>
+				<table width="100%"  border="0" cellspacing="0" cellpadding="3" id="tableHidden4" style="display:<? if($SIZE >= 4 && $UTYPE){ ?><? }else{ ?>none<? } ?>;">
+				  <tr>
+					<td width="20%" align="center">4</td>
+					<td width="80%"><input name="q4" type="text" id="q4" style="width:300px;" <? if($SIZE >= 4){ ?>value="<?=$CONTENT[3]?>"<? } ?>></td>
+				  </tr>
+				</table>
+				<table width="100%"  border="0" cellspacing="0" cellpadding="3" id="tableHidden5" style="display:<? if($SIZE >= 5 && $UTYPE){ ?><? }else{ ?>none<? } ?>;">
+				  <tr>
+					<td width="20%" align="center">5</td>
+					<td width="80%"><input name="q5" type="text" id="q5" style="width:300px;" <? if($SIZE >= 5){ ?>value="<?=$CONTENT[4]?>"<? } ?>></td>
+				  </tr>
+				</table>
+				<table width="100%"  border="0" cellspacing="0" cellpadding="3" id="tableHidden6" style="display:<? if($SIZE >= 6 && $UTYPE){ ?><? }else{ ?>none<? } ?>;">
+				  <tr>
+					<td width="20%" align="center">6</td>
+					<td width="80%"><input name="q6" type="text" id="q6" style="width:300px;" <? if($SIZE >= 6){ ?>value="<?=$CONTENT[5]?>"<? } ?>></td>
+				  </tr>
+				</table>
+				<table width="100%"  border="0" cellspacing="0" cellpadding="3" id="tableHidden7" style="display:<? if($SIZE >= 7 && $UTYPE){ ?><? }else{ ?>none<? } ?>;">
+				  <tr>
+					<td width="20%" align="center">7</td>
+					<td width="80%"><input name="q7" type="text" id="q7" style="width:300px;" <? if($SIZE >= 7){ ?>value="<?=$CONTENT[6]?>"<? } ?>></td>
+				  </tr>
+				</table>	
+				<table width="100%"  border="0" cellspacing="0" cellpadding="3" id="tableHidden8" style="display:<? if($SIZE >= 8 && $UTYPE){ ?><? }else{ ?>none<? } ?>;">
+				  <tr>
+					<td width="20%" align="center">8</td>
+					<td width="80%"><input name="q8" type="text" id="q8" style="width:300px;" <? if($SIZE >= 8){ ?>value="<?=$CONTENT[7]?>"<? } ?>></td>
+				  </tr>
+				</table>
+				<table width="100%"  border="0" cellspacing="0" cellpadding="3" id="tableHidden9" style="display:<? if($SIZE >= 9 && $UTYPE){ ?><? }else{ ?>none<? } ?>;">
+				  <tr>
+					<td width="20%" align="center">9</td>
+					<td width="80%"><input name="q9" type="text" id="q9" style="width:300px;" <? if($SIZE >= 9){ ?>value="<?=$CONTENT[8]?>"<? } ?>></td>
+				  </tr>
+				</table>																							
+				<img src="../images/blank.gif" width="1" height="25">
+				<input name="btn" type="button" id="btn" value="<? switch($mode){ case "edit": echo "수정"; break; default: echo "등록"; break;} ?>" onClick="goNext();"> 
+				&nbsp;<input name="cls" type="button" id="cls" value="닫기" onClick="self.close();"></td>
+			</tr>				
+		</table></td>
+	  </tr>
+	</table>
+</form>	
+</body>
+</html>

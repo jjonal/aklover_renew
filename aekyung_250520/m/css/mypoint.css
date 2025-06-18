@@ -1,0 +1,50 @@
+
+html,body{   margin: 0px;padding: 0px;-webkit-text-size-adjust:none;}
+*{	margin: 0px;padding: 0px;  }
+ul{list-style:none;}
+body{font: 12px "���� ���", "Malgun Gothic", "����ü", "����";color:#000;}
+a {	text-decoration:none;color:#FFF;   }
+
+#header{ position:relative;display: block;   }
+#header li{ float: left;list-style:none;}	
+#header li img{ width:100%;} 
+
+#title{   width:100%;height:45px;background-image:url(../img/general/title_bg.jpg);background-repeat:repeat-x;color:#f78429;font-size:18px;font-weight:bold;text-align:center;	}
+#title p{  padding-top:13px;}
+.mypoint table{border-collapse:collapse;}
+.mypoint{ padding:3%;}
+.mypoint .pointWrap{ width:48%; float:left;} 
+.mypoint .superpassWrap{ width:48%; float:right;}
+.mypoint .subTit{font-size: 15.5px; font-weight: 800; letter-spacing: -0.7px; line-height: 30px;}
+.mypoint .subTit span{color: #EC6022;font-size: 22px;}
+.mypoint table.tb { width:100%;  border-top:1px solid #f68427;}
+.mypoint table.tb th,td{ border-bottom:1px solid #f68427; height:26px;}
+.mypoint table.tb th{ background:#facca5; padding-left:3%;}
+.mypoint table.tb td{ padding-left:3%;}
+.mypoint table.tb td.r{ text-align:right; padding-right:3%; padding-left:0%;}
+
+.mypoint table.tbSearch{ border-bottom:1px solid #e9e9e9; border-top:1px solid #e9e9e9;}
+.mypoint table.tbSearch th,td{ height:38px;}
+.mypoint table.tbSearch th{ background:#f7f6f6; padding-left:3%;}
+.mypoint table.tbSearch td:first-child{border-bottom:#fff;}
+.mypoint table.tbSearch td{ border-bottom:none;padding-left:3%; height:42px }
+.mypoint table.tbSearch td input[type='text']{ width:40%; border:1px solid #e4e4e4; height:24px; -moz-box-shadow:0;	-webkit-box-shadow:none;}
+.mypoint table.tbSearch td input[type='radio']{ -moz-box-shadow:0;	-webkit-box-shadow:none;}
+.mypoint table.tbSearch .border{ border-bottom:#fff;}
+.mypoint .btnSearch{ width:25%; display:block; margin:20px auto 10px; background:#f68427; border:1px solid #fa7305; text-align:center; color:#fff; height:30px; border-radius:10px; font-size:16px; padding-top:3px;}
+
+.mypoint .ex{color:#f78429; font-size:12px; margin:5px 0 0 0;}
+.mypoint .point_txt{font-size:14px;}
+.mypoint .point_txt strong{ color:#f78429; font-weight:bold;}
+
+.mypoint table.tbList{ width:100%;}
+.mypoint table.tbList th{ background:#fef4eb; padding:2% 0; text-align:center; font-size:14px;}
+.mypoint table.tbList td{ border-bottom:1px solid #e9e9e9; text-align:center; font-size:14px; padding:2% 0;}
+.mypoint table.tbList td.l{ padding-left:3%; text-align:left;}
+.clear{ clear:both;}
+
+@media screen and (max-width:460px){
+	.mypoint .pointWrap{float:none; width:100%;}
+	.mypoint .superpassWrap{float:none; width:100%; margin:15px 0;}
+	.mypoint .superpassWrap .tb th{height:37px !important;}
+}

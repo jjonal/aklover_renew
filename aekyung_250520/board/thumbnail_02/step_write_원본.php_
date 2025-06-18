@@ -1,0 +1,256 @@
+<?
+######################################################################################################################################################
+//HERO BOARD 시작 (개발자 : 이진영)2013년 08월 07일
+######################################################################################################################################################
+if(!defined('_HEROBOARD_'))exit;
+######################################################################################################################################################
+$sql = 'select * from hero_group where hero_order!=\'0\' and hero_use=\'1\' and hero_board =\''.$_GET['board'].'\';';//desc
+sql($sql);
+$right_list                             = @mysql_fetch_assoc($out_sql);
+######################################################################################################################################################
+$view_sql = 'select * from mission where hero_table = \''.$_GET['board'].'\' and hero_idx=\''.$_GET['idx'].'\';';
+$out_view_sql = mysql_query($view_sql);
+$view_row = @mysql_fetch_assoc($out_view_sql);//mysql_fetch_row
+?>
+    <link type='text/css' href='<?=DOMAIN_END?>cal/jquery-ui-1.8.17.custom.css' rel='stylesheet' />	
+    <script type="text/javascript" src="<?=DOMAIN_END?>cal/jquery.min.js"></script>
+    <script type='text/javascript' src='<?=DOMAIN_END?>cal/jquery-ui-1.8.17.custom.min.js'></script>
+    <div class="contents_area">
+        <div class="page_title">
+            <h2><img src="<?=str($right_list['hero_right']);?>" alt="<?=$right_list['hero_title'];?>" /></h2>
+            <ul class="nav">
+                <li><img src="../image/common/icon_nav_home.gif" alt="home" /></li>
+                <li>&gt;</li>
+                <li><?=$right_list['hero_top_title']?></li>
+                <li>&gt;</li>
+                <li class="current"><?=$right_list['hero_title']?></li>
+            </ul>
+        </div>
+        <div class="contents">
+<!--        <form name="frm" method="post" action="<?=PATH_HOME.'?'.get('','type=edit');?>">-->
+<!--        <form name="frm" action="<?=PATH_HOME.'?'.get('','type=edit');?>" method="post" enctype="multipart/form-data"> -->
+    <script type="text/javascript" src="/smarteditor2/js/HuskyEZCreator.js" charset="euc-kr"></script>
+        <form name="frm" method="post" action="<?=MAIN_HOME;?>?board=<?=$_GET['board'];?>&view=action2&action=<?=$_GET['action']?>&idx=<?=$_GET['idx'];?>&page=<?=$_GET['page'];?>">
+            <div class="spm_img">
+            <input type="hidden" name="hero_drop" value="hero_drop||sm_file||command">
+            <input type="hidden" name="hero_code" value="<?=$_SESSION['temp_code'];?>">
+            <input type="hidden" name="hero_table" value="<?=$_GET['board'];?>">
+            <input type="hidden" name="hero_id" value="<?=$_SESSION['temp_id'];?>">
+            <input type="hidden" name="hero_name" value="<?=$_SESSION['temp_name'];?>">
+            <input type="hidden" name="hero_nick" value="<?=$_SESSION['temp_nick'];?>">
+            <input type="hidden" name="hero_today" value="<?=Ymdhis?>">
+            <input type="hidden" name="hero_ip" value="<?=$_SERVER['REMOTE_ADDR']?>">
+                <div style="position:relative;">
+                    <div style="position:absolute; top:9px; left:93%; cursor:pointer;">
+                        <a onclick="javascript:window.open('<?=BOARD_END?>pop_up.php?id=editor', 'uploader', 'width=417, height=100, left=550, top=320');">
+                            <img src="../img/photo.png" style="vertical-align:middle;"><span class="se2_mntxt" style="font-size:11px;">사진</span>
+                        </a>
+                    </div>
+                </div>
+                <input type="hidden" name="sm_file">
+                <textarea name="command" id="editor" class="textarea" style="width:700px; height:300px;"><?=$view_row['hero_command'];?></textarea>
+
+            </div>
+            <div class="spm_txt">
+                <dl> 
+                    <dt><span class="bg1">제목</span></dt>
+                    <dd><input type="text" id="hero_title" name="hero_title" value="<?=$view_row['hero_title']?>" style="width:550px; height:23px;"/> </dd>
+                </dl>
+                <dl>
+                    <dt><span class="bg1">리뷰어 신청</span></dt>
+                    <dd>
+                        <input type="text" id="sdate1" name="hero_today_01_01" value="<?=$view_row['hero_today_01_01']?>" class="input10" style="text-align:center" readonly/>
+                        <input type="text" id="edate1" name="hero_today_01_02" value="<?=$view_row['hero_today_01_02']?>" class="input10" style="text-align:center" readonly/>
+                    </dd>
+                </dl> 
+                <dl>
+                    <dt><span class="bg1">리뷰어 발표</span></dt>
+                    <dd>
+                        <input type="text" id="sdate2" name="hero_today_02_01" value="<?=$view_row['hero_today_02_01']?>" class="input10" style="text-align:center" readonly/>
+                        <input type="text" id="edate2" name="hero_today_02_02" value="<?=$view_row['hero_today_02_02']?>" class="input10" style="text-align:center" readonly/>
+                    </dd>
+                </dl> 
+                <dl>
+                    <dt><span class="bg1">리뷰 등록</span></dt>
+                    <dd>
+                        <input type="text" id="sdate3" name="hero_today_03_01" value="<?=$view_row['hero_today_03_01']?>" class="input10" style="text-align:center" readonly/>
+                        <input type="text" id="edate3" name="hero_today_03_02" value="<?=$view_row['hero_today_03_02']?>" class="input10" style="text-align:center" readonly/>
+                    </dd>
+                </dl> 
+                <dl>
+                    <dt><span class="bg1">베스트 발표</span></dt>
+                    <dd>
+                        <input type="text" id="sdate4" name="hero_today_04_01" value="<?=$view_row['hero_today_04_01']?>" class="input10" style="text-align:center" readonly/>
+                        <input type="text" id="edate4" name="hero_today_04_02" value="<?=$view_row['hero_today_04_02']?>" class="input10" style="text-align:center" readonly/>
+                    </dd>
+                </dl> 
+                <dl> 
+                    <dt><span class="bg1">참여방법</span></dt>
+                    <dd>
+                        <textarea name="hero_help" id="hero_help" class="textarea" style="width:550px; height:300px;"><?=$view_row['hero_help'];?></textarea>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt><span class="bg2">필수태그</span></dt>
+                    <dd><textarea name="hero_tag" id="hero_tag" class="textarea" style="width:550px; height:300px;"><?=$view_row['hero_tag'];?></textarea></dd>
+                </dl>
+                <dl> 
+                    <dt><span class="bg1">신청시 질문</span></dt>
+                    <dd>
+                        <textarea name="hero_ask" id="hero_ask" class="textarea" style="width:550px; height:300px;"><?=$view_row['hero_ask'];?></textarea>
+                    </dd>
+                </dl>
+                <div class="clearfix"></div>
+            </div>
+<!--
+            <div class="spm_img" style="text-align:center">
+                <input type="file" id="hero_img_old" name="hero_img_old" style="width:350px; "/>
+            </div>
+-->
+            <div class="btn_group tc mt60"><!--                <a href="<?=PATH_HOME?>?board=<?=$_GET['board']?>&view=step_00"><img src="../image/bbs/btn_write.gif" alt="" /></a>-->
+                <a href="javascript:on_submit();" class="btn_blue2"><img src="../image/bbs/btn_write.gif" alt="" /></a>
+<?if(!strcmp($_GET['action'], 'update')){?>
+                <a href="<?=PATH_HOME.'?'.get('view||action','view=view');?>"><img src="../image/bbs/btn_list.gif" alt="목록" /></a>
+<?}else{?>
+                <a href="<?=PATH_HOME.'?'.get('view||action');?>"><img src="../image/bbs/btn_list.gif" alt="목록" /></a>
+<?}?>
+            </div>
+        </div>
+    </form>
+    </div>
+    <SCRIPT LANGUAGE="JavaScript">
+        var oEditors = [];
+        nhn.husky.EZCreator.createInIFrame({
+            oAppRef: oEditors,
+            elPlaceHolder: "editor",
+            sSkinURI: "/smarteditor2/SmartEditor2Skin.html",
+            htParams : {bUseToolbar : true,
+                fOnBeforeUnload : function(){}
+            }, //boolean
+            fOnAppLoad : function(){
+        },
+        fCreator: "createSEditor2"
+    });
+    function pasteHTMLDemo(id, sHTML){
+        oEditors.getById[id].exec("PASTE_HTML", [sHTML]);
+    }
+    function on_submit(){
+        oEditors.getById["editor"].exec("UPDATE_CONTENTS_FIELD", []);
+        var help = frm.hero_help;
+        var tag = frm.hero_tag;
+        var cmd = frm.command;
+/*
+        if(help.value == ""){
+            alert("참여방법을 입력하세요.");
+            help.style.border = '1px solid red';
+//            help.focus();
+//            return false;
+        }else{
+            title.style.border = '';
+        }
+        if(tag.value == ""){
+            alert("필수태그을 입력하세요.");
+            tag.style.border = '1px solid red';
+            tag.focus();
+//            return false;
+        }else{
+            name.style.border = '';
+        }
+        if(cmd.value == ""){
+            alert("내용을 입력하세요.");
+            cmd.style.border = '1px solid red';
+            cmd.focus();
+//            return false;
+        }else{
+            cmd.style.border = '';
+        }
+*/
+//        if(confirm("입력하시겠습니까?")){
+            frm.submit();
+//        }
+    }
+    </SCRIPT>
+
+
+
+
+<script>
+$(function() {      // window.onload 대신 쓰는 스크립트
+    dateclick2();
+    dateclick3();
+    dateclick4();
+    dateclick5();
+});
+function dateclick2(){
+    var dates = $("#sdate1, #edate1").datepicker({
+        monthNames: ['년 1월','년 2월','년 3월','년 4월','년 5월','년 6월','년 7월','년 8월','년 9월','년 10월','년 11월','년 12월'],
+        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+        defaultDate: null,
+        showMonthAfterYear:true,
+        dateFormat: 'yy-mm-dd',
+        onSelect: function( selectedDate ) {
+            var option = this.id == "sdate1" ? "minDate" : "maxDate",
+            instance = $( this ).data( "datepicker" ),
+            date = $.datepicker.parseDate(
+                instance.settings.dateFormat ||
+                $.datepicker._defaults.dateFormat,
+                selectedDate, instance.settings );
+            dates.not( this ).datepicker( "option", option, date );
+        }
+    });
+};
+function dateclick3(){
+    var dates = $("#sdate2, #edate2").datepicker({
+        monthNames: ['년 1월','년 2월','년 3월','년 4월','년 5월','년 6월','년 7월','년 8월','년 9월','년 10월','년 11월','년 12월'],
+        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+        defaultDate: null,
+        showMonthAfterYear:true,
+        dateFormat: 'yy-mm-dd',
+        onSelect: function( selectedDate ) {
+            var option = this.id == "sdate2" ? "minDate" : "maxDate",
+            instance = $( this ).data( "datepicker" ),
+            date = $.datepicker.parseDate(
+                instance.settings.dateFormat ||
+                $.datepicker._defaults.dateFormat,
+                selectedDate, instance.settings );
+            dates.not( this ).datepicker( "option", option, date );
+        }
+    });
+};
+function dateclick4(){
+    var dates = $("#sdate3, #edate3").datepicker({
+        monthNames: ['년 1월','년 2월','년 3월','년 4월','년 5월','년 6월','년 7월','년 8월','년 9월','년 10월','년 11월','년 12월'],
+        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+        defaultDate: null,
+        showMonthAfterYear:true,
+        dateFormat: 'yy-mm-dd',
+        onSelect: function( selectedDate ) {
+            var option = this.id == "sdate3" ? "minDate" : "maxDate",
+            instance = $( this ).data( "datepicker" ),
+            date = $.datepicker.parseDate(
+                instance.settings.dateFormat ||
+                $.datepicker._defaults.dateFormat,
+                selectedDate, instance.settings );
+            dates.not( this ).datepicker( "option", option, date );
+        }
+    });
+};
+function dateclick5(){
+    var dates = $("#sdate4, #edate4").datepicker({
+        monthNames: ['년 1월','년 2월','년 3월','년 4월','년 5월','년 6월','년 7월','년 8월','년 9월','년 10월','년 11월','년 12월'],
+        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+        defaultDate: null,
+        showMonthAfterYear:true,
+        dateFormat: 'yy-mm-dd',
+        onSelect: function( selectedDate ) {
+            var option = this.id == "sdate4" ? "minDate" : "maxDate",
+            instance = $( this ).data( "datepicker" ),
+            date = $.datepicker.parseDate(
+                instance.settings.dateFormat ||
+                $.datepicker._defaults.dateFormat,
+                selectedDate, instance.settings );
+            dates.not( this ).datepicker( "option", option, date );
+        }
+    });
+};
+</script>

@@ -1,0 +1,4 @@
+118.222.101.145 - [03/Mar/2015:12:24:56 +0900] /m/action.php: image1 = 1425353049890.jpeg: 허용되지 않은 확장자 파일 업로드
+ -&gt; [Method: FILE]
+ -&gt; [Policy: 파일정책]
+ -&gt; [Pattern: check filetype]

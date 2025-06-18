@@ -1,0 +1,24 @@
+219.249.27.76 - [26/Feb/2015:09:40:41 +0900] /main/index.php: hero_03 = 아파트 욕실 곳곳에 곰팡이가 피기 시작했어요... 깨끗하고 청결한 �: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+125.186.136.62 - [26/Feb/2015:10:54:17 +0900] /main/index.php: hero_03 = 우리집 변기에 찌든때가 너무 많아요~\r\n쉽게 제거되지 않아서 화장: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+125.186.136.62 - [26/Feb/2015:10:58:56 +0900] /main/index.php: hero_03 = 우리집 변기에 찌든때가 너무 많아요~\r\n쉽게 제거되지 않아서 화장: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+218.146.69.65 - [26/Feb/2015:14:54:55 +0900] /main/index.php: hero_03 = 겨울도 막바지에 접어들고, 이제 차근차근 겨울옷 정리 시작해야죠..: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+1.236.250.31 - [26/Feb/2015:20:45:56 +0900] /main/index.php: hero_03 = 세척력이 강한 매직폼 스프레이를 찾다가 참여하게 되었어요.../////: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+1.236.250.31 - [26/Feb/2015:20:47:15 +0900] /main/index.php: hero_03 = 세척력이 좋은 제품을 찾다가 참여하게 되었어요..../////네/////네/: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]

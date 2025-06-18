@@ -1,0 +1,4 @@
+117.16.34.41 - [04/Sep/2014:09:02:24 +0900] /main/index.php: command = &lt;div&gt;TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\.\\]

@@ -1,0 +1,138 @@
+#contents {
+    padding: 15rem 10px;
+}
+.calbox {
+    gap: 10rem;
+    align-items: stretch;
+}
+.cal_left {
+    width: 35rem;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+}
+.cal_right {
+    flex: 1;
+}
+.ym_btn {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 4.8rem;
+}
+.yearmonth {
+    margin: 0 3rem;
+    display: block;
+}
+.cal_left .ym_arr {
+    font-size: 0;
+    width: .7rem;
+}
+.cal_left .ym_arr img {
+    width: 100%;
+}
+.cal_group .chk_tit {
+    font-size: 4rem;
+    line-height: 1.4;
+    margin-bottom: 2.2rem;
+}
+.text_check > span {    
+    line-height: 1.4;
+    margin-bottom: 1rem;
+    display: block;
+}
+.check_today {
+    margin-top: 3rem;
+    background-color: var();
+}
+.cal_group .brown {
+    font-size: var(--fz19);  
+    font-weight: 800;  
+    color: #fe4c04;    
+    display: inline-block;
+    padding: 0 .9rem;
+    margin-right: .1rem;
+    border-bottom: 2px solid #fe4c04;
+}
+.cal_group .text_check {
+    /* position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%; */
+}
+.check_grade {
+    margin-top: 6rem;
+    padding: 1rem 2.6rem .8rem;
+    border: 1px solid var(--border);
+}
+.check_grade li {
+    padding: 1.6rem 0;
+}
+.check_grade li + li {
+    border-top: 1px solid var(--border);
+}
+.cal_right thead tr {
+    border-bottom: 1px solid #e5e5e5;
+}
+.cal_right thead tr td {
+    padding-top: .5rem;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 2.3rem;
+}
+.cal_right table tbody tr {
+    border: 0;
+}
+.cal_right tbody tr td {
+    font-size: 0;
+    padding: 1rem 0;
+}
+.cal_right table tbody tr:first-child td {
+    padding-top: 2rem;
+}
+.cal_right tbody tr td span {
+    font-size: 0;
+}
+.cal_right tbody tr td img {
+    width: 7.8rem;
+    height: 7.8rem;
+}
+.chk_status {
+    position: relative;
+}
+.cal_right tbody tr:last-child td.last_day .chk_status::after {
+    content: 'ALL √‚ºÆ';
+    position: absolute;
+    bottom: -3.4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 11.1rem;
+    height: 3.4rem;
+    background: url(/img/front/icon/check_add.png) no-repeat center;
+    background-size: contain;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #fff; 
+    line-height: 2.9;
+    text-align: left;
+    padding: 0 1.2rem;
+    box-sizing: border-box;
+}
+.cal_right tbody tr:last-child td.last_day .chk_status::before {
+    content: '+50P';
+    position: absolute;
+    bottom: -3.4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 11.1rem;
+    height: 3.4rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--main_color); 
+    line-height: 2.9;
+    text-align: right;
+    padding: 0 1.2rem;
+    box-sizing: border-box;
+    z-index: 7;
+}

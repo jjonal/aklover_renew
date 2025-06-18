@@ -1,0 +1,12 @@
+118.219.37.128 - [13/Dec/2014:18:07:54 +0900] /main/index.php: command = 지난 며칠 여행 다녀 온 사이에\r\n&lt;div&gt;시댁에서 김장 다 하셨데요&: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+118.219.37.128 - [13/Dec/2014:18:08:33 +0900] /main/index.php: command = 지난 며칠 여행 다녀 온 사이에\r\n\r\n&lt;div&gt;시댁에서 김장 다 하셨�: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+118.219.37.128 - [13/Dec/2014:18:08:37 +0900] /main/index.php: command = 지난 며칠 여행 다녀 온 사이에\r\n\r\n&lt;div&gt;시댁에서 김장 다 하셨�: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]

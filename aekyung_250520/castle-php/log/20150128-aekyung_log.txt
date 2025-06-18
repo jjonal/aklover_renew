@@ -1,0 +1,4 @@
+125.186.136.62 - [28/Jan/2015:16:03:40 +0900] /main/index.php: hero_03 = 네/////http://mymalia.blog.me/220255126330/////네..../////네////: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]

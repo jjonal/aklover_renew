@@ -1,0 +1,141 @@
+*{
+	margin: 0px;
+	padding: 0px;
+    }
+
+body{
+	font: 12px "맑은 고딕", "Malgun Gothic", "돋움체", "돋움";
+	color:#757575;
+	
+    }
+ul{list-style:none;}
+a {
+	text-decoration:none;
+	color:#fff;
+    }
+
+#menu_list1{
+	line-height: 0;
+    }
+
+img{
+    border:0px;
+    }
+
+
+#main_menu{
+	position:relative;
+	border-bottom:1px solid #fff;
+	margin-bottom:15px;
+    }
+	
+#main_menu ul{	
+	padding:0px;
+	margin:0px;
+}
+	
+
+#main_menu ul li{
+	position:relative;
+	list-style-type:none;
+	float:left;
+	text-align:center;
+	margin-top:15px;
+    }
+
+.menu_select{
+	position:relative;
+	display:block;
+	border:1px solid #cccccc;
+	height:25px;
+	width:74px;
+	margin-top:-3px;
+    color:#757575;
+}
+
+.menu_search{
+	position:relative;
+	display:block;
+	border:1px solid #cccccc;
+	width:112px;
+	height:25px;
+	margin-top:-3px;
+	color:#5b5b5b;
+}
+
+#menu_line{
+    position:relative;
+	display:block;
+	margin-top:48px;
+	border-bottom:1px solid #e5e5e5;
+}
+
+
+#menu_list{
+    position:relative;
+	display:block;
+	letter-spacing:-1px;
+	height:110px;
+	}
+	
+#menu_list ul{	
+	margin:auto;
+	padding:0px;
+	margin:0px;
+    }
+	
+	
+#menu_list li{
+    position:relative;
+	display:block;
+	margin-top:5px;
+	list-style-type:none;
+	float:left;
+	}	
+
+
+.menu_title{
+    margin-top:5px;
+    margin-bottom:10px;
+	font-size:12px;
+	font-weight:bold;
+	color:#5b5b5b;
+	line-height:15px;
+	}
+
+
+#login{
+
+   }
+
+#login ul{
+    width:100%;
+	height:auto;
+	margin-top:-105px;
+	margin-left:5px;
+	position:relative;
+	height:160px;
+	}
+
+#login li{
+    list-style:none;
+	float:left;
+	color:#5b5b5b;
+	font-weight:bold;
+	padding-top:120px;
+	letter-spacing:-1px;
+	}
+   
+
+.login_box{
+	border:1px solid #cccccc;
+	width:200px;
+	height:25px;
+	color:#5b5b5b;
+	}
+
+
+
+.clear{
+    clear:both; height:0px;width:100%;
+	}	

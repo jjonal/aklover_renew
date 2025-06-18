@@ -1,0 +1,8 @@
+180.70.129.71 - [05/Feb/2015:15:38:50 +0900] /main/index.php: command = &lt;table class=\"bbs_list bbsCol_blue\" border=\"0\" cellspacing=\: XSS 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: javascript:]
+180.70.129.71 - [05/Feb/2015:15:43:24 +0900] /main/index.php: command = &lt;table class=\"bbs_list bbsCol_blue\" border=\"0\" cellspacing=\: XSS 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: javascript:]

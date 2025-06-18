@@ -1,0 +1,28 @@
+180.70.128.215 - [27/Jan/2015:22:11:10 +0900] /main/index.php: command = &lt;div align=\"center\"&gt;&nbsp;&lt;/div&gt;\r\n&lt;div align=\"center\" styl: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+180.70.128.215 - [27/Jan/2015:22:11:46 +0900] /main/index.php: command = &lt;div align=\"center\"&gt;&nbsp;&lt;/div&gt;\r\n&lt;div align=\"center\" styl: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+180.70.128.215 - [27/Jan/2015:22:11:55 +0900] /main/index.php: command = &lt;div align=\"center\"&gt;&nbsp;&lt;/div&gt;\r\n&lt;div align=\"center\" styl: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+180.70.128.215 - [27/Jan/2015:22:12:00 +0900] /main/index.php: command = &lt;div align=\"center\"&gt;&nbsp;&lt;/div&gt;\r\n&lt;div align=\"center\" styl: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+180.70.128.215 - [27/Jan/2015:22:12:49 +0900] /main/index.php: command = &lt;div align=\"center\"&gt;&nbsp;&lt;/div&gt;\r\n&lt;div align=\"center\" styl: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+180.70.128.215 - [27/Jan/2015:22:12:59 +0900] /main/index.php: command = &lt;div align=\"center\"&gt;&nbsp;&lt;/div&gt;\r\n&lt;div align=\"center\" styl: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+180.70.128.215 - [27/Jan/2015:22:14:00 +0900] /main/index.php: command = &lt;div align=\"center\"&gt;&nbsp;&lt;/div&gt;\r\n&lt;div align=\"center\" styl: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]

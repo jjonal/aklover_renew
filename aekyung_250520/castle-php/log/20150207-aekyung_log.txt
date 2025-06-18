@@ -1,0 +1,20 @@
+211.169.165.131 - [07/Feb/2015:15:11:57 +0900] /main/index.php: command = &lt;div align=\"center\" style=\"margin: 0px; text-align: center\" : TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+211.169.165.131 - [07/Feb/2015:15:12:33 +0900] /main/index.php: command = &lt;div align=\"center\" style=\"margin: 0px; text-align: center\" : TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+211.169.165.131 - [07/Feb/2015:15:14:23 +0900] /main/index.php: command = &lt;div align=\"center\" style=\"margin: 0px; text-align: center\" : TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+112.167.175.135 - [07/Feb/2015:22:08:52 +0900] /main/index.php: command = &lt;div align=\"center\" style=\"text-align: center\"&gt;&lt;img width=\": XSS 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: location.href[[:space:]]*=]
+112.167.175.135 - [07/Feb/2015:22:09:20 +0900] /main/index.php: command = &lt;div align=\"center\" style=\"text-align: center\"&gt;&lt;img width=\": XSS 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: location.href[[:space:]]*=]

@@ -1,0 +1,48 @@
+223.62.212.59 - [09/Mar/2015:14:55:57 +0900] /m/mission_application.php: hero_03 = 저희사무실및오빠사무실(공기업)에제품나눠주고서개하거싶네요..////: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+115.140.15.19 - [09/Mar/2015:18:30:01 +0900] /m/mission_application.php: hero_03 = 최준생인 나 자신을위해서.../////넵/////기성아! 지금까지 나름 열�: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+115.140.15.19 - [09/Mar/2015:18:30:31 +0900] /m/mission_application.php: hero_03 = 최준생인 나 자신을위해서.../////넵/////기성아! 지금까지 나름 열�: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+106.247.232.98 - [09/Mar/2015:18:36:21 +0900] /main/index.php: hero_03 = 네.../////네: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+106.247.232.98 - [09/Mar/2015:18:36:43 +0900] /main/index.php: hero_03 = 네.../////네: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: \.\./]
+182.230.59.11 - [09/Mar/2015:21:57:52 +0900] /main/index.php: command = &lt;div&gt;&lt;br /&gt;&lt;/div&gt;\r\n&lt;div&gt;\r\n&lt;div align=\"center\" style=\"colo: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+182.230.59.11 - [09/Mar/2015:22:04:57 +0900] /main/index.php: command = &lt;div&gt;&lt;br /&gt;&lt;/div&gt;\r\n&lt;div&gt;\r\n&lt;div align=\"center\" style=\"colo: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+182.230.59.11 - [09/Mar/2015:22:05:06 +0900] /main/index.php: command = &lt;div&gt;&lt;br /&gt;&lt;/div&gt;\r\n&lt;div&gt;\r\n&lt;div align=\"center\" style=\"colo: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+182.230.59.11 - [09/Mar/2015:22:05:13 +0900] /main/index.php: command = &lt;div&gt;&lt;br /&gt;&lt;/div&gt;\r\n&lt;div&gt;\r\n&lt;div align=\"center\" style=\"colo: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+182.230.59.11 - [09/Mar/2015:22:07:02 +0900] /main/index.php: command = &lt;div&gt;\r\n&lt;div align=\"center\" style=\"color: #000000; font-fami: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+182.230.59.11 - [09/Mar/2015:22:07:55 +0900] /main/index.php: command = &lt;div&gt;&lt;br /&gt;&lt;/div&gt;\r\n&lt;div&gt;\r\n&lt;div align=\"center\" style=\"colo: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]
+182.230.59.11 - [09/Mar/2015:22:08:53 +0900] /main/index.php: command = &lt;div&gt;&lt;br /&gt;&lt;/div&gt;\r\n&lt;div&gt;\r\n&lt;div align=\"center\" style=\"colo: TAG 공격 패턴 탐지
+ -&gt; [Method: POST]
+ -&gt; [Policy: 기본정책]
+ -&gt; [Pattern: &lt;iframe[[:space:]]*]

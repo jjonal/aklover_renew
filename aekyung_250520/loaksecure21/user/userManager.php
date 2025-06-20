@@ -3,114 +3,115 @@
 $search = "";
 
 if($_GET["hero_point_start"]) {
-	$search .= " AND hero_point >= '".$_GET["hero_point_start"]."' ";
+	$search .= " AND m.hero_point >= '".$_GET["hero_point_start"]."' ";
 }
 
 if($_GET["hero_point_end"]) {
-	$search .= " AND hero_point <= '".$_GET["hero_point_end"]."' ";
+	$search .= " AND m.hero_point <= '".$_GET["hero_point_end"]."' ";
 }
 
 if($_GET["hero_blog"]) {
 	if($_GET["hero_blog"] == "1") {
-		$search .= " AND  hero_blog_00 is not null  AND  hero_blog_00 != '' ";
+		$search .= " AND  m.hero_blog_00 is not null  AND  hero_blog_00 != '' ";
 	} else if($_GET["hero_blog"] == "2") {
-		$search .= " AND  hero_blog_04 is not null  AND  hero_blog_04 != '' ";
+		$search .= " AND  m.hero_blog_04 is not null  AND  hero_blog_04 != '' ";
 	} else if($_GET["hero_blog"] == "3") {
-		$search .= " AND  ((hero_blog_00 is not null  AND  hero_blog_00 != '') or (hero_blog_04 is not null  AND  hero_blog_04 != ''))  ";
+		$search .= " AND  ((m.hero_blog_00 is not null  AND  m.hero_blog_00 != '') or (m.hero_blog_04 is not null  AND  m.hero_blog_04 != ''))  ";
 	} else if($_GET["hero_blog"] == "4") {
-		$search .= " AND  hero_blog_00 is not null  AND  hero_blog_00 != '' AND hero_blog_04 is not null  AND  hero_blog_04 != '' ";
+		$search .= " AND  m.hero_blog_00 is not null  AND  m.hero_blog_00 != '' AND m.hero_blog_04 is not null  AND  m.hero_blog_04 != '' ";
 	} else if($_GET["hero_blog"] == "5") {
-		$search .= " AND  ((hero_blog_03 is not null  AND  hero_blog_03 != '') OR (hero_blog_06 is not null  AND  hero_blog_06 != '')  OR (hero_blog_07 is not null  AND  hero_blog_07 != '') OR (hero_blog_08 is not null  AND  hero_blog_08 != '') ) ";
+		$search .= " AND  ((m.hero_blog_03 is not null  AND  m.hero_blog_03 != '') OR (m.hero_blog_06 is not null  AND  m.hero_blog_06 != '')  OR (m.hero_blog_07 is not null  AND  m.hero_blog_07 != '') OR (m.hero_blog_08 is not null  AND  m.hero_blog_08 != '') ) ";
 	} else if($_GET["hero_blog"] == "6") {
-	    $search .= " AND  hero_naver_influencer is not null  AND  hero_naver_influencer != '' ";
+	    $search .= " AND  m.hero_naver_influencer is not null  AND  m.hero_naver_influencer != '' ";
 	}
 }
 
 if($_GET["hero_memo_01_image"]) {
-	$search .= " AND hero_memo_01_image = '".$_GET["hero_memo_01_image"]."' ";
+	$search .= " AND m.hero_memo_01_image = '".$_GET["hero_memo_01_image"]."' ";
 }
 
 if($_GET["hero_memo_01"]) {
-	$search .= " AND hero_memo_01 = '".$_GET["hero_memo_01"]."' ";
+	$search .= " AND m.hero_memo_01 = '".$_GET["hero_memo_01"]."' ";
 }
 
 if($_GET["hero_insta_image_grade"]) {
-	$search .= " AND hero_insta_image_grade = '".$_GET["hero_insta_image_grade"]."' ";
+	$search .= " AND m.hero_insta_image_grade = '".$_GET["hero_insta_image_grade"]."' ";
 }
 
 if($_GET["hero_insta_grade"]) {
-	$search .= " AND hero_insta_grade = '".$_GET["hero_insta_grade"]."' ";
+	$search .= " AND m.hero_insta_grade = '".$_GET["hero_insta_grade"]."' ";
 }
 
 if($_GET["hero_youtube_grade"]) {
-	$search .= " AND hero_youtube_grade = '".$_GET["hero_youtube_grade"]."' ";
+	$search .= " AND m.hero_youtube_grade = '".$_GET["hero_youtube_grade"]."' ";
 }
 
 if($_GET["hero_jumin"]) {
-	$search .= " AND hero_jumin = '".$_GET["hero_jumin"]."' ";
+	$search .= " AND m.hero_jumin = '".$_GET["hero_jumin"]."' ";
 }
 
 if($_GET["hero_level_start"]) {
-	$search .= " AND hero_level >= '".$_GET["hero_level_start"]."' ";
+	$search .= " AND m.hero_level >= '".$_GET["hero_level_start"]."' ";
 }
 
 if($_GET["hero_level_end"]) {
-	$search .= " AND hero_level <= '".$_GET["hero_level_end"]."' ";
+	$search .= " AND m.hero_level <= '".$_GET["hero_level_end"]."' ";
 }
 
 if($_GET["hero_oldday_start"]) {
-	$search .= " AND date_format(hero_oldday,'%Y-%m-%d') >= '".$_GET["hero_oldday_start"]."' ";
+	$search .= " AND m.date_format(hero_oldday,'%Y-%m-%d') >= '".$_GET["hero_oldday_start"]."' ";
 }
 
 if($_GET["hero_oldday_end"]) {
-	$search .= " AND date_format(hero_oldday,'%Y-%m-%d') <= '".$_GET["hero_oldday_end"]."' ";
+	$search .= " AND m.date_format(hero_oldday,'%Y-%m-%d') <= '".$_GET["hero_oldday_end"]."' ";
 }
 
 if(strlen($_GET["hero_sex"]) > 0) {
-	$search .= " AND hero_sex = '".$_GET["hero_sex"]."' ";
+	$search .= " AND m.hero_sex = '".$_GET["hero_sex"]."' ";
 }
 
 if($_GET["hero_age_start"]) {
 	$birthYear = date("Y")-$_GET["hero_age_start"]+1;
-	$search .= " AND substr(hero_jumin,1,4) <= '".$birthYear."' ";
+	$search .= " AND substr(m.hero_jumin,1,4) <= '".$birthYear."' ";
 }
 
 if($_GET["hero_age_end"]) {
 	$birthYear = date("Y")-$_GET["hero_age_end"]+1;
-	$search .= " AND substr(hero_jumin,1,4) >= '".$birthYear."' ";
+	$search .= " AND substr(m.hero_jumin,1,4) >= '".$birthYear."' ";
 }
 
 if($_GET["hero_chk_phone"]) {
-	if($_GET["hero_chk_phone"] == "1") {
-		$search .= " AND hero_chk_phone = '1' ";
-	} else {
-		$search .= " AND hero_chk_phone != '1' ";
-	}
+    if($_GET["hero_chk_phone"] == "1") {
+        $search .= " AND m.hero_chk_phone = '1' ";
+    } else {
+        $search .= " AND COALESCE(m.hero_chk_phone,'0') != '1' ";
+    }
 }
 
 if($_GET["hero_chk_email"]) {
 	if($_GET["hero_chk_email"] == "1") {
-		$search .= " AND hero_chk_email = '1' ";
+		$search .= " AND m.hero_chk_email = '1' ";
 	} else {
-		$search .= " AND hero_chk_email != '1' ";
+		$search .= " AND m.hero_chk_email != '1' ";
 	}
 }
 
 if($_GET["kewyword"]) {
 	$search .= " AND ".$_GET["select"]." like '%".$_GET["kewyword"]."%' ";
 }
-		
-$total_sql = " SELECT count(*) cnt FROM member WHERE hero_use = 0 ".$search;
 
+//$total_sql = " SELECT count(*) cnt FROM member WHERE hero_use = 0 ".$search;
+$total_sql = " SELECT count(*) cnt FROM member m WHERE m.hero_use = 0 ".$search;
 sql($total_sql);
+
+
 $out_res = mysql_fetch_assoc($out_sql);
 $total_data = $out_res['cnt'];
-
 $i=$total_data;
 
 $list_page=$_REQUEST['list_count']==""?20:$_REQUEST['list_count'];
 $page_per_list=10;
-  
+
 if(!strcmp($_GET['page'], '')) {
 	$page = '1';
 } else {
@@ -122,16 +123,18 @@ $start = ($page-1)*$list_page;
 $next_path=get("page");
 
 //리스트
-$sql  = " SELECT hero_code, hero_id, hero_nick, hero_name, hero_jumin, hero_sex ";
-$sql .= " , hero_level, hero_point, hero_blog_00, hero_blog_04, hero_blog_03 ";
-$sql .= " , hero_memo, hero_memo_01_image, hero_memo_01 ";
-$sql .= " , hero_insta_cnt , hero_insta_image_grade, hero_insta_grade, hero_youtube_cnt, hero_youtube_grade";
-$sql .= " , hero_youtube_view ";
-$sql .= " , hero_chk_phone, hero_chk_email, hero_today, hero_oldday ";
-$sql .= " FROM member ";
-$sql .= " WHERE hero_use = 0 ".$search;
-$sql .= " ORDER BY hero_idx DESC ";
-$sql .= " LIMIT ".$start.",".$list_page;
+$sql = " SELECT m.hero_code, m.hero_id, m.hero_nick, m.hero_name, m.hero_jumin, m.hero_sex ";
+$sql .= " , m.hero_level, m.hero_point, m.hero_blog_00, m.hero_blog_04, m.hero_blog_03 ";
+$sql .= " , m.hero_memo, m.hero_memo_01_image, m.hero_memo_01 ";
+$sql .= " , m.hero_insta_cnt , m.hero_insta_image_grade, m.hero_insta_grade, m.hero_youtube_cnt, m.hero_youtube_grade";
+$sql .= " , m.hero_youtube_view ";
+$sql .= " , m.hero_chk_phone, m.hero_chk_email, m.hero_today, m.hero_oldday ";
+$sql .= " , mg.hero_board, mg.gisu ";
+$sql .= " FROM member m ";
+$sql .= " LEFT JOIN member_gisu mg ON m.hero_code = mg.hero_code ";
+$sql .= " WHERE m.hero_use = 0 " . $search;
+$sql .= " ORDER BY m.hero_idx DESC ";
+$sql .= " LIMIT " . $start . "," . $list_page;
 
 $list_res = sql($sql);
 
@@ -142,7 +145,227 @@ $list_res = sql($sql);
 <input type="hidden" name="page" value="<?=$page?>" />
 <input type="hidden" name="hero_code" value="" />
 <input type="hidden" name="view" value="" />
-<table class="tbSearch">
+
+<!-- 250618 회원정보 회원 검색-->
+<table class="searchBox">
+	<colgroup>
+		<col width="171px" />
+		<col width="*" />
+		<col width="171px" />
+		<col width="*" />
+	</colgroup>
+	<tr>
+		<th>
+			SNS 유무
+		</th>
+		<td>
+			<div class="search_inner">
+				<label class="akContainer">전체
+					<input type="checkbox" <?=($_GET['all'] == 'check' || $_GET['all'] == '') && $hero_group == '' ? 'checked' : ''?> name="all" value="check">
+					<span class="checkmark"></span>
+				</label>
+				<label class="akContainer">블로그
+					<input type="checkbox" <?=strpos($hero_group,'group_04_05') ? 'checked' : ''?> name="hero_group[]" value="group_04_05">
+					<span class="checkmark"></span>
+				</label>
+				<label class="akContainer">인스타
+					<input type="checkbox" <?=strpos($hero_group,'group_04_06') ? 'checked' : ''?> name="hero_group[]" value="group_04_06">
+					<span class="checkmark"></span>
+				</label>
+				<label class="akContainer">숏폼
+					<input type="checkbox" <?=strpos($hero_group,'group_04_28') ? 'checked' : ''?> name="hero_group[]" value="group_04_28">
+					<span class="checkmark"></span>
+				</label>
+				<label class="akContainer">기타
+					<input type="checkbox" <?=strpos($hero_group,'group_04_28') ? 'checked' : ''?> name="hero_group[]" value="group_04_28">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+		</td>
+		<th>
+			연령대
+		</th>
+		<td>
+			<div class="search_inner">
+				<input type="text" id="sage" name="startAge" value="<?=$_GET["startAge"]?>" readonly/>
+				<div class="inner_between">~</div>
+				<input type="text" id="eage" name="endAge" value="<?=$_GET["endAge"]?>" readonly/>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<th>SNS 퀄리티</th>
+		<td>
+			<div class="search_inner">
+				<label class="akContainer">전체
+					<input type="checkbox" <?=($_GET['all'] == 'check' || $_GET['all'] == '') && $hero_group == '' ? 'checked' : ''?> name="all" value="check">
+					<span class="checkmark"></span>
+				</label>
+				<label class="akContainer">최상
+					<input type="checkbox" <?=strpos($hero_group,'group_04_05') ? 'checked' : ''?> name="hero_group[]" value="group_04_05">
+					<span class="checkmark"></span>
+				</label>
+				<label class="akContainer">상
+					<input type="checkbox" <?=strpos($hero_group,'group_04_06') ? 'checked' : ''?> name="hero_group[]" value="group_04_06">
+					<span class="checkmark"></span>
+				</label>
+				<label class="akContainer">중
+					<input type="checkbox" <?=strpos($hero_group,'group_04_28') ? 'checked' : ''?> name="hero_group[]" value="group_04_28">
+					<span class="checkmark"></span>
+				</label>
+				<label class="akContainer">하
+					<input type="checkbox" <?=strpos($hero_group,'group_04_28') ? 'checked' : ''?> name="hero_group[]" value="group_04_28">
+					<span class="checkmark"></span>
+				</label>
+				<label class="akContainer">미정
+					<input type="checkbox" <?=strpos($hero_group,'group_04_28') ? 'checked' : ''?> name="hero_group[]" value="group_04_28">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+		</td>
+		<th>가입일</th>
+		<td>
+			<div class="search_inner">
+				<input type="text" id="sdate" name="startDate" value="<?=$_GET["startDate"]?>" readonly/>
+				<div class="inner_between">~</div>
+				<input type="text" id="edate" name="endDate" value="<?=$_GET["endDate"]?>" readonly/>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<th>서포터즈 구분</th>
+		<td>
+			<div class="search_inner sup">
+				<label class="akContainer">전체
+					<input type="checkbox" <?=($_GET['all'] == 'check' || $_GET['all'] == '') && $hero_group == '' ? 'checked' : ''?> name="all" value="check">
+					<span class="checkmark"></span>
+				</label>
+				<label class="akContainer">베이직 뷰티 & 라이프 클럽
+					<input type="checkbox" <?=strpos($hero_group,'group_04_05') ? 'checked' : ''?> name="hero_group[]" value="group_04_05">
+					<span class="checkmark"></span>
+				</label>
+				<label class="akContainer">프리미어 뷰티 클럽
+					<input type="checkbox" <?=strpos($hero_group,'group_04_06') ? 'checked' : ''?> name="hero_group[]" value="group_04_06">
+					<span class="checkmark"></span>
+				</label>
+				<label class="akContainer">프리미어 라이프 클럽
+					<input type="checkbox" <?=strpos($hero_group,'group_04_28') ? 'checked' : ''?> name="hero_group[]" value="group_04_28">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+		</td>
+		<th>휴대폰 수신동의</th>
+		<td>
+			<div class="search_inner sup">
+				<label class="akContainer">전체
+					<input type="radio" <?=!$_GET["hero_chk_phone"] ? "checked" : ""?> name="hero_chk_phone" value="">
+					<span class="checkmark"></span>
+				</label>
+				<label class="akContainer">동의
+					<input type="radio" <?=$_GET["hero_chk_phone"] == "1" ? "checked" : ""?> name="hero_chk_phone" value="1">
+					<span class="checkmark"></span>
+				</label>
+				<label class="akContainer">미동의
+					<input type="radio" <?=($_GET["hero_chk_phone"]!="1" && strlen($_GET["hero_chk_phone"]) > 0) ? "checked" : ""?> name="hero_chk_phone" value="2">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<th>팀 구분</th>
+		<td>
+			<div class="search_inner">
+				<label class="akContainer">전체
+					<input type="radio" <?=$_GET["best"] == "" ? "checked" : ""?> name="best" value="">
+					<span class="checkmark"></span>
+				</label>
+				<label class="akContainer">블로그
+					<input type="radio" <?=$_GET["best"] == "Y" ? "checked" : ""?> name="best" value="Y">
+					<span class="checkmark"></span>
+				</label>
+				<label class="akContainer">인스타
+					<input type="radio" <?=$_GET["best"] == "N" ? "checked" : ""?> name="best" value="N">
+					<span class="checkmark"></span>
+				</label>
+				<label class="akContainer">숏폼
+					<input type="radio" <?=$_GET["best"] == "N" ? "checked" : ""?> name="best" value="N">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+		</td>
+		<th>이메일 수신동의</th>
+		<td>
+			<div class="search_inner">
+				<label class="akContainer">전체
+					<input type="radio" <?=!$_GET["hero_chk_email"] ? "checked" : ""?> name="hero_chk_email" value="">
+					<span class="checkmark"></span>
+				</label>
+				<label class="akContainer">선정
+					<input type="radio" <?=$_GET["hero_chk_email"] == "1" ? "checked" : ""?> name="hero_chk_email" value="1">
+					<span class="checkmark"></span>
+				</label>
+				<label class="akContainer">미선정
+					<input type="radio" <?=($_GET["hero_chk_email"]!="1" && strlen($_GET["hero_chk_email"]) > 0) ? "checked" : ""?> name="hero_chk_email" value="2">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<th>성별</th>
+		<td>
+			<div class="search_inner">
+				<label class="akContainer">전체
+					<input type="radio" <?=!$_GET["hero_sex"] ? "checked" : ""?> name="hero_sex" value="">
+					<span class="checkmark"></span>
+				</label>
+				<label class="akContainer">여성
+					<input type="radio" <?=($_GET["hero_sex"]=="0" &&  strlen($_GET["hero_sex"]) > 0) ? "checked" : ""?> name="hero_sex" value="0">
+					<span class="checkmark"></span>
+				</label>
+				<label class="akContainer">남성
+					<input type="radio" <?=$_GET["hero_sex"] == "1" ? "checked" : ""?> name="hero_sex" value="1">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+		</td>
+	</tr>
+</table>
+
+<!-- 검색 -->
+<table class="searchBox addSearchBox">
+	<colgroup>
+		<col width="171px" />
+		<col width="*" />
+	</colgroup>
+	<tr>
+		<th>
+			검색
+		</th>
+		<td>
+			<div class="search_inner">
+				<div class="select-wrap">
+					<select name="select">
+						<option value="none" selected>선택</option>
+						<option value="hero_nick" <?=$_GET["select"] == "hero_nick" ? "selected" : "" ?>>닉네임</option>
+						<option value="hero_title" <?=$_GET["select"] == "hero_title" ? "selected" : "" ?>>체험단명</option>
+					</select>
+				</div>
+				<input class="search_txt" type="text" name="kewyword" value="<?=$_GET["kewyword"]?>"/>
+			</div>
+		</td>
+	</tr>
+</table>
+<div class="btnGroupSearch_box">
+	<div class="btnGroupSearch">
+		<a href="javascript:;" onClick="fnSearch()" class="btnSearch">검색</a>
+	</div>
+</div>
+
+
+<!-- 기존 검색 테이블 -->
+<!-- <table class="tbSearch">
 	<colgroup>
 		<col width="150px" />
 		<col width="*" />
@@ -271,19 +494,225 @@ $list_res = sql($sql);
 		    	<option value="hero_hp" <?if(!strcmp($_REQUEST['select'], 'hero_hp')){echo ' selected';}else{echo '';}?>>휴대폰</option>
 		    	<option value="hero_mail" <?if(!strcmp($_REQUEST['select'], 'hero_mail')){echo ' selected';}else{echo '';}?>>이메일</option>
 	    	</select>
-	    	<input name="kewyword" type="text" value="<?echo $_REQUEST['kewyword'];;?>" class="kewyword">		
+	    	<input name="kewyword" type="text" value="<?echo $_REQUEST['kewyword'];;?>" class="kewyword">
 		</td>
 	</tr>
 </table>
 <div class="btnGroupSearch">
 	<a href="javascript:;" onClick="fnSearch()" class="btnSearch">검색</a>
+</div> -->
+
+
+<div class="searchCnt">
+	<h4>검색 결과</h4>
+	<p class="postNum"><span class="line">개</span><span class="op_5">전체 <?=number_format($total_data)?>개</span></p>
 </div>
 
-<div class="listExplainWrap">
-<label>총 </label> : <strong><?=number_format($total_data)?></strong>건
+<!-- 250618 작업중 -->
+<div class="searchResultBox_container">
+	<div class="searchResultBox_BtnGroup">
+		<a href="javascript:;" class="btnAdd popup_btn" data-popup="01">회원 목록 다운로드</a>
+	</div>
+	<table class="searchResultBox">
+		<colgroup>
+			<col width="45px" />
+			<col width="150px" />
+			<col width="120px" />
+			<col width="105px" />
+			<col width="60px" />
+			<col width="60px" />
+			<col width="130px" />
+			<col width="75px" />
+			<col width="89px" />
+			<col width="77px" />
+			<col width="140px" />
+			<col width="140px" />
+			<col width="140px" />
+			<col width="77px" />
+		</colgroup>
+		<thead>
+			<th>
+				<div class="">
+					NO
+				</div>
+			</th>
+			<th>
+				<div class="">
+					아이디
+				</div>
+			</th>
+			<th>
+				<div class="">
+                    닉네임
+				</div>
+			</th>
+			<th>
+				<div class="">
+					이름
+				</div>
+			</th>
+			<th>
+				<div class="">
+					나이
+				</div>
+			</th>
+			<th>
+				<div class="">
+					성별
+				</div>
+			</th>
+			<th>
+				<div class="">
+					보유포인트
+				</div>
+			</th>
+			<th>
+				<div class="">
+					서포터즈
+				</div>
+			</th>
+			<th>
+				<div class="">
+					팀
+				</div>
+			</th>
+			<th>
+				<div class="">
+					보유 SNS
+				</div>
+			</th>
+			<th>
+				<div class="">
+					회원 퀄리티
+				</div>
+			</th>
+			<th>
+				<div class="">
+					이메일 수신동의
+				</div>
+			</th>
+			<th>
+				<div class="">
+					휴대폰 수신동의
+				</div>
+			</th>
+			<th>
+				<div class="">
+					가입일
+				</div>
+			</th>
+		</thead>
+		<tbody>
+			<?
+			if($total_data > 0) {
+			while($list = mysql_fetch_assoc($list_res)) {
+				$age = (date("Y")-substr($list["hero_jumin"],0,4))+1;
+				$hero_sex_txt = "";
+				if($list["hero_sex"] == 1) {
+					$hero_sex_txt = "남";
+				} else if(strlen($list["hero_sex"]) > 0 && $list["hero_sex"] == 0) {
+					$hero_sex_txt = "여";
+				}
+				$hero_blog_00_txt = ""; //네이버
+				if($list["hero_blog_00"]) $hero_blog_00_txt = "블로그";
+				$hero_blog_03_txt = ""; //유튜브
+				if($list["hero_blog_03"]) $hero_blog_03_txt = "숏폼";
+				$hero_blog_04_txt = ""; //인스타
+				if($list["hero_blog_04"]) $hero_blog_04_txt = "인스타";
+				$hero_chk_phone_txt = "미동의";
+				if($list["hero_chk_phone"] == "1") $hero_chk_phone_txt = "동의";
+				$hero_chk_email_txt = "미동의";
+				if($list["hero_chk_email"] == "1") $hero_chk_email_txt = "동의";
+			?>
+			<tr style="cursor:pointer" onClick="fnView('<?=$list["hero_code"]?>')">
+				<td>
+					<div class="table_result_no">
+						<?=number_format($i);?>
+					</div>
+				</td>
+				<td>
+					<div class="table_result_types">
+						<?=$list["hero_id"]?>
+					</div>
+				</td>
+				<td>
+					<div class="table_result_nick">
+						<?=$list["hero_nick"]?>
+					</div>
+				</td>
+				<td>
+					<div class="table_result_name">
+						<?=$list["hero_name"]?>
+					</div>
+				</td>
+				<td>
+					<div class="table_result_create">
+						<?=$age?>
+					</div>
+				</td>
+				<td>
+					<div class="table_result_create">
+						<?=$hero_sex_txt?>
+					</div>
+				</td>
+				<td>
+					<div class="table_result_create">
+						<?=number_format($list["hero_point"]);?>
+					</div>
+				</td>
+				<td>
+					<div class="table_result_create">
+					</div>
+				</td>
+				<td>
+					<div class="table_result_create">
+						팀 들어갈 자리
+					</div>
+				</td>
+				<td>
+					<div class="table_result_create">
+						<!-- 블로그 -->
+						<?=$hero_blog_00_txt?>
+						<!-- 인스타 -->
+						<?=$hero_blog_04_txt?>
+						<!-- 숏폼 -->
+						<?=$hero_blog_03_txt?>
+					</div>
+				</td>
+				<td>
+					<div class="table_result_create">
+						회원퀄리티
+					</div>
+				</td>
+				<td>
+					<div class="table_result_create">
+						<?=$hero_chk_email_txt?>
+					</div>
+				</td>
+				<td>
+					<div class="table_result_create">
+						<?=$hero_chk_phone_txt?>
+					</div>
+				</td>
+				<td>
+					<div class="table_result_create">
+						<?=substr($list["hero_oldday"],0,10)?>
+					</div>
+				</td>
+			</tr>
+			<?
+			--$i;
+			}
+			} else {?>
+			<tr>
+				<td colspan="25">등록된 데이터가 없습니다.</td>
+			</tr>
+			<? } ?>
+		</tbody>
+	</table>
 </div>
 
-<div class="btnGroupFunction">
+<!-- <div class="btnGroupFunction">
 	<div class="rightWrap">
 		<a href="javascript:;" class="btnFormExcel" onClick="fnExcel();">회원 다운로드</a>
 		<select name="list_count" onchange="fnListCount()">
@@ -295,9 +724,12 @@ $list_res = sql($sql);
             <option value="250"<?if(!strcmp($_REQUEST['list_count'], '250')){echo ' selected';}else{echo '';}?>>250개</option>
 		</select>
 	</div>
-</div>
-</form>
+</div> -->
 
+<!-- 250618 폼 태그 위치 아래로 이동 -->
+<!-- </form> -->
+
+<!--
 <table class="t_list">
 <colgroup>
 	<col width="3%" />
@@ -311,7 +743,7 @@ $list_res = sql($sql);
 	<col width="3%" />
 	<col width="3%" />
 	<col width="4%" />
-	
+
 	<col width="4%" />
 	<col width="4%" />
 	<col width="4%" />
@@ -358,9 +790,9 @@ $list_res = sql($sql);
 	</tr>
 </thead>
 <tbody>
-	<? 
+	<?
 	if($total_data > 0) {
-	while($list = mysql_fetch_assoc($list_res)) { 
+	while($list = mysql_fetch_assoc($list_res)) {
 		$age = (date("Y")-substr($list["hero_jumin"],0,4))+1;
 		$hero_sex_txt = "";
 		if($list["hero_sex"] == 1) {
@@ -407,39 +839,120 @@ $list_res = sql($sql);
 	<?
 	--$i;
 	}
-	} else {?>
+	} else {
+	?>
 	<tr>
 		<td colspan="25">등록된 데이터가 없습니다.</td>
 	</tr>
-	<? } ?>
+	<?
+	 }
+	?>
 </tbody>
-</table>
+</table> -->
+
+</form>
+
+<!--콘텐츠 URL 팝업-->
+<div class="popup_url_box" id="pop_01">
+	<div class="popup_url_cont">
+		<div class="popup_url_head">
+			<svg class="close" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path fill-rule="evenodd" clip-rule="evenodd" d="M4.41073 4.41083C4.73617 4.08539 5.26381 4.08539 5.58925 4.41083L15.5892 14.4108C15.9147 14.7363 15.9147 15.2639 15.5892 15.5893C15.2638 15.9148 14.7362 15.9148 14.4107 15.5893L4.41073 5.58934C4.0853 5.2639 4.0853 4.73626 4.41073 4.41083Z" fill="black"/>
+				<path fill-rule="evenodd" clip-rule="evenodd" d="M15.5892 4.41083C15.2638 4.08539 14.7362 4.08539 14.4107 4.41083L4.41072 14.4108C4.08529 14.7363 4.08529 15.2639 4.41072 15.5893C4.73616 15.9148 5.2638 15.9148 5.58924 15.5893L15.5892 5.58934C15.9147 5.2639 15.9147 4.73626 15.5892 4.41083Z" fill="black"/>
+			</svg>
+		</div>
+		<div class="popup_url_body mu_form">
+			<div class="tit">회원 목록 다운로드</div>
+			<p class="desc">추출할 항목을 선택해주세요</p>
+			<div class="popup_checkbox_table">
+                <table>
+				<colgroup>
+					<col width="120px" />
+					<col width="*" />
+				</colgroup>
+					<thead>
+						<th>선택</th>
+						<th>추출 항목</th>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<input type="checkbox" id="chk1" />
+								<label for="chk1"></label>
+							</td>
+							<td>아이디</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="checkbox" id="chk2" />
+								<label for="chk2"></label>
+							</td>
+							<td>닉네임</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="checkbox" id="chk3" />
+								<label for="chk3"></label>
+							</td>
+							</td>
+							<td>이름</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="checkbox" id="chk4" />
+								<label for="chk4"></label>
+							</td>
+							<td>나이</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="checkbox" id="chk5" />
+								<label for="chk5"></label>
+							</td>
+							<td>성별</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="checkbox" id="chk6" />
+								<label for="chk6"></label>
+							</td>
+							<td>서포터즈</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<a href="javascript:;" class="btnAdd3 pop_submit" onClick="fnExcel();">파일 다운로드</a>
+		</div>
+	</div>
+</div>
+
+
 
 <div class="pagingWrap">
-<? include_once PATH_INC_END.'page.php';?>
+	<? include_once PATH_INC_END.'page.php';?>
 </div>
 <script>
-$(document).ready(function(){
+	$(document).ready(function(){
 
-	fnView = function(hero_code) {
-		$("input[name='hero_code']").val(hero_code);
-		$("input[name='view']").val("userManagerView");
-		$("#searchForm").attr("action","<?=PATH_HOME?>").submit();
-		
-	}
+		fnView = function(hero_code) {
+			$("input[name='hero_code']").val(hero_code);
+			$("input[name='view']").val("userManagerView");
+			$("#searchForm").attr("action","<?=PATH_HOME?>").submit();
 
-	fnListCount = function() {
-		$("input[name='page']").val(1);
-		$("#searchForm").attr("action","").submit();
-	}
-	
-	fnSearch = function() {
-		$("input[name='page']").val(1);
-		$("#searchForm").attr("action","").submit();
-	}
+		}
 
-	fnExcel = function() {
-		$("#searchForm").attr("action","/loaksecure21/user/userManger_excel.php").submit();
-	}
-})
+		fnListCount = function() {
+			$("input[name='page']").val(1);
+			$("#searchForm").attr("action","").submit();
+		}
+
+		fnSearch = function() {
+			$("input[name='page']").val(1);
+			$("#searchForm").attr("action","").submit();
+		}
+
+		fnExcel = function() {
+			$("#searchForm").attr("action","/loaksecure21/user/userManger_excel.php").submit();
+		}
+	})
 </script>

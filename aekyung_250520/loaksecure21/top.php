@@ -47,9 +47,10 @@ $focus_type_arr = array("0"=>"정기미션","1"=>"이벤트","2"=>"소문내기","3"=>"설문
             <h1><a href="<?=PATH_HOME;?>"><img src="<?=PATH_IMAGE_END?>common/logo.svg" alt="로고" /></a></h1>
             <?
             if(!strcmp($_GET['board'], '')){
-                $board = $board;
+//                $board = $board; // musign 6.20 default값 변경
+                $board = 'main';
             }
-            else{
+            else {
                 $board = $_GET['board'];
             }
             if(!strcmp($_GET['idx'], '')){
@@ -58,6 +59,7 @@ $focus_type_arr = array("0"=>"정기미션","1"=>"이벤트","2"=>"소문내기","3"=>"설문
             else {
                 $idx = $_GET['idx'];
             }
+
             var_dump($board);
             //기존 쿼리
             $sql = 'select *, datediff("'.date('Y-m-d').'", from_unixtime(hero_today)) as hero_today_diff from '.$hero_table.' where hero_board = \''.$board.'\' and hero_level <= '.$_SESSION['temp_level'].' and hero_use = \'0\' ORDER BY hero_depth,hero_board, hero_order;';

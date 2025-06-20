@@ -2,7 +2,7 @@
 if(!defined('_HEROBOARD_'))exit;
 	$pageCheck = $_GET["pageCheck"];
     //musign s
-    //$pageCheck = 'Y';//musign임시
+$pageCheck = 'Y';//musign임시
     //musign e
     $sql = 'select * from ' . $hero_table . ' where hero_board = \'' . $board . '\' and hero_use = \'0\' and hero_idx=\'' . $idx . '\'';
     sql($sql);

@@ -1,2 +1,5 @@
 ## 후기관리 명칭 변경 ##
 UPDATE menu SET hero_alt = '체험단관리' WHERE hero_idx = 25 AND hero_alt = '후기 관리';
+
+## 서포터즈 그룹 컬럼 추가 ##
+alter table member_gisu add hero_board_group varchar(1) null comment 'b:블로그,i:인스타,s:숏폼';

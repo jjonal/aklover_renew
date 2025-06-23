@@ -97,6 +97,11 @@ if($_GET["hero_chk_email"]) {
 }
 
 if($_GET["kewyword"]) {
+    if($_GET["select"] == 'hero_nick') { // 닉네임 검색
+        $_GET["select"] = 'm.'.$_GET["select"];
+    } elseif ($_GET["select"] == 'hero_title') { // 체험단명검색
+        $_GET["select"] = 'm.'.$_GET["select"];
+    }
 	$search .= " AND ".$_GET["select"]." like '%".$_GET["kewyword"]."%' ";
 }
 
@@ -129,15 +134,13 @@ $sql .= " , m.hero_memo, m.hero_memo_01_image, m.hero_memo_01 ";
 $sql .= " , m.hero_insta_cnt , m.hero_insta_image_grade, m.hero_insta_grade, m.hero_youtube_cnt, m.hero_youtube_grade";
 $sql .= " , m.hero_youtube_view ";
 $sql .= " , m.hero_chk_phone, m.hero_chk_email, m.hero_today, m.hero_oldday ";
-$sql .= " , mg.hero_board, mg.gisu ";
 $sql .= " FROM member m ";
-$sql .= " LEFT JOIN member_gisu mg ON m.hero_code = mg.hero_code ";
 $sql .= " WHERE m.hero_use = 0 " . $search;
 $sql .= " ORDER BY m.hero_idx DESC ";
 $sql .= " LIMIT " . $start . "," . $list_page;
 
 $list_res = sql($sql);
-
+var_dump($sql);
 ?>
 <form name="searchForm" id="searchForm" action="<?=PATH_HOME.'?'.get('page');?>">
 <input type="hidden" name="idx" value="<?=$_GET["idx"]?>" />
@@ -605,7 +608,7 @@ $list_res = sql($sql);
 		<tbody>
 			<?
 			if($total_data > 0) {
-			while($list = mysql_fetch_assoc($list_res)) {
+                while($list = mysql_fetch_assoc($list_res)) {
 				$age = (date("Y")-substr($list["hero_jumin"],0,4))+1;
 				$hero_sex_txt = "";
 				if($list["hero_sex"] == 1) {
@@ -623,6 +626,15 @@ $list_res = sql($sql);
 				if($list["hero_chk_phone"] == "1") $hero_chk_phone_txt = "동의";
 				$hero_chk_email_txt = "미동의";
 				if($list["hero_chk_email"] == "1") $hero_chk_email_txt = "동의";
+                // musign 서포터즈구분자 추가
+                if($list["hero_level"] == "9996") {
+                    $hero_group = "프리미어 뷰티 클럽";
+                } elseif ($list["hero_level"] == "9994"){
+                    $hero_group = "프리미어 라이프 클럽";
+                } else {
+                    $hero_group = "베이직 뷰티 & 라이프 클럽"; // 기존명칭 베이직서포터즈
+                }
+
 			?>
 			<tr style="cursor:pointer" onClick="fnView('<?=$list["hero_code"]?>')">
 				<td>
@@ -662,6 +674,7 @@ $list_res = sql($sql);
 				</td>
 				<td>
 					<div class="table_result_create">
+                        <?=$hero_group?>
 					</div>
 				</td>
 				<td>

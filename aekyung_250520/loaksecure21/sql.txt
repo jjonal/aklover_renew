@@ -1,0 +1,2 @@
+## 후기관리 명칭 변경 ##
+UPDATE menu SET hero_alt = '체험단관리' WHERE hero_idx = 25 AND hero_alt = '후기 관리';

@@ -22,24 +22,26 @@
             <col width=*>
         </colgroup>
         <tbody>
-            <tr>
-                <th>아이디</th>
-                <td>1</td>
-                <th>서포터즈</th>
-                <td>1</td>
-            </tr>
-            <tr>
-                <th>이름</th>
-                <td>1</td>
-                <th>서포터즈 팀</th>
-                <td>1</td>
-            </tr>
-            <tr>
-                <th>닉네임</th>
-                <td>1</td>
-                <th>휴대폰 번호</th>
-                <td>1</td>
-            </tr>
+        <tr>
+            <th>아이디</th>
+            <td><?=$view["hero_id"]?></td>
+            <th>서포터즈</th>
+            <td><?=$hero_group?></td>
+        </tr>
+        <tr>
+            <th>이름</th>
+            <td><?=$view["hero_name"]?></td>
+            <th>서포터즈 팀</th>
+            <td><?=$hero_board_group?></td>
+        </tr>
+        <tr>
+            <th>닉네임</th>
+            <td><?=$view["hero_nick"]?></td>
+            <th>휴대폰 번호</th>
+            <td>
+                <?=$hero_hp[0]?> - <?=$hero_hp[1]?> - <?=$hero_hp[2]?>
+            </td>
+        </tr>
         </tbody>
     </table>
 </div>

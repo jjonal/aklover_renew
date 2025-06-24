@@ -1,106 +1,3 @@
-<?
-if(!defined('_HEROBOARD_'))exit;
-
-$hero_code = $_GET["hero_code"];
-
-$member_sql  = " SELECT m.hero_code, hero_id, hero_name, hero_nick, hero_level ";
-$member_sql .= " , hero_hp, hero_mail, hero_chk_phone, hero_chk_email, hero_address_01 ";
-$member_sql .= " , hero_info_ci, hero_facebook, hero_kakaoTalk, hero_naver, hero_google ";
-$member_sql .= " , hero_address_02, hero_address_03, area, area_etc_text, hero_user_type ";
-$member_sql .= " , hero_user, hero_oldday , hero_blog_00, hero_memo ";
-$member_sql .= " , hero_memo_01, hero_memo_01_image, hero_blog_04, hero_insta_cnt, hero_insta_grade  ";
-$member_sql .= " , hero_insta_image_grade, hero_blog_03, hero_youtube_cnt, hero_youtube_grade, hero_youtube_view ";
-$member_sql .= " , hero_blog_05, hero_blog_06, hero_blog_07, hero_blog_08, hero_sns_update_date, m.hero_today, hero_jumin ";
-$member_sql .= " , hero_naver_influencer, hero_naver_influencer_name, hero_naver_influencer_category ";
-$member_sql .= " , q.hero_qs_01, q.hero_qs_02, q.hero_qs_03, q.hero_qs_04, q.hero_qs_05";
-$member_sql .= " , q.hero_qs_06, q.hero_qs_07, q.hero_qs_08 ";
-$member_sql .= " , q.hero_qs_18, q.hero_qs_19, q.hero_qs_20, q.hero_qs_21, q.hero_qs_22, q.hero_qs_23 ";
-$member_sql .= " , (SELECT ifnull(sum(hero_point),0) FROM point WHERE hero_code = m.hero_code) as hero_point ";
-$member_sql .= " , (SELECT ifnull(sum(hero_order_point),0) FROM order_main WHERE hero_code = m.hero_code AND hero_process!='".$_PROCESS_CANCEL."') hero_order_point ";
-$member_sql .= " , (date_format(now(),'%Y') - substr(hero_jumin,1,4) + 1) as hero_age ";
-$member_sql .= " FROM member m ";
-$member_sql .= " LEFT JOIN member_question q ON m.hero_code = q.hero_code AND q.hero_pid = 4 ";
-$member_sql .= " WHERE m.hero_use = 0 AND m.hero_code = '".$hero_code."' ";
-
-$member_res = sql($member_sql,"on");
-$view = mysql_fetch_assoc($member_res);
-
-$pw_init_sql  = " SELECT hero_today FROM member_pw_initialize WHERE hero_code = '".$hero_code."' ORDER BY hero_today DESC LIMIT 1";
-$pw_init_res = sql($pw_init_sql,"on");
-$pw_init = mysql_fetch_assoc($pw_init_res);
-
-
-$hero_hp = explode("-",$view["hero_hp"]);
-$hero_mail = explode("@",$view["hero_mail"]);
-
-$hero_naver_blog = str_replace("https://blog.naver.com/", "", $view["hero_blog_00"]);
-$hero_naver_blog = str_replace("http://blog.naver.com/", "", $hero_naver_blog);
-$hero_naver_blog = str_replace("https://m.blog.naver.com/", "", $hero_naver_blog);
-$hero_naver_blog = str_replace("http://m.blog.naver.com/", "", $hero_naver_blog);
-$hero_naver_blog = str_replace("blog.naver.com/", "", $hero_naver_blog);
-
-$hero_instagram = str_replace("https://www.instagram.com/", "", $view["hero_blog_04"]);
-$hero_instagram = str_replace("http://www.instagram.com/", "", $hero_instagram);
-$hero_instagram = str_replace("https://instagram.com/", "", $hero_instagram);
-$hero_instagram = str_replace("http://instagram.com/", "", $hero_instagram);
-$hero_instagram = str_replace("instagram.com/", "", $hero_instagram);
-
-
-$hero_naver_influencer = str_replace("https://in.naver.com/", "", $view["hero_naver_influencer"]);
-
-$hero_qs_18 = "";
-if($view["hero_qs_18"] == "Y") {
-    $hero_qs_18 = "있음";
-} else if($view["hero_qs_18"] == "N") {
-    $hero_qs_18 = "없음";
-}
-
-$hero_qs_19 = "";
-if($view["hero_qs_19"] == "Y") {
-    $hero_qs_19 = "있음";
-} else if($view["hero_qs_19"] == "N") {
-    $hero_qs_19 = "없음";
-}
-
-$hero_qs_20 = "";
-if($view["hero_qs_20"] == "Y") {
-    $hero_qs_20 = "있음";
-} else if($view["hero_qs_20"] == "N") {
-    $hero_qs_20 = "없음";
-}
-
-$hero_qs_21 = "";
-if($view["hero_qs_21"] == "Y") {
-    $hero_qs_21 = "있음";
-} else if($view["hero_qs_21"] == "N") {
-    $hero_qs_21 = "없음";
-}
-
-$handphone = "";
-if(isset($view["hero_info_ci"]) && !empty($view["hero_info_ci"])) {
-    $handphone = "휴대폰 ";
-}
-
-$facebook = "";
-if(isset($view["hero_facebook"]) && !empty($view["hero_facebook"])) {
-    $facebook = "페이스북 ";
-}
-
-$kakaoTalk = "";
-if(isset($view["hero_kakaoTalk"]) && !empty($view["hero_kakaoTalk"])) {
-    $kakaoTalk = "카카오톡 ";
-}
-
-$naver = "";
-if(isset($view["hero_naver"]) && !empty($view["hero_naver"])) {
-    $naver = "네이버 ";
-}
-
-$google = "";
-if(isset($view["hero_google"]) && !empty($view["hero_google"])) {
-    $google = "구글 ";
-}
-?>
 <form name="searchForm" id="searchForm" method="GET">
 <? 
 unset($_GET["hero_code"]);
@@ -156,7 +53,7 @@ foreach($_GET as $key=>$val) {?>
             <th>생년월일</th>
             <td><?=$view["hero_jumin"]?></td>
             <th>서포터즈</th>
-            <td>추가작업</td>
+            <td><?=$hero_group?></td>
         </tr>
         <tr>
             <th>보유포인트</th>
@@ -166,7 +63,7 @@ foreach($_GET as $key=>$val) {?>
                 <a href="javascript:;" class="btnAdd4 popup_btn" data-popup="03">패널티 내역/지급</a>
             </td>
             <th>서포터즈 팀</th>
-            <td>추가작업</td>
+            <td><?=$hero_board_group?></td>
         </tr>
         <tr>
             <th>휴대폰번호</th>
@@ -382,11 +279,16 @@ foreach($_GET as $key=>$val) {?>
             <tbody>
                 <tr>
                     <th>알게된 경로</th>
-                    <td>추가필요</td>
+                    <td>
+                        <?=$view["area"]?>
+                        <? if($view["area"]=="기타") {?>
+                            (<?=$view["area_etc_text"]?>)
+                        <? } ?>
+                    </td>
                 </tr>
                 <tr>
                     <th>관심있는 활동</th>
-                    <td>추가필요</td>
+                    <td><?=$view["hero_activity"]?></td>
                 </tr>
                 <tr>
                     <th>결혼 유무</th>

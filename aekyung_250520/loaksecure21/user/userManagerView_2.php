@@ -1,13 +1,3 @@
-<form name="searchForm" id="searchForm" method="GET">
-    <? 
-    unset($_GET["hero_code"]);
-    unset($_GET["view"]);
-    foreach($_GET as $key=>$val) {?>
-    <input type="hidden" name="<?=$key?>" value="<?=$val?>" />
-    <? } ?>
-</form>
-
-
 <form name="viewForm" id="viewForm">
 <input type="hidden" name="mode" />
 <input type="hidden" name="hero_code" value="<?=$view["hero_code"]?>"/>
@@ -24,27 +14,161 @@
         <tbody>
             <tr>
                 <th>아이디</th>
-                <td>1</td>
+                <td><?=$view["hero_id"]?></td>
                 <th>서포터즈</th>
-                <td>1</td>
+                <td><?=$hero_group?></td>
             </tr>
             <tr>
                 <th>이름</th>
-                <td>1</td>
+                <td><?=$view["hero_name"]?></td>
                 <th>서포터즈 팀</th>
-                <td>1</td>
+                <td><?=$hero_board_group?></td>
             </tr>
             <tr>
                 <th>닉네임</th>
-                <td>1</td>
+                <td><?=$view["hero_nick"]?></td>
                 <th>휴대폰 번호</th>
-                <td>1</td>
+                <td>
+                    <?=$hero_hp[0]?> - <?=$hero_hp[1]?> - <?=$hero_hp[2]?>
+                </td>
             </tr>
         </tbody>
     </table>
 </div>
+</form>
 
-<div class="tableSection mgt20 mu_form">
+    <?
+
+    //검색폼
+    $search = "";
+
+    $select_02 = $_REQUEST['select_02'];
+    //날짜 검색
+    if($_GET["startDate"] && $_GET["endDate"]){
+        $search .= " AND ( (date_format(m.hero_today_03_01,'%Y-%m-%d') <= '".$_GET["startDate"]."' AND date_format(m.hero_today_03_02,'%Y-%m-%d')>='".$_GET["startDate"]."' )";
+        $search .= " || (date_format(m.hero_today_03_01,'%Y-%m-%d') <= '".$_GET["endDate"]."' AND date_format(m.hero_today_03_02,'%Y-%m-%d')>='".$_GET["endDate"]."' )";
+        $search .= " || (date_format(m.hero_today_03_01,'%Y-%m-%d') >= '".$_GET["startDate"]."' AND date_format(m.hero_today_03_02,'%Y-%m-%d')<='".$_GET["endDate"]."' ))";
+    }
+    //검색어
+//    if($_GET["kewyword"] != "") {
+//        if ($_GET['select'] == 'hero_nick') {
+//            $search .= " AND mb.hero_nick like '%" . $_GET["kewyword"] . "%' ";
+//        } else {
+//            $search .= " AND m.hero_title like '%" . $_GET["kewyword"] . "%' ";
+//        }
+//    }
+
+    $search .= " AND b.hero_table in ('group_04_05','group_04_06','group_04_28') ";
+
+    //우수 콘텐츠
+    if($_GET["best"] != ""){
+        $search .= " AND IF(IFNULL(b.hero_board_three,0) = '1','Y','N') = '".$_GET["best"]."'";
+    }
+    //준우수 콘텐츠
+    if($_GET["semi_best"] != ""){
+        $search .= " AND IF(IFNULL(b.hero_board_three,0) = '2','Y','N') = '".$_GET["semi_best"]."'";
+    }
+    //ORDER BY
+    if (! strcmp ( $_GET ['order'], '' )) {
+        $order = ' ORDER BY b.hero_today DESC';
+    } else {
+        $order = ' ORDER BY ' . $_GET ['order'];
+    }
+
+    //총 갯수
+    $total_sql  = " SELECT count(*) cnt";
+    $total_sql .= " FROM board b ";
+    $total_sql .= " JOIN mission m ON m.hero_idx = b.hero_01 ";
+    $total_sql .= " JOIN member mb ON mb.hero_code = b.hero_code ";
+    $total_sql .= " WHERE mb.hero_id = '".$view["hero_id"]."'";
+    $total_sql .= " AND b.hero_table in ('group_04_05','group_04_06','group_04_28') ";
+
+    sql($total_sql);
+
+    $out_res = mysql_fetch_assoc($out_sql);
+    $total_data = $out_res['cnt'];
+
+    $i=$total_data;
+
+    //검색 갯수
+    $search_sql  = " SELECT count(*) cnt";
+    $search_sql .= " FROM board b ";
+    $search_sql .= " JOIN mission m ON m.hero_idx = b.hero_01 ";
+    $search_sql .= " JOIN member mb ON mb.hero_code = b.hero_code ";
+    $search_sql .= " WHERE mb.hero_id = '".$view["hero_id"]."'";
+    $search_sql .= " AND b.hero_table in ('group_04_05','group_04_06','group_04_28') ".$search;
+
+    $search_res = sql($search_sql);
+    $search_row = mysql_fetch_assoc($search_res);
+    $search_total = $search_row['cnt'];
+
+
+    $list_page=$_REQUEST['list_count']==""?20:$_REQUEST['list_count'];
+    //$list_page=$_REQUEST['list_count']==""?5:$_REQUEST['list_count'];
+    $page_per_list=10;
+
+    if(!strcmp($_GET['page'], '')) {
+        $page = '1';
+    } else {
+        $page = $_GET['page'];
+        $i = $i-($page-1)*$list_page;
+    }
+
+    $start = ($page-1)*$list_page;
+    $next_path=get("page");
+//    $next_path = str_replace("&hero_group=Array",$search_group,$next_path);
+
+
+    // 전체 페이지 수 계산
+    $total_data = $search_total > 0 ? $search_total : $total_data;
+    $total_page = ceil($total_data / $list_page);
+
+    // 페이지 그룹의 시작과 끝 계산
+    $start_page = floor(($page - 1) / $page_per_list) * $page_per_list + 1;
+    $end_page = $start_page + $page_per_list - 1;
+
+    // 마지막 페이지가 전체 페이지 수를 넘지 않도록 조정
+    if ($end_page > $total_page) {
+        $end_page = $total_page;
+    }
+
+    // 이전/다음 페이지 그룹
+    $prev_page = $start_page - 1;
+    $next_page = $end_page + 1;
+
+    // URL 파라미터 처리
+    $query_string = $_SERVER['QUERY_STRING'];
+    $query_string = preg_replace('/&?page=[^&]*/', '', $query_string);
+
+    //리스트
+    $sql  = " SELECT b.hero_idx, mb.hero_level, mb.hero_nick, b.hero_title AS review_title, m.hero_title AS mission_title, b.hero_today, ";
+    $sql .= " b.hero_board_three, IF(IFNULL(b.hero_board_three,0) = '1','Y','N') AS best, IF(IFNULL(b.hero_board_three,0) = '2','Y','N') AS semi_best, ";
+    $sql .= " m.hero_table, ";
+    $sql .= " m.hero_today_01_01, m.hero_today_01_02, ";
+    $sql .= " m.hero_today_02_01, m.hero_today_02_02, ";
+    $sql .= " m.hero_today_03_01, m.hero_today_03_02, ";
+    $sql .= " m.hero_today_04_01, m.hero_today_04_02, ";
+    $sql .= " m.hero_today_05_01, m.hero_today_05_02 ";
+    $sql .= " FROM board b ";
+    $sql .= " JOIN mission m ON m.hero_idx = b.hero_01 ";
+    $sql .= " JOIN member mb ON mb.hero_code = b.hero_code ";
+    $sql .= " WHERE mb.hero_id = '".$view["hero_id"]."'".$search.$order;
+    $sql .= " LIMIT ".$start.",".$list_page;
+
+    $list_res = sql($sql);
+    $list_cnt = mysql_num_rows($list_res);
+
+    var_dump($sql);
+    ?>
+
+    <form name="searchForm2" id="searchForm2" action="<?=PATH_HOME?>">
+    <input type="hidden" name="idx" value="<?=$_GET["idx"]?>" />
+    <input type="hidden" name="board" value="<?=$_GET["board"]?>" />
+    <input type="hidden" name="hero_code" value="<?=$view["hero_code"]?>"/>
+    <input type="hidden" name="view" value="userManagerView"/>
+    <input type="hidden" name="tab" value="2"/>
+    <input type="hidden" name="page" value="<?=$page?>" />
+    <div class="tableSection mgt20 mu_form">
     <h2 class="table_tit">콘텐츠 검색</h2>
     <table class="searchBox">
         <colgroup>
@@ -81,15 +205,15 @@
                 <td>
                     <div class="search_inner sup">
                         <label class="akContainer">전체
-                            <input type="radio" <?=!$_GET["hero_chk_cont1"] ? "checked" : ""?> name="hero_chk_cont1" value="">
+                            <input type="radio" <?=!$_GET["best"] ? "checked" : ""?> name="best" value="">
                             <span class="checkmark"></span>
                         </label>
                         <label class="akContainer">선정
-                            <input type="radio" <?=$_GET["hero_chk_cont1"] == "1" ? "checked" : ""?> name="hero_chk_cont1" value="1">
+                            <input type="radio" <?=$_GET["best"] == "Y" ? "checked" : ""?> name="best" value="Y">
                             <span class="checkmark"></span>
                         </label>
                         <label class="akContainer">미선정
-                            <input type="radio" <?=($_GET["hero_chk_cont1"]!="1" && strlen($_GET["hero_chk_phone"]) > 0) ? "checked" : ""?> name="hero_chk_cont1" value="2">
+                            <input type="radio" <?=$_GET["best"] == "N" ? "checked" : ""?> name="best" value="N">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -100,15 +224,15 @@
                 <td>
                     <div class="search_inner sup">
                         <label class="akContainer">전체
-                            <input type="radio" <?=!$_GET["hero_chk_cont2"] ? "checked" : ""?> name="hero_chk_cont2" value="">
+                            <input type="radio" <?=$_GET["semi_best"] == "" ? "checked" : ""?> name="semi_best" value="">
                             <span class="checkmark"></span>
                         </label>
                         <label class="akContainer">선정
-                            <input type="radio" <?=$_GET["hero_chk_cont2"] == "1" ? "checked" : ""?> name="hero_chk_cont2" value="1">
+                            <input type="radio" <?=$_GET["semi_best"] == "Y" ? "checked" : ""?> name="semi_best" value="Y">
                             <span class="checkmark"></span>
                         </label>
                         <label class="akContainer">미선정
-                            <input type="radio" <?=($_GET["hero_chk_cont2"]!="1" && strlen($_GET["hero_chk_cont2"]) > 0) ? "checked" : ""?> name="hero_chk_cont2" value="2">
+                            <input type="radio" <?=$_GET["semi_best"] == "N" ? "checked" : ""?> name="semi_best" value="N">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -118,13 +242,17 @@
     </table>
 
     <div class="btnContainer mgt20">
-        <a href="javascript:;" class="btnAdd3">검색</a>
+        <a href="javascript:void(0);" onclick="return fnSearch();" class="btnAdd3">검색</a>
     </div>
 </div>
-</form>
+
 
 <div class="tableSection mgt30">
-    <h2 class="table_tit">콘텐츠 검색</h2>
+<!--    <h2 class="table_tit">콘텐츠 검색</h2>-->
+    <div class="searchCnt">
+        <h4>검색 결과</h4>
+        <p class="postNum"><span class="line"><?=number_format($search_total)?>개</span><span class="op_5">전체 <?=number_format($total_data)?>개</span></p>
+    </div>
     <p class="table_desc"></p>
     <div class="searchResultBox_container">
         <table class="searchResultBox">
@@ -181,6 +309,17 @@
                 </th>
             </thead>
             <tbody>
+            <?
+                if($total_data > 0) {
+                while($list = mysql_fetch_assoc($list_res)) {
+                    //우수 콘텐츠
+                    if($list['best'] == 'Y') $best = '선정';
+                    else $best = '미선정';
+
+                    //준우수 콘텐츠
+                    if($list['semi_best'] == 'Y') $semi_best = '선정';
+                    else $semi_best = '미선정';
+            ?>
             <tr style="cursor:pointer" onClick="fnView('<?=$list["hero_code"]?>')">
                     <td>
                         <div class="table_result_no">
@@ -189,32 +328,36 @@
                     </td>
                     <td>
                         <div class="table_result_types">
-                           1
+                           확인필요<!-- 회원정보일지 후기유형일지 -->
                         </div>
                     </td>
                     <td>
                         <div class="table_result_nick">
-                           1
+                            <?=$list['review_title']?>
                         </div>
                     </td>
                     <td>
                         <div class="table_result_name">
-                           1
+                            <?=$list['mission_title']?>
                         </div>
                     </td>
                     <td>
                         <div class="table_result_create">
-                            1
+                            <?=$list['hero_today']?>
                         </div>
                     </td>
                     <td>
-                        <div class="table_result_create">
-                            1
+                        <div class="table_result_btn01">
+                            <div class="table_result_btn_yn <?=$best == '선정' ? 'active' : ''?>">
+                                <?=$best?>
+                            </div>
                         </div>
                     </td>
                     <td>
-                        <div class="table_result_create">
-                            <?=number_format($list["hero_point"]);?>
+                        <div class="table_result_btn02">
+                            <div class="table_result_btn_yn <?=$semi_best == '선정' ? 'active' : ''?>">
+                                <?=$semi_best?>
+                            </div>
                         </div>
                     </td>
                     <td>
@@ -229,6 +372,15 @@
                         </div>
                     </td>
                 </tr>
+                <?
+                    --$i;
+                }
+                } else {?>
+                    <tr>
+                        <td colspan="8" class="no_data">등록된 데이터가 없습니다.</td>
+                    </tr>
+                <? } ?>
+
                 <!-- <? 
                 if($total_data > 0) {
                 while($list = mysql_fetch_assoc($list_res)) { 
@@ -309,6 +461,35 @@
             </tbody>
         </table>
     </div>
+</div>
+</form>
+
+<div class="pagingWrap remaking">
+        <?php if ($total_page > 1) { ?>
+            <div class="pagination">
+                <?php if ($start_page > 1) { ?>
+                    <a href="?<?=$query_string?>&page=1&tab=2" class="pg_btn first">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.2002 7.99935L11.2002 13.9993M5.2002 7.99935L11.2002 1.99935M5.2002 7.99935H13.0002" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="?<?=$query_string?>&page=<?=$prev_page?>&tab=2" class="pg_btn prev">이전</a>
+                <?php } ?>
+
+                <?php for ($i = $start_page; $i <= $end_page; $i++) { ?>
+                    <a href="?<?=$query_string?>&page=<?=$i?>&tab=2" class="pg_btn num <?=$page == $i ? 'active' : ''?>"><?=$i?></a>
+                <?php } ?>
+
+                <?php if ($end_page < $total_page) { ?>
+                    <a href="?<?=$query_string?>&page=<?=$next_page?>&tab=2" class="pg_btn next">다음</a>
+                    <a href="?<?=$query_string?>&page=<?=$total_page?>&tab=2" class="pg_btn last">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.7998 7.99935L4.7998 13.9993M10.7998 7.99935L4.7998 1.99935M10.7998 7.99935H2.9998" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                <?php } ?>
+            </div>
+        <?php } ?>
 </div>
 
 <!--후기 URL 팝업-->
@@ -461,6 +642,38 @@ $(document).ready(function(){
 	$('.popup_url_head .close').on('click', function(){
 		$('.popup_url_box').removeClass('show');
 	})
+
+    // 25.06.24 페이지네비게이션 서치 스크립트 추가
+    fnSearch = function() {
+        $("input[name='page']").val(1);
+        var baseUrl = '<?=PATH_HOME?>?' + '<?=get("page")?>' + '&hero_code=' + '<?=$view["hero_id"]?>' + '&view=userManagerView';
+        // 탭 상태 저장
+        localStorage.setItem('activeTab', '2');
+
+        $("#searchForm2").attr("action", baseUrl).submit();
+        return false;
+    }
+
+    $('.pagination a').on('click', function(e) {
+        e.preventDefault();
+        var href = $(this).attr('href');
+        localStorage.setItem('activeTab', '2');
+        window.location.href = href;
+    });
+
+    var activeTab = localStorage.getItem('activeTab');
+    if(activeTab === '2') {
+        if(window.parent && window.parent.$) {
+            // 탭 메뉴 활성화
+            window.parent.$('.viewTabList li').removeClass('on');
+            window.parent.$('.viewTabList li[data-idx="2"]').addClass('on');
+
+            // 컨텐츠 영역 활성화
+            window.parent.$('.viewTabContents .content_item').removeClass('active user_info');
+            window.parent.$('.viewTabContents .content_item[data-idx="2"]').addClass('active user_info');
+        }
+        localStorage.removeItem('activeTab');
+    }
 });
 
 //후기 URL 팝업데이터
@@ -484,3 +697,4 @@ function popupData(location, divName) {
 
 </script>
 
+<!-- musign 페이지 네비게이션 스크립트 추가 25.06.24 -->

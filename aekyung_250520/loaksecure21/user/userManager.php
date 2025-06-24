@@ -168,14 +168,32 @@ if($_GET["kewyword"] && $_GET["select"] != 'none') { //
 }
 
 
+// 총 데이터 수
 //$total_sql = " SELECT count(*) cnt FROM member WHERE hero_use = 0 ".$search;
-$total_sql = " SELECT count(*) cnt FROM member m LEFT JOIN member_gisu mg ON m.hero_code = mg.hero_code WHERE m.hero_use = 0 ".$search;
-sql($total_sql);
+// 전체 데이터 수 (검색 조건 없이)
+$total_all_sql = " SELECT count(*) cnt FROM (
+    SELECT m.hero_code 
+    FROM member m 
+    LEFT JOIN member_gisu mg ON m.hero_code = mg.hero_code 
+    WHERE m.hero_use = 0
+    GROUP BY m.hero_code
+) AS t";
+$total_all_result = sql($total_all_sql);
+$total_all_res = mysql_fetch_assoc($total_all_result);
+$total_all = $total_all_res['cnt'];
 
-
-$out_res = mysql_fetch_assoc($out_sql);
+// 검색 결과 데이터 수
+$total_sql = " SELECT count(*) cnt FROM (
+    SELECT m.hero_code 
+    FROM member m 
+    LEFT JOIN member_gisu mg ON m.hero_code = mg.hero_code 
+    WHERE m.hero_use = 0 ".$search."
+    GROUP BY m.hero_code
+) AS t";
+$total_result = sql($total_sql);
+$out_res = mysql_fetch_assoc($total_result);
 $total_data = $out_res['cnt'];
-$i=$total_data;
+$i = $total_data;
 
 $list_page=$_REQUEST['list_count']==""?20:$_REQUEST['list_count'];
 $page_per_list=10;
@@ -201,11 +219,11 @@ $sql .= " , mg.hero_board, mg.hero_board_group "; // member_gisu 테이블의 컬럼 �
 $sql .= " FROM member m ";
 $sql .= " LEFT JOIN member_gisu mg ON m.hero_code = mg.hero_code ";
 $sql .= " WHERE m.hero_use = 0 " . $search;
+$sql .= " GROUP BY m.hero_code ";
 $sql .= " ORDER BY m.hero_idx DESC ";
 $sql .= " LIMIT " . $start . "," . $list_page;
 
 $list_res = sql($sql);
-var_dump($sql);
 ?>
 <form name="searchForm" id="searchForm" action="<?=PATH_HOME.'?'.get('page');?>">
     <input type="hidden" name="idx" value="<?=$_GET["idx"]?>" />
@@ -427,11 +445,11 @@ var_dump($sql);
                 <div class="search_inner">
                     <div class="select-wrap">
                         <select name="select">
-                            <option value="none" selected>선택</option>
-                            <option value="hero_nick" <?=$_GET["select"] == "hero_nick" ? "selected" : "" ?>>닉네임</option>
-                            <option value="hero_id" <?=$_GET["select"] == "hero_id" ? "selected" : "" ?>>아이디</option>
-                            <option value="hero_name" <?=$_GET["select"] == "hero_name" ? "selected" : "" ?>>이름</option>
-                            <option value="hero_hp" <?=$_GET["select"] == "hero_hp" ? "selected" : "" ?>>연락처</option>
+                            <option value="none" <?=!isset($_GET["select"]) || $_GET["select"] == "none" ? "selected" : ""?>>선택</option>
+                            <option value="hero_nick" <?=$_GET["select"] == "m.hero_nick" ? "selected" : ""?>>닉네임</option>
+                            <option value="hero_id" <?=$_GET["select"] == "m.hero_id" ? "selected" : ""?>>아이디</option>
+                            <option value="hero_name" <?=$_GET["select"] == "m.hero_name" ? "selected" : ""?>>이름</option>
+                            <option value="hero_hp" <?=$_GET["select"] == "m.hero_hp" ? "selected" : ""?>>연락처</option>
 <!--                            <option value="hero_title" --><?php //=$_GET["select"] == "hero_title" ? "selected" : "" ?><!-->체험단명</option>-->
                         </select>
                     </div>
@@ -588,7 +606,7 @@ var_dump($sql);
 
     <div class="searchCnt">
         <h4>검색 결과</h4>
-        <p class="postNum"><span class="line">개</span><span class="op_5">전체 <?=number_format($total_data)?>개</span></p>
+        <p class="postNum"><span class="line"><?=number_format($total_data)?>개</span><span class="op_5">전체 <?=number_format($total_all)?>개</span></p>
     </div>
 
     <!-- 250618 작업중 -->
@@ -952,7 +970,6 @@ var_dump($sql);
 </tbody>
 </table> -->
 
-</form>
 
 <!--콘텐츠 URL 팝업-->
 <div class="popup_url_box" id="pop_01">
@@ -979,21 +996,21 @@ var_dump($sql);
                     <tbody>
                     <tr>
                         <td>
-                            <input type="checkbox" id="chk1" />
+                            <input type="checkbox" id="chk1" name="chk_id"/>
                             <label for="chk1"></label>
                         </td>
                         <td>아이디</td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="checkbox" id="chk2" />
+                            <input type="checkbox" id="chk2" name="chk_nick"/>
                             <label for="chk2"></label>
                         </td>
                         <td>닉네임</td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="checkbox" id="chk3" />
+                            <input type="checkbox" id="chk3" name="chk_name"/>
                             <label for="chk3"></label>
                         </td>
                         </td>
@@ -1001,21 +1018,21 @@ var_dump($sql);
                     </tr>
                     <tr>
                         <td>
-                            <input type="checkbox" id="chk4" />
+                            <input type="checkbox" id="chk4" name="chk_age"/>
                             <label for="chk4"></label>
                         </td>
                         <td>나이</td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="checkbox" id="chk5" />
+                            <input type="checkbox" id="chk5" name="chk_sex"/>
                             <label for="chk5"></label>
                         </td>
                         <td>성별</td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="checkbox" id="chk6" />
+                            <input type="checkbox" id="chk6" name="chk_level"/>
                             <label for="chk6"></label>
                         </td>
                         <td>서포터즈</td>
@@ -1027,11 +1044,30 @@ var_dump($sql);
         </div>
     </div>
 </div>
-
+</form>
 
 
 <div class="pagingWrap">
-    <? include_once PATH_INC_END.'page.php';?>
+    <?php
+    // 체크박스 항목 array 처리하여 전달
+    $params = $_GET;
+    // page 파라미터 제거 (페이지네이션에서 따로 처리)
+    unset($params['page']);
+
+    $query_string = '';
+    foreach($params as $key => $value) {
+        if(is_array($value)) {
+            foreach($value as $v) {
+                $query_string .= '&' . $key . '[]=' . urlencode($v);
+            }
+        } else {
+            $query_string .= '&' . $key . '=' . urlencode($value);
+        }
+    }
+    $next_path = $query_string;
+
+    include_once PATH_INC_END.'page.php';
+    ?>
 </div>
 <script>
     $(document).ready(function(){
@@ -1054,7 +1090,10 @@ var_dump($sql);
         }
 
         fnExcel = function() {
-            $("#searchForm").attr("action","/loaksecure21/user/userManger_excel.php").submit();
+            var form = document.getElementById('searchForm');
+            form.action = '/loaksecure21/user/userManger_excel.php';
+            form.submit();
+            //$("#searchForm").attr("action","/loaksecure21/user/userManger_excel.php").submit();
         }
     })
 </script>

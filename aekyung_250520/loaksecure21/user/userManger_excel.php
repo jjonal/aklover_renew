@@ -13,104 +13,222 @@ print("<meta http-equiv=\"Content-Type\" content=\"application/vnd.ms-excel; cha
 
 $search = "";
 
-if($_GET["hero_point_start"]) {
-	$search .= " AND hero_point >= '".$_GET["hero_point_start"]."' ";
-}
+//if($_GET["hero_point_start"]) {
+//	$search .= " AND hero_point >= '".$_GET["hero_point_start"]."' ";
+//}
+//
+//if($_GET["hero_point_end"]) {
+//	$search .= " AND hero_point <= '".$_GET["hero_point_start"]."' ";
+//}
+//
+//if($_GET["hero_blog"]) {
+//	if($_GET["hero_blog"] == "1") {
+//		$search .= " AND  hero_blog_00 is not null  AND  hero_blog_00 != '' ";
+//	} else if($_GET["hero_blog"] == "2") {
+//		$search .= " AND  hero_blog_04 is not null  AND  hero_blog_04 != '' ";
+//	} else if($_GET["hero_blog"] == "3") {
+//		$search .= " AND  ((hero_blog_00 is not null  AND  hero_blog_00 != '') or (hero_blog_04 is not null  AND  hero_blog_04 != ''))  ";
+//	} else if($_GET["hero_blog"] == "4") {
+//		$search .= " AND  hero_blog_00 is not null  AND  hero_blog_00 != '' AND hero_blog_04 is not null  AND  hero_blog_04 != '' ";
+//	} else if($_GET["hero_blog"] == "5") {
+//		$search .= " AND  (hero_blog_03 is not null  AND  hero_blog_03 != '' AND hero_blog_06 is not null  AND  hero_blog_06 != ''  AND hero_blog_07 is not null  AND  hero_blog_07 != '' AND hero_blog_08 is not null  AND  hero_blog_08 != '' ) ";
+//	} else if($_GET["hero_blog"] == "6") {
+//	    $search .= " AND  hero_naver_influencer is not null  AND  hero_naver_influencer != '' ";
+//	}
+//}
+//
+//if($_GET["hero_memo_01_image"]) {
+//	$search .= " AND hero_memo_01_image = '".$_GET["hero_memo_01_image"]."' ";
+//}
+//
+//if($_GET["hero_memo_01"]) {
+//	$search .= " AND hero_memo_01 = '".$_GET["hero_memo_01"]."' ";
+//}
+//
+//if($_GET["hero_insta_image_grade"]) {
+//	$search .= " AND hero_insta_image_grade = '".$_GET["hero_insta_image_grade"]."' ";
+//}
+//
+//if($_GET["hero_insta_grade"]) {
+//	$search .= " AND hero_insta_grade = '".$_GET["hero_insta_grade"]."' ";
+//}
+//
+//if($_GET["hero_youtube_grade"]) {
+//	$search .= " AND hero_youtube_grade = '".$_GET["hero_youtube_grade"]."' ";
+//}
+//
+//if($_GET["hero_jumin"]) {
+//	$search .= " AND hero_jumin = '".$_GET["hero_jumin"]."' ";
+//}
+//
+//if($_GET["hero_level_start"]) {
+//	$search .= " AND hero_level >= '".$_GET["hero_level_start"]."' ";
+//}
+//
+//if($_GET["hero_level_end"]) {
+//	$search .= " AND hero_level <= '".$_GET["hero_level_end"]."' ";
+//}
+//
+//if($_GET["hero_oldday_start"]) {
+//	$search .= " AND date_format(hero_oldday,'%Y-%m-%d') >= '".$_GET["hero_oldday_start"]."' ";
+//}
+//
+//if($_GET["hero_oldday_end"]) {
+//	$search .= " AND date_format(hero_oldday,'%Y-%m-%d') <= '".$_GET["hero_oldday_end"]."' ";
+//}
+//
+//if($_GET["hero_age_start"]) {
+//	$birthYear = date("Y")-$_GET["hero_age_start"]+1;
+//	$search .= " AND substr(hero_jumin,1,4) <= '".$birthYear."' ";
+//}
+//
+//if($_GET["hero_age_end"]) {
+//	$birthYear = date("Y")-$_GET["hero_age_end"]+1;
+//	$search .= " AND substr(hero_jumin,1,4) >= '".$birthYear."' ";
+//}
+//
+//
+//if($_GET["kewyword"]) {
+//	$search .= " AND ".$_GET["select"]." like '%".$_GET["kewyword"]."%' ";
+//}
 
-if($_GET["hero_point_end"]) {
-	$search .= " AND hero_point <= '".$_GET["hero_point_start"]."' ";
-}
-
-if($_GET["hero_blog"]) {
-	if($_GET["hero_blog"] == "1") {
-		$search .= " AND  hero_blog_00 is not null  AND  hero_blog_00 != '' ";
-	} else if($_GET["hero_blog"] == "2") {
-		$search .= " AND  hero_blog_04 is not null  AND  hero_blog_04 != '' ";
-	} else if($_GET["hero_blog"] == "3") {
-		$search .= " AND  ((hero_blog_00 is not null  AND  hero_blog_00 != '') or (hero_blog_04 is not null  AND  hero_blog_04 != ''))  ";
-	} else if($_GET["hero_blog"] == "4") {
-		$search .= " AND  hero_blog_00 is not null  AND  hero_blog_00 != '' AND hero_blog_04 is not null  AND  hero_blog_04 != '' ";
-	} else if($_GET["hero_blog"] == "5") {
-		$search .= " AND  (hero_blog_03 is not null  AND  hero_blog_03 != '' AND hero_blog_06 is not null  AND  hero_blog_06 != ''  AND hero_blog_07 is not null  AND  hero_blog_07 != '' AND hero_blog_08 is not null  AND  hero_blog_08 != '' ) ";
-	} else if($_GET["hero_blog"] == "6") {
-	    $search .= " AND  hero_naver_influencer is not null  AND  hero_naver_influencer != '' ";
-	}
-}
-
-if($_GET["hero_memo_01_image"]) {
-	$search .= " AND hero_memo_01_image = '".$_GET["hero_memo_01_image"]."' ";
-}
-
-if($_GET["hero_memo_01"]) {
-	$search .= " AND hero_memo_01 = '".$_GET["hero_memo_01"]."' ";
-}
-
-if($_GET["hero_insta_image_grade"]) {
-	$search .= " AND hero_insta_image_grade = '".$_GET["hero_insta_image_grade"]."' ";
-}
-
-if($_GET["hero_insta_grade"]) {
-	$search .= " AND hero_insta_grade = '".$_GET["hero_insta_grade"]."' ";
-}
-
-if($_GET["hero_youtube_grade"]) {
-	$search .= " AND hero_youtube_grade = '".$_GET["hero_youtube_grade"]."' ";
-}
-
-if($_GET["hero_jumin"]) {
-	$search .= " AND hero_jumin = '".$_GET["hero_jumin"]."' ";
-}
-
-if($_GET["hero_level_start"]) {
-	$search .= " AND hero_level >= '".$_GET["hero_level_start"]."' ";
-}
-
-if($_GET["hero_level_end"]) {
-	$search .= " AND hero_level <= '".$_GET["hero_level_end"]."' ";
-}
-
-if($_GET["hero_oldday_start"]) {
-	$search .= " AND date_format(hero_oldday,'%Y-%m-%d') >= '".$_GET["hero_oldday_start"]."' ";
-}
-
-if($_GET["hero_oldday_end"]) {
-	$search .= " AND date_format(hero_oldday,'%Y-%m-%d') <= '".$_GET["hero_oldday_end"]."' ";
+// 25.06.24 키워드 변수 변경 musign
+if($_GET["hero_chk_phone"]) {
+    if($_GET["hero_chk_phone"] == "1") {
+        $search .= " AND hero_chk_phone = '1' ";
+    } else {
+        $search .= " AND hero_chk_phone != '1' ";
+    }
 }
 
 if(strlen($_GET["hero_sex"]) > 0) {
 	$search .= " AND hero_sex = '".$_GET["hero_sex"]."' ";
 }
 
-if($_GET["hero_age_start"]) {
-	$birthYear = date("Y")-$_GET["hero_age_start"]+1;
-	$search .= " AND substr(hero_jumin,1,4) <= '".$birthYear."' ";
-}
-
-if($_GET["hero_age_end"]) {
-	$birthYear = date("Y")-$_GET["hero_age_end"]+1;
-	$search .= " AND substr(hero_jumin,1,4) >= '".$birthYear."' ";
-}
-
-if($_GET["hero_chk_phone"]) {
-	if($_GET["hero_chk_phone"] == "1") {
-		$search .= " AND hero_chk_phone = '1' ";
-	} else {
-		$search .= " AND hero_chk_phone != '1' ";
-	}
-}
-
 if($_GET["hero_chk_email"]) {
-	if($_GET["hero_chk_email"] == "1") {
-		$search .= " AND hero_chk_email = '1' ";
-	} else {
-		$search .= " AND hero_chk_email != '1' ";
-	}
+    if($_GET["hero_chk_email"] == "1") {
+        $search .= " AND hero_chk_email = '1' ";
+    } else {
+        $search .= " AND hero_chk_email != '1' ";
+    }
 }
 
-if($_GET["kewyword"]) {
-	$search .= " AND ".$_GET["select"]." like '%".$_GET["kewyword"]."%' ";
+// 팀구분
+if($_GET["hero_board_group"]) {
+    if($_GET["hero_board_group"] == "b") { // 블로그
+        $search .= " AND mg.hero_board_group = 'b' ";
+    } else if($_GET["hero_board_group"] == "i") { // 인스타
+        $search .= " AND mg.hero_board_group = 'i' ";
+    } else if($_GET["hero_board_group"] == "s") { // 숏폼
+        $search .= " AND mg.hero_board_group = 's' ";
+    }
 }
-$sql  = " SELECT *, (total_point - use_point) AS hero_point FROM ";
+
+// 서포터즈 구분
+if( !empty($_GET["hero_level"]) && is_array($_GET["hero_level"]) ) {
+
+    $hero_level_conditions = array(); // array() 사용
+
+    foreach($_GET["hero_level"] as $level_type) {
+        switch($level_type) {
+            case "9996": // 베이직 뷰티 & 라이프 클럽
+                $hero_level_conditions[] = "(m.hero_level = '9996')";
+                break;
+            case "9994": // 프리미어 뷰티 클럽
+                $hero_level_conditions[] = "(m.hero_level = '9994')";
+                break;
+            case "etc": // 프리미어 라이프 클럽
+                $hero_level_conditions[] = "((m.hero_level != '') or (m.hero_level != ''))";
+                break;
+        }
+    }
+
+    if(!empty($hero_level_conditions)) {
+        $search .= " AND (" . implode(" OR ", $hero_level_conditions) . ")";
+    }
+}
+
+if($_GET["startDate"]) {
+    $search .= " AND date_format(m.hero_oldday,'%Y-%m-%d') >= '".$_GET["startDate"]."' ";
+}
+
+if($_GET["edate"]) {
+    $search .= " AND date_format(m.hero_oldday,'%Y-%m-%d') <= '".$_GET["edate"]."' ";
+}
+
+
+// 연령대 현재기준으로 계산 (만 나이 적용)
+if($_GET["startAge"]) {
+    $search .= " AND (
+        YEAR(CURRENT_DATE) - SUBSTR(m.hero_jumin,1,4)
+        - (DATE_FORMAT(CURRENT_DATE, '%m%d') < CONCAT(SUBSTR(m.hero_jumin,5,2), SUBSTR(m.hero_jumin,7,2)))
+    ) >= " . $_GET["startAge"];
+}
+
+if($_GET["endAge"]) {
+    $search .= " AND (
+        YEAR(CURRENT_DATE) - SUBSTR(m.hero_jumin,1,4)
+        - (DATE_FORMAT(CURRENT_DATE, '%m%d') < CONCAT(SUBSTR(m.hero_jumin,5,2), SUBSTR(m.hero_jumin,7,2)))
+    ) <= " . $_GET["endAge"];
+}
+
+// sns 유무
+
+if(!empty($_GET["hero_blog"]) && is_array($_GET["hero_blog"])) {
+
+    $hero_blog_conditions = array(); // array() 사용
+
+    foreach($_GET["hero_blog"] as $blog_type) {
+        switch($blog_type) {
+            case "1": // 블로그
+                $hero_blog_conditions[] = "(m.hero_blog_00 is not null AND hero_blog_00 != '')";
+                break;
+            case "2": // 인스타
+                $hero_blog_conditions[] = "(m.hero_blog_04 is not null AND hero_blog_04 != '')";
+                break;
+            case "3": // 블로그 or 인스타
+                $hero_blog_conditions[] = "((m.hero_blog_00 is not null AND m.hero_blog_00 != '') or (m.hero_blog_04 is not null AND m.hero_blog_04 != ''))";
+                break;
+            case "4": // 블로그 and 인스타
+                $hero_blog_conditions[] = "(m.hero_blog_00 is not null AND m.hero_blog_00 != '' AND m.hero_blog_04 is not null AND m.hero_blog_04 != '')";
+                break;
+            case "5": // 영상 채널
+                $hero_blog_conditions[] = "((m.hero_blog_03 is not null AND m.hero_blog_03 != '') OR (m.hero_blog_06 is not null AND m.hero_blog_06 != '') OR (m.hero_blog_07 is not null AND m.hero_blog_07 != '') OR (m.hero_blog_08 is not null AND m.hero_blog_08 != ''))";
+                break;
+            case "6": // 인플루언서
+                $hero_blog_conditions[] = "(m.hero_naver_influencer is not null AND m.hero_naver_influencer != '')";
+                break;
+            case "7": // 숏폼
+                $hero_blog_conditions[] = "(m.hero_blog_07 is not null AND hero_blog_07 != '')";
+                break;
+            case "8": // 기타
+                $hero_blog_conditions[] = "(m.hero_blog_08 is not null AND hero_blog_08 != '')";
+                break;
+        }
+    }
+
+    if(!empty($hero_blog_conditions)) {
+        $search .= " AND (" . implode(" OR ", $hero_blog_conditions) . ")";
+    }
+}
+
+if($_GET["kewyword"] && $_GET["select"] != 'none') { //
+    if($_GET["select"] == 'hero_nick') { // 닉네임 검색
+        $_GET["select"] = 'm.'.$_GET["select"];
+    } elseif ($_GET["select"] == 'hero_name') { // 이름
+        $_GET["select"] = 'm.'.$_GET["select"];
+    } elseif ($_GET["select"] == 'hero_id') { // 아이디
+        $_GET["select"] = 'm.'.$_GET["select"];
+    } elseif ($_GET["select"] == 'hero_hp') { // 전화번호
+        $_GET["select"] = 'm.hero_hp';
+        // 검색어에서 하이픈 제거 후 포맷팅
+        $phone = preg_replace("/[^0-9]/", "", $_GET["kewyword"]); // 숫자만 추출
+        $_GET["kewyword"] = substr($phone, 0, 3) . '-' . substr($phone, 3, 4) . '-' . substr($phone, 7);
+    }
+    $search .= " AND ".$_GET["select"]." like '%".$_GET["kewyword"]."%' ";
+}
+
+$sql = " SELECT *, (total_point - use_point) AS hero_point FROM ";
 $sql .= " (SELECT m.hero_idx, m.hero_code, hero_id, hero_nick, hero_name, hero_jumin, hero_sex ";
 $sql .= " , hero_oldday, hero_hp, hero_mail, hero_address_01, hero_address_02";
 $sql .= " , hero_address_03, hero_chk_phone, hero_chk_email, area, area_etc_text ";
@@ -134,11 +252,21 @@ $list_res = sql($sql,"on");
 <table width="100%" border="1" cellpadding="1" cellspacing="0">
 <tr>
 	<th>고유번호</th>
-	<th>아이디</th>
-	<th>이름</th>
-	<th>닉네임</th>
-	<th>나이</th>
-	<th>성별</th>
+    <?php if(isset($_GET['chk_id']) && $_GET['chk_id'] == 'on'): ?>
+        <th>아이디</th>
+    <?php endif; ?>
+    <?php if(isset($_GET['chk_name']) && $_GET['chk_name'] == 'on'): ?>
+        <th>이름</th>
+    <?php endif; ?>
+    <?php if(isset($_GET['chk_nick']) && $_GET['chk_nick'] == 'on'): ?>
+        <th>닉네임</th>
+    <?php endif; ?>
+    <?php if(isset($_GET['chk_age']) && $_GET['chk_age'] == 'on'): ?>
+        <th>나이</th>
+    <?php endif; ?>
+    <?php if(isset($_GET['chk_sex']) && $_GET['chk_sex'] == 'on'): ?>
+        <th>성별</th>
+    <?php endif; ?>
 	<th>생년월일</th>
 	<th>가입일</th>
 	<th>휴대폰번호</th>
@@ -184,7 +312,13 @@ $list_res = sql($sql,"on");
 	<th>추천방법</th>
 	<th>추천인</th>
 </tr>
-<? while($list = mysql_fetch_assoc($list_res)){
+<?
+$list_res = sql($sql,"on");
+if (!$list_res) {
+    die('SQL 오류 발생: ' . mysql_error());
+}
+
+while($list = mysql_fetch_assoc($list_res)){
 	$age = (date("Y")-substr($list["hero_jumin"],0,4))+1;
 	$hero_sex_txt = "";
 	if($list["hero_sex"] == 0) {
@@ -218,11 +352,21 @@ $list_res = sql($sql,"on");
 ?>
 <tr>
 	<td><?=$list["hero_code"]?></td>
-	<td><?=$list["hero_id"]?></td>
-	<td><?=$list["hero_name"]?></td>
-	<td><?=$list["hero_nick"]?></td>
-	<td><?=$age?></td>
-	<td><?=$hero_sex_txt?></td>
+    <?php if(isset($_GET['chk_id']) && $_GET['chk_id'] == 'on'): ?>
+        <td><?=$list["hero_id"]?></td>
+    <?php endif; ?>
+    <?php if(isset($_GET['chk_name']) && $_GET['chk_name'] == 'on'): ?>
+        <td><?=$list["hero_name"]?></td>
+    <?php endif; ?>
+    <?php if(isset($_GET['chk_nick']) && $_GET['chk_nick'] == 'on'): ?>
+        <td><?=$list["hero_nick"]?></td>
+    <?php endif; ?>
+    <?php if(isset($_GET['chk_age']) && $_GET['chk_age'] == 'on'): ?>
+        <td><?=(date("Y")-substr($list["hero_jumin"],0,4))+1?></td>
+    <?php endif; ?>
+    <?php if(isset($_GET['chk_sex']) && $_GET['chk_sex'] == 'on'): ?>
+        <td><?=$list["hero_sex"] == 0 ? "여" : "남"?></td>
+    <?php endif; ?>
 	<td><?=$list["hero_jumin"]?></td>
 	<td><?=$list["hero_oldday"]?></td>
 	<td><?=$list["hero_hp"]?></td>
@@ -300,5 +444,3 @@ $list_res = sql($sql,"on");
 </tr>
 <? } ?>
 </table>
-
-	

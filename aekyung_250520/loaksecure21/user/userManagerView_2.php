@@ -86,9 +86,9 @@
     sql($total_sql);
 
     $out_res = mysql_fetch_assoc($out_sql);
-    $total_data = $out_res['cnt'];
+    $total_cnt = $out_res['cnt'];
 
-    $i=$total_data;
+    $i=$total_cnt;
 
     //검색 갯수
     $search_sql  = " SELECT count(*) cnt";
@@ -158,7 +158,6 @@
     $list_res = sql($sql);
     $list_cnt = mysql_num_rows($list_res);
 
-    var_dump($sql);
     ?>
 
     <form name="searchForm2" id="searchForm2" action="<?=PATH_HOME?>">
@@ -251,7 +250,7 @@
 <!--    <h2 class="table_tit">콘텐츠 검색</h2>-->
     <div class="searchCnt">
         <h4>검색 결과</h4>
-        <p class="postNum"><span class="line"><?=number_format($search_total)?>개</span><span class="op_5">전체 <?=number_format($total_data)?>개</span></p>
+        <p class="postNum"><span class="line"><?=number_format($search_total)?>개</span><span class="op_5">전체 <?=number_format($total_cnt)?>개</span></p>
     </div>
     <p class="table_desc"></p>
     <div class="searchResultBox_container">

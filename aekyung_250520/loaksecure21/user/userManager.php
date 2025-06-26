@@ -232,6 +232,9 @@ $list_res = sql($sql);
     <input type="hidden" name="hero_code" value="" />
     <input type="hidden" name="view" value="" />
 
+    <div class="searchCnt">
+        <h4>회원 검색</h4>
+    </div>
     <!-- 250618 회원정보 회원 검색-->
     <table class="searchBox">
         <colgroup>
@@ -450,7 +453,7 @@ $list_res = sql($sql);
                             <option value="hero_id" <?=$_GET["select"] == "m.hero_id" ? "selected" : ""?>>아이디</option>
                             <option value="hero_name" <?=$_GET["select"] == "m.hero_name" ? "selected" : ""?>>이름</option>
                             <option value="hero_hp" <?=$_GET["select"] == "m.hero_hp" ? "selected" : ""?>>연락처</option>
-<!--                            <option value="hero_title" --><?php //=$_GET["select"] == "hero_title" ? "selected" : "" ?><!-->체험단명</option>-->
+                            <!--                            <option value="hero_title" --><?php //=$_GET["select"] == "hero_title" ? "selected" : "" ?><!-->체험단명</option>-->
                         </select>
                     </div>
                     <input class="search_txt" type="text" name="kewyword" value="<?=$_GET["kewyword"]?>"/>
@@ -971,79 +974,79 @@ $list_res = sql($sql);
 </table> -->
 
 
-<!--콘텐츠 URL 팝업-->
-<div class="popup_url_box" id="pop_01">
-    <div class="popup_url_cont">
-        <div class="popup_url_head">
-            <svg class="close" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.41073 4.41083C4.73617 4.08539 5.26381 4.08539 5.58925 4.41083L15.5892 14.4108C15.9147 14.7363 15.9147 15.2639 15.5892 15.5893C15.2638 15.9148 14.7362 15.9148 14.4107 15.5893L4.41073 5.58934C4.0853 5.2639 4.0853 4.73626 4.41073 4.41083Z" fill="black"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5892 4.41083C15.2638 4.08539 14.7362 4.08539 14.4107 4.41083L4.41072 14.4108C4.08529 14.7363 4.08529 15.2639 4.41072 15.5893C4.73616 15.9148 5.2638 15.9148 5.58924 15.5893L15.5892 5.58934C15.9147 5.2639 15.9147 4.73626 15.5892 4.41083Z" fill="black"/>
-            </svg>
-        </div>
-        <div class="popup_url_body mu_form">
-            <div class="tit">회원 목록 다운로드</div>
-            <p class="desc">추출할 항목을 선택해주세요</p>
-            <div class="popup_checkbox_table">
-                <table>
-                    <colgroup>
-                        <col width="120px" />
-                        <col width="*" />
-                    </colgroup>
-                    <thead>
-                    <th>선택</th>
-                    <th>추출 항목</th>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>
-                            <input type="checkbox" id="chk1" name="chk_id"/>
-                            <label for="chk1"></label>
-                        </td>
-                        <td>아이디</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox" id="chk2" name="chk_nick"/>
-                            <label for="chk2"></label>
-                        </td>
-                        <td>닉네임</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox" id="chk3" name="chk_name"/>
-                            <label for="chk3"></label>
-                        </td>
-                        </td>
-                        <td>이름</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox" id="chk4" name="chk_age"/>
-                            <label for="chk4"></label>
-                        </td>
-                        <td>나이</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox" id="chk5" name="chk_sex"/>
-                            <label for="chk5"></label>
-                        </td>
-                        <td>성별</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox" id="chk6" name="chk_level"/>
-                            <label for="chk6"></label>
-                        </td>
-                        <td>서포터즈</td>
-                    </tr>
-                    </tbody>
-                </table>
+    <!--콘텐츠 URL 팝업-->
+    <div class="popup_url_box" id="pop_01">
+        <div class="popup_url_cont">
+            <div class="popup_url_head">
+                <svg class="close" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4.41073 4.41083C4.73617 4.08539 5.26381 4.08539 5.58925 4.41083L15.5892 14.4108C15.9147 14.7363 15.9147 15.2639 15.5892 15.5893C15.2638 15.9148 14.7362 15.9148 14.4107 15.5893L4.41073 5.58934C4.0853 5.2639 4.0853 4.73626 4.41073 4.41083Z" fill="black"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5892 4.41083C15.2638 4.08539 14.7362 4.08539 14.4107 4.41083L4.41072 14.4108C4.08529 14.7363 4.08529 15.2639 4.41072 15.5893C4.73616 15.9148 5.2638 15.9148 5.58924 15.5893L15.5892 5.58934C15.9147 5.2639 15.9147 4.73626 15.5892 4.41083Z" fill="black"/>
+                </svg>
             </div>
-            <a href="javascript:;" class="btnAdd3 pop_submit" onClick="fnExcel();">파일 다운로드</a>
+            <div class="popup_url_body mu_form">
+                <div class="tit">회원 목록 다운로드</div>
+                <p class="desc">추출할 항목을 선택해주세요</p>
+                <div class="popup_checkbox_table">
+                    <table>
+                        <colgroup>
+                            <col width="120px" />
+                            <col width="*" />
+                        </colgroup>
+                        <thead>
+                        <th>선택</th>
+                        <th>추출 항목</th>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="chk1" name="chk_id"/>
+                                <label for="chk1"></label>
+                            </td>
+                            <td>아이디</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="chk2" name="chk_nick"/>
+                                <label for="chk2"></label>
+                            </td>
+                            <td>닉네임</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="chk3" name="chk_name"/>
+                                <label for="chk3"></label>
+                            </td>
+                            </td>
+                            <td>이름</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="chk4" name="chk_age"/>
+                                <label for="chk4"></label>
+                            </td>
+                            <td>나이</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="chk5" name="chk_sex"/>
+                                <label for="chk5"></label>
+                            </td>
+                            <td>성별</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="chk6" name="chk_level"/>
+                                <label for="chk6"></label>
+                            </td>
+                            <td>서포터즈</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <a href="javascript:;" class="btnAdd3 pop_submit" onClick="fnExcel();">파일 다운로드</a>
+            </div>
         </div>
     </div>
-</div>
 </form>
 
 

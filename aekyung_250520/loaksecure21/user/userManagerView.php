@@ -1,13 +1,13 @@
 <link rel="stylesheet" href="<?=ADMIN_DEFAULT?>/css/user.css?v=250617" type="text/css" />
 <link rel="stylesheet" href="<?=ADMIN_DEFAULT?>/css/sub.css?v=250617" type="text/css" />
 
-<!-- 뷰 리스트 탭 --> 
+<!-- 뷰 리스트 탭 -->
 <ul class="viewTabList">
-	<li class="on" data-idx="1"><a>회원 정보</a></li>
-	<li data-idx="2"><a>콘텐츠 관리</a></li>
-	<li data-idx="3"><a>체험단 신청이력</a></li>
-	<li data-idx="4"><a>활동 관리</a></li>
-	<li data-idx="5"><a>서포터즈 이력 관리</a></li>
+    <li class="on" data-idx="1"><a>회원 정보</a></li>
+    <li data-idx="2"><a>콘텐츠 관리</a></li>
+    <li data-idx="3"><a>체험단 신청이력</a></li>
+    <li data-idx="4"><a>활동 관리</a></li>
+    <li data-idx="5"><a>서포터즈 이력 관리</a></li>
 </ul>
 
 <?
@@ -136,21 +136,21 @@ if($view["hero_board_group"] == "b") {
 ?>
 
 <div class="viewTabContents">
-	<ul>
-		<li class="content_item active user_info" data-idx="1">
-			<? include_once PATH_INC_END.'/user/userManagerView_1.php';?>
-		</li> 
-		<li class="content_item" data-idx="2">
-			<? include_once PATH_INC_END.'/user/userManagerView_2.php';?>
-		</li>
-		<li class="content_item" data-idx="3">
-			<? include_once PATH_INC_END.'/user/userManagerView_3.php';?>
-		</li>
-		<li class="content_item" data-idx="4">
-			<? include_once PATH_INC_END.'/user/userManagerView_4.php';?>
-		</li>
-		<li class="content_item" data-idx="5">
-			<? include_once PATH_INC_END.'/user/userManagerView_5.php';?>
-		</li>
-	</ul>
+    <ul>
+        <li class="content_item active user_info" data-idx="1">
+            <? include_once PATH_INC_END.'/user/userManagerView_1.php';?>
+        </li>
+        <li class="content_item" data-idx="2">
+            <? include_once PATH_INC_END.'/user/userManagerView_2.php';?>
+        </li>
+        <li class="content_item" data-idx="3">
+            <? include_once PATH_INC_END.'/user/userManagerView_3.php';?>
+        </li>
+        <li class="content_item" data-idx="4">
+            <? include_once PATH_INC_END.'/user/userManagerView_4.php';?>
+        </li>
+        <li class="content_item" data-idx="5">
+            <? include_once PATH_INC_END.'/user/userManagerView_5.php';?>
+        </li>
+    </ul>
 </div> <!-- 25.06.24 각탭 페이지 네비게이션 이동시 탭 활성화를 위해 속성 추가 -->

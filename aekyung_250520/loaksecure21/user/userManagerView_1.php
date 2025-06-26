@@ -1,42 +1,33 @@
 <form name="searchForm" id="searchForm" method="GET">
-<? 
-unset($_GET["hero_code"]);
-unset($_GET["view"]);
-foreach($_GET as $key=>$val) {?>
-<input type="hidden" name="<?=$key?>" value="<?=$val?>" />
-<? } ?>
+    <?
+    unset($_GET["hero_code"]);
+    unset($_GET["view"]);
+    foreach($_GET as $key=>$val) {?>
+        <input type="hidden" name="<?=$key?>" value="<?=$val?>" />
+    <? } ?>
 </form>
 
-<div class="btnGroupFunction">
-    <div class="leftWrap">
-        <h2 class="tit_section">기본정보</h2>
-    </div>
-    <div class="rightWrap">
-        <!-- <a href="javascript:;" onClick="fnPopPoint()" class="btnFunc">포인트 확인</a>
-        <a href="javascript:;" onClick="fnPopWrite()" class="btnFunc">작성글 확인</a> -->
-
-
-        <!-- <a href="javascript:;" onClick="fnPopSuperpass()" class="btnAdd4">슈퍼패스 확인/부여</a> -->
-        <a href="javascript:;" class="btnAdd4 popup_btn" data-popup="01">슈퍼패스 부여</a>
-
-
-        <!-- <a href="javascript:;" onClick="fnPopPenalty()" class="btnFunc">패널티 관리</a>
-        <a href="javascript:;" onClick="fnWithdrawal('<?=$view["hero_nick"]?>')" class="btnFormCancel">회원탈퇴</a> -->
+<div class="tableSection mgt20">
+    <div class="table_top">
+        <h2 class="table_tit">기본정보</h2>
+        <div class="table_btn">
+            <a href="javascript:;" class="btnAdd4 popup_btn" data-popup="01">슈퍼패스 부여</a>
+        </div>
     </div>
 </div>
 
 <form name="viewForm" id="viewForm">
-<input type="hidden" name="mode" />
-<input type="hidden" name="hero_code" value="<?=$view["hero_code"]?>"/>
+    <input type="hidden" name="mode" />
+    <input type="hidden" name="hero_code" value="<?=$view["hero_code"]?>"/>
 
-<table class="searchBox mu_form">
-    <colgroup>
-        <col width="200px">
-        <col width=*>
-        <col width="200px">
-        <col width=*>
-    </colgroup>
-    <tbody>
+    <table class="searchBox mu_form">
+        <colgroup>
+            <col width="200px">
+            <col width=*>
+            <col width="200px">
+            <col width=*>
+        </colgroup>
+        <tbody>
         <tr>
             <th>아이디</th>
             <td><?=$view["hero_id"]?> (LV : <?=$view["hero_level"]?>)</td>
@@ -89,7 +80,7 @@ foreach($_GET as $key=>$val) {?>
                     <input type="text" name="hero_mail_01" value="<?=$hero_mail[0]?>" class="w150 input_hero_mail" readonly/>
                     <div class="inner_between">@</div>
                     <input type="text" name="hero_mail_02" value="<?=$hero_mail[1]?>" class="w150 input_hero_mail" readonly />
-                    
+
                     <label class="akContainer">수정 활성화
                         <input type="checkbox" name="hero_mail_check" id="hero_mail_check">
                         <span class="checkmark"></span>
@@ -146,137 +137,24 @@ foreach($_GET as $key=>$val) {?>
             </td>
             <th>비밀번호 초기화 날짜</th>
             <td id="pw_initialized_datetime"><?=$pw_init["hero_today"]?>
-            <? if(isset($pw_init["hero_today"]) && !empty($pw_init["hero_today"])) {?>
-            &nbsp;&nbsp;&nbsp;<a href="javascript:;" onClick="fnPopResetPwHist()" class="btnFunc">초기화 이력</a>
-            <? }?>
+                <? if(isset($pw_init["hero_today"]) && !empty($pw_init["hero_today"])) {?>
+                    &nbsp;&nbsp;&nbsp;<a href="javascript:;" onClick="fnPopResetPwHist()" class="btnFunc">초기화 이력</a>
+                <? }?>
             </td>
         </tr>
-    </tbody>
-</table>
+        </tbody>
+    </table>
 
 
-<!-- <table class="t_view">
-<colgroup>
-    <col width="150px">
-    <col width=*>
-    <col width="150px">
-    <col width=*>
-</colgroup>
-<tbody>
-    <tr>
-        <th>아이디</th>
-        <td><?=$view["hero_id"]?> (LV : <?=$view["hero_level"]?>)</td>
-        <th>닉네임</th>
-        <td><?=$view["hero_nick"]?></td>
-    </tr>
-    <tr>
-        <th>이름</th>
-        <td><?=$view["hero_name"]?></td>
-        <th>나이</th>
-        <td><?=$view["hero_age"]?></td>
-    </tr>
-    <tr>
-        <th>생년월일</th>
-        <td colspan="3"><?=$view["hero_jumin"]?></td>
-    </tr>
-    <tr>
-        <th>전체포인트</th>
-        <td><?=number_format($view["hero_point"])?> p</td>
-        <th>가용포인트</th>
-        <td><?=number_format($view["hero_point"]-$view["hero_order_point"])?> p</td>
-    </tr>
-    <tr>
-        <th>휴대폰번호</th>
-        <td>
-            <input type="text" name="hero_hp_01" value="<?=$hero_hp[0]?>" class="w100 input_hero_hp" maxlength="4" numberOnly readonly />
-            - <input type="text" name="hero_hp_02" value="<?=$hero_hp[1]?>" class="w100 input_hero_hp" maxlength="4" numberOnly readonly/>
-            - <input type="text" name="hero_hp_03" value="<?=$hero_hp[2]?>" class="w100 input_hero_hp" maxlength="4" numberOnly readonly/>
-            
-            <input type="checkbox" name="hero_hp_check" id="hero_hp_check"/><label>수정 활성화</label>
-        </td>
-        <th>이메일</th>
-        <td>
-            <input type="text" name="hero_mail_01" value="<?=$hero_mail[0]?>" class="w200 input_hero_mail" readonly/>
-            @ <input type="text" name="hero_mail_02" value="<?=$hero_mail[1]?>" class="w200 input_hero_mail" readonly/>
-            
-            <input type="checkbox" name="hero_mail_check" id="hero_mail_check"/><label>수정 활성화</label>
-        </td>
-    </tr>
-    <tr>
-        <th>휴대폰 수신동의</th>
-        <td>
-            <input type="radio" name="hero_chk_phone" id="hero_chk_phone_1" value="1" <?=$view["hero_chk_phone"] == "1" ? "checked":""?>/><label for="hero_chk_phone_1">동의</label>
-            <input type="radio" name="hero_chk_phone" id="hero_chk_phone_0" value="0" <?=$view["hero_chk_phone"] != "1" ? "checked":""?>/><label for="hero_chk_phone_0">미동의</label>
-        </td>
-        <th>이메일 수신동의</th>
-        <td>
-            <input type="radio" name="hero_chk_email" id="hero_chk_email_1" value="1" <?=$view["hero_chk_email"] == "1" ? "checked":""?>/><label for="hero_chk_email_1">동의</label>
-            <input type="radio" name="hero_chk_email" id="hero_chk_email_0" value="0" <?=$view["hero_chk_email"] != "1" ? "checked":""?>/><label for="hero_chk_email_0">미동의</label>
-        </td>
-    </tr>
-    <tr>
-        <th>주소</th>
-        <td colspan="3">
-            [<?=$view["hero_address_01"]?>] <?=$view["hero_address_02"]?> <?=$view["hero_address_03"]?>
-        </td>
-    </tr>
-    <tr>
-        <th>가입경로</th>
-        <td>
-            <?=$view["area"]?>
-            <? if($view["area"]=="기타") {?> 
-                (<?=$view["area_etc_text"]?>)
-            <? } ?>
-        </td>
-        <th>회원가입 인증</th>
-        <td><?=$handphone?><?=$kakaoTalk?><?=$naver?><?=$google?><?=$facebook?></td>
-    </tr>
-    <tr>
-        <th>추천인</th>
-        <td colspan="3">
-            <? if($view["hero_user_type"] == "hero_id") {?>
-                아이디 추천 : 
-            <? } else if($view["hero_user_type"] == "hero_nick") { ?>
-                닉네임 추천 :
-            <? } ?>
-            <?=$view["hero_user"]?>
-        </td>
-    </tr>
-    <tr>
-        <th>가입일</th>
-        <td><?=$view["hero_oldday"]?></td>
-        <th>최종 로그인 날짜</th>
-        <td><?=$view["hero_today"]?>&nbsp;&nbsp;&nbsp;<a href="javascript:;" onClick="fnPopLoginHist()" class="btnFunc">로그인 이력</a></td>
-    </tr>
-    <tr>
-        <th>비밀번호 초기화</th>
-        <td>
-            <a href="javascript:;" onClick="fnPWInitialize('<?=$view["hero_id"]?>')" class="btnFunc2">초기화</a>
-            <input type="text" name="pw_initialized" value="" style="width:150px; outline:none; border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" readonly />
-        </td>
-        <th>최종 비밀번호 초기화<br/>날짜</th>
-        <td id="pw_initialized_datetime"><?=$pw_init["hero_today"]?>
-        <? if(isset($pw_init["hero_today"]) && !empty($pw_init["hero_today"])) {?>
-        &nbsp;&nbsp;&nbsp;<a href="javascript:;" onClick="fnPopResetPwHist()" class="btnFunc">초기화 이력</a>
-        <? }?>
-        </td>
-    </tr>
-</tbody>
-</table> -->
-
-<!-- <div class="align_c margin_t20">
-    <a href="javascript:;" onclick="fnEdit()" class="btnAdd">수정</a>
-</div> -->
-
-<ul class="splitContent">
-    <li>
-        <p class="sub_tit">추가정보</p>
-        <table class="searchBox">
-            <colgroup>
-                <col width="200px">
-                <col width=*>
-            </colgroup>
-            <tbody>
+    <ul class="splitContent">
+        <li>
+            <p class="sub_tit">추가정보</p>
+            <table class="searchBox">
+                <colgroup>
+                    <col width="200px">
+                    <col width=*>
+                </colgroup>
+                <tbody>
                 <tr>
                     <th>알게된 경로</th>
                     <td>
@@ -297,17 +175,17 @@ foreach($_GET as $key=>$val) {?>
                 <tr>
                     <th>자녀유무 /태어난 연도</th>
                     <td>
-                    <? if($view["hero_qs_04"]) {
-                        $hero_qs_05_arr = explode(",",$view["hero_qs_05"]);
-                        $hero_qs_05_txt = "";
-                        foreach($hero_qs_05_arr as $val) {
-                            if($hero_qs_05_txt) $hero_qs_05_txt .= ", ";
-                            $hero_qs_05_txt .= $val;
-                        }
-                        
-                    ?>
-                        <?=$view["hero_qs_03"] == "Y" ? "있음":"없음"?> / <?=$view["hero_qs_04"]?>명 / <?=$hero_qs_05_txt?> 
-                    <? } ?>
+                        <? if($view["hero_qs_04"]) {
+                            $hero_qs_05_arr = explode(",",$view["hero_qs_05"]);
+                            $hero_qs_05_txt = "";
+                            foreach($hero_qs_05_arr as $val) {
+                                if($hero_qs_05_txt) $hero_qs_05_txt .= ", ";
+                                $hero_qs_05_txt .= $val;
+                            }
+
+                            ?>
+                            <?=$view["hero_qs_03"] == "Y" ? "있음":"없음"?> / <?=$view["hero_qs_04"]?>명 / <?=$hero_qs_05_txt?>
+                        <? } ?>
                     </td>
                 </tr>
                 <tr>
@@ -335,17 +213,17 @@ foreach($_GET as $key=>$val) {?>
                         <? } ?>
                     </td>
                 </tr>
-            </tbody>
-        </table>
-    </li>
-    <li>
-        <p class="sub_tit">SNS 관리</p>
-        <table class="searchBox">
-            <colgroup>
-                <col width="200px">
-                <col width=*>
-            </colgroup>
-            <tbody class="mu_form">
+                </tbody>
+            </table>
+        </li>
+        <li>
+            <p class="sub_tit">SNS 관리</p>
+            <table class="searchBox">
+                <colgroup>
+                    <col width="200px">
+                    <col width=*>
+                </colgroup>
+                <tbody class="mu_form">
                 <tr>
                     <th>SNS 퀄리티</th>
                     <td><?=$view["hero_id"]?> (LV : <?=$view["hero_level"]?>)</td>
@@ -356,58 +234,67 @@ foreach($_GET as $key=>$val) {?>
                 </tr>
                 <tr>
                     <th>네이버 블로그</th>
-                    <td>https://blog.naver.com/<input type="text" style="width:200px;margin-left: 5px;" name="hero_blog_00" value="<?=$hero_naver_blog?>" /></td>
+                    <td>
+                        <div class="textLink">
+                            <input type="text" name="hero_short" value="<?=$hero_naver_blog?>" class="w100p"/>
+                            <p onclick="fnSnsLink(this)"><img src="<?=PATH_IMAGE_END?>common/icon_link.svg" alt="연결" /></p>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
                     <th>인스타그램</th>
-                    <td>https://www.instagram.com/<input type="text" style="width:200px;margin-left: 5px;" name="hero_blog_04" value="<?=$hero_instagram?>" /></td>
+                    <td>
+                        <div class="textLink">
+                            <input type="text" name="hero_short" value="<?=$hero_instagram?>" class="w100p"/>
+                            <p onclick="fnSnsLink(this)"><img src="<?=PATH_IMAGE_END?>common/icon_link.svg" alt="연결" /></p>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
                     <th>숏폼</th>
-                    <!-- 유튜브 -->
                     <td>
                         <div class="textLink">
-                            <input type="text" name="hero_blog_03" value="<?=$view["hero_blog_03"]?>" class="w100p"/>
-                            <span><a href=""><img src="<?=PATH_IMAGE_END?>common/icon_link.svg" alt="연결" /></a></span>
+                            <input type="text" name="hero_short" value="https://example.com/123" class="w100p"/>
+                            <p onclick="fnSnsLink(this)"><img src="<?=PATH_IMAGE_END?>common/icon_link.svg" alt="연결" /></p>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <th rowspan="3">기타</th>
-                    <td>
+                    <td class="tb_line">
                         <div class="textLink">
-                            <input type="text" name="hero_blog_08" value="<?=$view["hero_blog_08"]?>" class="w100p"/>
-                            <span><a href=""><img src="<?=PATH_IMAGE_END?>common/icon_link.svg" alt="연결" /></a></span>
+                            <input type="text" name="hero_sns_01" value="https://example.com/123" class="w100p"/>
+                            <p onclick="fnSnsLink(this)"><img src="<?=PATH_IMAGE_END?>common/icon_link.svg" alt="연결" /></p>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <div class="textLink">
-                            <input type="text" name="hero_blog_08" value="<?=$view["hero_blog_08"]?>" class="w100p"/>
-                            <span><a href=""><img src="<?=PATH_IMAGE_END?>common/icon_link.svg" alt="연결" /></a></span>
+                            <input type="text" name="hero_sns_02" value="https://example.com/123" class="w100p"/>
+                            <p onclick="fnSnsLink(this)"><img src="<?=PATH_IMAGE_END?>common/icon_link.svg" alt="연결" /></p>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <div class="textLink">
-                            <input type="text" name="hero_blog_08" value="<?=$view["hero_blog_08"]?>" class="w100p"/>
-                            <span><a href=""><img src="<?=PATH_IMAGE_END?>common/icon_link.svg" alt="연결" /></a></span>
+                            <input type="text" name="hero_sns_03" value="https://example.com/123" class="w100p"/>
+                            <p onclick="fnSnsLink(this)"><img src="<?=PATH_IMAGE_END?>common/icon_link.svg" alt="연결" /></p>
                         </div>
                     </td>
                 </tr>
-            </tbody>
-        </table>
-    </li>
-</ul>
+                </tbody>
+            </table>
+        </li>
+    </ul>
 
-<div class="btnConainer_typeA">
-    <a href="javascript:;" onclick="fnEditSns()" class="btnAdd3 center">수정</a>
-    <a href="javascript:;" onclick="fnList();" class="btnAdd3 right">목록</a>
-</div>
+    <div class="btnConainer_typeA">
+        <a href="javascript:;" onclick="fnEditSns()" class="btnAdd3 center">수정</a>
+        <a href="javascript:;" onclick="fnList();" class="btnAdd3 right">목록</a>
+    </div>
 
-<!-- 
+    <!--
 <p class="tit_section mgt30">SNS 관리</p>
 <table class="t_view mgt10">
 <colgroup>
@@ -569,16 +456,16 @@ foreach($_GET as $key=>$val) {?>
         <th>자녀 수/태어난 년도</th>
         <td>
             <? if($view["hero_qs_04"]) {
-                $hero_qs_05_arr = explode(",",$view["hero_qs_05"]);
-                $hero_qs_05_txt = "";
-                foreach($hero_qs_05_arr as $val) {
-                    if($hero_qs_05_txt) $hero_qs_05_txt .= ", ";
-                    $hero_qs_05_txt .= $val;
-                }
-                
-            ?>
+        $hero_qs_05_arr = explode(",",$view["hero_qs_05"]);
+        $hero_qs_05_txt = "";
+        foreach($hero_qs_05_arr as $val) {
+            if($hero_qs_05_txt) $hero_qs_05_txt .= ", ";
+            $hero_qs_05_txt .= $val;
+        }
+
+        ?>
                 <?=$view["hero_qs_04"]?>명/<?=$hero_qs_05_txt?>
-                
+
             <? } ?>
         </td>
     </tr>
@@ -617,7 +504,7 @@ foreach($_GET as $key=>$val) {?>
 </table> -->
 
 </form>
-<!-- 
+<!--
 <div class="align_l margin_t20">
     <a href="javascript:;" onclick="fnList();" class="btnList">목록</a>
 </div> -->
@@ -626,304 +513,305 @@ foreach($_GET as $key=>$val) {?>
 <!-- 슈퍼패스 확인 부여 -->
 <!-- /loaksecure21/user/popUserManagerSuperpassList.php -->
 <div class="popup_url_box" id="pop_01">
-	<div class="popup_url_cont">
-		<div class="popup_url_head">
-			<svg class="close" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<path fill-rule="evenodd" clip-rule="evenodd" d="M4.41073 4.41083C4.73617 4.08539 5.26381 4.08539 5.58925 4.41083L15.5892 14.4108C15.9147 14.7363 15.9147 15.2639 15.5892 15.5893C15.2638 15.9148 14.7362 15.9148 14.4107 15.5893L4.41073 5.58934C4.0853 5.2639 4.0853 4.73626 4.41073 4.41083Z" fill="black"/>
-				<path fill-rule="evenodd" clip-rule="evenodd" d="M15.5892 4.41083C15.2638 4.08539 14.7362 4.08539 14.4107 4.41083L4.41072 14.4108C4.08529 14.7363 4.08529 15.2639 4.41072 15.5893C4.73616 15.9148 5.2638 15.9148 5.58924 15.5893L15.5892 5.58934C15.9147 5.2639 15.9147 4.73626 15.5892 4.41083Z" fill="black"/>
-			</svg>
-		</div>
-		<div class="popup_url_body mu_form" id="popupContent">
-            <iframe src="/loaksecure21/user/popUserManagerSuperpassList.php?hero_code=<?= $view['hero_code'] ?>" width="660" height="720" frameborder="0" class="iframe_popup"></iframe>
-		</div>
-	</div>
+    <div class="popup_url_cont height_type_A">
+        <div class="popup_url_head">
+            <svg class="close" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.41073 4.41083C4.73617 4.08539 5.26381 4.08539 5.58925 4.41083L15.5892 14.4108C15.9147 14.7363 15.9147 15.2639 15.5892 15.5893C15.2638 15.9148 14.7362 15.9148 14.4107 15.5893L4.41073 5.58934C4.0853 5.2639 4.0853 4.73626 4.41073 4.41083Z" fill="black"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5892 4.41083C15.2638 4.08539 14.7362 4.08539 14.4107 4.41083L4.41072 14.4108C4.08529 14.7363 4.08529 15.2639 4.41072 15.5893C4.73616 15.9148 5.2638 15.9148 5.58924 15.5893L15.5892 5.58934C15.9147 5.2639 15.9147 4.73626 15.5892 4.41083Z" fill="black"/>
+            </svg>
+        </div>
+        <div class="popup_url_body mu_form" id="popupContent">
+            <iframe src="/loaksecure21/user/popUserManagerSuperpassList.php?hero_code=<?= $view['hero_code'] ?>" width="660" height="260" frameborder="0" class="iframe_popup"></iframe>
+        </div>
+    </div>
 </div>
 
 <!-- 포인트 지급 내역 -->
 <!-- /loaksecure21/user/popUserManagerPointList.php -->
 <div class="popup_url_box" id="pop_02">
-	<div class="popup_url_cont">
-		<div class="popup_url_head">
-			<svg class="close" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<path fill-rule="evenodd" clip-rule="evenodd" d="M4.41073 4.41083C4.73617 4.08539 5.26381 4.08539 5.58925 4.41083L15.5892 14.4108C15.9147 14.7363 15.9147 15.2639 15.5892 15.5893C15.2638 15.9148 14.7362 15.9148 14.4107 15.5893L4.41073 5.58934C4.0853 5.2639 4.0853 4.73626 4.41073 4.41083Z" fill="black"/>
-				<path fill-rule="evenodd" clip-rule="evenodd" d="M15.5892 4.41083C15.2638 4.08539 14.7362 4.08539 14.4107 4.41083L4.41072 14.4108C4.08529 14.7363 4.08529 15.2639 4.41072 15.5893C4.73616 15.9148 5.2638 15.9148 5.58924 15.5893L15.5892 5.58934C15.9147 5.2639 15.9147 4.73626 15.5892 4.41083Z" fill="black"/>
-			</svg>
-		</div>
-		<div class="popup_url_body mu_form" id="popupContent">
-            <iframe src="/loaksecure21/user/popUserManagerPointList.php?hero_code=<?=$view["hero_code"]?>" width="660" height="720" frameborder="0" class="iframe_popup">
-            </iframe>
-		</div>
-	</div>
+    <div class="popup_url_cont height_type_A">
+        <div class="popup_url_head">
+            <svg class="close" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.41073 4.41083C4.73617 4.08539 5.26381 4.08539 5.58925 4.41083L15.5892 14.4108C15.9147 14.7363 15.9147 15.2639 15.5892 15.5893C15.2638 15.9148 14.7362 15.9148 14.4107 15.5893L4.41073 5.58934C4.0853 5.2639 4.0853 4.73626 4.41073 4.41083Z" fill="black"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5892 4.41083C15.2638 4.08539 14.7362 4.08539 14.4107 4.41083L4.41072 14.4108C4.08529 14.7363 4.08529 15.2639 4.41072 15.5893C4.73616 15.9148 5.2638 15.9148 5.58924 15.5893L15.5892 5.58934C15.9147 5.2639 15.9147 4.73626 15.5892 4.41083Z" fill="black"/>
+            </svg>
+        </div>
+        <div class="popup_url_body mu_form" id="popupContent">
+            <iframe src="/loaksecure21/user/popUserManagerPointList.php?hero_code=<?=$view["hero_code"]?>" width="660" height="720" frameborder="0" class="iframe_popup"></iframe>
+        </div>
+    </div>
 </div>
 
 <!-- 패널티 지급 내역 -->
 <!-- /loaksecure21/user/popUserManagerPenaltyList.php -->
 <div class="popup_url_box" id="pop_03">
-	<div class="popup_url_cont">
-		<div class="popup_url_head">
-			<svg class="close" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<path fill-rule="evenodd" clip-rule="evenodd" d="M4.41073 4.41083C4.73617 4.08539 5.26381 4.08539 5.58925 4.41083L15.5892 14.4108C15.9147 14.7363 15.9147 15.2639 15.5892 15.5893C15.2638 15.9148 14.7362 15.9148 14.4107 15.5893L4.41073 5.58934C4.0853 5.2639 4.0853 4.73626 4.41073 4.41083Z" fill="black"/>
-				<path fill-rule="evenodd" clip-rule="evenodd" d="M15.5892 4.41083C15.2638 4.08539 14.7362 4.08539 14.4107 4.41083L4.41072 14.4108C4.08529 14.7363 4.08529 15.2639 4.41072 15.5893C4.73616 15.9148 5.2638 15.9148 5.58924 15.5893L15.5892 5.58934C15.9147 5.2639 15.9147 4.73626 15.5892 4.41083Z" fill="black"/>
-			</svg>
-		</div>
-		<div class="popup_url_body mu_form" id="popupContent">
-        <iframe src="/loaksecure21/user/popUserManagerPenaltyList.php?hero_code=<?=$view["hero_code"]?>" width="660" height="720" frameborder="0" class="iframe_popup">
-        </iframe>
-		</div>
-	</div>
+    <div class="popup_url_cont height_type_A">
+        <div class="popup_url_head">
+            <svg class="close" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.41073 4.41083C4.73617 4.08539 5.26381 4.08539 5.58925 4.41083L15.5892 14.4108C15.9147 14.7363 15.9147 15.2639 15.5892 15.5893C15.2638 15.9148 14.7362 15.9148 14.4107 15.5893L4.41073 5.58934C4.0853 5.2639 4.0853 4.73626 4.41073 4.41083Z" fill="black"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5892 4.41083C15.2638 4.08539 14.7362 4.08539 14.4107 4.41083L4.41072 14.4108C4.08529 14.7363 4.08529 15.2639 4.41072 15.5893C4.73616 15.9148 5.2638 15.9148 5.58924 15.5893L15.5892 5.58934C15.9147 5.2639 15.9147 4.73626 15.5892 4.41083Z" fill="black"/>
+            </svg>
+        </div>
+        <div class="popup_url_body mu_form" id="popupContent">
+            <iframe src="/loaksecure21/user/popUserManagerPenaltyList.php?hero_code=<?=$view["hero_code"]?>" width="660" height="720" frameborder="0" class="iframe_popup"></iframe>
+        </div>
+    </div>
 </div>
 
 <!-- 로그인 이력 -->
 <!-- /loaksecure21/user/popUserManagerLoginHist.php -->
 <div class="popup_url_box" id="pop_04">
-	<div class="popup_url_cont">
-		<div class="popup_url_head">
-			<svg class="close" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<path fill-rule="evenodd" clip-rule="evenodd" d="M4.41073 4.41083C4.73617 4.08539 5.26381 4.08539 5.58925 4.41083L15.5892 14.4108C15.9147 14.7363 15.9147 15.2639 15.5892 15.5893C15.2638 15.9148 14.7362 15.9148 14.4107 15.5893L4.41073 5.58934C4.0853 5.2639 4.0853 4.73626 4.41073 4.41083Z" fill="black"/>
-				<path fill-rule="evenodd" clip-rule="evenodd" d="M15.5892 4.41083C15.2638 4.08539 14.7362 4.08539 14.4107 4.41083L4.41072 14.4108C4.08529 14.7363 4.08529 15.2639 4.41072 15.5893C4.73616 15.9148 5.2638 15.9148 5.58924 15.5893L15.5892 5.58934C15.9147 5.2639 15.9147 4.73626 15.5892 4.41083Z" fill="black"/>
-			</svg>
-		</div>
-		<div class="popup_url_body mu_form" id="popupContent">
+    <div class="popup_url_cont height_type_A">
+        <div class="popup_url_head">
+            <svg class="close" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.41073 4.41083C4.73617 4.08539 5.26381 4.08539 5.58925 4.41083L15.5892 14.4108C15.9147 14.7363 15.9147 15.2639 15.5892 15.5893C15.2638 15.9148 14.7362 15.9148 14.4107 15.5893L4.41073 5.58934C4.0853 5.2639 4.0853 4.73626 4.41073 4.41083Z" fill="black"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5892 4.41083C15.2638 4.08539 14.7362 4.08539 14.4107 4.41083L4.41072 14.4108C4.08529 14.7363 4.08529 15.2639 4.41072 15.5893C4.73616 15.9148 5.2638 15.9148 5.58924 15.5893L15.5892 5.58934C15.9147 5.2639 15.9147 4.73626 15.5892 4.41083Z" fill="black"/>
+            </svg>
+        </div>
+        <div class="popup_url_body mu_form" id="popupContent">
             <iframe src="/loaksecure21/user/popUserManagerLoginHist.php?hero_code=<?=$view["hero_code"]?>" width="660" height="720" frameborder="0" class="iframe_popup"></iframe>
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
 
-            
-<script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>
-<script src="/js/daumAddressApi.js"></script>
+
 <script>
-$(document).ready(function(){
-	$("#hero_hp_check").on("click",function(){
-		if($(this).is(":checked")) {
-			$(".input_hero_hp").attr("readOnly",false);
-		} else {
-			$(".input_hero_hp").attr("readOnly",true);
-		}
-	})
-	
-	$("#hero_mail_check").on("click",function(){
-		if($(this).is(":checked")) {
-			$(".input_hero_mail").attr("readOnly",false);
-		} else {
-			$(".input_hero_mail").attr("readOnly",true);
-		}
-	})
-
-	fnPopPoint = function() {
-		var popPoint = window.open("/loaksecure21/user/popUserManagerPointList.php?hero_code=<?=$view["hero_code"]?>","popPoint","width=660, height=660");
-		popPoint.focus();
-	}
-
-	fnPopWrite = function() {
-		var popWrite = window.open("/loaksecure21/user/popUserManagerWriteList.php?hero_code=<?=$view["hero_code"]?>","popWrite","width=660, height=500");
-		popWrite.focus();
-	}
-	
-	fnPopLoginHist = function() {
-		var popWrite = window.open("/loaksecure21/user/popUserManagerLoginHist.php?hero_code=<?=$view["hero_code"]?>","popWrite","width=660, height=500");
-		popWrite.focus();
-	}
-	
-	fnPopResetPwHist = function() {
-		var popWrite = window.open("/loaksecure21/user/popUserManagerResetPwHist.php?hero_code=<?=$view["hero_code"]?>","popWrite","width=660, height=500");
-		popWrite.focus();
-	}
-
-	fnPopSuperpass = function() {
-		var popSuperpass = window.open("/loaksecure21/user/popUserManagerSuperpassList.php?hero_code=<?=$view["hero_code"]?>","popSuperpass","width=660, height=500");
-		popSuperpass.focus();
-	}
-
-	fnPopPenalty = function() {
-		var popPenalty = window.open("/loaksecure21/user/popUserManagerPenaltyList.php?hero_code=<?=$view["hero_code"]?>","popPenalty","width=660, height=500");
-		popPenalty.focus();
-	}
-	
-	fnEditSns = function() {
-		if(confirm("SNS 관리 정보를 수정하시겠습니까?")) {
-			$("#viewForm input[name='mode']").val("editSns");
-			var param = $("#viewForm").serialize();
-			$.ajax({
-					url:"/loaksecure21/user/userManagerAction.php"
-					,type:"POST"
-					,data:param
-					,dataType:"json"
-					,success:function(d){
-						console.log(d);
-						if(d.result==1) {
-							alert("SNS 관리 정보가 수정 되었습니다.");
-							location.reload();
-						} else {
-							alert("실행 중 실패했습니다.")
-						}
-					},error:function(e){
-						console.log(e);
-						alert("실패했습니다.");
-					}
-				})
-				
-			$("#viewForm input[name='mode']").val("");//초기화
-		}
-	}
-	
-	
-	fnEdit = function() {
-		_frm = $("#viewForm");
-		if(!_frm.find("input[name='hero_hp_01']").val()) {
-			alert("휴대폰(1)을 입력해 주세요.");
-			_frm.find("input[name='hero_hp_01']").focus();
-			return;
-		}
-
-		if(!_frm.find("input[name='hero_hp_02']").val()) {
-			alert("휴대폰(2)을 입력해 주세요.");
-			_frm.find("input[name='hero_hp_02']").focus();
-			return;
-		}
-
-		if(!_frm.find("input[name='hero_hp_03']").val()) {
-			alert("휴대폰(3)을 입력해 주세요.");
-			_frm.find("input[name='hero_hp_03']").focus();
-			return;
-		}
-
-		if(!_frm.find("input[name='hero_mail_01']").val()) {
-			alert("이메일(1)을 입력해 주세요.");
-			_frm.find("input[name='hero_mail_01']").focus();
-			return;
-		}
-
-		if(!_frm.find("input[name='hero_mail_02']").val()) {
-			alert("이메일(2)을 입력해 주세요.");
-			_frm.find("input[name='hero_mail_02']").focus();
-			return;
-		}
-		/*
-		if(!_frm.find("input[name='hero_address_01']").val()) {
-			alert("우편번호를 입력해 주세요.");
-			_frm.find("input[name='hero_address_01']").focus();
-			return;
-		}
-
-		if(!_frm.find("input[name='hero_address_02']").val()) {
-			alert("주소를 입력해 주세요.");
-			_frm.find("input[name='hero_address_02']").focus();
-			return;
-		}
-		*/
-
-		_frm.find("input[name='mode']").val("edit");
-		var param = _frm.serialize();
-		$.ajax({
-				url:"/loaksecure21/user/userManagerAction.php"
-				,type:"POST"
-				,data:param
-				,dataType:"json"
-				,success:function(d){
-					console.log(d);
-					if(d.result==1) {
-						alert(" 수정 되었습니다.");
-						location.reload();
-					} else {
-						alert("실행 중 실패했습니다.")
-					}
-				},error:function(e){
-					console.log(e);
-					alert("실패했습니다.");
-				}
-			})
-			
-			_frm.find("input[name='mode']").val(""); //초기화
-	}
-	
-	
-	fnPWInitialize = function(hero_id) { 
-		alert("패스워드를 입력해주세요.");
-        const name = prompt("패스워드 입력" + "");
-        if (name=="") {
-            return fnPwResetConfirm();
-        }
-        
-        else if (name == null) {
-            return;
-        }
-    
-        if (name == '0104'){
-            _frm = $("#viewForm");
-        
-            const characters ='8A0B1CD2EF7GH3IJKL4MN6OPQ5RS9TUV6WXYZa7b5cde8fghi9jkl4mn3opqr2stuvw1xyz0';
-            let result = '';
-            const charactersLength = characters.length;
-            for (let i = 0; i < 8; i++) {
-               result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    $(document).ready(function(){
+        $("#hero_hp_check").on("click",function(){
+            if($(this).is(":checked")) {
+                $(".input_hero_hp").attr("readOnly",false);
+            } else {
+                $(".input_hero_hp").attr("readOnly",true);
             }
-        
-            result = hero_id + result;
-            _frm.find("input[name='pw_initialized']").val(result);
+        })
 
-    		_frm.find("input[name='mode']").val("pwInitialize");
-    		var param = _frm.serialize();
-    		$.ajax({
-    				url:"/loaksecure21/user/userManagerAction.php"
-    				,type:"POST"
-    				,data:param
-    				,dataType:"json"
-    				,success:function(d){
-    					console.log(d);
-    					if(d.result==1) {
-    						var today = new Date();
+        $("#hero_mail_check").on("click",function(){
+            if($(this).is(":checked")) {
+                $(".input_hero_mail").attr("readOnly",false);
+            } else {
+                $(".input_hero_mail").attr("readOnly",true);
+            }
+        })
+
+        fnSnsLink = function(e) {
+            const currentLink = $(e).siblings("input").attr("value");
+            window.open(currentLink);
+        }
+
+        fnPopPoint = function() {
+            var popPoint = window.open("/loaksecure21/user/popUserManagerPointList.php?hero_code=<?=$view["hero_code"]?>","popPoint","width=660, height=660");
+            popPoint.focus();
+        }
+
+        fnPopWrite = function() {
+            var popWrite = window.open("/loaksecure21/user/popUserManagerWriteList.php?hero_code=<?=$view["hero_code"]?>","popWrite","width=660, height=500");
+            popWrite.focus();
+        }
+
+        fnPopLoginHist = function() {
+            var popWrite = window.open("/loaksecure21/user/popUserManagerLoginHist.php?hero_code=<?=$view["hero_code"]?>","popWrite","width=660, height=500");
+            popWrite.focus();
+        }
+
+        fnPopResetPwHist = function() {
+            var popWrite = window.open("/loaksecure21/user/popUserManagerResetPwHist.php?hero_code=<?=$view["hero_code"]?>","popWrite","width=660, height=500");
+            popWrite.focus();
+        }
+
+        fnPopSuperpass = function() {
+            var popSuperpass = window.open("/loaksecure21/user/popUserManagerSuperpassList.php?hero_code=<?=$view["hero_code"]?>","popSuperpass","width=660, height=500");
+            popSuperpass.focus();
+        }
+
+        fnPopPenalty = function() {
+            var popPenalty = window.open("/loaksecure21/user/popUserManagerPenaltyList.php?hero_code=<?=$view["hero_code"]?>","popPenalty","width=660, height=500");
+            popPenalty.focus();
+        }
+
+        fnEditSns = function() {
+            if(confirm("SNS 관리 정보를 수정하시겠습니까?")) {
+                $("#viewForm input[name='mode']").val("editSns");
+                var param = $("#viewForm").serialize();
+                $.ajax({
+                    url:"/loaksecure21/user/userManagerAction.php"
+                    ,type:"POST"
+                    ,data:param
+                    ,dataType:"json"
+                    ,success:function(d){
+                        console.log(d);
+                        if(d.result==1) {
+                            alert("SNS 관리 정보가 수정 되었습니다.");
+                            location.reload();
+                        } else {
+                            alert("실행 중 실패했습니다.")
+                        }
+                    },error:function(e){
+                        console.log(e);
+                        alert("실패했습니다.");
+                    }
+                })
+
+                $("#viewForm input[name='mode']").val("");//초기화
+            }
+        }
+
+
+        fnEdit = function() {
+            _frm = $("#viewForm");
+            if(!_frm.find("input[name='hero_hp_01']").val()) {
+                alert("휴대폰(1)을 입력해 주세요.");
+                _frm.find("input[name='hero_hp_01']").focus();
+                return;
+            }
+
+            if(!_frm.find("input[name='hero_hp_02']").val()) {
+                alert("휴대폰(2)을 입력해 주세요.");
+                _frm.find("input[name='hero_hp_02']").focus();
+                return;
+            }
+
+            if(!_frm.find("input[name='hero_hp_03']").val()) {
+                alert("휴대폰(3)을 입력해 주세요.");
+                _frm.find("input[name='hero_hp_03']").focus();
+                return;
+            }
+
+            if(!_frm.find("input[name='hero_mail_01']").val()) {
+                alert("이메일(1)을 입력해 주세요.");
+                _frm.find("input[name='hero_mail_01']").focus();
+                return;
+            }
+
+            if(!_frm.find("input[name='hero_mail_02']").val()) {
+                alert("이메일(2)을 입력해 주세요.");
+                _frm.find("input[name='hero_mail_02']").focus();
+                return;
+            }
+            /*
+            if(!_frm.find("input[name='hero_address_01']").val()) {
+                alert("우편번호를 입력해 주세요.");
+                _frm.find("input[name='hero_address_01']").focus();
+                return;
+            }
+
+            if(!_frm.find("input[name='hero_address_02']").val()) {
+                alert("주소를 입력해 주세요.");
+                _frm.find("input[name='hero_address_02']").focus();
+                return;
+            }
+            */
+
+            _frm.find("input[name='mode']").val("edit");
+            var param = _frm.serialize();
+            $.ajax({
+                url:"/loaksecure21/user/userManagerAction.php"
+                ,type:"POST"
+                ,data:param
+                ,dataType:"json"
+                ,success:function(d){
+                    console.log(d);
+                    if(d.result==1) {
+                        alert(" 수정 되었습니다.");
+                        location.reload();
+                    } else {
+                        alert("실행 중 실패했습니다.")
+                    }
+                },error:function(e){
+                    console.log(e);
+                    alert("실패했습니다.");
+                }
+            })
+
+            _frm.find("input[name='mode']").val(""); //초기화
+        }
+
+
+        fnPWInitialize = function(hero_id) {
+            alert("패스워드를 입력해주세요.");
+            const name = prompt("패스워드 입력" + "");
+            if (name=="") {
+                return fnPwResetConfirm();
+            }
+
+            else if (name == null) {
+                return;
+            }
+
+            if (name == '0104'){
+                _frm = $("#viewForm");
+
+                const characters ='8A0B1CD2EF7GH3IJKL4MN6OPQ5RS9TUV6WXYZa7b5cde8fghi9jkl4mn3opqr2stuvw1xyz0';
+                let result = '';
+                const charactersLength = characters.length;
+                for (let i = 0; i < 8; i++) {
+                    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                }
+
+                result = hero_id + result;
+                _frm.find("input[name='pw_initialized']").val(result);
+
+                _frm.find("input[name='mode']").val("pwInitialize");
+                var param = _frm.serialize();
+                $.ajax({
+                    url:"/loaksecure21/user/userManagerAction.php"
+                    ,type:"POST"
+                    ,data:param
+                    ,dataType:"json"
+                    ,success:function(d){
+                        console.log(d);
+                        if(d.result==1) {
+                            var today = new Date();
                             today.setHours(today.getHours() + 9);
                             var datestr = today.toISOString().replace('T', ' ').substring(0, 19);
                             $("#pw_initialized_datetime").text(datestr);
-    						alert("초기화 되었습니다.");
-    					} else {
-    						alert("실행 중 실패했습니다.");
-    					}
-    				},error:function(e){
-    					console.log(e);
-    					alert("실패했습니다.");
-    				}
-    			})
-			
-			_frm.find("input[name='mode']").val("");
-        } else {
-            alert("패스워드가 틀렸습니다.")
+                            alert("초기화 되었습니다.");
+                        } else {
+                            alert("실행 중 실패했습니다.");
+                        }
+                    },error:function(e){
+                        console.log(e);
+                        alert("실패했습니다.");
+                    }
+                })
+
+                _frm.find("input[name='mode']").val("");
+            } else {
+                alert("패스워드가 틀렸습니다.")
+            }
         }
-	}
-	
-	
-	fnWithdrawal = function(hero_nick) {
-		if(confirm(hero_nick+"님을 관리자 권한으로 탈퇴하시겠습니까?\n탈퇴 후 복구는 불가능합니다.")) {
-			$("#viewForm input[name='mode']").val("withdrawal");
-			var param = $("#viewForm").serialize();
-			$.ajax({
-					url:"/loaksecure21/user/userManagerAction.php"
-					,type:"POST"
-					,data:param
-					,dataType:"json"
-					,success:function(d){
-						console.log(d);
-						if(d.result==1) {
-							alert("탈퇴되었습니다.");
-							fnList();
-						} else {
-							alert("실행 중 실패했습니다.")
-						}
-					},error:function(e){
-						console.log(e);
-						alert("실패했습니다.");
-					}
-				})
-				
-			$("#viewForm input[name='mode']").val("");//초기화
-		}
-	}
-	
-	fnList = function() {
-		$("#searchForm").submit();
-	}
-})
+
+
+        fnWithdrawal = function(hero_nick) {
+            if(confirm(hero_nick+"님을 관리자 권한으로 탈퇴하시겠습니까?\n탈퇴 후 복구는 불가능합니다.")) {
+                $("#viewForm input[name='mode']").val("withdrawal");
+                var param = $("#viewForm").serialize();
+                $.ajax({
+                    url:"/loaksecure21/user/userManagerAction.php"
+                    ,type:"POST"
+                    ,data:param
+                    ,dataType:"json"
+                    ,success:function(d){
+                        console.log(d);
+                        if(d.result==1) {
+                            alert("탈퇴되었습니다.");
+                            fnList();
+                        } else {
+                            alert("실행 중 실패했습니다.")
+                        }
+                    },error:function(e){
+                        console.log(e);
+                        alert("실패했습니다.");
+                    }
+                })
+
+                $("#viewForm input[name='mode']").val("");//초기화
+            }
+        }
+
+        fnList = function() {
+            $("#searchForm").submit();
+        }
+    })
 
 </script>
 

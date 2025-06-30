@@ -73,7 +73,7 @@
             <tr>
                 <th>검색어</th>
                 <td>
-                    <div class="search_inner"><input type="text" class="search_txt" name="board_title" style="width: 326px;"/></div>
+                    <div class="search_inner"><input type="text" class="search_txt" name="board_title" style="width: 326px;" value="<?=$_GET["board_title"] ? $_GET["board_title"]  : ""?>"/></div>
                 </td>
             </tr>
             <tr>
@@ -81,15 +81,15 @@
                 <td>
                     <div class="search_inner sup">
                         <label class="akContainer">전체
-                            <input type="radio" <?=!$_GET["hero_chk_cont1"] ? "checked" : ""?> name="hero_chk_cont1" value="">
+                            <input type="radio" <?=!$_GET["lot_01"] ? "checked" : ""?> name="lot_01" value="">
                             <span class="checkmark"></span>
                         </label>
                         <label class="akContainer">선정
-                            <input type="radio" <?=$_GET["hero_chk_cont1"] == "1" ? "checked" : ""?> name="hero_chk_cont1" value="1">
+                            <input type="radio" <?=$_GET["lot_01"] == "1" ? "checked" : ""?> name="lot_01" value="1">
                             <span class="checkmark"></span>
                         </label>
                         <label class="akContainer">미선정
-                            <input type="radio" <?=($_GET["hero_chk_cont1"]!="1" && strlen($_GET["hero_chk_phone"]) > 0) ? "checked" : ""?> name="hero_chk_cont1" value="2">
+                            <input type="radio" <?=($_GET["lot_01"]!="1" && strlen($_GET["lot_01"]) > 0) ? "checked" : ""?> name="lot_01" value="0">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -112,9 +112,12 @@ $search = "";
 
 $select_03 = $_REQUEST['select_03'];
 //날짜 검색
-if($_GET["startDate2"] && $_GET["endDate2"]){
-    $search .= "AND (DATE_FORMAT(A.hero_today_01_01,'%Y-%m-%d') between DATE_FORMAT('".$_GET['startDate2']."','%Y-%m-%d') and DATE_FORMAT('".$_GET['endDate2']."','%Y-%m-%d') 
-                OR DATE_FORMAT(A.hero_today_04_02,'%Y-%m-%d') between DATE_FORMAT('".$_GET['startDate2']."','%Y-%m-%d') and DATE_FORMAT('".$_GET['endDate2']."','%Y-%m-%d'))";
+if($_GET["startDate2"] && $_GET["endDate2"]) {
+    $search .= " AND (
+        A.hero_today_01_01 BETWEEN '".$_GET['startDate2']."' AND '".$_GET['endDate2']."'
+        AND
+        A.hero_today_04_02 BETWEEN '".$_GET['startDate2']."' AND '".$_GET['endDate2']."'
+    )";
 }
 
 //검색어 (체험단명)
@@ -122,8 +125,10 @@ if($_GET["startDate2"] && $_GET["endDate2"]){
         $search .= " AND A.hero_title like '%" . $_GET["board_title"] . "%' ";
     }
 
-// 선정여부
-//$search .= " AND b.hero_table in ('group_04_05','group_04_06','group_04_28') ";
+// 선정여부 (당첨여부)
+if($_GET["lot_01"] != "") {
+    $search .= " AND lot_01 like '%" . $_GET["lot_01"] . "%' ";
+}
 
 
 //ORDER BY
@@ -200,14 +205,14 @@ $query_string = preg_replace('/&?page=[^&]*/', '', $query_string);
 
 $today = date("Y-m-d"); // 현재시간
 
-$sql  = "SELECT A.hero_title, A.hero_today_01_01, A.hero_today_01_02, 
+$sql  = "SELECT A.hero_title, A.hero_table, A.hero_today_01_01, A.hero_today_01_02, 
          A.hero_today_02_01, A.hero_today_02_02, 
          A.hero_today_03_01, A.hero_today_03_02,
          A.hero_today_04_01, A.hero_today_04_02,
-         B.hero_code, B.hero_old_idx, B.lot_01, B.hero_today, C.hero_nick";
+         B.hero_code, B.hero_old_idx, B.lot_01, B.hero_superpass, B.delivery_point_yn, B.hero_today, C.hero_nick";
 $sql .= " FROM mission AS A";
 $sql .= " INNER JOIN (
-    SELECT hero_code, hero_old_idx, lot_01, hero_today
+    SELECT hero_code, hero_old_idx, lot_01, hero_superpass, delivery_point_yn, hero_today
     FROM mission_review 
     WHERE hero_code = '".$view["hero_code"]."') AS B ON B.hero_old_idx = A.hero_idx";
 $sql .= " INNER JOIN (
@@ -244,6 +249,7 @@ $sql .= " ORDER BY
 $sql .= " LIMIT ".$start.",".$list_page;
 
 var_dump($sql);
+
 $list_res = sql($sql);
 $list_cnt = mysql_num_rows($list_res);
 
@@ -356,20 +362,26 @@ $list_cnt = mysql_num_rows($list_res);
                     $review_button = '<span>콘텐츠 등록 기간 마감</span>';
                 }
 
-                // 우수후기 선정여부 ?
-                $error = "MISSION_04";
-                $board_sql = "select hero_idx, hero_table, hero_title from board where hero_code='".$code."' and hero_01='".$list['hero_idx']."'";
-                $board_res = new_sql($board_sql,$error);
-                if((string)$board_res==$error){
-                    error_historyBack("");
-                    exit;
+                // 선정 여부 (체험단 당첨 여부)
+                $list['lot_01'] = $list['lot_01'] == "1" ? "선정" : "미선정";
+                
+                // 슈퍼패스 사용여부
+                $list['hero_superpass'] = $list['hero_superpass'] == "N" ? "미사용" : "사용";
+
+                // 배송비 차감 여부
+                $list['delivery_point_yn'] = $list['delivery_point_yn'] == "Y" ? "차감" : "미차감";
+
+                // 서포터즈 구분
+                $hero_table = "";
+                if($list['hero_table'] == 'group_04_06'){
+                    $hero_table = "프리미어 뷰티 클럽";
+                } else if($list['hero_table'] == 'group_04_28'){
+                    $hero_table = "프리미어 라이프 클럽";
+                } else if($list['hero_table'] == 'group_04_05'){
+                    $hero_table = "베이직 뷰티&라이프 클럽";
                 }
 
-                $borad_count = mysql_num_rows($board_res);
-                if($borad_count>0){
-                    $board_rs	= mysql_fetch_assoc($board_res);
-                    if($board_rs['hero_board_three']==1)	$reviwer_tf = "<span class='mu_bar'>선정</span>";
-                }
+                
             ?>
             <tr style="cursor:pointer">
                 <td>
@@ -379,7 +391,7 @@ $list_cnt = mysql_num_rows($list_res);
                 </td>
                 <td>
                     <div class="table_result_types">
-                        서포터즈명
+                        <?= $hero_table?>
                     </div>
                 </td>
                 <td>
@@ -399,14 +411,14 @@ $list_cnt = mysql_num_rows($list_res);
                 </td>
                 <td>
                     <div class="table_result_types">
-                        사용
+                        <?=$list['hero_superpass']?>
                     </div>
                 </td>
                 <td>
                     <div class="table_result_btn01">
                         <!-- active 유무로 선정, 미선정 구분합니다. -->
                         <div class="table_result_btn_yn active">
-                            <?=$reviwer_tf?>
+                           <?=$list['lot_01']?>
                         </div>
                         <!-- <div class="table_result_btn_yn">
                             미선정
@@ -420,7 +432,7 @@ $list_cnt = mysql_num_rows($list_res);
                 </td>
                 <td>
                     <div class="table_result_create">
-                        차감
+                       <?=$list['delivery_point_yn']?>
                     </div>
                 </td>
             </tr>

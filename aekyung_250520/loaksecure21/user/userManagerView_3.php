@@ -1,12 +1,3 @@
-<form name="searchForm" id="searchForm" method="GET">
-    <?
-    unset($_GET["hero_code"]);
-    unset($_GET["view"]);
-    foreach($_GET as $key=>$val) {?>
-        <input type="hidden" name="<?=$key?>" value="<?=$val?>" />
-    <? } ?>
-</form>
-
 
 <form name="viewForm" id="viewForm">
     <input type="hidden" name="mode" />
@@ -45,7 +36,14 @@
             </tbody>
         </table>
     </div>
-
+</form>
+<form name="searchForm3" id="searchForm3" action="<?=PATH_HOME?>">
+    <input type="hidden" name="idx" value="<?=$_GET["idx"]?>" />
+    <input type="hidden" name="board" value="<?=$_GET["board"]?>" />
+    <input type="hidden" name="hero_code" value="<?=$view["hero_code"]?>"/>
+    <input type="hidden" name="view" value="userManagerView"/>
+    <input type="hidden" name="tab" value="3"/>
+    <input type="hidden" name="page" value="<?=$page?>" />
     <div class="tableSection mgt20 mu_form">
         <h2 class="table_tit">체험단 검색</h2>
         <table class="searchBox">
@@ -75,7 +73,7 @@
             <tr>
                 <th>검색어</th>
                 <td>
-                    <div class="search_inner"><input type="text" class="search_txt" style="width: 326px;"/></div>
+                    <div class="search_inner"><input type="text" class="search_txt" name="board_title" style="width: 326px;"/></div>
                 </td>
             </tr>
             <tr>
@@ -101,10 +99,156 @@
         </table>
 
         <div class="btnContainer mgt20">
-            <a href="javascript:;" class="btnAdd3">검색</a>
+            <a href="javascript:;" onclick="return fnSearch3();" class="btnAdd3">검색</a>
         </div>
     </div>
 </form>
+
+
+<?
+
+//검색폼
+$search = "";
+
+$select_03 = $_REQUEST['select_03'];
+//날짜 검색
+if($_GET["startDate2"] && $_GET["endDate2"]){
+    $search .= "AND (DATE_FORMAT(A.hero_today_01_01,'%Y-%m-%d') between DATE_FORMAT('".$_GET['startDate2']."','%Y-%m-%d') and DATE_FORMAT('".$_GET['endDate2']."','%Y-%m-%d') 
+                OR DATE_FORMAT(A.hero_today_04_02,'%Y-%m-%d') between DATE_FORMAT('".$_GET['startDate2']."','%Y-%m-%d') and DATE_FORMAT('".$_GET['endDate2']."','%Y-%m-%d'))";
+}
+
+//검색어 (체험단명)
+    if($_GET["board_title"] != "") {
+        $search .= " AND A.hero_title like '%" . $_GET["board_title"] . "%' ";
+    }
+
+// 선정여부
+//$search .= " AND b.hero_table in ('group_04_05','group_04_06','group_04_28') ";
+
+
+//ORDER BY
+$order = ' ORDER BY A.hero_idx DESC';
+
+//총 갯수
+$total_sql  = " SELECT count(*) cnt";
+$total_sql .= " FROM mission as A ";
+$total_sql .= " INNER JOIN (select hero_code,hero_old_idx, lot_01, hero_today from mission_review where hero_code='".$view["hero_code"]."') as B ";
+$total_sql .= " on B.hero_old_idx=A.hero_idx inner join (select hero_code, hero_nick from member where hero_code='".$view["hero_code"]."') "; // 작은따옴표 수정
+$total_sql .= " as C on B.hero_code=C.hero_code where 1=1";
+
+sql($total_sql);
+
+$out_res = mysql_fetch_assoc($out_sql);
+$total_cnt = $out_res['cnt'];
+
+$i=$total_cnt;
+
+//검색 갯수
+
+$search_sql  = " SELECT count(*) cnt";
+$search_sql .= " FROM mission as A ";
+$search_sql .= " INNER JOIN (select hero_code,hero_old_idx, lot_01, hero_today from mission_review where hero_code='".$view["hero_code"]."') as B ";
+$search_sql .= " on B.hero_old_idx=A.hero_idx inner join (select hero_code, hero_nick from member where hero_code='".$view["hero_code"]."') ";
+$search_sql .= " as C on B.hero_code=C.hero_code where 1=1";
+$search_sql .= " AND B.hero_code = '".$view["hero_code"]."'".$search;
+
+
+$search_res = sql($search_sql);
+$search_row = mysql_fetch_assoc($search_res);
+$search_total = $search_row['cnt'];
+
+
+
+$list_page=$_REQUEST['list_count']==""?10:$_REQUEST['list_count'];
+//$list_page=$_REQUEST['list_count']==""?5:$_REQUEST['list_count'];
+$page_per_list=10;
+
+if(!strcmp($_GET['page'], '')) {
+    $page = '1';
+} else {
+    $page = $_GET['page'];
+    $i = $i-($page-1)*$list_page;
+}
+
+$start = ($page-1)*$list_page;
+$next_path=get("page");
+//    $next_path = str_replace("&hero_group=Array",$search_group,$next_path);
+
+
+// 전체 페이지 수 계산
+$total_data = $search_total > 0 ? $search_total : $total_data;
+$total_page = ceil($total_data / $list_page);
+
+// 페이지 그룹의 시작과 끝 계산
+$start_page = floor(($page - 1) / $page_per_list) * $page_per_list + 1;
+$end_page = $start_page + $page_per_list - 1;
+
+// 마지막 페이지가 전체 페이지 수를 넘지 않도록 조정
+if ($end_page > $total_page) {
+    $end_page = $total_page;
+}
+
+// 이전/다음 페이지 그룹
+$prev_page = $start_page - 1;
+$next_page = $end_page + 1;
+
+// URL 파라미터 처리
+$query_string = $_SERVER['QUERY_STRING'];
+$query_string = preg_replace('/&?page=[^&]*/', '', $query_string);
+
+//리스트
+
+$today = date("Y-m-d"); // 현재시간
+
+$sql  = "SELECT A.hero_title, A.hero_today_01_01, A.hero_today_01_02, 
+         A.hero_today_02_01, A.hero_today_02_02, 
+         A.hero_today_03_01, A.hero_today_03_02,
+         A.hero_today_04_01, A.hero_today_04_02,
+         B.hero_code, B.hero_old_idx, B.lot_01, B.hero_today, C.hero_nick";
+$sql .= " FROM mission AS A";
+$sql .= " INNER JOIN (
+    SELECT hero_code, hero_old_idx, lot_01, hero_today
+    FROM mission_review 
+    WHERE hero_code = '".$view["hero_code"]."') AS B ON B.hero_old_idx = A.hero_idx";
+$sql .= " INNER JOIN (
+    SELECT hero_code, hero_nick
+    FROM member
+    WHERE hero_code = '".$view["hero_code"]."'
+) AS C ON B.hero_code = C.hero_code";
+$sql .= " WHERE 1=1 ".$search;
+$sql .= " ORDER BY 
+    CASE 
+        WHEN A.hero_today_01_01 <= '".$today." 00:00:00' 
+        AND A.hero_today_01_02 >= '".$today." 00:00:00' 
+        THEN A.hero_today_01_02 
+    END DESC,
+    CASE 
+        WHEN A.hero_today_02_01 <= '".$today." 00:00:00' 
+        AND A.hero_today_02_02 >= '".$today." 00:00:00' 
+        THEN A.hero_today_02_02 
+    END DESC,
+    CASE 
+        WHEN A.hero_today_03_01 <= '".$today." 00:00:00' 
+        AND A.hero_today_03_02 >= '".$today." 00:00:00' 
+        THEN A.hero_today_03_02 
+    END DESC,
+    CASE 
+        WHEN A.hero_today_04_01 <= '".$today." 00:00:00' 
+        AND A.hero_today_04_02 >= '".$today." 00:00:00' 
+        THEN A.hero_today_04_02 
+    END DESC,
+    CASE 
+        WHEN A.hero_today_04_02 <= '".$today." 00:00:00' 
+        THEN A.hero_today_04_02 
+    END DESC";
+$sql .= " LIMIT ".$start.",".$list_page;
+
+var_dump($sql);
+$list_res = sql($sql);
+$list_cnt = mysql_num_rows($list_res);
+
+?>
+
 
 <div class="tableSection mgt30">
     <div class="table_top">
@@ -182,7 +326,52 @@
             </th>
             </thead>
             <tbody>
-            <tr style="cursor:pointer" onClick="fnView('<?=$list["hero_code"]?>')">
+            <?
+            if($total_data > 0) {
+            while($list = mysql_fetch_assoc($list_res)) {
+
+                // 체험단진행상태
+                if(substr($list["hero_today_04_02"],0,10)<$today){ //우수후기 발표 < 오늘
+                    $progress = "체험단 마감";
+                    // $href = "javascript:alert(\"마감된 체험단입니다.\")";
+                    // 마감된 체험단도 접속 가능하게 요청하여 변경 조치
+                    $href = "/main/index.php?board=".$list['hero_table']."&view=view&idx=".$list['hero_idx'];
+                    if($list['lot_01']==1){
+                        $error = "MISSION_04";
+                        $board_sql = "select hero_idx, hero_table, hero_title from board where hero_code='".$code."' and hero_01='".$list['hero_idx']."'";
+                        $board_res = new_sql($board_sql,$error);
+                        if((string)$board_res==$error){
+                            error_historyBack("");
+                            exit;
+                        }
+
+                        $borad_count = mysql_num_rows($board_res);
+                        if($borad_count>0){
+                            $board_rs	= mysql_fetch_assoc($board_res);
+                            if($board_rs['hero_board_three']==1)	$reviwer_tf = "<span class='mu_bar'>[우수후기 당첨]</span>";
+                            $board_title = "<a href='http://www.aklover.co.kr/main/index.php?board=".$board_rs['hero_table']."&view=view2&idx=".$board_rs['hero_idx']."' target='_blank'><img src='/img/front/mypage/thum.jpg'><div class='txt_bx'><p class='ribon'><span class='type1'>프리미어 뷰티 클럽</span>".$reviwer_tf."</p><p class='tit t_l'>[후기] ".cut($board_rs['hero_title'],$cut_title_name)."</p></div></a>";
+                        }
+                    }
+
+                    $review_button = '<span>콘텐츠 등록 기간 마감</span>';
+                }
+
+                // 우수후기 선정여부 ?
+                $error = "MISSION_04";
+                $board_sql = "select hero_idx, hero_table, hero_title from board where hero_code='".$code."' and hero_01='".$list['hero_idx']."'";
+                $board_res = new_sql($board_sql,$error);
+                if((string)$board_res==$error){
+                    error_historyBack("");
+                    exit;
+                }
+
+                $borad_count = mysql_num_rows($board_res);
+                if($borad_count>0){
+                    $board_rs	= mysql_fetch_assoc($board_res);
+                    if($board_rs['hero_board_three']==1)	$reviwer_tf = "<span class='mu_bar'>선정</span>";
+                }
+            ?>
+            <tr style="cursor:pointer">
                 <td>
                     <div class="table_result_no">
                         <?=number_format($i);?>
@@ -190,22 +379,22 @@
                 </td>
                 <td>
                     <div class="table_result_types">
-                        프리미어 뷰티 클럽
+                        서포터즈명
                     </div>
                 </td>
                 <td>
                     <div class="table_result_tit">
-                        홈백신 로봇청소기 올인원 클리너...
+                        <?=$list['hero_title']?>
                     </div>
                 </td>
                 <td>
                     <div class="table_result_create">
-                        2024-07-01 00:00 ~ 2024-07-31 23:59
+                        <?=$list['hero_today_01_01']?> ~ <?=$list['hero_today_04_02']?>
                     </div>
                 </td>
                 <td>
                     <div class="table_result_create">
-                        콘텐츠 등록
+                        <?=$progress?>
                     </div>
                 </td>
                 <td>
@@ -217,7 +406,7 @@
                     <div class="table_result_btn01">
                         <!-- active 유무로 선정, 미선정 구분합니다. -->
                         <div class="table_result_btn_yn active">
-                            선정
+                            <?=$reviwer_tf?>
                         </div>
                         <!-- <div class="table_result_btn_yn">
                             미선정
@@ -226,7 +415,7 @@
                 </td>
                 <td>
                     <div class="table_result_create">
-                        2024-07-17 11:12:44
+                        <?=$list['hero_today']?>
                     </div>
                 </td>
                 <td>
@@ -235,56 +424,14 @@
                     </div>
                 </td>
             </tr>
-            <tr style="cursor:pointer" onClick="fnView('<?=$list["hero_code"]?>')">
-                <td>
-                    <div class="table_result_no">
-                        <?=number_format($i);?>
-                    </div>
-                </td>
-                <td>
-                    <div class="table_result_types">
-                        베이직 뷰티&라이프 클럽
-                    </div>
-                </td>
-                <td>
-                    <div class="table_result_tit">
-                        홈백신 로봇청소기 올인원 클리너...
-                    </div>
-                </td>
-                <td>
-                    <div class="table_result_create">
-                        2024-07-01 00:00 ~ 2024-07-31 23:59
-                    </div>
-                </td>
-                <td>
-                    <div class="table_result_create">
-                        콘체험단 신청
-                    </div>
-                </td>
-                <td>
-                    <div class="table_result_types">
-                        미사용
-                    </div>
-                </td>
-                <td>
-                    <div class="table_result_btn01">
-                        <!-- active 유무로 선정, 미선정 구분합니다. -->
-                        <div class="table_result_btn_yn">
-                            미선정
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="table_result_create">
-                        2024-07-17 11:12:44
-                    </div>
-                </td>
-                <td>
-                    <div class="table_result_create">
-                        차감
-                    </div>
-                </td>
-            </tr>
+           <?
+                --$i;
+            }
+            } else {?>
+                <tr>
+                    <td colspan="9" class="no_data">등록된 데이터가 없습니다.</td>
+                </tr>
+            <? } ?>
 
 
             <!-- 데이터가 없을 경우 사용해주세요. -->
@@ -433,6 +580,39 @@
                 format: "%Y-%m-%d %H:%i:00"
             });
         });
+
+
+        // 25.06.26 페이지네비게이션 서치 스크립트 추가
+        fnSearch3 = function() {
+            $("input[name='page']").val(1);
+            var baseUrl = '<?=PATH_HOME?>?' + '<?=get("page")?>' + '&hero_code=' + '<?=$view["hero_id"]?>' + '&view=userManagerView';
+            // 탭 상태 저장
+            localStorage.setItem('activeTab', '3');
+
+            $("#searchForm3").attr("action", baseUrl).submit();
+            return false;
+        }
+
+        $('.pagination a').on('click', function(e) {
+            e.preventDefault();
+            var href = $(this).attr('href');
+            localStorage.setItem('activeTab', '3');
+            window.location.href = href;
+        });
+
+        var activeTab = localStorage.getItem('activeTab');
+        if(activeTab === '3') {
+            if(window.parent && window.parent.$) {
+                // 탭 메뉴 활성화
+                window.parent.$('.viewTabList li').removeClass('on');
+                window.parent.$('.viewTabList li[data-idx="3"]').addClass('on');
+
+                // 컨텐츠 영역 활성화
+                window.parent.$('.viewTabContents .content_item').removeClass('active user_info');
+                window.parent.$('.viewTabContents .content_item[data-idx="3"]').addClass('active user_info');
+            }
+            localStorage.removeItem('activeTab');
+        }
 
     });
 

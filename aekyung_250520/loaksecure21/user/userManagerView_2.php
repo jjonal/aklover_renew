@@ -103,7 +103,7 @@ $search_row = mysql_fetch_assoc($search_res);
 $search_total = $search_row['cnt'];
 
 
-$list_page=$_REQUEST['list_count']==""?20:$_REQUEST['list_count'];
+$list_page=$_REQUEST['list_count']==""?10:$_REQUEST['list_count'];
 //$list_page=$_REQUEST['list_count']==""?5:$_REQUEST['list_count'];
 $page_per_list=10;
 
@@ -241,7 +241,7 @@ $list_cnt = mysql_num_rows($list_res);
         </table>
 
         <div class="btnContainer mgt20">
-            <a href="javascript:void(0);" onclick="return fnSearch();" class="btnAdd3">검색</a>
+            <a href="javascript:void(0);" onclick="return fnSearch2();" class="btnAdd3">검색</a>
         </div>
     </div>
 
@@ -651,7 +651,7 @@ $list_cnt = mysql_num_rows($list_res);
         })
 
         // 25.06.24 페이지네비게이션 서치 스크립트 추가
-        fnSearch = function() {
+        fnSearch2 = function() {
             $("input[name='page']").val(1);
             var baseUrl = '<?=PATH_HOME?>?' + '<?=get("page")?>' + '&hero_code=' + '<?=$view["hero_id"]?>' + '&view=userManagerView';
             // 탭 상태 저장

@@ -3,3 +3,17 @@ UPDATE menu SET hero_alt = '체험단관리' WHERE hero_idx = 25 AND hero_alt = '후기
 
 ## 서포터즈 그룹 컬럼 추가 ##
 alter table member_gisu add hero_board_group varchar(1) null comment 'b:블로그,i:인스타,s:숏폼';
+
+##  회원관리 메뉴 정리  감춤 및 추가 ##
+UPDATE aekyung.menu t SET t.hero_use = 1 WHERE t.hero_idx = 112
+UPDATE aekyung.menu t SET t.hero_use = 1 WHERE t.hero_idx = 84
+UPDATE aekyung.menu t SET t.hero_use = 1 WHERE t.hero_idx = 111
+UPDATE aekyung.menu t SET t.hero_use = 1 WHERE t.hero_idx = 83
+UPDATE aekyung.menu t SET t.hero_use = 1 WHERE t.hero_idx = 135
+UPDATE aekyung.menu t SET t.hero_use = 1 WHERE t.hero_idx = 110
+UPDATE aekyung.menu t SET t.hero_use = 1 WHERE t.hero_idx = 109
+UPDATE aekyung.menu t SET t.hero_use = 1 WHERE t.hero_idx = 81
+UPDATE aekyung.menu t SET t.hero_use = 1 WHERE t.hero_idx = 117
+UPDATE aekyung.menu t SET t.hero_use = 1 WHERE t.hero_idx = 137
+INSERT INTO aekyung.menu (hero_table, hero_code, hero_board, hero_db, hero_alt, hero_href, hero_point, hero_order, hero_depth, hero_depth_idx, hero_level, hero_use, hero_today) VALUES ('menu', 'user_17', 'user', 'menu', '퀄리티평가', 'ADMIN_END||user||qualityEvaluation.php', 10, 16, 1, 1, '99', 0, null)
+INSERT INTO aekyung.menu (hero_table, hero_code, hero_board, hero_db, hero_alt, hero_href, hero_point, hero_order, hero_depth, hero_depth_idx, hero_level, hero_use, hero_today) VALUES ('menu', 'user_17', 'user', 'menu', '프리미어 서포터즈', 'ADMIN_END||user||premierSupporters.php', 10, 17, 1, 1, '99', 0, null)

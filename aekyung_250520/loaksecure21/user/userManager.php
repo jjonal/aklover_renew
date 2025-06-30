@@ -739,6 +739,15 @@ $list_res = sql($sql);
                     } else {
                         $hero_group = "베이직 뷰티 & 라이프 클럽"; // 기존명칭 베이직서포터즈
                     }
+
+                    // 서포터즈 팀 구분
+                    if($list["hero_board_group"] == "b") {
+                        $hero_board_group = "블로그";
+                    } elseif ($list["hero_board_group"] == "i") {
+                        $hero_board_group = "인스타";
+                    } elseif ($list["hero_board_group"] == "s") {
+                        $hero_board_group = "숏폼";
+                    }
                     ?>
                     <tr style="cursor:pointer" onClick="fnView('<?=$list["hero_code"]?>')">
                         <td>
@@ -783,7 +792,7 @@ $list_res = sql($sql);
                         </td>
                         <td>
                             <div class="table_result_create">
-                                팀 들어갈 자리
+                                <?=$hero_board_group?>
                             </div>
                         </td>
                         <td>

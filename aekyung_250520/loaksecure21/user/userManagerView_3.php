@@ -27,20 +27,21 @@ if($_GET["lot_01"] != "") {
 //ORDER BY
 $order = ' ORDER BY A.hero_idx DESC';
 
-//총 갯수
+//전체 갯수
 $total_sql  = " SELECT count(*) cnt";
 $total_sql .= " FROM mission as A ";
 $total_sql .= " INNER JOIN (select hero_code,hero_old_idx, lot_01, hero_today from mission_review where hero_code='".$view["hero_code"]."') as B ";
 $total_sql .= " on B.hero_old_idx=A.hero_idx inner join (select hero_code, hero_nick from member where hero_code='".$view["hero_code"]."') "; // 작은따옴표 수정
 $total_sql .= " as C on B.hero_code=C.hero_code where 1=1";
 
-sql($total_sql);
+$total_res = sql($total_sql,"on");
+$total_rs = mysql_fetch_assoc($total_res);
 
-$out_res = mysql_fetch_assoc($out_sql);
-$total_cnt = $out_res['cnt'];
+$total_data3 = $total_rs['cnt'];
 
-$i=$total_cnt;
+//$i3=$total_data3;
 
+var_dump($total_data3);
 //검색 갯수
 
 $search_sql  = " SELECT count(*) cnt";
@@ -53,42 +54,40 @@ $search_sql .= " AND B.hero_code = '".$view["hero_code"]."'".$search;
 
 $search_res = sql($search_sql);
 $search_row = mysql_fetch_assoc($search_res);
-$search_total = $search_row['cnt'];
+$search_total3 = $search_row['cnt'];
 
 
-
-$list_page=$_REQUEST['list_count']==""?10:$_REQUEST['list_count'];
-//$list_page=$_REQUEST['list_count']==""?5:$_REQUEST['list_count'];
-$page_per_list=10;
+$list_page3=$_REQUEST['list_count']==""?10:$_REQUEST['list_count'];
+$page_per_list3=10;
 
 if(!strcmp($_GET['page'], '')) {
-    $page = '1';
+    $page3 = '1';
 } else {
-    $page = $_GET['page'];
-    $i = $i-($page-1)*$list_page;
+    $page3 = $_GET['page'];
+//    $i3 = $i3-($page3-1)*$list_page3;
+    $i3 = $search_total3-($page3-1)*$list_page3;
 }
 
-$start = ($page-1)*$list_page;
-$next_path=get("page");
-//    $next_path = str_replace("&hero_group=Array",$search_group,$next_path);
+$start3 = ($page3-1)*$list_page3;
+$next_path3=get("page");
 
 
 // 전체 페이지 수 계산
-$total_data = $search_total > 0 ? $search_total : $total_data;
-$total_page = ceil($total_data / $list_page);
+$total_cnt3 = $search_total3 > 0 ? $search_total3 : $total_cnt3;
+$total_page3 = ceil($total_cnt3 / $list_page3);
 
 // 페이지 그룹의 시작과 끝 계산
-$start_page = floor(($page - 1) / $page_per_list) * $page_per_list + 1;
-$end_page = $start_page + $page_per_list - 1;
+$start_page3 = floor(($page3 - 1) / $page_per_list3) * $page_per_list3 + 1;
+$end_page3 = $start_page3 + $page_per_list3 - 1;
 
 // 마지막 페이지가 전체 페이지 수를 넘지 않도록 조정
-if ($end_page > $total_page) {
-    $end_page = $total_page;
+if ($end_page3 > $total_page3) {
+    $end_page3 = $total_page3;
 }
 
 // 이전/다음 페이지 그룹
-$prev_page = $start_page - 1;
-$next_page = $end_page + 1;
+$prev_page3 = $start_page3 - 1;
+$next_page3 = $end_page3 + 1;
 
 // URL 파라미터 처리
 $query_string = $_SERVER['QUERY_STRING'];
@@ -190,7 +189,7 @@ $list_cnt = mysql_num_rows($list_res);
     <input type="hidden" name="hero_code" value="<?=$view["hero_code"]?>"/>
     <input type="hidden" name="view" value="userManagerView"/>
     <input type="hidden" name="tab" value="3"/>
-    <input type="hidden" name="page" value="<?=$page?>" />
+    <input type="hidden" name="page" value="<?=$page3?>" />
     <div class="tableSection mgt20 mu_form">
         <h2 class="table_tit">체험단 검색</h2>
         <table class="searchBox">
@@ -246,17 +245,16 @@ $list_cnt = mysql_num_rows($list_res);
         </table>
 
         <div class="btnContainer mgt20">
-            <a href="javascript:;" onclick="return fnSearch3();" class="btnAdd3">검색</a>
+            <a href="javascript:;" onclick="return fnSearch(3);" class="btnAdd3">검색</a>
         </div>
     </div>
-</form>
 
 
 
 <div class="tableSection mgt30">
     <div class="table_top">
         <h2 class="table_tit">검색 결과</h2>
-        <p class="postNum"><span class="line"><?=number_format($search_total)?>개</span><span class="op_5">전체 <?=number_format($total_cnt)?>개</span></p>
+        <p class="postNum"><span class="line"><?=number_format($search_total3)?>개</span><span class="op_5">전체 <?=number_format($total_data3)?>개</span></p>
     </div>
     <p class="table_desc"></p>
     <div class="searchResultBox_container">
@@ -330,7 +328,7 @@ $list_cnt = mysql_num_rows($list_res);
             </thead>
             <tbody>
             <?
-            if($total_data > 0) {
+            if($total_data3 > 0) {
             while($list = mysql_fetch_assoc($list_res)) {
 
                 // 체험단진행상태
@@ -383,7 +381,7 @@ $list_cnt = mysql_num_rows($list_res);
             <tr style="cursor:pointer">
                 <td>
                     <div class="table_result_no">
-                        <?=number_format($i);?>
+                        <?=number_format($i3);?>
                     </div>
                 </td>
                 <td>
@@ -434,7 +432,7 @@ $list_cnt = mysql_num_rows($list_res);
                 </td>
             </tr>
            <?
-                --$i;
+                --$i3;
             }
             } else {?>
                 <tr>
@@ -451,6 +449,50 @@ $list_cnt = mysql_num_rows($list_res);
             </tbody>
         </table>
     </div>
+</div>
+</form>
+
+<div class="pagingWrap remaking">
+    <?php if ($total_page3 > 1) { ?>
+        <div class="pagination">
+            <?php
+            // query_string에서 tab 파라미터만 제거
+            $params = explode('&', $query_string);
+            $clean_params = array();
+            foreach($params as $param) {
+                if(strpos($param, 'tab=') !== 0) {
+                    $clean_params[] = $param;
+                }
+            }
+            $clean_query_string = implode('&', $clean_params);
+
+            // 현재 활성화된 탭
+            $current_tab = 3;
+            ?>
+
+            <?php if ($start_page3 > 1) { ?>
+                <a href="?<?=$clean_query_string?>&page=1&tab=<?=$current_tab?>" class="pg_btn first">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.2002 7.99935L11.2002 13.9993M5.2002 7.99935L11.2002 1.99935M5.2002 7.99935H13.0002" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="?<?=$clean_query_string?>&page=<?=$prev_page3?>&tab=<?=$current_tab?>" class="pg_btn prev">이전</a>
+            <?php } ?>
+
+            <?php for ($i = $start_page3; $i <= $end_page3; $i++) { ?>
+                <a href="?<?=$clean_query_string?>&page=<?=$i?>&tab=<?=$current_tab?>" class="pg_btn num <?=$page3 == $i ? 'active' : ''?>"><?=$i?></a>
+            <?php } ?>
+
+            <?php if ($end_page3 < $total_page3) { ?>
+                <a href="?<?=$clean_query_string?>&page=<?=$next_page3?>&tab=<?=$current_tab?>" class="pg_btn next">다음</a>
+                <a href="?<?=$clean_query_string?>&page=<?=$total_page3?>&tab=<?=$current_tab?>" class="pg_btn last">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.7998 7.99935L4.7998 13.9993M10.7998 7.99935L4.7998 1.99935M10.7998 7.99935H2.9998" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            <?php } ?>
+        </div>
+    <?php } ?>
 </div>
 
 <!--후기 URL 팝업-->

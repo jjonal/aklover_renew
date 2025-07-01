@@ -1,110 +1,3 @@
-
-<form name="viewForm" id="viewForm">
-    <input type="hidden" name="mode" />
-    <input type="hidden" name="hero_code" value="<?=$view["hero_code"]?>"/>
-
-    <div class="tableSection mgt20">
-        <h2 class="table_tit">회원 정보</h2>
-        <table class="searchBox">
-            <colgroup>
-                <col width="200px">
-                <col width=*>
-                <col width="200px">
-                <col width=*>
-            </colgroup>
-            <tbody>
-            <tr>
-                <th>아이디</th>
-                <td><?=$view["hero_id"]?></td>
-                <th>서포터즈</th>
-                <td><?=$hero_group?></td>
-            </tr>
-            <tr>
-                <th>이름</th>
-                <td><?=$view["hero_name"]?></td>
-                <th>서포터즈 팀</th>
-                <td><?=$hero_board_group?></td>
-            </tr>
-            <tr>
-                <th>닉네임</th>
-                <td><?=$view["hero_nick"]?></td>
-                <th>휴대폰 번호</th>
-                <td>
-                    <?=$hero_hp[0]?> - <?=$hero_hp[1]?> - <?=$hero_hp[2]?>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</form>
-<form name="searchForm3" id="searchForm3" action="<?=PATH_HOME?>">
-    <input type="hidden" name="idx" value="<?=$_GET["idx"]?>" />
-    <input type="hidden" name="board" value="<?=$_GET["board"]?>" />
-    <input type="hidden" name="hero_code" value="<?=$view["hero_code"]?>"/>
-    <input type="hidden" name="view" value="userManagerView"/>
-    <input type="hidden" name="tab" value="3"/>
-    <input type="hidden" name="page" value="<?=$page?>" />
-    <div class="tableSection mgt20 mu_form">
-        <h2 class="table_tit">체험단 검색</h2>
-        <table class="searchBox">
-            <colgroup>
-                <col width="200px">
-                <col width=*>
-            </colgroup>
-            <tbody>
-            <tr>
-                <th>체험단 기간</th>
-                <td>
-                    <div class="search_inner">
-                        <input type="text" id="sdate2" name="startDate2" value="<?=$_GET["startDate2"]?>" readonly/>
-                        <div class="inner_between">~</div>
-                        <input type="text" id="edate2" name="endDate2" value="<?=$_GET["endDate2"]?>" readonly/>
-                        <div class="add_icon">
-                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M1.46294 5.86456C1.46294 3.84025 3.10038 2.19922 5.12026 2.19922H12.4349C14.4548 2.19922 16.0922 3.84025 16.0922 5.86456V12.4622C16.0922 14.4865 14.4548 16.1275 12.4349 16.1275H5.12026C3.10038 16.1275 1.46294 14.4865 1.46294 12.4622V5.86456ZM5.12026 3.66536C3.90833 3.66536 2.92587 4.64998 2.92587 5.86456V12.4622C2.92587 13.6768 3.90833 14.6614 5.12026 14.6614H12.4349C13.6468 14.6614 14.6293 13.6768 14.6293 12.4622V5.86456C14.6293 4.64998 13.6468 3.66536 12.4349 3.66536H5.12026Z" fill="white"/>
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.85172 1.46631C6.2557 1.46631 6.58318 1.79451 6.58318 2.19938V4.39858C6.58318 4.80345 6.2557 5.13165 5.85172 5.13165C5.44774 5.13165 5.12025 4.80345 5.12025 4.39858V2.19938C5.12025 1.79451 5.44774 1.46631 5.85172 1.46631Z" fill="white"/>
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7034 1.46631C12.1074 1.46631 12.4349 1.79451 12.4349 2.19938V4.39858C12.4349 4.80345 12.1074 5.13165 11.7034 5.13165C11.2995 5.13165 10.972 4.80345 10.972 4.39858V2.19938C10.972 1.79451 11.2995 1.46631 11.7034 1.46631Z" fill="white"/>
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.77757 6.59766C9.18155 6.59766 9.50904 6.92586 9.50904 7.33073V8.79686H10.972C11.3759 8.79686 11.7034 9.12507 11.7034 9.52993C11.7034 9.93479 11.3759 10.263 10.972 10.263H9.50904V11.7291C9.50904 12.134 9.18155 12.4622 8.77757 12.4622C8.3736 12.4622 8.04611 12.134 8.04611 11.7291L8.04611 10.263H6.58318C6.1792 10.263 5.85172 9.93479 5.85172 9.52993C5.85172 9.12507 6.1792 8.79686 6.58318 8.79686H8.04611V7.33073C8.04611 6.92586 8.3736 6.59766 8.77757 6.59766Z" fill="white"/>
-                            </svg>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th>검색어</th>
-                <td>
-                    <div class="search_inner"><input type="text" class="search_txt" name="board_title" style="width: 326px;" value="<?=$_GET["board_title"] ? $_GET["board_title"]  : ""?>"/></div>
-                </td>
-            </tr>
-            <tr>
-                <th>선정 여부</th>
-                <td>
-                    <div class="search_inner sup">
-                        <label class="akContainer">전체
-                            <input type="radio" <?=!$_GET["lot_01"] ? "checked" : ""?> name="lot_01" value="">
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="akContainer">선정
-                            <input type="radio" <?=$_GET["lot_01"] == "1" ? "checked" : ""?> name="lot_01" value="1">
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="akContainer">미선정
-                            <input type="radio" <?=($_GET["lot_01"]!="1" && strlen($_GET["lot_01"]) > 0) ? "checked" : ""?> name="lot_01" value="0">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-
-        <div class="btnContainer mgt20">
-            <a href="javascript:;" onclick="return fnSearch3();" class="btnAdd3">검색</a>
-        </div>
-    </div>
-</form>
-
-
 <?
 
 //검색폼
@@ -121,9 +14,9 @@ if($_GET["startDate2"] && $_GET["endDate2"]) {
 }
 
 //검색어 (체험단명)
-    if($_GET["board_title"] != "") {
-        $search .= " AND A.hero_title like '%" . $_GET["board_title"] . "%' ";
-    }
+if($_GET["board_title"] != "") {
+    $search .= " AND A.hero_title like '%" . $_GET["board_title"] . "%' ";
+}
 
 // 선정여부 (당첨여부)
 if($_GET["lot_01"] != "") {
@@ -248,12 +141,116 @@ $sql .= " ORDER BY
     END DESC";
 $sql .= " LIMIT ".$start.",".$list_page;
 
-var_dump($sql);
 
 $list_res = sql($sql);
 $list_cnt = mysql_num_rows($list_res);
 
 ?>
+<form name="viewForm" id="viewForm">
+    <input type="hidden" name="mode" />
+    <input type="hidden" name="hero_code" value="<?=$view["hero_code"]?>"/>
+
+    <div class="tableSection mgt20">
+        <h2 class="table_tit">회원 정보</h2>
+        <table class="searchBox">
+            <colgroup>
+                <col width="200px">
+                <col width=*>
+                <col width="200px">
+                <col width=*>
+            </colgroup>
+            <tbody>
+            <tr>
+                <th>아이디</th>
+                <td><?=$view["hero_id"]?></td>
+                <th>서포터즈</th>
+                <td><?=$hero_group?></td>
+            </tr>
+            <tr>
+                <th>이름</th>
+                <td><?=$view["hero_name"]?></td>
+                <th>서포터즈 팀</th>
+                <td><?=$hero_board_group?></td>
+            </tr>
+            <tr>
+                <th>닉네임</th>
+                <td><?=$view["hero_nick"]?></td>
+                <th>휴대폰 번호</th>
+                <td>
+                    <?=$hero_hp[0]?> - <?=$hero_hp[1]?> - <?=$hero_hp[2]?>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</form>
+<form name="searchForm3" id="searchForm3" action="<?=PATH_HOME?>">
+    <input type="hidden" name="idx" value="<?=$_GET["idx"]?>" />
+    <input type="hidden" name="board" value="<?=$_GET["board"]?>" />
+    <input type="hidden" name="hero_code" value="<?=$view["hero_code"]?>"/>
+    <input type="hidden" name="view" value="userManagerView"/>
+    <input type="hidden" name="tab" value="3"/>
+    <input type="hidden" name="page" value="<?=$page?>" />
+    <div class="tableSection mgt20 mu_form">
+        <h2 class="table_tit">체험단 검색</h2>
+        <table class="searchBox">
+            <colgroup>
+                <col width="200px">
+                <col width=*>
+            </colgroup>
+            <tbody>
+            <tr>
+                <th>체험단 기간</th>
+                <td>
+                    <div class="search_inner">
+                        <input type="text" id="sdate2" name="startDate2" value="<?=$_GET["startDate2"]?>" readonly/>
+                        <div class="inner_between">~</div>
+                        <input type="text" id="edate2" name="endDate2" value="<?=$_GET["endDate2"]?>" readonly/>
+                        <div class="add_icon">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M1.46294 5.86456C1.46294 3.84025 3.10038 2.19922 5.12026 2.19922H12.4349C14.4548 2.19922 16.0922 3.84025 16.0922 5.86456V12.4622C16.0922 14.4865 14.4548 16.1275 12.4349 16.1275H5.12026C3.10038 16.1275 1.46294 14.4865 1.46294 12.4622V5.86456ZM5.12026 3.66536C3.90833 3.66536 2.92587 4.64998 2.92587 5.86456V12.4622C2.92587 13.6768 3.90833 14.6614 5.12026 14.6614H12.4349C13.6468 14.6614 14.6293 13.6768 14.6293 12.4622V5.86456C14.6293 4.64998 13.6468 3.66536 12.4349 3.66536H5.12026Z" fill="white"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.85172 1.46631C6.2557 1.46631 6.58318 1.79451 6.58318 2.19938V4.39858C6.58318 4.80345 6.2557 5.13165 5.85172 5.13165C5.44774 5.13165 5.12025 4.80345 5.12025 4.39858V2.19938C5.12025 1.79451 5.44774 1.46631 5.85172 1.46631Z" fill="white"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7034 1.46631C12.1074 1.46631 12.4349 1.79451 12.4349 2.19938V4.39858C12.4349 4.80345 12.1074 5.13165 11.7034 5.13165C11.2995 5.13165 10.972 4.80345 10.972 4.39858V2.19938C10.972 1.79451 11.2995 1.46631 11.7034 1.46631Z" fill="white"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.77757 6.59766C9.18155 6.59766 9.50904 6.92586 9.50904 7.33073V8.79686H10.972C11.3759 8.79686 11.7034 9.12507 11.7034 9.52993C11.7034 9.93479 11.3759 10.263 10.972 10.263H9.50904V11.7291C9.50904 12.134 9.18155 12.4622 8.77757 12.4622C8.3736 12.4622 8.04611 12.134 8.04611 11.7291L8.04611 10.263H6.58318C6.1792 10.263 5.85172 9.93479 5.85172 9.52993C5.85172 9.12507 6.1792 8.79686 6.58318 8.79686H8.04611V7.33073C8.04611 6.92586 8.3736 6.59766 8.77757 6.59766Z" fill="white"/>
+                            </svg>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>검색어</th>
+                <td>
+                    <div class="search_inner"><input type="text" class="search_txt" name="board_title" style="width: 326px;" value="<?=$_GET["board_title"] ? $_GET["board_title"]  : ""?>"/></div>
+                </td>
+            </tr>
+            <tr>
+                <th>선정 여부</th>
+                <td>
+                    <div class="search_inner sup">
+                        <label class="akContainer">전체
+                            <input type="radio" <?=!$_GET["lot_01"] ? "checked" : ""?> name="lot_01" value="">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="akContainer">선정
+                            <input type="radio" <?=$_GET["lot_01"] == "1" ? "checked" : ""?> name="lot_01" value="1">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="akContainer">미선정
+                            <input type="radio" <?=($_GET["lot_01"]!="1" && strlen($_GET["lot_01"]) > 0) ? "checked" : ""?> name="lot_01" value="0">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="btnContainer mgt20">
+            <a href="javascript:;" onclick="return fnSearch3();" class="btnAdd3">검색</a>
+        </div>
+    </div>
+</form>
+
 
 
 <div class="tableSection mgt30">
@@ -592,40 +589,6 @@ $list_cnt = mysql_num_rows($list_res);
                 format: "%Y-%m-%d %H:%i:00"
             });
         });
-
-
-        // 25.06.26 페이지네비게이션 서치 스크립트 추가
-        fnSearch3 = function() {
-            $("input[name='page']").val(1);
-            var baseUrl = '<?=PATH_HOME?>?' + '<?=get("page")?>' + '&hero_code=' + '<?=$view["hero_id"]?>' + '&view=userManagerView';
-            // 탭 상태 저장
-            localStorage.setItem('activeTab', '3');
-
-            $("#searchForm3").attr("action", baseUrl).submit();
-            return false;
-        }
-
-        $('.pagination a').on('click', function(e) {
-            e.preventDefault();
-            var href = $(this).attr('href');
-            localStorage.setItem('activeTab', '3');
-            window.location.href = href;
-        });
-
-        var activeTab = localStorage.getItem('activeTab');
-        if(activeTab === '3') {
-            if(window.parent && window.parent.$) {
-                // 탭 메뉴 활성화
-                window.parent.$('.viewTabList li').removeClass('on');
-                window.parent.$('.viewTabList li[data-idx="3"]').addClass('on');
-
-                // 컨텐츠 영역 활성화
-                window.parent.$('.viewTabContents .content_item').removeClass('active user_info');
-                window.parent.$('.viewTabContents .content_item[data-idx="3"]').addClass('active user_info');
-            }
-            localStorage.removeItem('activeTab');
-        }
-
     });
 
 

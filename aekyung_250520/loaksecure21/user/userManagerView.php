@@ -153,4 +153,85 @@ if($view["hero_board_group"] == "b") {
             <? include_once PATH_INC_END.'/user/userManagerView_5.php';?>
         </li>
     </ul>
-</div> <!-- 25.06.24 각탭 페이지 네비게이션 이동시 탭 활성화를 위해 속성 추가 -->
+</div>
+<!-- 25.06.24 각탭 페이지 네비게이션 이동시 탭 활성화를 위해 속성 추가 -->
+<script>
+    // 공통 함수로 변경
+    function fnSearch(tabIndex) {
+        $("input[name='page']").val(1);
+        var baseUrl = '<?=PATH_HOME?>?' + '<?=get("page")?>' +
+            '&hero_code=' + '<?=$view["hero_id"]?>' +
+            '&view=userManagerView' +
+            '&tab=' + tabIndex;  // tab 파라미터 추가
+
+        localStorage.setItem('activeTab', tabIndex);
+        $("#searchForm" + tabIndex).attr("action", baseUrl).submit();
+        return false;
+    }
+
+    // 페이지네이션 이벤트를 데이터 속성으로 구분
+    $('[data-pagination-tab] .pagination a').on('click', function(e) {
+        e.preventDefault();
+        var href = $(this).attr('href');
+        var tabIndex = $(this).closest('[data-pagination-tab]').data('pagination-tab');
+
+        // URL 객체 생성
+        var url = new URL(href, window.location.href);
+
+        // 기존의 모든 파라미터를 가져옴
+        var params = new URLSearchParams(url.search);
+
+        // 기존 tab 파라미터 제거
+        params.delete('tab');
+
+        // 현재 탭 파라미터 추가
+        params.set('tab', tabIndex);
+
+        // 새로운 URL 생성
+        url.search = params.toString();
+
+        localStorage.setItem('activeTab', tabIndex);
+        window.location.href = url.toString();
+    });
+
+    function activateTab() {
+        // URL의 tab 파라미터 확인
+        const urlParams = new URLSearchParams(window.location.search);
+        const tabParam = urlParams.get('tab');
+
+        // localStorage의 activeTab 확인
+        const storedTab = localStorage.getItem('activeTab');
+
+        // 실제 사용할 탭 인덱스 결정 (URL 파라미터 우선)
+        const activeTab = tabParam || storedTab;
+
+        console.log('Tab activation:', {
+            tabParam: tabParam,
+            storedTab: storedTab,
+            activeTab: activeTab
+        });
+
+        if(activeTab && window.parent && window.parent.$) {
+            // 탭 메뉴 활성화
+            window.parent.$('.viewTabList li').removeClass('on');
+            window.parent.$('.viewTabList li[data-idx="' + activeTab + '"]').addClass('on');
+
+            // 컨텐츠 영역 활성화
+            window.parent.$('.viewTabContents .content_item').removeClass('active user_info');
+            window.parent.$('.viewTabContents .content_item[data-idx="' + activeTab + '"]').addClass('active user_info');
+
+            // URL도 업데이트
+            if (!tabParam) {
+                const newUrl = new URL(window.location.href);
+                newUrl.searchParams.set('tab', activeTab);
+                window.history.replaceState({}, '', newUrl);
+            }
+
+            localStorage.removeItem('activeTab');
+        }
+    }
+    // 페이지 로드 시 탭 활성화
+    $(document).ready(function() {
+        activateTab();
+    });
+</script>

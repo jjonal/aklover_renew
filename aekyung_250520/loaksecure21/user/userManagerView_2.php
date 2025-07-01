@@ -474,22 +474,38 @@ $list_cnt = mysql_num_rows($list_res);
 <div class="pagingWrap remaking">
     <?php if ($total_page > 1) { ?>
         <div class="pagination">
+            <?php
+            // query_string에서 tab 파라미터만 제거
+            $params = explode('&', $query_string);
+            $clean_params = array();
+            foreach($params as $param) {
+                if(strpos($param, 'tab=') !== 0) {
+                    $clean_params[] = $param;
+                }
+            }
+            $clean_query_string = implode('&', $clean_params);
+
+            // 현재 활성화된 탭
+            $current_tab = 2;
+//            $current_tab = isset($current_tab) ? $current_tab : '2';
+            ?>
+
             <?php if ($start_page > 1) { ?>
-                <a href="?<?=$query_string?>&page=1&tab=2" class="pg_btn first">
+                <a href="?<?=$clean_query_string?>&page=1&tab=<?=$current_tab?>" class="pg_btn first">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5.2002 7.99935L11.2002 13.9993M5.2002 7.99935L11.2002 1.99935M5.2002 7.99935H13.0002" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </a>
-                <a href="?<?=$query_string?>&page=<?=$prev_page?>&tab=2" class="pg_btn prev">이전</a>
+                <a href="?<?=$clean_query_string?>&page=<?=$prev_page?>&tab=<?=$current_tab?>" class="pg_btn prev">이전</a>
             <?php } ?>
 
             <?php for ($i = $start_page; $i <= $end_page; $i++) { ?>
-                <a href="?<?=$query_string?>&page=<?=$i?>&tab=2" class="pg_btn num <?=$page == $i ? 'active' : ''?>"><?=$i?></a>
+                <a href="?<?=$clean_query_string?>&page=<?=$i?>&tab=<?=$current_tab?>" class="pg_btn num <?=$page == $i ? 'active' : ''?>"><?=$i?></a>
             <?php } ?>
 
             <?php if ($end_page < $total_page) { ?>
-                <a href="?<?=$query_string?>&page=<?=$next_page?>&tab=2" class="pg_btn next">다음</a>
-                <a href="?<?=$query_string?>&page=<?=$total_page?>&tab=2" class="pg_btn last">
+                <a href="?<?=$clean_query_string?>&page=<?=$next_page?>&tab=<?=$current_tab?>" class="pg_btn next">다음</a>
+                <a href="?<?=$clean_query_string?>&page=<?=$total_page?>&tab=<?=$current_tab?>" class="pg_btn last">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.7998 7.99935L4.7998 13.9993M10.7998 7.99935L4.7998 1.99935M10.7998 7.99935H2.9998" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -650,37 +666,6 @@ $list_cnt = mysql_num_rows($list_res);
             $('.popup_url_box').removeClass('show');
         })
 
-        // 25.06.24 페이지네비게이션 서치 스크립트 추가
-        fnSearch2 = function() {
-            $("input[name='page']").val(1);
-            var baseUrl = '<?=PATH_HOME?>?' + '<?=get("page")?>' + '&hero_code=' + '<?=$view["hero_id"]?>' + '&view=userManagerView';
-            // 탭 상태 저장
-            localStorage.setItem('activeTab', '2');
-
-            $("#searchForm2").attr("action", baseUrl).submit();
-            return false;
-        }
-
-        $('.pagination a').on('click', function(e) {
-            e.preventDefault();
-            var href = $(this).attr('href');
-            localStorage.setItem('activeTab', '2');
-            window.location.href = href;
-        });
-
-        var activeTab = localStorage.getItem('activeTab');
-        if(activeTab === '2') {
-            if(window.parent && window.parent.$) {
-                // 탭 메뉴 활성화
-                window.parent.$('.viewTabList li').removeClass('on');
-                window.parent.$('.viewTabList li[data-idx="2"]').addClass('on');
-
-                // 컨텐츠 영역 활성화
-                window.parent.$('.viewTabContents .content_item').removeClass('active user_info');
-                window.parent.$('.viewTabContents .content_item[data-idx="2"]').addClass('active user_info');
-            }
-            localStorage.removeItem('activeTab');
-        }
     });
 
     //후기 URL 팝업데이터

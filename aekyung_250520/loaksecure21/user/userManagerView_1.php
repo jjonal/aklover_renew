@@ -236,7 +236,7 @@
                     <th>네이버 블로그</th>
                     <td>
                         <div class="textLink">
-                            <input type="text" name="hero_short" value="<?=$hero_naver_blog?>" class="w100p"/>
+                            <input type="text" name="hero_blog_00" value="https://blog.naver.com/<?=$hero_naver_blog?>" class="w100p"/>
                             <p onclick="fnSnsLink(this)"><img src="<?=PATH_IMAGE_END?>common/icon_link.svg" alt="연결" /></p>
                         </div>
                     </td>
@@ -245,7 +245,7 @@
                     <th>인스타그램</th>
                     <td>
                         <div class="textLink">
-                            <input type="text" name="hero_short" value="<?=$hero_instagram?>" class="w100p"/>
+                            <input type="text" name="hero_blog_04" value="https://www.instagram.com/<?=$hero_instagram?>" class="w100p"/>
                             <p onclick="fnSnsLink(this)"><img src="<?=PATH_IMAGE_END?>common/icon_link.svg" alt="연결" /></p>
                         </div>
                     </td>
@@ -254,7 +254,7 @@
                     <th>숏폼</th>
                     <td>
                         <div class="textLink">
-                            <input type="text" name="hero_short" value="https://example.com/123" class="w100p"/>
+                            <input type="text" name="hero_blog_07" value="<?=$view["hero_blog_07"]?>" class="w100p"/>
                             <p onclick="fnSnsLink(this)"><img src="<?=PATH_IMAGE_END?>common/icon_link.svg" alt="연결" /></p>
                         </div>
                     </td>
@@ -263,27 +263,27 @@
                     <th rowspan="3">기타</th>
                     <td class="tb_line">
                         <div class="textLink">
-                            <input type="text" name="hero_sns_01" value="https://example.com/123" class="w100p"/>
+                            <input type="text" name="hero_blog_08" value="<?=$view["hero_blog_08"]?>" class="w100p"/>
                             <p onclick="fnSnsLink(this)"><img src="<?=PATH_IMAGE_END?>common/icon_link.svg" alt="연결" /></p>
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <div class="textLink">
-                            <input type="text" name="hero_sns_02" value="https://example.com/123" class="w100p"/>
-                            <p onclick="fnSnsLink(this)"><img src="<?=PATH_IMAGE_END?>common/icon_link.svg" alt="연결" /></p>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="textLink">
-                            <input type="text" name="hero_sns_03" value="https://example.com/123" class="w100p"/>
-                            <p onclick="fnSnsLink(this)"><img src="<?=PATH_IMAGE_END?>common/icon_link.svg" alt="연결" /></p>
-                        </div>
-                    </td>
-                </tr>
+<!--                <tr>-->
+<!--                    <td>-->
+<!--                        <div class="textLink">-->
+<!--                            <input type="text" name="hero_sns_02" value="https://example.com/123" class="w100p"/>-->
+<!--                            <p onclick="fnSnsLink(this)"><img src="--><?php //=PATH_IMAGE_END?><!--common/icon_link.svg" alt="연결" /></p>-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>-->
+<!--                        <div class="textLink">-->
+<!--                            <input type="text" name="hero_sns_03" value="https://example.com/123" class="w100p"/>-->
+<!--                            <p onclick="fnSnsLink(this)"><img src="--><?php //=PATH_IMAGE_END?><!--common/icon_link.svg" alt="연결" /></p>-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                </tr>-->
                 </tbody>
             </table>
         </li>
@@ -629,8 +629,8 @@
         }
 
         fnEditSns = function() {
-            if(confirm("SNS 관리 정보를 수정하시겠습니까?")) {
-                $("#viewForm input[name='mode']").val("editSns");
+            if(confirm("회원 정보를 수정하시겠습니까?")) {
+                $("#viewForm input[name='mode']").val("editAll");
                 var param = $("#viewForm").serialize();
                 $.ajax({
                     url:"/loaksecure21/user/userManagerAction.php"
@@ -638,7 +638,6 @@
                     ,data:param
                     ,dataType:"json"
                     ,success:function(d){
-                        console.log(d);
                         if(d.result==1) {
                             alert("SNS 관리 정보가 수정 되었습니다.");
                             location.reload();

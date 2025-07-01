@@ -16,7 +16,7 @@ if($mode == "superpass") {
 	
 	$sql  = " INSERT INTO superpass (hero_code, hero_kind, hero_superpass, hero_today, hero_endday) VALUES ";
 	$sql .= " ('".$hero_code."','".$hero_kind."','1','".date("Y-m-d H:i:s")."','".$hero_endday."') ";
-	$result = sql($sql,"on");
+    $result = sql($sql,"on");
 
 	if($result) {
 		$data["result"] = "1";

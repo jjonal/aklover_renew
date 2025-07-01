@@ -58,7 +58,7 @@ $type_arr = array("1"=>"이중아이디","2"=>"가이드라인 미준수","3"=>"후기 미등록",
             <h2>패널티 내역/지급</h2>
         </div>
         <form name="listForm" id="listForm" method="POST">
-            <input type="hidden" name="hero_idx" />
+            <input type="hidden" name="hero_idx" value="<?=$hero_code?>"/>
             <input type="hidden" name="hero_code" value="<?=$hero_code?>" />
             <input type="hidden" name="mode" value="" />
             <table class="mu_table mgt10 panealty_list">
@@ -72,37 +72,36 @@ $type_arr = array("1"=>"이중아이디","2"=>"가이드라인 미준수","3"=>"후기 미등록",
                 <tr>
                     <th>등록일</th>
                     <th>타입</th>
-                    <th>체험단</th>
+                    <th>내용</th>
                     <th>관리</th>
                 </tr>
                 </thead>
                 <tbody class="line">
-                <tr>
-                    <td>2024-00-00</td>
-                    <td>가이드 미준수</td>
-                    <td class="title">홈백신 로봇청소기 올인원 클리너...</td>
-                    <td><a href="javascript:;" onClick="fnDelPenalty('<?=$list["hero_idx"]?>')" class="btnAdd4">삭제</a></td>
-                </tr>
-                <!-- 등록된 데이터가 없을 시 보여주세요. -->
+<!--                <tr>-->
+<!--                    <td>2024-00-00</td>-->
+<!--                    <td>가이드 미준수</td>-->
+<!--                    <td class="title">홈백신 로봇청소기 올인원 클리너...</td>-->
+<!--                    <td><a href="javascript:;" onClick="fnDelPenalty('--><?php //=$list["hero_idx"]?><!-- //')" class="btnAdd4">삭제</a></td>
+               </tr> -->
                 <!-- <tr>
                     <td colspan="4" class="no_data">등록된 데이터가 없습니다.</td>
                 </tr> -->
 
-                <!-- <?
+                <?
                 if($total_data > 0) {
                     while($list = mysql_fetch_assoc($list_res)) {?>
 				<tr>
 					<td><?=$list["hero_today"]?></td>
 					<td><?=$type_arr[$list["type"]]?></td>
 					<td class="title"><?=$list["memo"]?></td>
-					<td><a href="javascript:;" onClick="fnDelPenalty('<?=$list["hero_idx"]?>')" class="btnForm">삭제</a></td>
+					<td><a href="javascript:;" onClick="fnDelPenalty('<?=$list["hero_idx"]?>')" class="btnAdd4">삭제</a></td>
 				</tr>
 				<? }
                 } else {?>
 				<tr class="align_c">
 					<td colspan="4">등록된 데이터가 없습니다.</td>
 				</tr>
-				<? } ?> -->
+				<? } ?>
                 </tbody>
             </table>
         </form>
@@ -151,61 +150,47 @@ $type_arr = array("1"=>"이중아이디","2"=>"가이드라인 미준수","3"=>"후기 미등록",
                 </tbody>
             </table>
 
-            <table class="mu_table mgt20">
-                <colgroup>
-                    <col width="150">
-                    <col width="*">
-                </colgroup>
-                <thead>
-                <tr>
-                    <th>서포터즈 구분</th>
-                    <th>체험단 선택</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <div class="select_wrap">
-                            <select name="type">
-                                <option value="">선택</option>
-                                <option value="1">프리미어 뷰티</option>
-                                <option value="2">프리미어 라이프</option>
-                                <option value="3">베이직 뷰티&라이프</option>
-                            </select>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="select_wrap">
-                            <!-- 현재 진행되고 있는 체험단 리스트 노출 -->
-                            <select name="type">
-                                <option value="">선택</option>
-                                <option value="1"></option>
-                                <option value="2"></option>
-                                <option value="3"></option>
-                            </select>
-                        </div>
-                    </td>
-                <tr>
-                </tbody>
-            </table>
+<!--     기능정의서엔 없는 부분으로 제거 25.07.01       <table class="mu_table mgt20">-->
+<!--                <colgroup>-->
+<!--                    <col width="150">-->
+<!--                    <col width="*">-->
+<!--                </colgroup>-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                    <th>서포터즈 구분</th>-->
+<!--                    <th>체험단 선택</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--                <tr>-->
+<!--                    <td>-->
+<!--                        <div class="select_wrap">-->
+<!--                            <select name="type">-->
+<!--                                <option value="">선택</option>-->
+<!--                                <option value="1">프리미어 뷰티</option>-->
+<!--                                <option value="2">프리미어 라이프</option>-->
+<!--                                <option value="3">베이직 뷰티&라이프</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                    <td>-->
+<!--                        <div class="select_wrap">-->
+<!--                            <select name="type">-->
+<!--                                <option value="">선택</option>-->
+<!--                                <option value="1"></option>-->
+<!--                                <option value="2"></option>-->
+<!--                                <option value="3"></option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                <tr>-->
+<!--                </tbody>-->
+<!--            </table>-->
             <div class="btnContainer mgt20">
                 <a href="javascript:;" onClick="fnPenalty();" class="btnAdd3">패널티 등록</a>
             </div>
         </form>
     </div>
-
-    <!-- [개발 요청] 패널티 상세 내용 여기서 보여주세요.-->
-    <!-- <div class="penalty_detail">
-        <div class="pop_header">
-            <h2>페널티 상세 내용</h2>
-            <p class="penalty_detail_back">뒤로가기 임시 버튼</p>
-        </div>
-        <div class="pop_content mgt10">
-            <textarea></textarea>
-        </div>
-    </div> -->
-
-
 </div>
 </body>
 <html>

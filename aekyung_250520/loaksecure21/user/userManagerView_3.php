@@ -40,8 +40,6 @@ $total_rs = mysql_fetch_assoc($total_res);
 $total_data3 = $total_rs['cnt'];
 
 //$i3=$total_data3;
-
-var_dump($total_data3);
 //°Ë»ö °¹¼ö
 
 $search_sql  = " SELECT count(*) cnt";

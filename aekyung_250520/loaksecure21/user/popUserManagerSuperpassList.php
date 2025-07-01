@@ -58,9 +58,9 @@ $list_res = sql($sql, "on");
         <h1>슈퍼패스 확인</h1>
     </div> -->
     <div class="popContents">
-        <form name="listForm" id="listForm" method="POST">
-            <input type="hidden" name="hero_idx" />
-            <input type="hidden" name="hero_code" value="<?=$hero_code?>" />
+<!--        <form name="listForm" id="listForm" method="POST">-->
+<!--            <input type="hidden" name="hero_idx" />-->
+<!--            <input type="hidden" name="hero_code" value="--><?php //=$hero_code?><!--" />-->
 
             <!-- 슈퍼패스 확인 주석처리 -->
             <!-- <input type="hidden" name="mode" value="" />
@@ -143,33 +143,6 @@ $list_res = sql($sql, "on");
                 </div>
 
             </form>
-
-            <!-- 기존 슈퍼패스 지급 주석처리 -->
-            <!-- <form name="writeForm" id="writeForm" method="POST">
-        <input type="hidden" name="hero_code" value="<?=$hero_code?>" />
-        <input type="hidden" name="mode" value="superpass" />
-	        <table class="t_list mgt10">
-	        <colgroup>
-				<col width="*">
-				<col width="150">
-				<col width="100">
-			</colgroup>
-			<thead>
-				<tr>
-					<th>타입</th>
-					<th>만료일</th>
-					<th>관리</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td><input type="text" name="hero_kind" /></td>
-					<td><input type="text" name="hero_endday" class="dateMode" style="width:100px;vertical-align:bottom" /></td>
-					<td><a href="javascript:;" onClick="fnSuperpass();" class="btnForm">지급</a></td>
-				<tr>
-			</tbody>
-	        </table>
-        </form> -->
     </div>
 </div>
 </body>

@@ -43,8 +43,8 @@ if($mode == "withdrawal") {
 	
 	$hero_chk_phone_past = $view["hero_chk_phone"];
 	$hero_chk_email_past = $view["hero_chk_email"];
-	
-	
+
+
 	$hero_hp = $_POST["hero_hp_01"]."-".$_POST["hero_hp_02"]."-".$_POST["hero_hp_03"];
 	$hero_mail = $_POST["hero_mail_01"]."@".$_POST["hero_mail_02"];
 	$sql  = " UPDATE member SET ";
@@ -107,7 +107,7 @@ if($mode == "withdrawal") {
 	} else {
 		$data["result"] = "1";
 	}	
-} else if($mode = "pwInitialize") {
+} else if($mode == "pwInitialize") {
     if(isset($_POST["pw_initialized"]) && !empty($_POST["pw_initialized"])) {
         $member_sql  = " SELECT hero_nick, hero_id FROM member ";
         $member_sql .= " WHERE hero_code = '".$hero_code."' ";
@@ -138,6 +138,65 @@ if($mode == "withdrawal") {
         }
     } else {
         $data["result"] = "-1";
+    }
+} else if($mode == "editAll") { // 25.07.01 editAll 모드 추가
+    $member_sql  = " SELECT hero_chk_phone, hero_chk_email FROM member ";
+    $member_sql .= " WHERE hero_use = 0 AND hero_code = '".$hero_code."' ";
+    $member_res = sql($member_sql,"on");
+
+    $view = mysql_fetch_assoc($member_res);
+
+
+
+    $hero_chk_phone_past = $view["hero_chk_phone"];
+    $hero_chk_email_past = $view["hero_chk_email"];
+
+    $update_occurred = false; // 업데이트 발생 여부 체크
+
+    if ($_POST['hero_hp_check'] == "on") {
+        $hero_hp = $_POST["hero_hp_01"]."-".$_POST["hero_hp_02"]."-".$_POST["hero_hp_03"];
+    }
+    if ($_POST['hero_mail_check'] == "on") {
+        $hero_mail = $_POST["hero_mail_01"]."@".$_POST["hero_mail_02"];
+    }
+
+    $sql = "UPDATE member SET ";
+    $set_values = array();
+
+// 휴대폰 번호 업데이트
+    if ($_POST['hero_hp_check'] == "on") {
+        $set_values[] = "hero_hp = '".$hero_hp."'";
+        $set_values[] = "hero_chk_phone = '".$_POST["hero_chk_phone"]."'";
+        $update_occurred = true;
+    }
+
+// 이메일 업데이트
+    if ($_POST['hero_mail_check'] == "on") {
+        $set_values[] = "hero_mail = '".$hero_mail."'";
+        $set_values[] = "hero_chk_email = '".$_POST["hero_chk_email"]."'";
+        $update_occurred = true;
+    }
+
+// 업데이트가 발생했을 경우에만 실행
+    if ($update_occurred) {
+        $sql .= implode(", ", $set_values);
+        $sql .= " WHERE hero_use = 0 AND hero_code = '".$hero_code."'";
+        $result = sql(out($sql));
+    }
+
+    $sql  = " UPDATE member SET ";
+    $sql .= " hero_blog_00 = '".$_POST["hero_blog_00"]."'";
+    $sql .= " , hero_blog_04 = '".$_POST["hero_blog_04"]."'";
+    $sql .= " , hero_blog_07 = '".$_POST["hero_blog_07"]."' ";
+    $sql .= " , hero_blog_08 = '".$_POST["hero_blog_08"]."' ";
+    $sql .= " WHERE hero_use = 0 AND hero_code = '".$hero_code."' ";
+
+    $result = sql(out($sql),"on");
+
+    if(!$result) {
+        $data["result"] = "-1";
+    } else {
+        $data["result"] = "1";
     }
 }
 echo json_encode($data);

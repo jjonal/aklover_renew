@@ -326,6 +326,17 @@ $list_cnt = mysql_num_rows($list_res);
                         //준우수 콘텐츠
                         if($list['semi_best'] == 'Y') $semi_best = '선정';
                         else $semi_best = '미선정';
+
+                        // 서포터즈 구분
+                        if($list['hero_table'] == "group_04_05") {
+                            $supporters = "베이직 뷰티 & 라이프 클럽";
+                        } elseif ($list['hero_table'] == "group_04_06") {
+                            $supporters = "프리미어 뷰티 클럽";
+                        } elseif ($list['hero_table'] == "group_04_28") {
+                            $supporters = "프리미어 라이프 클럽";
+                        }
+
+
                         ?>
                         <tr style="cursor:pointer" onClick="fnView('<?=$list["hero_code"]?>')">
                             <td>
@@ -335,7 +346,7 @@ $list_cnt = mysql_num_rows($list_res);
                             </td>
                             <td>
                                 <div class="table_result_types">
-                                    확인필요<!-- 회원정보일지 후기유형일지 -->
+                                    <?=$supporters?>
                                 </div>
                             </td>
                             <td>
@@ -368,7 +379,7 @@ $list_cnt = mysql_num_rows($list_res);
                                 </div>
                             </td>
                             <td>
-                                <div class="table_result_btn03">
+                                <div class="table_result_btn03" data-code="<?=$list["hero_idx"]?>">
                                     <p class="icon_box active">
                                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M5.83335 3.33317C4.45264 3.33317 3.33335 4.45246 3.33335 5.83317V14.1665C3.33335 15.5472 4.45264 16.6665 5.83335 16.6665H14.1667C15.5474 16.6665 16.6667 15.5472 16.6667 14.1665V10.8332C16.6667 10.3729 17.0398 9.99984 17.5 9.99984C17.9603 9.99984 18.3334 10.3729 18.3334 10.8332V14.1665C18.3334 16.4677 16.4679 18.3332 14.1667 18.3332H5.83335C3.53217 18.3332 1.66669 16.4677 1.66669 14.1665V5.83317C1.66669 3.53198 3.53217 1.6665 5.83335 1.6665H9.16669C9.62692 1.6665 10 2.0396 10 2.49984C10 2.96007 9.62692 3.33317 9.16669 3.33317H5.83335Z" fill="black"/>
@@ -535,19 +546,19 @@ $list_cnt = mysql_num_rows($list_res);
                     <tbody>
                     <tr>
                         <th><div class="">닉네임</div></th>
-                        <td><div class="">dreammaam</div></td>
+                        <td><div class=""></div></td>
                     </tr>
                     <tr>
                         <th><div class="">회원 등급</div></th>
-                        <td><div class="">프리미어 라이프 클럽</div></td>
+                        <td><div class=""></div></td>
                     </tr>
                     <tr>
                         <th><div class="">콘텐츠 타이틀 명</div></th>
-                        <td><div class="">세탁과 세탁조 케어를 한번에!!</div></td>
+                        <td><div class=""></div></td>
                     </tr>
                     <tr>
                         <th><div class="">콘텐츠 등록일</div></th>
-                        <td><div class="">2024-01-18 14:48:47</div></td>
+                        <td><div class=""></td>
                     </tr>
                     </tbody>
                 </table>
@@ -668,25 +679,24 @@ $list_cnt = mysql_num_rows($list_res);
 
     });
 
-    //후기 URL 팝업데이터
+    //후기 URL 팝업데이터 스크립트 추가 jnr 25.07.01
     function popupData(location, divName) {
-        // $.ajax({
-        //     url: "/loaksecure21/nail/bestReviewUrl.php",
-        //     data: {
-        //         hero_idx: $(this).data("idx"),
-        //         location: location,
-        //     },
-        //     type: "POST",
-        //     dataType: "html",
-        //     success: function(data) {
-        //         $(divName).html(data);
-        //     },
-        //     error: function(e) {
-        //         console.log(e);
-        //     }
-        // });
+        var heroCode = $(this).data('code'); // data-code 속성값 가져오기
+        $.ajax({
+            url: "/loaksecure21/user/popUserReview.php",
+            data: {
+                hero_idx: heroCode,
+                location: location,
+            },
+            type: "POST",
+            dataType: "html",
+            success: function(data) {
+                $(divName).html(data);
+            },
+            error: function(e) {
+                console.log(e);
+            }
+        });
     }
 
 </script>
-
-<!-- musign 페이지 네비게이션 스크립트 추가 25.06.24 -->

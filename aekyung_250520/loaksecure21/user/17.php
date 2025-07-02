@@ -3,13 +3,57 @@ if(!defined('_HEROBOARD_'))exit;
 
 $search = "";
 
-if($_GET["url"]) {
-    $search .= " AND ".$_GET["hero_blog"]." like '%".$_GET["url"]."%' ";
+
+// 250702 sns 검색 musign jnr
+if( !empty($_GET["hero_blog"]) && is_array($_GET["hero_blog"]) ) {
+
+    $hero_blog_conditions = array(); // array() 사용
+
+    foreach($_GET["hero_blog"] as $blog_type) {
+        switch($blog_type) {
+            case "hero_blog_00": // 네이버블로그
+                //$search .= " AND ".$_GET["hero_blog"]." like '%".$_GET["url"]."%' ";
+                $hero_blog_conditions[] = "(hero_blog_00 not like '' and hero_blog_00 != '')";
+                break;
+            case "hero_blog_04": // 인스타
+                $hero_blog_conditions[] = "(hero_blog_04 not like '' and hero_blog_00 != '')";
+                break;
+            case "hero_blog_07": // 숏폼
+                $hero_blog_conditions[] = "(hero_blog_07 not like '' and hero_blog_00 != '')";
+                break;
+            case "hero_blog_08": // 숏폼
+                $hero_blog_conditions[] = "(hero_blog_08 not like '' and hero_blog_00 != '')";
+                break;
+        }
+    }
+
+    if(!empty($hero_blog_conditions)) {
+        $search .= " AND (" . implode(" OR ", $hero_blog_conditions) . ")";
+    }
 }
 
-if($_GET["kewyword"]) {
-    $search .= " AND ".$_GET["select"]." = '".$_GET["kewyword"]."' ";
+
+if($_GET["kewyword"] && $_GET["select"] != 'none') { //
+    if($_GET["select"] == 'hero_nick') { // 닉네임 검색
+        $_GET["select"] = $_GET["select"];
+    } elseif ($_GET["select"] == 'hero_name') { // 이름
+        $_GET["select"] = $_GET["select"];
+    } elseif ($_GET["select"] == 'hero_id') { // 아이디
+        $_GET["select"] = $_GET["select"];
+    } elseif ($_GET["select"] == 'hero_hp') { // 전화번호
+        $_GET["select"] = 'hero_hp';
+        // 검색어에서 하이픈 제거 후 포맷팅
+        $phone = preg_replace("/[^0-9]/", "", $_GET["kewyword"]); // 숫자만 추출
+        $_GET["kewyword"] = substr($phone, 0, 3) . '-' . substr($phone, 3, 4) . '-' . substr($phone, 7);
+    }
+    $search .= " AND ".$_GET["select"]." like '%".$_GET["kewyword"]."%' ";
 }
+
+// 전체페이지
+$total_all_sql = " SELECT count(*) as cnt FROM member WHERE hero_use=0 ";
+$total_all_result = sql($total_all_sql);
+$total_all_res = mysql_fetch_assoc($total_all_result);
+$total_cnt = $total_all_res['cnt'];
 
 //페이지 넘버링
 $total_sql = " SELECT count(*) as cnt FROM member WHERE hero_use=0 ".$search;
@@ -54,24 +98,27 @@ $list_res = sql($sql);
             <th>SNS</th>
             <td>
                 <div class="search_inner sup">
+                    <?php
+                    $hero_blog = (isset($_GET['hero_blog']) && is_array($_GET['hero_blog'])) ? $_GET['hero_blog'] : array();
+                    ?>
                     <label class="akContainer">전체
-                        <input type="checkbox" name="sns_chk" value="all">
+                        <input type="checkbox" <?php echo (!isset($_GET['hero_blog']) || empty($hero_blog) || in_array('', $hero_blog)) ? 'checked' : ''; ?> name="hero_blog[]" value="">
                         <span class="checkmark"></span>
                     </label>
                     <label class="akContainer">블로그
-                        <input type="checkbox" name="sns_chk" value="blog">
+                        <input type="checkbox" <?php echo (is_array($hero_blog) && in_array('hero_blog_00', $hero_blog)) ? 'checked' : ''; ?> name="hero_blog[]" value="hero_blog_00">
                         <span class="checkmark"></span>
                     </label>
                     <label class="akContainer">인스타그램
-                        <input type="checkbox" name="sns_chk" value="insta">
+                        <input type="checkbox" <?php echo (is_array($hero_blog) && in_array('hero_blog_04', $hero_blog)) ? 'checked' : ''; ?> name="hero_blog[]" value="hero_blog_04">
                         <span class="checkmark"></span>
                     </label>
                     <label class="akContainer">숏폼
-                        <input type="checkbox" name="sns_chk" value="short">
+                        <input type="checkbox" <?php echo (is_array($hero_blog) && in_array('hero_blog_07', $hero_blog)) ? 'checked' : ''; ?> name="hero_blog[]" value="hero_blog_07">
                         <span class="checkmark"></span>
                     </label>
                     <label class="akContainer">기타
-                        <input type="checkbox" name="sns_chk" value="ect">
+                        <input type="checkbox" <?php echo (is_array($hero_blog) && in_array('hero_blog_08', $hero_blog)) ? 'checked' : ''; ?> name="hero_blog[]" value="hero_blog_08">
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -103,51 +150,13 @@ $list_res = sql($sql);
         </div>
     </div>
 
-    <!-- 250625 검색필터 기존 주석처리 -->
-
-    <!-- <table class="tbSearch">
-	<colgroup>
-		<col width="150px" />
-		<col width="*" />
-	</colgroup>
-	<tr>
-		<th>SNS URL</th>
-		<td>
-			<select name="hero_blog">
-				<option value="hero_blog_00" <?=$_GET["hero_blog"]=="hero_blog_00" ? "selected":""?>>네이버 블로그</option>
-				<option value="hero_blog_04" <?=$_GET["hero_blog"]=="hero_blog_04" ? "selected":""?>>인스타그램</option>
-				<option value="hero_blog_05" <?=$_GET["hero_blog"]=="hero_blog_05" ? "selected":""?>>그 외 SNS URL</option>
-				<option value="hero_blog_03" <?=$_GET["hero_blog"]=="hero_blog_03" ? "selected":""?>>유튜브</option>
-				<option value="hero_blog_06" <?=$_GET["hero_blog"]=="hero_blog_06" ? "selected":""?>>네이버TV</option>
-				<option value="hero_blog_07" <?=$_GET["hero_blog"]=="hero_blog_07" ? "selected":""?>>틱톡</option>
-				<option value="hero_blog_08" <?=$_GET["hero_blog"]=="hero_blog_08" ? "selected":""?>>기타(영상)</option>
-			</select>
-			<input type="text" name="url" value="<?=$_REQUEST["url"];?>" class="kewyword">
-		</td>
-	</tr>
-	<tr>
-		<th>검색어</th>
-		<td>
-			<select name="select">
-		    	<option value="hero_nick" <?if(!strcmp($_REQUEST['select'], 'hero_nick')){echo ' selected';}else{echo '';}?>>닉네임</option>
-		    	<option value="hero_name" <?if(!strcmp($_REQUEST['select'], 'hero_name')){echo ' selected';}else{echo '';}?>>이름</option>
-		    	<option value="hero_id" <?if(!strcmp($_REQUEST['select'], 'hero_id')){echo ' selected';}else{echo '';}?>>아이디</option>
-		    	<option value="hero_hp" <?if(!strcmp($_REQUEST['select'], 'hero_hp')){echo ' selected';}else{echo '';}?>>휴대폰번호</option>
-	    	</select>
-	    	<input name="kewyword" type="text" value="<?echo $_REQUEST['kewyword'];;?>" class="kewyword">
-		</td>
-	</tr>
-</table>
-<div class="btnGroupSearch">
-	<a href="javascript:;" onClick="fnSearch()" class="btnSearch">검색</a>
-</div> -->
 </form>
 
 
 <div class="tableSection mgt30">
     <div class="table_top">
         <h2 class="table_tit">검색 결과</h2>
-        <p class="postNum"><span class="line"><?=number_format($search_total)?>개</span><span class="op_5">전체 <?=number_format($total_data)?>개</span></p>
+        <p class="postNum"><span class="line"><?=number_format($total_data)?>개</span><span class="op_5">전체 <?=number_format($total_cnt)?>개</span></p>
     </div>
     <p class="table_desc"></p>
     <div class="searchResultBox_container">
@@ -219,7 +228,7 @@ $list_res = sql($sql);
             </th>
             <th>
                 <div class="">
-                    틱톡
+                    숏폼
                 </div>
             </th>
             <th>
@@ -240,12 +249,12 @@ $list_res = sql($sql);
                         </td>
                         <td>
                             <div class="table_result_nick">
-                                <?=$list["hero_name"]?>
+                                <?=$list["hero_id"]?>
                             </div>
                         </td>
                         <td>
                             <div class="table_result_nick">
-                                <?=$list["hero_id"]?>
+                                <?=$list["hero_name"]?>
                             </div>
                         </td>
                         <td>
@@ -260,37 +269,37 @@ $list_res = sql($sql);
                         </td>
                         <td class="title">
                             <div class="table_result_create">
-                                <?=$list["hero_blog_00"]?>
+                                <a href="<?=$list["hero_blog_00"]?>" target="_blank"><?=$list["hero_blog_00"]?></a>
                             </div>
                         </td>
                         <td class="title">
                             <div class="table_result_create">
-                                <?=$list["hero_blog_04"]?>
+                                <a href="<?=$list["hero_blog_04"]?>" target="_blank"><?=$list["hero_blog_04"]?></a>
                             </div>
                         </td>
                         <td class="title">
                             <div class="table_result_create">
-                                <?=$list["hero_blog_05"]?>
+                                <a href="<?=$list["hero_blog_05"]?>" target="_blank"><?=$list["hero_blog_05"]?></a>
                             </div>
                         </td>
                         <td class="title">
                             <div class="table_result_create">
-                                <?=$list["hero_blog_03"]?>
+                                <a href="<?=$list["hero_blog_03"]?>" target="_blank"><?=$list["hero_blog_03"]?></a>
                             </div>
                         </td>
                         <td class="title">
                             <div class="table_result_create">
-                                <?=$list["hero_blog_06"]?>
+                                <a href="<?=$list["hero_blog_06"]?>" target="_blank"><?=$list["hero_blog_06"]?></a>
                             </div>
                         </td>
                         <td class="title">
                             <div class="table_result_create">
-                                <?=$list["hero_blog_07"]?>
+                                <a href="<?=$list["hero_blog_07"]?>" target="_blank"><?=$list["hero_blog_07"]?></a>
                             </div>
                         </td>
                         <td class="title">
                             <div class="table_result_create">
-                                <?=$list["hero_blog_08"]?>
+                                <a href="<?=$list["hero_blog_08"]?>" target="_blank"><?=$list["hero_blog_08"]?></a>
                             </div>
                         </td>
                     </tr>

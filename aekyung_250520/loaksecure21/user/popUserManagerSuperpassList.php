@@ -58,91 +58,89 @@ $list_res = sql($sql, "on");
         <h1>슈퍼패스 확인</h1>
     </div> -->
     <div class="popContents">
-<!--        <form name="listForm" id="listForm" method="POST">-->
-<!--            <input type="hidden" name="hero_idx" />-->
-<!--            <input type="hidden" name="hero_code" value="--><?php //=$hero_code?><!--" />-->
-
-            <!-- 슈퍼패스 확인 주석처리 -->
-            <!-- <input type="hidden" name="mode" value="" />
-			<table class=t_list>
-			<colgroup>
-				<col width="20%" />
-				<col width="20%" />
-				<col width="*%" />
-				<col width="15%" />
-				<col width="10%" />
-				<col width="10%" />
-			</colgroup>
-			<thead>
-				<tr>
-					<th>등록일</th>
-					<th>만료일자</th>
-					<th>타입</th>
-					<th>사용유무</th>
-					<th>갯수</th>
-					<th>관리</th>
-				</tr>
-			</thead>
-			<tbody>
-				<?
+                <form name="listForm" id="listForm" method="POST">
+                    <input type="hidden" name="hero_idx" />
+                    <input type="hidden" name="hero_code" value="<?=$hero_code?>" />
+        <input type="hidden" name="mode" value="" />
+        <div class="popHeader">
+            <h2>슈퍼패스 내역/지급</h1>
+        </div>
+        <table class="mu_table mgt10">
+            <colgroup>
+                <col width="18%" />
+                <col width="30%" />
+                <col width="*%" />
+                <col width="12%" />
+                <col width="15%" />
+            </colgroup>
+            <thead>
+            <tr>
+                <th>등록일</th>
+                <th>만료일</th>
+                <th>타입</th>
+                <th>사용유무</th>
+                <th>관리</th>
+            </tr>
+            </thead>
+            <tbody class="line">
+            <?
             if($total_data > 0) {
                 while($list = mysql_fetch_assoc($list_res)) {?>
-				<tr>
-					<td><?=$list["hero_today"]?></td>
-					<td><?=$list["hero_endday"]?></td>
-					<td class="title"><?=$list["hero_kind"]?></td>
-					<td><?=$list["hero_use_yn"]=="Y" ? "사용":"미사용"?></td>
-					<td><?=$list["hero_superpass"]?></td>
-					<td><a href="javascript:;" onClick="fnDelSuperpass('<?=$list["hero_idx"]?>');" class="btnForm">삭제</a></td>
-				</tr>
-				<? }
+                    <tr>
+                        <td><?=$list["hero_today"]?></td>
+                        <td><?=$list["hero_endday"]?></td>
+                        <td><?=$list["hero_kind"]?></td>
+                        <td><?=$list["hero_use_yn"]=="Y" ? "사용":"미사용"?></td>
+                        <td><a href="javascript:;" onClick="fnDelSuperpass('<?=$list["hero_idx"]?>');" class="btnAdd4">삭제</a></td>
+                    </tr>
+                    <? }
             } else {?>
 				<tr>
-					<td colspan="6">등록된 데이터가 없습니다.</td>
+					<td colspan="5">등록된 데이터가 없습니다.</td>
 				</tr>
 				<? } ?>
-			</tbody>
-			</table>
-		</form>
+            </tbody>
+        </table>
+        </form>
 
-		<div class="paginate">
-			<?=page2($total_data,$list_page,$page_per_list,$page,$next_path);?>
-        </div> -->
+        <div class="paginate">
+            <?=page2($total_data,$list_page,$page_per_list,$page,$next_path);?>
+        </div>
 
-            <div class="popHeader">
-                <h2>슈퍼패스 지급</h1>
+        <div class="popHeader">
+            <h2>슈퍼패스 지급</h1>
+        </div>
+        <form name="writeForm" id="writeForm" method="POST">
+            <input type="hidden" name="hero_code" value="<?=$hero_code?>" />
+            <input type="hidden" name="mode" value="superpass" />
+            <table class="mgt10 mu_table mu_form">
+                <colgroup>
+                    <col width="*">
+                    <col width="150">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>타입</th>
+                    <th>만료일</th>
+                    <!-- <th>관리</th> -->
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><input type="text" name="hero_kind" /></td>
+                    <td>
+                        <div class="calendar">
+                            <input type="text" name="hero_endday" class="dateMode w100p" style="vertical-align:bottom" />
+                        </div>
+                    </td>
+                <tr>
+                </tbody>
+            </table>
+            <div class="btnContainer mgt20">
+                <a href="javascript:;" onClick="fnSuperpass();" class="btnAdd3">슈퍼패스 지급</a>
             </div>
-            <form name="writeForm" id="writeForm" method="POST">
-                <input type="hidden" name="hero_code" value="<?=$hero_code?>" />
-                <input type="hidden" name="mode" value="superpass" />
-                <table class="mgt10 mu_table mu_form">
-                    <colgroup>
-                        <col width="*">
-                        <col width="150">
-                    </colgroup>
-                    <thead>
-                    <tr>
-                        <th>타입</th>
-                        <th>만료일</th>
-                        <!-- <th>관리</th> -->
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td><input type="text" name="hero_kind" /></td>
-                        <td>
-                            <div class="calendar">
-                                <input type="text" name="hero_endday" class="dateMode w100p" style="vertical-align:bottom" />
-                            </div>
-                        </td>
-                    <tr>
-                    </tbody>
-                </table>
-                <div class="btnContainer mgt20">
-                    <a href="javascript:;" onClick="fnSuperpass();" class="btnAdd3">슈퍼패스 지급</a>
-                </div>
 
-            </form>
+        </form>
     </div>
 </div>
 </body>
@@ -216,7 +214,6 @@ $list_res = sql($sql, "on");
                     }
                 })
             }
-
         }
 
         ch_page = function(page) {

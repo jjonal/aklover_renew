@@ -3,13 +3,62 @@ if(!defined('_HEROBOARD_'))exit;
 
 $search = "";
 
-if($_GET["type"]) {
-    $search .= " AND p.type = '".$_GET["type"]."' ";
+// 전체페이지 및 검색 sql 추가 25.07.02 jnr musign
+if( !empty($_GET["type"]) && is_array($_GET["type"]) ) {
+
+    $type_conditions = array(); // array() 사용
+
+    foreach($_GET["type"] as $type) {
+        switch($type) {
+            case "1": // 이중아이디
+                //$search .= " AND ".$_GET["hero_blog"]." like '%".$_GET["url"]."%' ";
+                $type_conditions[] = "p.type = '1'";
+                break;
+            case "2": // 가이드라인 미준수
+                $type_conditions[] = "p.type = '2'";
+                break;
+            case "3": // 후기 미등록
+                $type_conditions[] = "p.type = '3'";
+                break;
+            case "4": // 오프라인 모임 미참여
+                $type_conditions[] = "p.type = '4'";
+                break;
+            case "5": // 품평/설문 미진행
+                $type_conditions[] = "p.type = '5'";
+                break;
+            case "9": // 기타
+                $type_conditions[] = "p.type = '9'";
+                break;
+        }
+    }
+
+    if(!empty($type_conditions)) {
+        $search .= " AND (" . implode(" OR ", $type_conditions) . ")";
+    }
 }
 
-if($_GET["kewyword"]) {
+
+if($_GET["kewyword"] && $_GET["select"] != 'none') { //
+    if($_GET["select"] == 'hero_nick') { // 닉네임 검색
+        $_GET["select"] = "m".$_GET["select"];
+    } elseif ($_GET["select"] == 'hero_name') { // 이름
+        $_GET["select"] = "m".$_GET["select"];
+    } elseif ($_GET["select"] == 'hero_id') { // 아이디
+        $_GET["select"] = "m".$_GET["select"];
+    } elseif ($_GET["select"] == 'memo') { // 내용
+        $_GET["select"] = "p".$_GET["select"];
+    }
     $search .= " AND ".$_GET["select"]." like '%".$_GET["kewyword"]."%' ";
 }
+
+
+
+$total_all_sql = " SELECT count(*) as cnt FROM member_penalty p 
+ LEFT JOIN member m ON p.hero_code = m.hero_code WHERE p.hero_use_yn='Y'";
+$total_all_result = sql($total_all_sql);
+$total_all_res = mysql_fetch_assoc($total_all_result);
+$total_cnt = $total_all_res['cnt'];
+
 
 //페이지 넘버링
 $total_sql  = " SELECT count(*) as cnt FROM member_penalty p ";
@@ -44,6 +93,7 @@ $sql .= " ORDER BY p.hero_idx DESC LIMIT ".$start.",".$list_page;
 
 $list_res = sql($sql);
 
+var_dump($sql);
 $type_arr = array("1"=>"이중아이디","2"=>"가이드라인 미준수","3"=>"후기 미등록","4"=>"오프라인 모임 미참여","5"=>"풍평/설문 미진행","9"=>"기타");
 ?>
 <form name="searchForm" id="searchForm" action="<?=PATH_HOME.'?'.get('page');?>">
@@ -60,32 +110,35 @@ $type_arr = array("1"=>"이중아이디","2"=>"가이드라인 미준수","3"=>"후기 미등록",
             <th>페널티 타입</th>
             <td>
                 <div class="search_inner sup">
+                    <?php
+                    $type = (isset($_GET['type']) && is_array($_GET['type'])) ? $_GET['type'] : array();
+                    ?>
                     <label class="akContainer">전체
-                        <input type="checkbox" name="penalty_type_chk" value="0">
+                        <input type="checkbox" <?php echo (!isset($_GET['type']) || empty($type) || in_array('', $type)) ? 'checked' : ''; ?> name="type[]" value="">
                         <span class="checkmark"></span>
                     </label>
                     <label class="akContainer">이중아이디
-                        <input type="checkbox" name="penalty_type_chk" value="1">
+                        <input type="checkbox" <?php echo (is_array($type) && in_array('1', $type)) ? 'checked' : ''; ?> name="type[]" value="1">
                         <span class="checkmark"></span>
                     </label>
                     <label class="akContainer">가이드라인 미준수
-                        <input type="checkbox" name="penalty_type_chk" value="2">
+                        <input type="checkbox" <?php echo (is_array($type) && in_array('2', $type)) ? 'checked' : ''; ?> name="type[]" value="2">
                         <span class="checkmark"></span>
                     </label>
                     <label class="akContainer">후기 미등록
-                        <input type="checkbox" name="penalty_type_chk" value="3">
+                        <input type="checkbox" <?php echo (is_array($type) && in_array('3', $type)) ? 'checked' : ''; ?> name="type[]" value="3">
                         <span class="checkmark"></span>
                     </label>
                     <label class="akContainer">오프라인 모임 미참여
-                        <input type="checkbox" name="penalty_type_chk" value="4">
+                        <input type="checkbox" <?php echo (is_array($type) && in_array('4', $type)) ? 'checked' : ''; ?> name="type[]" value="4">
                         <span class="checkmark"></span>
                     </label>
                     <label class="akContainer">품평/설문 미진행
-                        <input type="checkbox" name="penalty_type_chk" value="5">
+                        <input type="checkbox" <?php echo (is_array($type) && in_array('5', $type)) ? 'checked' : ''; ?> name="type[]" value="5">
                         <span class="checkmark"></span>
                     </label>
                     <label class="akContainer">기타
-                        <input type="checkbox" name="penalty_type_chk" value="6">
+                        <input type="checkbox" <?php echo (is_array($type) && in_array('9', $type)) ? 'checked' : ''; ?> name="type[]" value="9">
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -100,7 +153,7 @@ $type_arr = array("1"=>"이중아이디","2"=>"가이드라인 미준수","3"=>"후기 미등록",
                     <div class="select-wrap">
                         <select name="select">
                             <option value="none" <?=!isset($_GET["select"]) || $_GET["select"] == "none" ? "selected" : ""?>>선택</option>
-                            <option value="hero_memo" <?=$_GET["select"] == "m.memo" ? "selected" : ""?>>내용</option>
+                            <option value="hero_memo" <?=$_GET["select"] == "p.memo" ? "selected" : ""?>>내용</option>
                             <option value="hero_nick" <?=$_GET["select"] == "m.hero_nick" ? "selected" : ""?>>닉네임</option>
                             <option value="hero_id" <?=$_GET["select"] == "m.hero_id" ? "selected" : ""?>>아이디</option>
                             <option value="hero_name" <?=$_GET["select"] == "m.hero_name" ? "selected" : ""?>>이름</option>
@@ -158,7 +211,7 @@ $type_arr = array("1"=>"이중아이디","2"=>"가이드라인 미준수","3"=>"후기 미등록",
 <div class="tableSection mgt30">
     <div class="table_top">
         <h2 class="table_tit">검색 결과</h2>
-        <p class="postNum"><span class="line"><?=number_format($search_total)?>개</span><span class="op_5">전체 <?=number_format($total_data)?>개</span></p>
+        <p class="postNum"><span class="line"><?=number_format($total_data)?>개</span><span class="op_5">전체 <?=number_format($total_cnt)?>개</span></p>
     </div>
     <p class="table_desc"></p>
     <div class="searchResultBox_container">

@@ -93,7 +93,7 @@ $sql .= " ORDER BY p.hero_idx DESC LIMIT ".$start.",".$list_page;
 
 $list_res = sql($sql);
 
-var_dump($sql);
+
 $type_arr = array("1"=>"이중아이디","2"=>"가이드라인 미준수","3"=>"후기 미등록","4"=>"오프라인 모임 미참여","5"=>"풍평/설문 미진행","9"=>"기타");
 ?>
 <form name="searchForm" id="searchForm" action="<?=PATH_HOME.'?'.get('page');?>">
@@ -368,7 +368,25 @@ $type_arr = array("1"=>"이중아이디","2"=>"가이드라인 미준수","3"=>"후기 미등록",
 </div>
 
 <div class="pagingWrap">
-    <? include_once PATH_INC_END.'page.php';?>
+    <?
+    // 25.07.03 jnr musign
+    // 체크박스 항목 array 처리하여 전달
+    $params = $_GET;
+    // page 파라미터 제거 (페이지네이션에서 따로 처리)
+    unset($params['page']);
+
+    $query_string = '';
+    foreach ($params as $key => $value) {
+        if (is_array($value)) {
+            foreach ($value as $v) {
+                $query_string .= '&' . $key . '[]=' . urlencode($v);
+            }
+        } else {
+            $query_string .= '&' . $key . '=' . urlencode($value);
+        }
+    }
+    $next_path = $query_string;
+    include_once PATH_INC_END.'page.php';?>
 </div>
 <script>
     $(document).ready(function(){

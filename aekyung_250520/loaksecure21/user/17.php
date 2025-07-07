@@ -318,7 +318,25 @@ $list_res = sql($sql);
 </div>
 
 <div class="pagingWrap">
-    <? include_once PATH_INC_END.'page.php';?>
+    <?     // 체크박스 항목 array 처리하여 전달
+    $params = $_GET;
+    // page 파라미터 제거 (페이지네이션에서 따로 처리)
+    unset($params['page']);
+
+    $query_string = '';
+    foreach($params as $key => $value) {
+        if(is_array($value)) {
+            foreach($value as $v) {
+                $query_string .= '&' . $key . '[]=' . urlencode($v);
+            }
+        } else {
+            $query_string .= '&' . $key . '=' . urlencode($value);
+        }
+    }
+    $next_path = $query_string;
+
+    include_once PATH_INC_END.'page.php';
+    ?>
 </div>
 
 <script>

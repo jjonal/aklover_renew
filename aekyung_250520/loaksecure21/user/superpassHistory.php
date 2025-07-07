@@ -3,17 +3,66 @@ if(!defined('_HEROBOARD_'))exit;
 
 $search = "";
 
-if($_GET["superpass_check"]) {
-    $search .= " AND superpass_check = '".$_GET["superpass_check"]."' ";
+
+// 250707 슈퍼패스 지급내역 검색 musign jnr
+if( !empty($_GET["superpass_check"]) && is_array($_GET["superpass_check"]) ) {
+
+    $superpass_conditions = array(); // array() 사용
+
+    foreach($_GET["superpass_check"] as $superpass_type) {
+        switch($superpass_type) {
+            case "Y": // 지급
+                $superpass_conditions[] = "(s.superpass_check = 'Y')";
+                break;
+            case "N": // 미지급
+                $superpass_conditions[] = "(s.superpass_check = 'N')";
+                break;
+        }
+    }
+
+    if(!empty($superpass_conditions)) {
+        $search .= " AND (" . implode(" OR ", $superpass_conditions) . ")";
+    }
 }
 
-if($_GET["kewyword"]) {
+
+if($_GET["kewyword"] && $_GET["select"] != 'none') { //
+    if($_GET["select"] == 'hero_nick') { // 닉네임 검색
+        $_GET["select"] = "m.".$_GET["select"];
+    } elseif ($_GET["select"] == 'hero_name') { // 이름
+        $_GET["select"] = "m.".$_GET["select"];
+    } elseif ($_GET["select"] == 'hero_id') { // 아이디
+        $_GET["select"] = "m.".$_GET["select"];
+    }
     $search .= " AND ".$_GET["select"]." like '%".$_GET["kewyword"]."%' ";
 }
 
-$total_sql  = " SELECT count(*) as cnt  ";
-$total_sql .= " FROM superpass_history s INNER JOIN member m ON s.hero_code = m.hero_code ";
-$total_sql .= " WHERE 1=1 ".$search;
+// 전체페이지
+$total_all_sql = " SELECT count(*) as cnt FROM superpass_history s INNER JOIN member m ON s.hero_code = m.hero_code WHERE 1=1";
+$total_all_result = sql($total_all_sql);
+$total_all_res = mysql_fetch_assoc($total_all_result);
+$total_cnt = $total_all_res['cnt'];
+
+//페이지 넘버링
+$total_sql = " SELECT count(*) as cnt FROM superpass_history s INNER JOIN member m ON s.hero_code = m.hero_code WHERE 1=1 ".$search;
+sql($total_sql);
+$out_res = mysql_fetch_assoc($out_sql);
+$total_data = $out_res['cnt'];
+
+$i=$total_data;
+
+$list_page=20;
+$page_per_list=10;
+
+if(!strcmp($_GET['page'], '') || !strcmp($_GET['page'], '1')){
+    $page = '1';
+}else{
+    $page = $_GET['page'];
+    $i = $i-($page-1)*$list_page;
+}
+
+$start = ($page-1)*$list_page;
+$next_path=get("page");
 
 sql($total_sql);
 $out_res = mysql_fetch_assoc($out_sql);
@@ -59,16 +108,19 @@ $list_res = sql($sql);
             <th>지급/미지급</th>
             <td>
                 <div class="search_inner sup">
+                    <?php
+                    $superpass_check = (isset($_GET['superpass_check']) && is_array($_GET['superpass_check'])) ? $_GET['superpass_check'] : array();
+                    ?>
                     <label class="akContainer">전체
-                        <input type="checkbox" name="superpass_chk" value="all">
+                        <input type="checkbox" <?php echo (!isset($_GET['superpass_check']) || empty($superpass_check)) ? 'checked' : ''; ?> name="superpass_check[]" value="">
                         <span class="checkmark"></span>
                     </label>
                     <label class="akContainer">지급
-                        <input type="checkbox" name="superpass_chk" value="payment">
+                        <input type="checkbox" <?php echo (is_array($superpass_check) && in_array('Y', $superpass_check)) ? 'checked' : ''; ?> name="superpass_check[]" value="Y">
                         <span class="checkmark"></span>
                     </label>
                     <label class="akContainer">미지급
-                        <input type="checkbox" name="superpass_chk" value="unpaid">
+                        <input type="checkbox" <?php echo (is_array($superpass_check) && in_array('N', $superpass_check)) ? 'checked' : ''; ?> name="superpass_check[]" value="N">
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -144,8 +196,11 @@ $list_res = sql($sql);
 
 <div class="tableSection mgt30">
     <div class="table_top">
-        <h2 class="table_tit">검색 결과</h2>
-        <p class="postNum"><span class="line"><?=number_format($search_total)?>개</span><span class="op_5">전체 <?=number_format($total_data)?>개</span></p>
+        <div>
+            <h2 class="table_tit">검색 결과</h2>
+            <p class="postNum"><span class="line"><?=number_format($total_data)?>개</span><span class="op_5">전체 <?=number_format($total_cnt)?>개</span></p>
+        </div>
+        <a class="table_btn bottom btnAdd3 popup_btn" data-popup="01">슈퍼패스 지급</a>
     </div>
     <p class="table_desc"></p>
     <div class="searchResultBox_container">
@@ -308,6 +363,53 @@ $list_res = sql($sql);
     </div>
 </div>
 
+
+<!--프리미어 서포터즈 선정 및 관리 팝업-->
+<div class="popup_url_box" id="pop_01">
+    <div class="popup_url_cont height_type_A">
+        <div class="popup_url_head">
+            <svg class="close" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.41073 4.41083C4.73617 4.08539 5.26381 4.08539 5.58925 4.41083L15.5892 14.4108C15.9147 14.7363 15.9147 15.2639 15.5892 15.5893C15.2638 15.9148 14.7362 15.9148 14.4107 15.5893L4.41073 5.58934C4.0853 5.2639 4.0853 4.73626 4.41073 4.41083Z" fill="black"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5892 4.41083C15.2638 4.08539 14.7362 4.08539 14.4107 4.41083L4.41072 14.4108C4.08529 14.7363 4.08529 15.2639 4.41072 15.5893C4.73616 15.9148 5.2638 15.9148 5.58924 15.5893L15.5892 5.58934C15.9147 5.2639 15.9147 4.73626 15.5892 4.41083Z" fill="black"></path>
+            </svg>
+        </div>
+        <div class="popup_url_body ori">
+            <div class="tit">슈퍼패스 지급</div>
+            <div class="popup_url_link_item_v3">
+                <form name="writeForm" id="writeForm" method="POST">
+                    <input type="hidden" name="hero_code" value="<?=$hero_code?>" />
+                    <input type="hidden" name="mode" value="superpass" />
+                    <table class="mgt10 mu_table mu_form">
+                        <colgroup>
+                            <col width="*">
+                            <col width="150">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>타입</th>
+                            <th>만료일</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><input type="text" name="hero_kind" /></td>
+                            <td>
+                                <div class="calendar">
+                                    <input type="text" name="hero_endday" class="dateMode w100p" style="vertical-align:bottom" />
+                                </div>
+                            </td>
+                        <tr>
+                        </tbody>
+                    </table>
+                    <div class="btnContainer mgt20 mgb20">
+                        <a href="javascript:;" onClick="fnSuperpass();" class="btnAdd3">슈퍼패스 지급</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="pagingWrap">
     <? include_once PATH_INC_END.'page.php';?>
 </div>
@@ -316,6 +418,43 @@ $list_res = sql($sql);
 
         fnSearch = function() {
             $("#searchForm").attr("action","").submit();
+        }
+
+        fnSuperpass = function() {
+            if(!$("input[name='hero_kind']").val()) {
+                alert("지급할 타입을 입력해 주세요.");
+                $("input[name='hero_kind']").focus();
+                return;
+            }
+
+            if(!$("input[name='hero_endday']").val()) {
+                alert("만료기간을 입력해 주세요.");
+                $("input[name='hero_endday']").focus();
+                return;
+            }
+
+            if(confirm("슈퍼패스를 지급하시겠습니까?")) {
+                var param = $("#writeForm").serialize();
+
+                $.ajax({
+                    url:"/loaksecure21/user/popUserManagerSuperpassListAction.php"
+                    ,type:"POST"
+                    ,data:param
+                    ,dataType:"json"
+                    ,success:function(d){
+                        console.log(d);
+                        if(d.result==1) {
+                            alert("슈퍼패스가 지급되었습니다.");
+                            location.reload();
+                        } else {
+                            alert("실행 중 실패했습니다.")
+                        }
+                    },error:function(e){
+                        console.log(e);
+                        alert("실패했습니다.");
+                    }
+                })
+            }
         }
     })
 </script>

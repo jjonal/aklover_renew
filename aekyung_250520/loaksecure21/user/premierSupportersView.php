@@ -1,13 +1,30 @@
 <!-- /loaksecure21/index.php?idx=147&board=user&page=1&view=premierSupportersView -->
 <link rel="stylesheet" href="<?=ADMIN_DEFAULT?>/css/user.css?v=250617" type="text/css" />
 
+
+<?
+if(!defined('_HEROBOARD_'))exit;
+// 25.06.24 다섯개의 탭이 include 이기 때문에 해당 공통 페이지에 공통 쿼리문 삽입!
+
+$sno = $_GET["sno"];
+
+$supporters_sql  = " SELECT * FROM supporters WHERE idx = '".$sno."' ";
+$supporters_res = sql($supporters_sql,"on");
+$view = mysql_fetch_assoc($supporters_res);
+
+
+$startDt = substr($view["startDt"], 0, 10);
+$endDt = substr($view["endDt"], 0, 10);  // YYYY-MM-DD 부분만 추출
+
+?>
+
 <!-- 고정 타이틀 옆에 버튼 추가 Wrap -->
 <div class="topButtonWrap">
     <a href="javascript:;" class="btnAdd3">저장</a>
 </div>
 
 <form name="searchForm" id="searchForm" action="<?=PATH_HOME.'?'.get('page');?>">
-    <input type="hidden" name="idx" value="<?=$_GET["idx"]?>" />
+    <input type="hidden" name="sno" value="<?=$_GET["sno"]?>" />
     <input type="hidden" name="board" value="<?=$_GET["board"]?>" />
 
     <!-- 회원 관리 퀄리티 평가 검색 필터 -->
@@ -22,7 +39,7 @@
             </th>
             <td>
                 <div class="search_inner">
-                    <input class="search_txt" type="text" name="kewyword" value="<?=$_GET["kewyword"]?>"/>
+                    <input class="search_txt" type="text" name="recruit" value="<?=$view["recruit"]?>"/>
                 </div>
             </td>
         </tr>
@@ -32,7 +49,12 @@
             </th>
             <td>
                 <div class="search_inner">
-                    <input class="search_txt" type="text" name="supporters" value="<?=$_GET["supporters"]?>"/>
+                    <div class="search_inner">
+                        <select class="search_txt" name="hero_board">
+                            <option value="group_04_06" <?=$view["hero_board"] == "group_04_06" ? "selected" : ""?>>프리미어 뷰티 클럽</option>
+                            <option value="group_04_28" <?=$view["hero_board"] == "group_04_28" ? "selected" : ""?>>프리미어 라이프 클럽</option>
+                        </select>
+                    </div>
                 </div>
             </td>
         </tr>
@@ -43,11 +65,11 @@
             <td>
                 <div class="search_inner">
                     <div class="dateMode_box">
-                        <input type="text" name="startDate" class="dateMode" value="<?=$_REQUEST['startDate']?>">
+                        <input type="text" name="startDate" class="dateMode" value="<?=$startDt?>">
                     </div>
                     <div class="inner_between">~</div>
                     <div class="dateMode_box">
-                        <input type="text" name="endDate" class="dateMode" value="<?=$_REQUEST['endDate']?>">
+                        <input type="text" name="endDate" class="dateMode" value="<?=$endDt?>">
                     </div>
                     <a class="btnAdd5 mgl20">수정</a>
                 </div>

@@ -20,6 +20,7 @@ $focus_type_arr = array("0"=>"정기미션","1"=>"이벤트","2"=>"소문내기","3"=>"설문
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" type="text/css" href="/css/general.css"/>
     <link rel="stylesheet" type="text/css" href="<?=ADMIN_DEFAULT?>/css/admin_login.css?v=210517" />
+    <link rel="stylesheet" href="<?=ADMIN_DEFAULT?>/css/sub.css?v=250617" type="text/css" />
     <link rel="stylesheet" href="<?=ADMIN_DEFAULT?>/css/admin.css?v=231212" type="text/css" />
     <link rel="stylesheet" href="<?=ADMIN_DEFAULT?>/css/layout.css?v=250617" type="text/css" />
     <link rel="stylesheet" href="<?=ADMIN_DEFAULT?>/css/common.css?v=250617" type="text/css" />

@@ -69,8 +69,9 @@ $list_res = sql($sql);
 <form name="searchForm" id="searchForm" action="<?=PATH_HOME.'?'.get('page');?>">
     <input type="hidden" name="idx" value="<?=$_GET["idx"]?>" />
     <input type="hidden" name="board" value="<?=$_GET["board"]?>" />
+    <input type="hidden" name="page" value="<?=$page?>" />
+    <input type="hidden" name="sno" value="" />
     <input type="hidden" name="view" value="" />
-
     <!-- 회원 관리 퀄리티 평가 검색 필터 -->
     <table class="searchBox">
         <colgroup>
@@ -403,7 +404,7 @@ $list_res = sql($sql);
         }
 
         fnView = function(idx) {
-            $("input[name='idx']").val(idx);
+            $("input[name='sno']").val(idx);
             $("input[name='view']").val("premierSupportersView");
             $("#searchForm").attr("action","<?=PATH_HOME?>").submit();
         }

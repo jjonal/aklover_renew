@@ -84,7 +84,7 @@ $start = ($page-1)*$list_page;
 $next_path=get("page");
 
 $sql  = " SELECT ";
-$sql .= " m.hero_nick, m.hero_id, m.hero_name, s.panelty_check, s.login_a_month_ago_check  ";
+$sql .= " m.hero_code,m.hero_nick, m.hero_id, m.hero_name, s.panelty_check, s.login_a_month_ago_check  ";
 $sql .= " , s.blog_check, s.write_check, s.superpass_check, s.hero_today  ";
 $sql .= " FROM superpass_history s INNER JOIN member m ON s.hero_code = m.hero_code ";
 $sql .= " WHERE 1=1 ".$search;
@@ -206,6 +206,7 @@ $list_res = sql($sql);
     <div class="searchResultBox_container">
         <table class="searchResultBox">
             <colgroup>
+                <col width="30px" />
                 <col width="45px" />
                 <col width="70px" />
                 <col width="70px" />
@@ -218,6 +219,9 @@ $list_res = sql($sql);
                 <col width="75px" />
             </colgroup>
             <thead>
+            <th>
+                <input type="checkbox" id="checkAll" />
+            </th>
             <th>
                 <div class="">
                     NO
@@ -300,6 +304,11 @@ $list_res = sql($sql);
                     <tr>
                         <td>
                             <div class="table_result_no">
+                            <input type="checkbox" name="hero_codes[]" value="<?=$list['hero_code']?>" class="rowCheck" />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="table_result_no">
                                 <?=$i?>
                             </div>
                         </td>
@@ -355,7 +364,7 @@ $list_res = sql($sql);
             } else {
                 ?>
                 <tr>
-                    <td colspan="10" class="no_data">등록된 데이터가 없습니다.</td>
+                    <td colspan="11" class="no_data">등록된 데이터가 없습니다.</td>
                 </tr>
             <?}?>
             </tbody>
@@ -378,7 +387,7 @@ $list_res = sql($sql);
             <div class="popup_url_link_item_v3">
                 <form name="writeForm" id="writeForm" method="POST">
                     <input type="hidden" name="hero_code" value="<?=$hero_code?>" />
-                    <input type="hidden" name="mode" value="superpass" />
+                    <input type="hidden" name="mode" value="chkSuperpass" />
                     <table class="mgt10 mu_table mu_form">
                         <colgroup>
                             <col width="*">
@@ -411,16 +420,49 @@ $list_res = sql($sql);
 </div>
 
 <div class="pagingWrap">
-    <? include_once PATH_INC_END.'page.php';?>
+    <?
+    // 체크박스 항목 array 처리하여 전달
+    $params = $_GET;
+    // page 파라미터 제거 (페이지네이션에서 따로 처리)
+    unset($params['page']);
+
+    $query_string = '';
+    foreach($params as $key => $value) {
+        if(is_array($value)) {
+            foreach($value as $v) {
+                $query_string .= '&' . $key . '[]=' . urlencode($v);
+            }
+        } else {
+            $query_string .= '&' . $key . '=' . urlencode($value);
+        }
+    }
+    $next_path = $query_string;
+    include_once PATH_INC_END.'page.php';
+    ?>
 </div>
 <script>
     $(document).ready(function(){
+
+        // 체크박스 전체 선택/해제
+        $("#checkAll").change(function() {
+            $(".rowCheck").prop('checked', $(this).prop("checked"));
+        });
 
         fnSearch = function() {
             $("#searchForm").attr("action","").submit();
         }
 
         fnSuperpass = function() {
+            // 체크된 hero_code 값들을 배열로 수집
+            var selectedCodes = [];
+            $(".rowCheck:checked").each(function() {
+                selectedCodes.push($(this).val());
+            });
+
+            if(selectedCodes.length === 0) {
+                alert("선택된 회원이 없습니다.");
+                return;
+            }
             if(!$("input[name='hero_kind']").val()) {
                 alert("지급할 타입을 입력해 주세요.");
                 $("input[name='hero_kind']").focus();
@@ -433,9 +475,15 @@ $list_res = sql($sql);
                 return;
             }
 
-            if(confirm("슈퍼패스를 지급하시겠습니까?")) {
-                var param = $("#writeForm").serialize();
+            if(confirm("선택한 " + selectedCodes.length + "명의 회원에게 슈퍼패스를 지급하시겠습니까?")) {
+                var formData = $("#writeForm").serializeArray();
 
+                // hero_code array 추가
+                formData.push({
+                    name: 'hero_codes',
+                    value: selectedCodes
+                });
+                var param = $.param(formData);
                 $.ajax({
                     url:"/loaksecure21/user/popUserManagerSuperpassListAction.php"
                     ,type:"POST"
@@ -453,7 +501,7 @@ $list_res = sql($sql);
                         console.log(e);
                         alert("실패했습니다.");
                     }
-                })
+                });
             }
         }
     })

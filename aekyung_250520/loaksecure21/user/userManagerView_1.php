@@ -140,6 +140,11 @@
                 <? if(isset($pw_init["hero_today"]) && !empty($pw_init["hero_today"])) {?>
                     &nbsp;&nbsp;&nbsp;<a href="javascript:;" onClick="fnPopResetPwHist()" class="btnFunc">초기화 이력</a>
                 <? }?>
+                <? // 기존 초기화 버튼 기능정의서엔 없으나 우선 추가.
+                /**<a href="javascript:;" onClick="fnPWInitialize('<?=$view["hero_id"]?>')" class="btnFunc2">초기화</a>
+                <input type="text" name="pw_initialized" value="" style="width:150px; outline:none; border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" readonly />
+                 ***/
+                ?>
             </td>
         </tr>
         </tbody>
@@ -747,6 +752,7 @@
                 }
 
                 result = hero_id + result;
+                alert("초기화된 비밀번호: " + result);  // 관리자가 초기화된 패스워드 확인 불가해서 추가 musign jnr 25.07.09
                 _frm.find("input[name='pw_initialized']").val(result);
 
                 _frm.find("input[name='mode']").val("pwInitialize");

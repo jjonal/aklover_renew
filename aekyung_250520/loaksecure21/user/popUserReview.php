@@ -5,6 +5,31 @@ include_once                                                        '../../freeb
 include_once                                                        FREEBEST_INC_END.'hero.php';
 include_once                                                        FREEBEST_INC_END.'function.php';
 
+if($_REQUEST['mode'] == 'url_update') {
+    $updateData = $_POST['updateData'];
+    $success = true;
+
+    if(!empty($updateData)) {
+        foreach($updateData as $data) {
+            $idx = $data['idx'];
+            $url = $data['url'];
+
+            $update_sql = "UPDATE mission_url SET url = '$url' WHERE hero_idx = '$idx'";
+            if(!sql($update_sql, "on")) { // 기존 sql() 함수 사용
+                $success = false;
+                break;
+            }
+        }
+    } else {
+        $success = false;
+    }
+
+    $response = array('success' => $success ? '1' : '0');
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode($response);
+    exit;
+}
+
 if($_REQUEST['location'] == 'top') {
     $sql_top = " SELECT b.hero_idx, mb.hero_level, mb.hero_nick, b.hero_title AS review_title, m.hero_title AS mission_title, b.hero_today, ";
     $sql_top .= " b.hero_board_three, IF(IFNULL(b.hero_board_three,0) = '1','Y','N') AS best, IF(IFNULL(b.hero_board_three,0) = '2','Y','N') AS semi_best, ";
@@ -76,7 +101,6 @@ if($_REQUEST['location'] == 'top') {
 else if($_REQUEST['location'] == 'bot') {
     $sql_bot = "SELECT * FROM mission_url WHERE board_hero_idx = '" . $_POST["hero_idx"] . "'";
     sql($sql_bot, "on");
-    var_dump($sql_bot);
     $html_bot = '';
 
     while ($row_bot = mysql_fetch_assoc($out_sql)) {
@@ -96,7 +120,7 @@ else if($_REQUEST['location'] == 'bot') {
         $html_bot .= '       <p class="popup_url_link_item_tit">'.$gubun.'</p>';
         $html_bot .= '   </div>';
         $html_bot .= '   <div class="popup_url_link_cont active">';
-        $html_bot .= '       <input value="'.$row_bot['url'].'"/>';
+        $html_bot .= '       <input value="'.$row_bot['url'].'" data-idx="'.$row_bot['hero_idx'].'" name="sns_url" />';
         $html_bot .= '       <a href="'.$row_bot['url'].'" target="_blank">';
         $html_bot .= '       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">';
         $html_bot .= '           <path fill-rule="evenodd" clip-rule="evenodd" d="M5.25 3C4.00736 3 3 4.00736 3 5.25V12.75C3 13.9926 4.00736 15 5.25 15H12.75C13.9926 15 15 13.9926 15 12.75V9.75C15 9.33579 15.3358 9 15.75 9C16.1642 9 16.5 9.33579 16.5 9.75V12.75C16.5 14.8211 14.8211 16.5 12.75 16.5H5.25C3.17893 16.5 1.5 14.8211 1.5 12.75V5.25C1.5 3.17893 3.17893 1.5 5.25 1.5H8.25C8.66421 1.5 9 1.83579 9 2.25C9 2.66421 8.66421 3 8.25 3H5.25Z" fill="black"/>';

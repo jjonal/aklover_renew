@@ -627,6 +627,7 @@ $list_cnt = mysql_num_rows($list_res);
                     </div>
                 </div>
             </div>
+            <div class="tit"><a onclick="return urlUpdate();" class="btnAdd3">URL 수정하기</a></div>
         </div>
     </div>
 </div>
@@ -697,6 +698,52 @@ $list_cnt = mysql_num_rows($list_res);
                 console.log(e);
             }
         });
+    }
+
+    function urlUpdate() {
+        let updateData = [];
+
+        // 현재 활성화된 input 필드의 값만 수집
+        $('.popup_url_link_cont.active input[name="sns_url"]').each(function() {
+            // data-idx 속성이 있고, 값이 변경된 경우만 처리
+            if($(this).data('idx') && $(this).val() !== $(this).prop('defaultValue')) {
+                updateData.push({
+                    idx: $(this).data('idx'),
+                    url: $(this).val()
+                });
+            }
+        });
+
+        console.log('수정할 데이터:', updateData);
+
+        if(updateData.length > 0) {
+            $.ajax({
+                type: 'POST',
+                url: "/loaksecure21/user/popUserReview.php",
+                data: {
+                    mode: 'url_update',
+                    updateData: updateData
+                    // updateData: JSON.stringify(updateData)
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if(response.success === '1') {
+                        alert('URL이 성공적으로 수정되었습니다.');
+                        $('.popup_url_box').removeClass('show'); // show 클래스만 제거
+                        //location.reload();
+                    } else {
+                        alert('URL 수정에 실패했습니다.');
+                    }
+                },
+                error: function() {
+                    alert('서버 통신 오류가 발생했습니다.');
+                }
+            });
+        } else {
+            alert('수정된 URL이 없습니다.');
+        }
+
+        return false;
     }
 
 </script>

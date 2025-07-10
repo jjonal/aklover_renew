@@ -30,3 +30,17 @@ CREATE TABLE supporters (
   DEFAULT CHARSET = euckr
   COLLATE = euckr_korean_ci
   COMMENT = '서포터즈 관리 테이블';
+
+## 게시글(댓글) 삭제이력 테이블생성 ##
+CREATE TABLE board_del (
+    idx              INT AUTO_INCREMENT PRIMARY KEY,
+    hero_code        varchar(255)  not null comment '회원고유번호',
+    hero_table       varchar(100)  not null comment '게시판테이블명',
+    hero_command     text                        null comment '내용',
+    hero_today       datetime not null comment '작성일',
+    content_type     enum ('board', 'reply') not null comment 'board:게시글,reply:댓글',
+    regDt            datetime not null default now() comment '삭제일'
+) ENGINE = MyISAM
+  DEFAULT CHARSET = euckr
+  COLLATE = euckr_korean_ci
+  COMMENT = '게시글(댓글) 삭제이력';

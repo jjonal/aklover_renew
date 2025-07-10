@@ -13,8 +13,51 @@ if(!strcmp($_GET['action'], 'delete')){
         $sql = 'UPDATE member SET hero_point=\''.$member_total_point.'\' WHERE hero_code = \''.$review_list['hero_code'].'\';'.PHP_EOL;
         @mysql_query($sql);
     }
+
+    // 댓글 삭제 전 데이터 저장 S musign 25.07.10 jnr
+    $review_sql = "SELECT r.hero_code, r.hero_table, r.hero_command, r.hero_today 
+               FROM review r 
+               WHERE r.hero_old_idx = '".$_REQUEST['idx']."'";
+    $review_result = @mysql_query($review_sql);
+    // 댓글 데이터가 있다면 삭제 이력 테이블에 저장 (조회되는 여러value가 있을수 있기에 foreach문으로 처리)
+    while($review = @mysql_fetch_assoc($review_result)) {
+        $save_sql = "INSERT INTO board_del 
+                 (hero_code, hero_table, hero_command, hero_today, content_type) 
+                 VALUES (
+                     '".addslashes($review['hero_code'])."',
+                     '".addslashes($review['hero_table'])."',
+                     '".addslashes($review['hero_command'])."',
+                     '".$review['hero_today']."',
+                     'reply'
+                 )";
+        @mysql_query($save_sql);
+    }
+
     $review_drop_sql = 'DELETE FROM review WHERE hero_old_idx = \''.$_REQUEST['idx'].'\';';
     @mysql_query($review_drop_sql);
+
+    // 댓글 삭제 전 데이터 저장 musign 25.07.10 jnr
+    // 게시글 삭제 전 데이터 저장
+    $board_sql = "SELECT b.hero_code, b.hero_table, b.hero_command, b.hero_today 
+              FROM board b 
+              WHERE b.hero_idx = '".$_REQUEST['idx']."'";
+    $board_result = @mysql_query($board_sql);
+    $board = @mysql_fetch_assoc($board_result);
+
+    if($board) {
+        $save_sql = "INSERT INTO board_del 
+                 (hero_code, hero_table, hero_command, hero_today, content_type) 
+                 VALUES (
+                     '".addslashes($board['hero_code'])."',
+                     '".addslashes($board['hero_table'])."',
+                     '".addslashes($board['hero_command'])."',
+                     '".$board['hero_today']."',
+                     'board'
+                 )";
+        @mysql_query($save_sql);
+    }
+    // 댓글 삭제 전 데이터 저장 E musign 25.07.10 jnr
+
     $board_select_sql = 'select * from board WHERE hero_idx=\''.$_REQUEST['idx'].'\';';
     $out_board_select = @mysql_query($board_select_sql);
     $board_select_list                             = @mysql_fetch_assoc($out_board_select);

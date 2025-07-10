@@ -504,7 +504,29 @@ if(!$_GET['action'] || !$_GET['view']){
 			$msg = '삭제 되었습니다.';
 			
 			pointDel($idx,$board,"write");
-			
+
+            // 댓글 삭제 전 데이터 저장 musign 25.07.10 jnr
+            // 게시글 삭제 전 데이터 저장
+            $board_sql = "SELECT b.hero_code, b.hero_table, b.hero_command, b.hero_today 
+              FROM board b 
+              WHERE b.hero_idx = '".$idx."'";
+            $board_result = @mysql_query($board_sql);
+            $board = @mysql_fetch_assoc($board_result);
+
+            if($board) {
+                $save_sql = "INSERT INTO board_del 
+                 (hero_code, hero_table, hero_command, hero_today, content_type) 
+                 VALUES (
+                     '".addslashes($board['hero_code'])."',
+                     '".addslashes($board['hero_table'])."',
+                     '".addslashes($board['hero_command'])."',
+                     '".$board['hero_today']."',
+                     'board'
+                 )";
+                @mysql_query($save_sql);
+            }
+            // 댓글 삭제 전 데이터 저장 E musign 25.07.10 jnr
+
 			$sql = " DELETE FROM board  WHERE hero_idx = '".$idx."'";
 
 			

@@ -57,15 +57,56 @@ if(!strcmp($_GET['action'], 'delete')){
 
     $recommand_drop_sql = 'DELETE FROM hero_recommand WHERE hero_board_idx = \''.$_REQUEST['idx'].'\';';
     @mysql_query($recommand_drop_sql);
-	
-	$recommand_drop_sql = 'DELETE FROM review WHERE hero_old_idx = \''.$_REQUEST['idx'].'\';';
+
+    // 댓글 삭제 전 데이터 저장 S musign 25.07.10 jnr
+    $review_sql = "SELECT r.hero_code, r.hero_table, r.hero_command, r.hero_today 
+               FROM review r 
+               WHERE r.hero_old_idx = '".$_REQUEST['idx']."'";
+    $review_result = @mysql_query($review_sql);
+    // 댓글 데이터가 있다면 삭제 이력 테이블에 저장 (조회되는 여러value가 있을수 있기에 foreach문으로 처리)
+    while($review = @mysql_fetch_assoc($review_result)) {
+        $save_sql = "INSERT INTO board_del 
+                 (hero_code, hero_table, hero_command, hero_today, content_type) 
+                 VALUES (
+                     '".addslashes($review['hero_code'])."',
+                     '".addslashes($review['hero_table'])."',
+                     '".addslashes($review['hero_command'])."',
+                     '".$review['hero_today']."',
+                     'reply'
+                 )";
+        @mysql_query($save_sql);
+    }
+
+
+    $recommand_drop_sql = 'DELETE FROM review WHERE hero_old_idx = \''.$_REQUEST['idx'].'\';';
     @mysql_query($recommand_drop_sql);
 
+    // 댓글 삭제 전 데이터 저장 musign 25.07.10 jnr
+    // 게시글 삭제 전 데이터 저장
+    $board_sql = "SELECT b.hero_code, b.hero_table, b.hero_command, b.hero_today 
+              FROM board b 
+              WHERE b.hero_idx = '".$_REQUEST['idx']."'";
+    $board_result = @mysql_query($board_sql);
+    $board = @mysql_fetch_assoc($board_result);
+
+    if($board) {
+        $save_sql = "INSERT INTO board_del 
+                 (hero_code, hero_table, hero_command, hero_today, content_type) 
+                 VALUES (
+                     '".addslashes($board['hero_code'])."',
+                     '".addslashes($board['hero_table'])."',
+                     '".addslashes($board['hero_command'])."',
+                     '".$board['hero_today']."',
+                     'board'
+                 )";
+        @mysql_query($save_sql);
+    }
+    // 댓글 삭제 전 데이터 저장 E musign 25.07.10 jnr
     $board_drop_sql = 'DELETE FROM board WHERE hero_idx = \''.$_REQUEST['idx'].'\';';
     @mysql_query($board_drop_sql);
-	
-	
-	
+
+
+
     $msg = '삭제 되었습니다.';
     $get_herf = get('next_board||view||action||idx||page','','');
     $action_href = PATH_HOME.'?'.$get_herf;

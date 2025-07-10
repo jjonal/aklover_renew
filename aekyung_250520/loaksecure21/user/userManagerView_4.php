@@ -6,11 +6,16 @@ $hero_code = $view["hero_code"];
 $total_sql  = " SELECT count(*) cnt FROM ( ";
 $total_sql .= " SELECT hero_title FROM member m ";
 $total_sql .= " INNER JOIN board b ON m.hero_code = b.hero_code  ";
-$total_sql .= " WHERE m.hero_use = 0 AND m.hero_code=  '".$hero_code."' ";
+$total_sql .= " WHERE m.hero_use = 0 AND m.hero_code = '".$hero_code."' ";
 $total_sql .= " UNION ALL ";
 $total_sql .= " SELECT hero_command as hero_title FROM member m ";
 $total_sql .= " INNER JOIN review r ON m.hero_code = r.hero_code ";
-$total_sql .= " WHERE m.hero_use = 0 AND m.hero_code=  '".$hero_code."') b ";
+$total_sql .= " WHERE m.hero_use = 0 AND m.hero_code = '".$hero_code."' ";
+$total_sql .= " UNION ALL ";
+$total_sql .= " SELECT hero_command as hero_title FROM member m ";
+$total_sql .= " INNER JOIN board_del bd ON m.hero_code = bd.hero_code ";
+$total_sql .= " WHERE m.hero_use = 0 AND m.hero_code = '".$hero_code."' ";
+$total_sql .= " ) b ";
 
 $total_res = sql($total_sql,"on");
 $total_rs = mysql_fetch_assoc($total_res);
@@ -18,7 +23,7 @@ $total_rs = mysql_fetch_assoc($total_res);
 $total_data4 = $total_rs['cnt'];
 
 $i4=$total_data4;
-
+echo "총갯수:".$i4;
 $list_page4=10;
 $page_per_list4=10;
 
@@ -69,6 +74,8 @@ if($_GET["type"] && $_GET["type"]) {
 $search_sql  = " SELECT COUNT(*) AS cnt FROM ( ";
 $search_sql .= "   SELECT b.hero_today ";
 $search_sql .= "   FROM ( ";
+
+//게시글 조회
 $search_sql .= "     SELECT b.hero_table, b.hero_today, '게시글' AS type ";
 $search_sql .= "     FROM member m ";
 $search_sql .= "     INNER JOIN board b ON m.hero_code = b.hero_code ";
@@ -76,10 +83,21 @@ $search_sql .= "     WHERE m.hero_use = 0 AND m.hero_code = '".$hero_code."' ";
 
 $search_sql .= "     UNION ALL ";
 
+//댓글 조회
 $search_sql .= "     SELECT r.hero_table, r.hero_today, '댓글' AS type ";
 $search_sql .= "     FROM member m ";
 $search_sql .= "     INNER JOIN review r ON m.hero_code = r.hero_code ";
 $search_sql .= "     WHERE m.hero_use = 0 AND m.hero_code = '".$hero_code."' ";
+
+$search_sql .= "     UNION ALL ";
+
+//삭제된 게시글/댓글 조회 추가
+$search_sql .= "     SELECT bd.hero_table, bd.hero_today, ";
+$search_sql .= "     CASE WHEN bd.content_type = 'board' THEN '게시글' ELSE '댓글' END AS type ";
+$search_sql .= "     FROM member m ";
+$search_sql .= "     INNER JOIN board_del bd ON m.hero_code = bd.hero_code ";
+$search_sql .= "     WHERE m.hero_use = 0 AND m.hero_code = '".$hero_code."' ";
+
 $search_sql .= "   ) b ";
 $search_sql .= "   LEFT JOIN hero_group hg ON b.hero_table = hg.hero_board ";
 $search_sql .= "   WHERE 1=1 ".$search;
@@ -123,17 +141,31 @@ $query_string = $_SERVER['QUERY_STRING'];
 $query_string = preg_replace('/&?page=[^&]*/', '', $query_string);
 
 
-$sql  = " SELECT b.hero_title, b.hero_nick, b.hero_today, b.type, hg.hero_title AS menu_title ";
+$sql  = " SELECT b.hero_title, b.hero_nick, b.hero_today, b.type, hg.hero_title AS menu_title, b.del_today ";
 $sql .= " FROM ( ";
-$sql .= "   SELECT b.hero_title, b.hero_table, b.hero_today, '게시글' AS type, m.hero_nick ";
+
+//게시글 조회 (현재 게시글)
+$sql .= "   SELECT b.hero_title, b.hero_table, b.hero_today, '게시글' AS type, m.hero_nick, NULL as del_today ";
 $sql .= "   FROM member m ";
 $sql .= "   INNER JOIN board b ON m.hero_code = b.hero_code ";
 $sql .= "   WHERE m.hero_use = 0 AND m.hero_code = '".$hero_code."' ";
 $sql .= "   UNION ALL ";
-$sql .= "   SELECT r.hero_command AS hero_title, r.hero_table, r.hero_today, '댓글' AS type, m.hero_nick ";
+
+//댓글 조회 (현재 댓글)
+$sql .= "   SELECT r.hero_command AS hero_title, r.hero_table, r.hero_today, '댓글' AS type, m.hero_nick, NULL as del_today ";
 $sql .= "   FROM member m ";
 $sql .= "   INNER JOIN review r ON m.hero_code = r.hero_code ";
 $sql .= "   WHERE m.hero_use = 0 AND m.hero_code = '".$hero_code."' ";
+$sql .= "   UNION ALL ";
+
+//삭제된 게시글/댓글 조회
+$sql .= "   SELECT bd.hero_command AS hero_title, bd.hero_table, bd.hero_today, ";
+$sql .= "   CASE WHEN bd.content_type = 'board' THEN '게시글' ELSE '댓글' END AS type, ";
+$sql .= "   m.hero_nick, bd.regDt AS del_today ";
+$sql .= "   FROM member m ";
+$sql .= "   INNER JOIN board_del bd ON m.hero_code = bd.hero_code ";
+$sql .= "   WHERE m.hero_use = 0 AND m.hero_code = '".$hero_code."' ";
+
 $sql .= " ) b ";
 $sql .= " LEFT JOIN hero_group hg ON b.hero_table = hg.hero_board ";
 $sql .= " WHERE 1=1 ".$search;
@@ -143,6 +175,11 @@ $sql .= " LIMIT ".$start4.", ".$list_page4;
 
 
 $list_res = sql($sql, "on");
+
+
+// 전체 게시물 수를 기준으로 현재 페이지의 시작 번호 계산
+$total_count = $total_data4; // 전체 게시물 수 저장
+$start_num = $total_count - (($page4 - 1) * $list_page4); // 현재 페이지의 시작 번호
 ?>
 
 <form name="viewForm" id="viewForm">
@@ -285,7 +322,7 @@ $list_res = sql($sql, "on");
     <!-- <h2 class="table_tit">콘텐츠 검색</h2> -->
     <div class="table_top">
         <h2 class="table_tit">검색 결과</h2>
-        <p class="postNum"><span class="line"><?=number_format($search_total4)?>개</span><span class="op_5">전체 <?=number_format($total_data4)?>개</span></p>
+        <p class="postNum"><span class="line"><?=number_format($search_total4)?>개</span><span class="op_5">전체 <?=number_format($i4)?>개</span></p>
     </div>
     <p class="table_desc"></p>
     <div class="searchResultBox_container">
@@ -354,7 +391,7 @@ $list_res = sql($sql, "on");
             <tr style="cursor:pointer" onClick="fnView('<?=$list["hero_code"]?>')">
                 <td>
                     <div class="table_result_no">
-                        <?=number_format($i4);?>
+                        <?=number_format($start_num--);?>
                     </div>
                 </td>
                 <td>
@@ -369,7 +406,7 @@ $list_res = sql($sql, "on");
                 </td>
                 <td>
                     <div class="table_result_contents">
-                        <?=$list["hero_title"]?>
+                        <?=mb_strimwidth($list["hero_title"], 0, 40, "...", 'euc-kr')?>
                     </div>
                 </td>
                 <td>
@@ -384,12 +421,12 @@ $list_res = sql($sql, "on");
                 </td>
                 <td>
                     <div class="table_result_create">
-                        체크필요
+                        <?=$list["del_today"]?>
                     </div>
                 </td>
             </tr>
            <?
-                --$i4;
+               // --$total_data4;
             }
             } else {?>
                 <tr>

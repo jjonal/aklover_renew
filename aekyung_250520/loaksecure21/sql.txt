@@ -44,3 +44,22 @@ CREATE TABLE board_del (
   DEFAULT CHARSET = euckr
   COLLATE = euckr_korean_ci
   COMMENT = '게시글(댓글) 삭제이력';
+
+  ## 퀄리티평가 테이블 생성 ##
+  CREATE TABLE quality_evaluation (
+    sno    INT AUTO_INCREMENT PRIMARY KEY,
+    hero_code varchar(255) COMMENT 'member 테이블의 hero_code (회원고유번호)',
+    grade INT COMMENT '등급(최상=4, 상=3, 중=2, 하=1)',
+    image_quality INT COMMENT '이미지 퀄리티 (○:100,△:50,×:0)',
+    text_quality INT COMMENT '텍스트 퀄리티 (○:50,△:25,×:0)',
+    guide_compliance INT COMMENT '가이드라인 준수 점수 (○:50,△:25,×:0)',
+    engagement_score INT COMMENT '인게이지먼트 종합 점수 (○:100,△:50,×:0)',
+    engagement_likes INT COMMENT '좋아요 수',
+    engagement_comments INT COMMENT '댓글 수',
+    follower_score INT COMMENT '팔로워 관련 점수 (0~100)',
+    follower_count INT COMMENT '팔로워 수',
+    top_exposure INT COMMENT '상위노출 점수 (0~100)',
+    total_score INT COMMENT '합계 점수 (0~100)',
+    modDt            datetime not null default now() comment '수정일',
+    regDt            datetime comment '등록일'
+  )COMMENT= '퀄리티 평가';

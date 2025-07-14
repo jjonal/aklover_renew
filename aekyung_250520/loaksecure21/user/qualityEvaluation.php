@@ -3,6 +3,33 @@
 
 $search = "";
 
+// 퀄리티 평가 검색 필터
+if( !empty($_GET["grade"]) && is_array($_GET["grade"]) ) {
+    echo "hihi";
+    $grade_conditions = array(); // array() 사용
+
+    foreach($_GET["grade"] as $grade_type) {
+        switch($grade_type) {
+            case "4": // 최상
+                $grade_conditions[] = "(qe.grade not like '' and qe.grade = 4)"; // 최상
+                break;
+            case "3": // 상
+                $grade_conditions[] = "(qe.grade not like '' and qe.grade = 3)"; // 최상
+                break;
+            case "2": // 중
+                $grade_conditions[] = "(qe.grade not like '' and qe.grade = 2)"; // 최상
+                break;
+            case "1": // 하
+                $grade_conditions[] = "(qe.grade not like '' and qe.grade = 1)"; // 최상
+                break;
+        }
+    }
+    echo "hihi";
+    if(!empty($grade_conditions)) {
+        $search .= " AND (" . implode(" OR ", $grade_conditions) . ")";
+    }
+}
+
 // 검색어가 있을 때
 if($_GET["kewyword"] && $_GET["select"] != 'none') { //
     if($_GET["select"] == 'hero_nick') { // 닉네임 검색
@@ -58,7 +85,7 @@ $next_path=get("page");
 
 //리스트
 $sql = " SELECT m.hero_code as member_code, m.hero_id, m.hero_nick, m.hero_name ";
-$sql .= " , qe.* "; // member_gisu 테이블의 컬럼 추가
+$sql .= " , qe.* ";
 $sql .= " FROM member m ";
 $sql .= " LEFT JOIN quality_evaluation qe ON m.hero_code = qe.hero_code ";
 $sql .= " WHERE m.hero_use = 0 " . $search;
@@ -86,25 +113,28 @@ $list_res = sql($sql);
         <tr>
             <th>퀄리티</th>
             <td>
+                <?php
+                $grade = (isset($_GET['grade']) && is_array($_GET['grade'])) ? $_GET['grade'] : array();
+                ?>
                 <div class="search_inner sup">
                     <label class="akContainer">전체
-                        <input type="checkbox" name="quality_chk" value="0">
+                        <input type="checkbox" name="grade[]" value="" <?php echo (!isset($_GET['grade']) || empty($grade) || in_array('', $grade)) ? 'checked' : ''; ?>>
                         <span class="checkmark"></span>
                     </label>
                     <label class="akContainer">최상
-                        <input type="checkbox" name="quality_chk" value="1">
+                        <input type="checkbox" name="grade[]" value="4" <?php echo (is_array($grade) && in_array('4', $grade)) ? 'checked' : ''; ?>>
                         <span class="checkmark"></span>
                     </label>
                     <label class="akContainer">상
-                        <input type="checkbox" name="quality_chk" value="2">
+                        <input type="checkbox" name="grade[]" value="3" <?php echo (is_array($grade) && in_array('3', $grade)) ? 'checked' : ''; ?>>
                         <span class="checkmark"></span>
                     </label>
                     <label class="akContainer">중
-                        <input type="checkbox" name="quality_chk" value="3">
+                        <input type="checkbox" name="grade[]" value="2" <?php echo (is_array($grade) && in_array('2', $grade)) ? 'checked' : ''; ?>>
                         <span class="checkmark"></span>
                     </label>
                     <label class="akContainer">하
-                        <input type="checkbox" name="quality_chk" value="4">
+                        <input type="checkbox" name="grade[]" value="1" <?php echo (is_array($grade) && in_array('1', $grade)) ? 'checked' : ''; ?>>
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -119,7 +149,7 @@ $list_res = sql($sql);
                     <div class="select-wrap">
                         <select name="select">
                             <option value="none" <?=!isset($_GET["select"]) || $_GET["select"] == "none" ? "selected" : ""?>>선택</option>
-                            <option value="hero_memo" <?=$_GET["select"] == "m.memo" ? "selected" : ""?>>내용</option>
+<!--                            <option value="hero_memo" --><?php //=$_GET["select"] == "m.memo" ? "selected" : ""?><!-->내용</option>-->
                             <option value="hero_nick" <?=$_GET["select"] == "m.hero_nick" ? "selected" : ""?>>닉네임</option>
                             <option value="hero_id" <?=$_GET["select"] == "m.hero_id" ? "selected" : ""?>>아이디</option>
                             <option value="hero_name" <?=$_GET["select"] == "m.hero_name" ? "selected" : ""?>>이름</option>
@@ -211,29 +241,29 @@ $list_res = sql($sql);
             <td rowspan="3">배점</td>
             <td>○</td>
             <td>100</td>
-            <td>50</td>
-            <td>50</td>
-            <td>50</td>
-            <td>50</td>
+            <td colspan="2">50</td>
+<!--            <td>50</td>-->
+<!--            <td>50</td>-->
+            <td colspan="2">50</td>
             <td>100</td>
             <td rowspan="3" colspan="2">총 점수 70점 이상이면서 둘 다 O 일 경우, 최상 등급</td>
         </tr>
         <tr>
             <td>△</td>
             <td>50</td>
-            <td>25</td>
-            <td>25</td>
-            <td>25</td>
-            <td>25</td>
+            <td colspan="2">25</td>
+<!--            <td>25</td>-->
+            <td colspan="2">25</td>
+<!--            <td>25</td>-->
             <td>50</td>
         </tr>
         <tr>
             <td>×</td>
             <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
+            <td colspan="2">0</td>
+<!--            <td>0</td>-->
+            <td colspan="2">0</td>
+<!--            <td>0</td>-->
             <td>0</td>
         </tr>
         </tbody>
@@ -321,12 +351,12 @@ $list_res = sql($sql);
             </th>
             <th>
                 <div class="">
-                    평가단계
+                    SNS 퀄리티
                 </div>
             </th>
             <th>
                 <div class="">
-                    보기
+                    수정
                 </div>
             </th>
             </thead>
@@ -334,6 +364,68 @@ $list_res = sql($sql);
             <?
             if($total_data > 0) {
             while($list = mysql_fetch_assoc($list_res)) {
+                //$list["image_quality"] 이미지퀄리티
+                if ($list["image_quality"] == 100) {
+                    $list["image_quality"] = "○";
+                } elseif ($list["image_quality"] == 50) {
+                    $list["image_quality"] = "△";
+                } else {
+                    $list["image_quality"] = "×";
+                }
+                //$list["text_quality"] 텍스트퀄리티
+                if ($list["text_quality"] == 50) {
+                    $list["text_quality"] = "○";
+                } elseif ($list["text_quality"] == 25) {
+                    $list["text_quality"] = "△";
+                } else {
+                    $list["text_quality"] = "×";
+                }
+                //$list["guide_compliance"] 가이드준수
+                if ($list["guide_compliance"] == 50) {
+                    $list["guide_compliance"] = "○";
+                } elseif ($list["guide_compliance"] == 25) {
+                    $list["guide_compliance"] = "△";
+                } else {
+                    $list["guide_compliance"] = "×";
+                }
+                //$list["engagement_score"] 인게이지먼트
+                if ($list["engagement_score"] == 100) {
+                    $list["engagement_score"] = "○";
+                } elseif ($list["engagement_score"] == 50) {
+                    $list["engagement_score"] = "△";
+                } else {
+                    $list["engagement_score"] = "×";
+                }
+                //$list["follower_score"] 팔로워
+                if ($list["follower_score"] == 3) {
+                    $list["follower_score"] = "○";
+                } elseif ($list["follower_score"] == 2) {
+                    $list["follower_score"] = "△";
+                } else {
+                    $list["follower_score"] = "×";
+                }
+
+                //$list["top_exposure"] 상위노출
+                if ($list["top_exposure"] == 3) {
+                    $list["top_exposure"] = "○";
+                } elseif ($list["follower_score"] == 2) {
+                    $list["follower_score"] = "△";
+                } else {
+                    $list["top_exposure"] = "×";
+                }
+                //$list["grade"] 퀄리티 등급
+                if ($list["grade"] == 4) {
+                    $list["grade"] = "최상";
+                } elseif ($list["grade"] == 3) {
+                    $list["grade"] = "상";
+                } elseif ($list["grade"] == 2) {
+                    $list["grade"] = "중";
+                } elseif ($list["grade"] == 1) {
+                    $list["grade"] = "하";
+                }else {
+                    $list["grade"] = "×";
+                }
+
             ?>
             <tr>
                 <td>
@@ -358,42 +450,42 @@ $list_res = sql($sql);
                 </td>
                 <td>
                     <div class="table_result_nick">
-                        -
+                        <?=$list["image_quality"] // 이미지 퀄리티?>
                     </div>
                 </td>
                 <td>
                     <div class="table_result_types">
-                        -
+                        <?=$list["text_quality"] // 텍스트 퀄리티?>
                     </div>
                 </td>
                 <td class="title">
                     <div class="table_result_contents pop_btn_01">
-                        -
+                        <?=$list["guide_compliance"] // 가이드준수?>
                     </div>
                 </td>
                 <td>
                     <div class="table_result_create">
-                        -
+                        <?=$list["engagement_score"] // 인게이지먼트?>
                     </div>
                 </td>
                 <td>
                     <div class="table_result_create">
-                        -
+                        <?=$list["follower_score"] // 팔로워?>
                     </div>
                 </td>
                 <td>
                     <div class="table_result_create">
-                        -
+                        <?=$list["top_exposure"] // 상위노출?>
                     </div>
                 </td>
                 <td>
                     <div class="table_result_create">
-                        -
+                        <?=isset($list["total_score"]) ? $list["total_score"] : '0'  // 합계점수?>
                     </div>
                 </td>
                 <td>
                     <div class="table_result_create">
-                        -
+                        <?=$list["grade"] // 퀄리티등급?>
                     </div>
                 </td>
                 <td>
@@ -444,7 +536,9 @@ $list_res = sql($sql);
 
 <script>
     $(document).ready(function(){
-
+        fnSearch = function() {
+            $("#searchForm").attr("action","").submit();
+        }
         //fnView = function(member_code) {
         //    $("input[name='member_code']").val(member_code);
         //    $("input[name='view']").val("qualityEvaluationView");

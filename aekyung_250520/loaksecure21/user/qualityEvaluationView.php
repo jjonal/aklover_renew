@@ -215,6 +215,54 @@ $view = mysql_fetch_assoc($member_res);
 </div>
 </form>
 <script>
+// 퀄리티 평가 점수 계산 및 저장
+    const weights = {
+        image_quality: 0.30,      // 30%
+        text_quality: 0.25,       // 25%
+        guide_compliance: 0.25,   // 25%
+        engagement_score: 0.20    // 20%
+    };
+
+// 합계 점수 계산 함수
+function calculateTotalScore() {
+    let totalScore = 0;
+
+    // 각 항목의 선택된 값 가져오기
+    const imageQuality = document.querySelector('input[name="image_quality"]:checked');
+    const textQuality = document.querySelector('input[name="text_quality"]:checked');
+    const guideCompliance = document.querySelector('input[name="guide_compliance"]:checked');
+    const engagementScore = document.querySelector('input[name="engagement_score"]:checked');
+
+    // 각 항목의 값에 가중치를 곱해서 합산
+    if (imageQuality) {
+        totalScore += parseInt(imageQuality.value) * weights.image_quality;
+    }
+
+    if (textQuality) {
+        totalScore += parseInt(textQuality.value) * weights.text_quality;
+    }
+
+    if (guideCompliance) {
+        totalScore += parseInt(guideCompliance.value) * weights.guide_compliance;
+    }
+
+    if (engagementScore) {
+        totalScore += parseInt(engagementScore.value) * weights.engagement_score;
+    }
+
+    // 소수점 2자리까지 반올림
+    //totalScore = Math.round(totalScore * 100) / 100;
+
+    // 첫 번째 소수점에서 반올림 처리
+    totalScore = Math.round(totalScore);
+    // 화면에 표시
+    document.querySelector('input[name="total_score"]').value = totalScore;
+    document.querySelector('input[name="total_score"]').parentNode.innerHTML =
+        '<input type="hidden" name="total_score" value="' + totalScore + '">' + totalScore;
+
+    return totalScore;
+}
+
     $(document).ready(function(){
     fnSave = function() {
             var formData = $("#viewForm").serializeArray();
@@ -241,5 +289,36 @@ $view = mysql_fetch_assoc($member_res);
             });
 
     }
+
+        // 모든 라디오 버튼에 이벤트 리스너 추가
+        const radioButtons = document.querySelectorAll('input[type="radio"][name="image_quality"], input[type="radio"][name="text_quality"], input[type="radio"][name="guide_compliance"], input[type="radio"][name="engagement_score"]');
+
+        radioButtons.forEach(function(radio) {
+            radio.addEventListener('change', calculateTotalScore);
+        });
+
+        // 초기 점수 계산
+        calculateTotalScore();
     })
+
+// 개별 항목 점수 확인 함수 (디버깅용)
+// function getIndividualScores() {
+//     const imageQuality = document.querySelector('input[name="image_quality"]:checked');
+//     const textQuality = document.querySelector('input[name="text_quality"]:checked');
+//     const guideCompliance = document.querySelector('input[name="guide_compliance"]:checked');
+//     const engagementScore = document.querySelector('input[name="engagement_score"]:checked');
+//
+//     console.log('개별 점수:');
+//     console.log('이미지 퀄리티:', imageQuality ? imageQuality.value : '미선택');
+//     console.log('텍스트 퀄리티:', textQuality ? textQuality.value : '미선택');
+//     console.log('가이드 준수:', guideCompliance ? guideCompliance.value : '미선택');
+//     console.log('인게이지먼트:', engagementScore ? engagementScore.value : '미선택');
+//
+//     return {
+//         image_quality: imageQuality ? parseInt(imageQuality.value) : 0,
+//         text_quality: textQuality ? parseInt(textQuality.value) : 0,
+//         guide_compliance: guideCompliance ? parseInt(guideCompliance.value) : 0,
+//         engagement_score: engagementScore ? parseInt(engagementScore.value) : 0
+//     };
+// }
 </script>

@@ -35,6 +35,7 @@ CREATE TABLE supporters (
       supporters_idx   INT  not null comment '서포터즈 고유번호',
       hero_code        varchar(255)  not null comment '회원고유번호',
       hero_supports_group          varchar(1) null comment '그룹 b:블로그,i:인스타,s:숏폼',
+      memo            text                        null comment '메모',
       regDt            datetime not null default now() comment '등록일'
   ) ENGINE = MyISAM
     DEFAULT CHARSET = euckr

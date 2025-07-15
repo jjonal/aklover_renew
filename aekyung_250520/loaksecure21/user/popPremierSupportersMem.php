@@ -32,7 +32,7 @@ if($_GET["kewyword"] && $_GET["select"] != 'none') {
 
     $i=$total_data;
 
-    $list_page=5;
+    $list_page=10;
     $page_per_list=10;
 
     if(!strcmp($_GET['page'], '')) {
@@ -49,7 +49,6 @@ if($_GET["kewyword"] && $_GET["select"] != 'none') {
     $sql .= " LIMIT ".$start.",".$list_page;
 
     $list_res = sql($sql, "on");
-    
 }
 ?>
 <meta charset="euc-kr" />
@@ -95,12 +94,12 @@ if($_GET["kewyword"] && $_GET["select"] != 'none') {
                             <div class="select-wrap">
                                 <select name="select">
                                     <option value="none" selected="">선택</option>
-                                    <option value="hero_name">이름</option>
-                                    <option value="hero_nick">닉네임</option>
-                                    <option value="hero_id">아이디</option>
+                                    <option value="hero_name" <? if ($_GET["select"] == 'hero_name') {?> selected <?}?>>이름</option>
+                                    <option value="hero_nick" <? if ($_GET["select"] == 'hero_nick') {?> selected <?}?>>닉네임</option>
+                                    <option value="hero_id" <? if ($_GET["select"] == 'hero_id') {?> selected <?}?>>아이디</option>
                                 </select>
                             </div>
-                            <input class="search_txt" type="text" name="kewyword" value="" style="width: 200px;"/>
+                            <input class="search_txt" type="text" name="kewyword" value="<?=$_GET["kewyword"]?>" style="width: 200px;"/>
                             <a href="javascript:;" onclick="fnSearch2()" style="    margin: 0;width: 82px;height:35px;color: white;background-color: #000;display: flex; flex-direction: row;justify-content: center; align-items: center;border-radius: 24px;">검색</a>
                         </div>
                     </td>
@@ -108,6 +107,7 @@ if($_GET["kewyword"] && $_GET["select"] != 'none') {
                 </tbody></table>
         </form>
         <form name="writeForm" id="writeForm" method="POST">
+        <input type="hidden" name="page" value="<?=$page?>" />
         <input type="hidden" name="sno" value="<?=$_GET["sno"]?>" />
         <input type="hidden" name="hero_board" value="<?=$_GET["hero_board"]?>" />
         <input type="hidden" name="mode" value="insert_mem" />
@@ -184,8 +184,9 @@ if($_GET["kewyword"] && $_GET["select"] != 'none') {
             </form>
         <div class="paginate">
             <?
-            if ($_GET["kewyword"] && $_GET["select"] != 'none') {
-                page2($total_data,$list_page,$page_per_list,$page,$next_path);
+            if ($total_data > 0) {
+                echo page2($total_data,$list_page,$page_per_list,$page,$next_path);
+//                page2($total_data,$list_page,$page_per_list,$page,$next_path);
             }
             ?>
         </div>

@@ -172,65 +172,93 @@ switch($mode) {
          * 2. member 테이블의 hero_level 을 1로 변경
          * */
 
-        // 1. 먼저 삭제할 데이터가 존재하는지 확인
-        $sql = "SELECT COUNT(*) as cnt FROM supporters_mem_info WHERE supporters_idx = '".$_POST["sno"]."' AND hero_code = '".$_POST["hero_code"]."'";
-        $check_result = sql($sql, "on");
+        $hero_codes = $_POST["hero_codes"];
+        $supporters_idx = $_POST["supporters_idx"];
 
-        if($check_result && $check_result['cnt'] == 0) {
-            // 삭제할 데이터가 존재하지 않음
-            $data["result"] = -3;
-            $data["error"] = "삭제할 서포터즈 멤버 정보가 없습니다.";
-        } else {
-            // 데이터가 존재하면 트랜잭션 시작
-            $sql = "BEGIN";
-            $result1 = sql($sql, "on");
+        // hero_codes 배열을 SQL에서 사용할 수 있도록 처리
+        $hero_codes_escaped = array();
+        foreach($hero_codes as $code) {
+            $hero_codes_escaped[] = "'" . addslashes($code) . "'";
+        }
+        $hero_codes_str = implode(',', $hero_codes_escaped);
 
-            $transaction_success = true;
-            $error_message = "";
+        // 트랜잭션 시작
+        $sql = "BEGIN";
+        $result1 = sql($sql, "on");
 
-            // 2. supporters_mem_info 테이블에서 데이터 삭제
-            if($transaction_success) {
-                $sql = "DELETE FROM supporters_mem_info WHERE supporters_idx = '".$_POST["sno"]."' AND hero_code = '".$_POST["hero_code"]."'";
-                $result2 = sql($sql, "on");
+        $transaction_success = true;
+        $error_message = "";
+        $processed_count = count($hero_codes);
 
-                if(!$result2) {
-                    $transaction_success = false;
-                    $error_message = "서포터즈 멤버 정보 삭제 실패";
-                }
-            }
+        // 1. supporters_mem_info 테이블에서 데이터 삭제
+        if($transaction_success) {
+            $sql = "DELETE FROM supporters_mem_info 
+            WHERE supporters_idx = '" . addslashes($supporters_idx) . "' 
+            AND hero_code IN (" . $hero_codes_str . ")";
+            $result2 = sql($sql, "on");
 
-            // 3. member 테이블의 hero_level을 1로 변경
-            if($transaction_success) {
-                $sql = "UPDATE member SET hero_level = '1' WHERE hero_code = '".$_POST["hero_code"]."'";
-                $result3 = sql($sql, "on");
-
-                if(!$result3) {
-                    $transaction_success = false;
-                    $error_message = "회원 레벨 변경 실패";
-                }
-            }
-
-            // 트랜잭션 완료 처리
-            if($transaction_success) {
-                $sql = "COMMIT";
-                $result4 = sql($sql, "on");
-
-                if($result4) {
-                    $data["result"] = 1;
-                } else {
-                    $data["result"] = -1;
-                    $data["error"] = "커밋 실패";
-                }
-            } else {
-                // 롤백 처리
-                $sql = "ROLLBACK";
-                sql($sql, "on");
-                $data["result"] = -1;
-                $data["error"] = !empty($error_message) ? $error_message : "처리 중 오류가 발생했습니다.";
+            if(!$result2) {
+                $transaction_success = false;
+                $error_message = "failed to delete from supporters_mem_info";
             }
         }
+
+        // 2. member 테이블의 hero_level을 1로 변경 (여러 개)
+        if($transaction_success) {
+            $sql = "UPDATE member SET hero_level = '1' 
+            WHERE hero_code IN (" . $hero_codes_str . ")";
+            $result3 = sql($sql, "on");
+
+            if(!$result3) {
+                $transaction_success = false;
+                $error_message = "change hero_level to 1 failed";
+            }
+        }
+
+        // 트랜잭션 완료 처리
+        if($transaction_success) {
+            $sql = "COMMIT";
+            $result4 = sql($sql, "on");
+
+            if($result4) {
+                $data["result"] = 1;
+//                $data["processed_count"] = $processed_count;
+//                $data["message"] = "{$processed_count}개의 서포터즈 멤버가 성공적으로 처리되었습니다.";
+            } else {
+                $data["result"] = -1;
+                $data["error"] = "failed to commit transaction";
+            }
+        } else {
+            // 롤백 처리
+            $sql = "ROLLBACK";
+            sql($sql, "on");
+            $data["result"] = -1;
+            $data["error"] = !empty($error_message) ? $error_message : "Transaction failed!";
+        }
+
         break;
 
+    case "insert_memo": // 비고작성
+        $hero_codes = $_POST["hero_codes"];
+        $memos = $_POST["memos"];
+        $supporters_idx = $_POST["supporters_idx"];
+
+        $i = 0;
+        foreach($hero_codes as $hero_code) {
+            $sql = "UPDATE supporters_mem_info 
+                SET memo = '" . addslashes($memos[$i]) . "' 
+                WHERE supporters_idx = '" . $supporters_idx . "' 
+                AND hero_code = '" . $hero_code . "'";
+            $result = sql($sql, "on");
+            $i++;
+        }
+
+        if($result) {
+            $data["result"] = 1;
+        } else {
+            $data["result"] = -1;
+        }
+        break;
     case "get_excel": // 서포터즈 멤버 엑셀 다운로드
         break;
     default:

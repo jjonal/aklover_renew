@@ -46,7 +46,7 @@ $total_all_sql = " SELECT count(sm.idx) as cnt FROM supporters_mem_info sm
 $total_all_result = sql($total_all_sql);
 $total_all_res = mysql_fetch_assoc($total_all_result);
 $total_cnt = $total_all_res['cnt'];
-var_dump($total_all_sql);
+
 //페이지 넘버링
 $total_sql = " SELECT count(sm.idx) as cnt FROM supporters_mem_info sm
                LEFT JOIN member m on sm.hero_code = m.hero_code 
@@ -193,8 +193,8 @@ $list_res = sql($sql);
         <div class="table_btn bottom">
             <a class="btnAdd3 popup_btn" data-popup="01">선정자 추가하기</a>
             <a class="btnAdd3">회원 목록 다운로드</a>
-            <a class="btnAdd3">선택 삭제</a>
-            <a class="btnAdd3">비고 작성 저장</a>
+            <a class="btnAdd3" onclick="fnDel();">선택 삭제</a>
+            <a class="btnAdd3" onclick="fnMemo();">비고 작성 저장</a>
         </div>
     </div>
     <p class="table_desc"></p>
@@ -298,28 +298,28 @@ $list_res = sql($sql);
                 <td>
                     <div class="table_checkbox" style="position:relative">
                         <label class="akContainer">
-                            <input type="checkbox" name="hero_idx" value="<?=$list['hero_idx']?>">
+                            <input type="checkbox" name="hero_code" value="<?=$list['hero_code']?>" class="rowCheck">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                 </td>
                 <td>
                     <div class="table_result_no">
-                        1
+                        <?=$i?>
                     </div>
                 </td>
                 <td>
-                    <div class="table_result_name">
+                    <div class="table_result_id">
                         <?=$list['hero_id']?>
                     </div>
                 </td>
                 <td>
-                    <div class="table_result_nick">
+                    <div class="">
                         <?=$list['hero_nick']?>
                     </div>
                 </td>
                 <td>
-                    <div class="table_result_nick">
+                    <div class="table_result_name">
                         <?=$list['hero_name']?>
                     </div>
                 </td>
@@ -350,12 +350,14 @@ $list_res = sql($sql);
                 </td>
                 <td>
                     <div class="table_result_create">
-                        <input type="text" />
+                        <input type="text" name="memo" value="<?=$list['memo']?>"/>
                     </div>
                 </td>
             </tr>
 
-            <? }
+            <?
+                $i--;
+            }
             } else {?>
                 <tr>
                     <td colspan="11">검색된 데이터가 없습니다.</td>
@@ -371,9 +373,31 @@ $list_res = sql($sql);
     </div>
 </div>
 
+<div class="pagingWrap">
+    <?
+    // 체크박스 항목 array 처리하여 전달
+    $params = $_GET;
+    // page 파라미터 제거 (페이지네이션에서 따로 처리)
+    unset($params['page']);
+
+    $query_string = '';
+    foreach($params as $key => $value) {
+        if(is_array($value)) {
+            foreach($value as $v) {
+                $query_string .= '&' . $key . '[]=' . urlencode($v);
+            }
+        } else {
+            $query_string .= '&' . $key . '=' . urlencode($value);
+        }
+    }
+    $next_path = $query_string;
+    include_once PATH_INC_END.'page.php';
+    ?>
+</div>
+
 <!--선정자 추가 팝업 iframe 호출로 변경 25.07.14 musign jnr-->
 <div class="popup_url_box popup_supporters_selected" id="pop_01">
-    <div class="popup_url_cont height_typeB">
+    <div class="popup_url_cont height_typeA">
         <div class="popup_url_head">
             <svg class="close" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M4.41073 4.41083C4.73617 4.08539 5.26381 4.08539 5.58925 4.41083L15.5892 14.4108C15.9147 14.7363 15.9147 15.2639 15.5892 15.5893C15.2638 15.9148 14.7362 15.9148 14.4107 15.5893L4.41073 5.58934C4.0853 5.2639 4.0853 4.73626 4.41073 4.41083Z" fill="black"></path>
@@ -395,6 +419,129 @@ $list_res = sql($sql);
         // 그룹 검색
         fnSearch = function() {
             $("#searchForm").attr("action","").submit();
+        }
+
+        // 비고작성 저장
+        fnMemo = function() {
+            // 체크된 hero_code 값과 그룹을 배열로 수집
+            var selectedCodes = [];
+            var selectedMemos = [];
+
+            $(".rowCheck:checked").each(function() {
+                var heroCode = $(this).val();
+                // 해당 row의 비고입력 값 찾기
+                var heroMemo = $(this).closest('tr').find('input[name="memo"]').val()
+                selectedCodes.push(heroCode);
+                selectedMemos.push(heroMemo);
+            });
+
+            if(selectedCodes.length === 0) {
+                alert("선택된 회원이 없습니다.");
+                return;
+            }
+
+            if(confirm("선정자에서 삭제하겠습니까?")) {
+                var formData =[];
+
+                // 배열 데이터들을 formData에 추가
+                for(var i = 0; i < selectedCodes.length; i++) {
+                    formData.push({
+                        name: 'hero_codes[]',
+                        value: selectedCodes[i]
+                    });
+                    formData.push({
+                        name: 'memos[]',
+                        value: selectedMemos[i]
+                    });
+                    formData.push({
+                        name: 'supporters_idx',
+                        value: '<?=$_GET["sno"]?>'
+                    });
+                    formData.push({
+                        name: 'mode',
+                        value: 'insert_memo'
+                    });
+                }
+
+                var param = $.param(formData);
+
+                $.ajax({
+                    url:"/loaksecure21/user/premierSupportersAct.php"
+                    ,type:"POST"
+                    ,data:param
+                    ,dataType:"json"
+                    ,success:function(d){
+                        console.log(d);
+                        if(d.result == 1) {
+                            alert("수정하였습니다.");
+                            location.reload();
+                        } else {
+                            alert("실행 중 실패했습니다: " + d.error);
+                        }
+                    },error:function(e){
+                        console.log(e);
+                        alert("실패했습니다.");
+                    }
+                })
+            }
+
+        }
+
+        // 선택삭제
+        fnDel = function() {
+            // 체크된 hero_code 값과 그룹을 배열로 수집
+            var selectedCodes = [];
+
+            $(".rowCheck:checked").each(function() {
+                var heroCode = $(this).val();
+                selectedCodes.push(heroCode);
+            });
+            if(selectedCodes.length === 0) {
+                alert("선택된 회원이 없습니다.");
+                return;
+            }
+
+            if(confirm("선정자에서 삭제하겠습니까?")) {
+                var formData =[];
+
+                // 배열 데이터들을 formData에 추가
+                for(var i = 0; i < selectedCodes.length; i++) {
+                    formData.push({
+                        name: 'hero_codes[]',
+                        value: selectedCodes[i]
+                    });
+                    formData.push({
+                        name: 'supporters_idx',
+                        value: '<?=$_GET["sno"]?>'
+                    });
+                    formData.push({
+                        name: 'mode',
+                        value: 'delete_mem'
+                    });
+                }
+
+                var param = $.param(formData);
+
+                $.ajax({
+                    url:"/loaksecure21/user/premierSupportersAct.php"
+                    ,type:"POST"
+                    ,data:param
+                    ,dataType:"json"
+                    ,success:function(d){
+                        console.log(d);
+                        if(d.result == 1) {
+                            alert("삭제하였습니다.");
+                            location.reload();
+                        } else {
+                            alert("실행 중 실패했습니다: " + d.error);
+                        }
+                    },error:function(e){
+                        console.log(e);
+                        alert("실패했습니다.");
+                    }
+                })
+            }
+
         }
 
         // 회원목록 다운로드

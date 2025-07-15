@@ -1,9 +1,6 @@
 ## 후기관리 명칭 변경 ##
 UPDATE menu SET hero_alt = '체험단관리' WHERE hero_idx = 25 AND hero_alt = '후기 관리';
 
-## 서포터즈 그룹 컬럼 추가 ##
-alter table member_gisu add hero_board_group varchar(1) null comment 'b:블로그,i:인스타,s:숏폼';
-
 ##  회원관리 메뉴 정리  감춤 및 추가 ##
 UPDATE aekyung.menu t SET t.hero_use = 1 WHERE t.hero_idx = 112
 UPDATE aekyung.menu t SET t.hero_use = 1 WHERE t.hero_idx = 84
@@ -30,6 +27,20 @@ CREATE TABLE supporters (
   DEFAULT CHARSET = euckr
   COLLATE = euckr_korean_ci
   COMMENT = '서포터즈 관리 테이블';
+
+
+  ## 서포터즈 선정자 정보 ##
+  CREATE TABLE supporters_mem_info (
+      idx              INT AUTO_INCREMENT PRIMARY KEY,
+      supporters_idx   INT  not null comment '서포터즈 고유번호',
+      hero_code        varchar(255)  not null comment '회원고유번호',
+      hero_supports_group          varchar(1) null comment '그룹 b:블로그,i:인스타,s:숏폼',
+      regDt            datetime not null default now() comment '등록일'
+  ) ENGINE = MyISAM
+    DEFAULT CHARSET = euckr
+    COLLATE = euckr_korean_ci
+    COMMENT = '서포터즈 선정자 정보';
+
 
 ## 게시글(댓글) 삭제이력 테이블생성 ##
 CREATE TABLE board_del (
@@ -63,3 +74,8 @@ CREATE TABLE board_del (
     modDt            datetime not null default now() comment '수정일',
     regDt            datetime comment '등록일'
   )COMMENT= '퀄리티 평가';
+
+
+ ## 통계관리 기타메뉴 추가 ##
+INSERT INTO menu (hero_table, hero_code, hero_board, hero_db, hero_alt, hero_href, hero_point, hero_order, hero_depth, hero_depth_idx, hero_level, hero_use, hero_today) VALUES ('menu', 'user_01', 'data', 'menu', '고객문의유형', 'ADMIN_END||data||inquiryCategory.php', null, 15, 1, 1, '99', 0, null)
+INSERT INTO menu (hero_table, hero_code, hero_board, hero_db, hero_alt, hero_href, hero_point, hero_order, hero_depth, hero_depth_idx, hero_level, hero_use, hero_today) VALUES ('menu', 'user_01', 'data', 'menu', '요청이력관리 ', 'ADMIN_END||data||requestHistory.php', null, 16, 1, 1, '99', 0, null)

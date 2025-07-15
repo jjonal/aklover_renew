@@ -1,32 +1,92 @@
 <!-- /loaksecure21/index.php?idx=147&board=user&page=1&view=premierSupportersView -->
 <link rel="stylesheet" href="<?=ADMIN_DEFAULT?>/css/user.css?v=250617" type="text/css" />
 
-
 <?
 if(!defined('_HEROBOARD_'))exit;
-// 25.06.24 다섯개의 탭이 include 이기 때문에 해당 공통 페이지에 공통 쿼리문 삽입!
 
-$sno = $_GET["sno"];
-
-$supporters_sql  = " SELECT * FROM supporters WHERE idx = '".$sno."' ";
+// 해당 서포터즈 정보 추출
+$supporters_sql  = " SELECT * FROM supporters WHERE idx = '".$_GET["sno"]."' ";
 $supporters_res = sql($supporters_sql,"on");
 $view = mysql_fetch_assoc($supporters_res);
-
 
 $startDt = substr($view["startDt"], 0, 10);
 $endDt = substr($view["endDt"], 0, 10);  // YYYY-MM-DD 부분만 추출
 
+
+// 서포터즈 그룹 회원 리스트
+$search = "";
+
+// 그룹(팀) 검색
+if( !empty($_GET["hero_supports_group"]) && is_array($_GET["hero_supports_group"]) ) {
+    $group_conditions = array(); // array() 사용
+
+    foreach($_GET["hero_supports_group"] as $hero_supports_group) {
+        switch($hero_supports_group) {
+            case "b": // 블로그
+                $group_conditions[] = "(sm.hero_supports_group not like '' and sm.hero_supports_group = 'b')";
+                break;
+            case "i": // 인스타
+                $group_conditions[] = "(sm.hero_supports_group not like '' and sm.hero_supports_group = 'i')";
+                break;
+            case "s": // 숏폼
+                $group_conditions[] = "(sm.hero_supports_group not like '' and sm.hero_supports_group = 's')";
+                break;
+        }
+    }
+    if(!empty($group_conditions)) {
+        $search .= " AND (" . implode(" OR ", $group_conditions) . ")";
+    }
+}
+
+// 전체페이지
+$total_all_sql = " SELECT count(sm.idx) as cnt FROM supporters_mem_info sm 
+                  LEFT JOIN member m on sm.hero_code = m.hero_code 
+                  LEFT JOIN quality_evaluation qe on sm.hero_code = qe.hero_code
+                  WHERE supporters_idx = ".$_GET["sno"];
+$total_all_result = sql($total_all_sql);
+$total_all_res = mysql_fetch_assoc($total_all_result);
+$total_cnt = $total_all_res['cnt'];
+var_dump($total_all_sql);
+//페이지 넘버링
+$total_sql = " SELECT count(sm.idx) as cnt FROM supporters_mem_info sm
+               LEFT JOIN member m on sm.hero_code = m.hero_code 
+               LEFT JOIN quality_evaluation qe on sm.hero_code = qe.hero_code
+               WHERE sm.supporters_idx = ".$_GET["sno"]."".$search;
+sql($total_sql);
+$out_res = mysql_fetch_assoc($out_sql);
+$total_data = $out_res['cnt'];
+
+$i=$total_data;
+
+$list_page=20;
+$page_per_list=10;
+
+if(!strcmp($_GET['page'], '') || !strcmp($_GET['page'], '1')){
+    $page = '1';
+}else{
+    $page = $_GET['page'];
+    $i = $i-($page-1)*$list_page;
+}
+
+$start = ($page-1)*$list_page;
+$next_path=get("page");
+
+
+$sql  = " SELECT sm.*, m.hero_id, m.hero_name,m.hero_nick,m.hero_jumin,m.hero_sex,m.hero_oldday,qe.grade";
+$sql .= " FROM supporters_mem_info sm
+          LEFT JOIN member m ON sm.hero_code = m.hero_code
+          LEFT JOIN quality_evaluation qe ON sm.hero_code = qe.hero_code";
+$sql .= " WHERE sm.supporters_idx = ".$_GET["sno"]."".$search;
+$sql .= " ORDER BY sm.idx DESC LIMIT ".$start.",".$list_page;
+
+$list_res = sql($sql);
+
 ?>
 
-<!-- 고정 타이틀 옆에 버튼 추가 Wrap -->
-<div class="topButtonWrap">
-    <a href="javascript:;" class="btnAdd3">저장</a>
-</div>
-
-<form name="searchForm" id="searchForm" action="<?=PATH_HOME.'?'.get('page');?>">
+<form name="infoForm" id="infoForm" action="<?=PATH_HOME.'?'.get('page');?>">
     <input type="hidden" name="sno" value="<?=$_GET["sno"]?>" />
     <input type="hidden" name="board" value="<?=$_GET["board"]?>" />
-
+    <input type="hidden" name="view" value="<?=$_GET["view"]?>" />
     <!-- 회원 관리 퀄리티 평가 검색 필터 -->
     <table class="searchBox">
         <colgroup>
@@ -71,7 +131,50 @@ $endDt = substr($view["endDt"], 0, 10);  // YYYY-MM-DD 부분만 추출
                     <div class="dateMode_box">
                         <input type="text" name="endDate" class="dateMode" value="<?=$endDt?>">
                     </div>
-                    <a class="btnAdd5 mgl20">수정</a>
+                    <a class="btnAdd5 mgl20">기간 수정</a>
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<form name="searchForm" id="searchForm" action="<?=PATH_HOME.'?'.get('page');?>">
+    <input type="hidden" name="idx" value="<?=$_GET["idx"]?>" />
+    <input type="hidden" name="sno" value="<?=$_GET["sno"]?>" />
+    <input type="hidden" name="board" value="<?=$_GET["board"]?>" />
+    <input type="hidden" name="page" value="<?=$page?>" />
+    <input type="hidden" name="view" value="<?=$_GET["view"]?>" />
+
+    <input type="hidden" name="mode" value="" />
+
+    <!-- 서포터즈 그룹검색 필터 -->
+    <table class="searchBox">
+        <colgroup>
+            <col width="171px" />
+            <col width="*" />
+        </colgroup>
+        <tr>
+            <th>
+                그룹 선택
+            </th>
+            <td>
+                <?php
+                $hero_supports_group = (isset($_GET['hero_supports_group']) && is_array($_GET['hero_supports_group'])) ? $_GET['hero_supports_group'] : array();
+                ?>
+                <div class="search_inner">
+                    <label class="akContainer">블로그
+                        <input type="checkbox" name="hero_supports_group[]" value="b" <?php echo (is_array($hero_supports_group) && in_array('b', $hero_supports_group)) ? 'checked' : ''; ?>>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="akContainer">인스타
+                        <input type="checkbox" name="hero_supports_group[]" value="i" <?php echo (is_array($hero_supports_group) && in_array('i', $hero_supports_group)) ? 'checked' : ''; ?>>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="akContainer">숏폼
+                        <input type="checkbox" name="hero_supports_group[]" value="s" <?php echo (is_array($hero_supports_group) && in_array('s', $hero_supports_group)) ? 'checked' : ''; ?>>
+                        <span class="checkmark"></span>
+                    </label>
+                    <a class="btnAdd5 mgl20" onClick="fnSearch()">그룹 검색</a>
                 </div>
             </td>
         </tr>
@@ -84,31 +187,14 @@ $endDt = substr($view["endDt"], 0, 10);  // YYYY-MM-DD 부분만 추출
         <div>
             <h2 class="table_tit">검색 결과</h2>
             <div class="postNum">
-                <span class="line"><?=number_format($search_total)?>개</span><span class="op_5">전체 <?=number_format($total_data)?>개</span>
-                <div class="mu_form mgl10">
-                    <div class="chkBox_wrap">
-                        <p class="chkBox_tit mgr10">그룹 선택</p>
-                        <label class="chkItem" for="chk1">전체
-                            <input type="checkbox" id="chk1" name="chk_group">
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="chkItem" for="chk2">프리미어 뷰티 클럽
-                            <input type="checkbox" id="chk2" name="chk_group">
-                            <span class="checkmark"></span>
-                        </label>
-
-                        <label class="chkItem" for="chk3">프리미어 라이프 클럽
-                            <input type="checkbox" id="chk3" name="chk_group">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                </div>
+                <span class="line"><?=number_format($total_data)?>개</span><span class="op_5">전체 <?=number_format($total_cnt)?>개</span>
             </div>
         </div>
         <div class="table_btn bottom">
             <a class="btnAdd3 popup_btn" data-popup="01">선정자 추가하기</a>
             <a class="btnAdd3">회원 목록 다운로드</a>
             <a class="btnAdd3">선택 삭제</a>
+            <a class="btnAdd3">비고 작성 저장</a>
         </div>
     </div>
     <p class="table_desc"></p>
@@ -188,6 +274,26 @@ $endDt = substr($view["endDt"], 0, 10);  // YYYY-MM-DD 부분만 추출
             </th>
             </thead>
             <tbody>
+            <?
+            if($total_data > 0) {
+            while($list = mysql_fetch_assoc($list_res)) {
+            $age = (date("Y")-substr($list["hero_jumin"],0,4))+1;
+            $hero_sex_txt = "";
+            if($list["hero_sex"] == 1) {
+                $hero_sex_txt = "남";
+            } else if(strlen($list["hero_sex"]) > 0 && $list["hero_sex"] == 0) {
+                $hero_sex_txt = "여";
+            }
+            if($list["hero_supports_group"] == 'b') {
+                $hero_supports_group = "블로그";
+            } else if($list["hero_supports_group"] == 'i') {
+                $hero_supports_group = "인스타그램";
+            } else if($list["hero_supports_group"] == 's') {
+                $hero_supports_group = "숏폼";
+            } else {
+                $hero_supports_group = "";
+            }
+            ?>
             <tr>
                 <td>
                     <div class="table_checkbox" style="position:relative">
@@ -204,42 +310,42 @@ $endDt = substr($view["endDt"], 0, 10);  // YYYY-MM-DD 부분만 추출
                 </td>
                 <td>
                     <div class="table_result_name">
-                        aaaaaaaaaaaaaaaaaaaa
+                        <?=$list['hero_id']?>
                     </div>
                 </td>
                 <td>
                     <div class="table_result_nick">
-                        닉네임최대8글자
+                        <?=$list['hero_nick']?>
                     </div>
                 </td>
                 <td>
                     <div class="table_result_nick">
-                        AK Lover
+                        <?=$list['hero_name']?>
                     </div>
                 </td>
                 <td>
                     <div class="table_result_nick">
-                        -
+                        <?=$age?>
                     </div>
                 </td>
                 <td>
                     <div class="table_result_nick">
-                        -
+                        <?=$hero_sex_txt?>
                     </div>
                 </td>
                 <td>
                     <div class="table_result_types">
-                        블로그팀
+                        <?=$hero_supports_group?>
                     </div>
                 </td>
                 <td>
                     <div class="table_result_types">
-                        -
+                        <?=$list['grade']?>
                     </div>
                 </td>
                 <td>
                     <div class="table_result_create">
-                        2024-00-00
+                        <?=$list['hero_oldday']?>
                     </div>
                 </td>
                 <td>
@@ -249,66 +355,12 @@ $endDt = substr($view["endDt"], 0, 10);  // YYYY-MM-DD 부분만 추출
                 </td>
             </tr>
 
-            <tr>
-                <td>
-                    <div class="table_checkbox" style="position:relative">
-                        <label class="akContainer">
-                            <input type="checkbox" name="hero_idx" value="<?=$list['hero_idx']?>">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                </td>
-                <td>
-                    <div class="table_result_no">
-                        2
-                    </div>
-                </td>
-                <td>
-                    <div class="table_result_name">
-                        아이디 20자 까지 등록가능
-                    </div>
-                </td>
-                <td>
-                    <div class="table_result_nick">
-                        닉네임최대8글자
-                    </div>
-                </td>
-                <td>
-                    <div class="table_result_nick">
-                        AK Lover
-                    </div>
-                </td>
-                <td>
-                    <div class="table_result_nick">
-                        24
-                    </div>
-                </td>
-                <td>
-                    <div class="table_result_nick">
-                        여
-                    </div>
-                </td>
-                <td>
-                    <div class="table_result_types">
-                        인스타그램팀
-                    </div>
-                </td>
-                <td>
-                    <div class="table_result_types">
-                        상
-                    </div>
-                </td>
-                <td>
-                    <div class="table_result_create">
-                        2024-00-00
-                    </div>
-                </td>
-                <td>
-                    <div class="table_result_create">
-                        <input type="text"/>
-                    </div>
-                </td>
-            </tr>
+            <? }
+            } else {?>
+                <tr>
+                    <td colspan="11">검색된 데이터가 없습니다.</td>
+                </tr>
+            <? } ?>
 
             <!-- 데이터가 없을 때 추가해주세요. -->
             <!-- <tr>
@@ -319,8 +371,7 @@ $endDt = substr($view["endDt"], 0, 10);  // YYYY-MM-DD 부분만 추출
     </div>
 </div>
 
-
-<!--후기 URL 팝업-->
+<!--선정자 추가 팝업 iframe 호출로 변경 25.07.14 musign jnr-->
 <div class="popup_url_box popup_supporters_selected" id="pop_01">
     <div class="popup_url_cont height_typeB">
         <div class="popup_url_head">
@@ -329,31 +380,8 @@ $endDt = substr($view["endDt"], 0, 10);  // YYYY-MM-DD 부분만 추출
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5892 4.41083C15.2638 4.08539 14.7362 4.08539 14.4107 4.41083L4.41072 14.4108C4.08529 14.7363 4.08529 15.2639 4.41072 15.5893C4.73616 15.9148 5.2638 15.9148 5.58924 15.5893L15.5892 5.58934C15.9147 5.2639 15.9147 4.73626 15.5892 4.41083Z" fill="black"></path>
             </svg>
         </div>
-        <div class="popup_url_body mu_form">
-            <div class="tit">프리미어 서포터즈 선정 및 관리</div>
-            <div class="popup_content mgt30">
-                <div class="cont_item">
-                    <p>모집 기간</p>
-                    <input type="text"/>
-                </div>
-                <div class="cont_item">
-                    <p>서포터즈명</p>
-                    <input type="text"/>
-                </div>
-                <div class="cont_item">
-                    <p>그룹 설정</p>
-                    <div class="select_wrap">
-                        <select>
-                            <option>블로그팀</option>
-                            <option>인스타그램팀</option>
-                            <option>숏폼팀</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="btnContainer mgt150 line">
-                <a href="javascript:;" class="btnAdd3">서포터즈 선정하기</a>
-            </div>
+        <div class="popup_url_body mu_form" id="popupContent">
+            <iframe src="/loaksecure21/user/popPremierSupportersMem.php?sno=<?=$_GET["sno"]?>&hero_board=<?=$view["hero_board"]?>" width="660" height="720" frameborder="0" class="iframe_popup"></iframe>
         </div>
     </div>
 </div>
@@ -363,4 +391,9 @@ $endDt = substr($view["endDt"], 0, 10);  // YYYY-MM-DD 부분만 추출
     const subTittle = document.querySelector("#content .sub_tit");
     subTittle.innerText = "프리미어 서포터즈 명단 관리";
 
+    $(document).ready(function(){
+        fnSearch = function() {
+            $("#searchForm").attr("action","").submit();
+        }
+    })
 </script>

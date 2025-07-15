@@ -94,16 +94,16 @@ $list_res = sql($sql);
                 </div>
             </td>
         </tr>
-        <tr>
-            <th>
-                검색어
-            </th>
-            <td>
-                <div class="search_inner">
-                    <input class="search_txt" type="text" name="kewyword" value="<?=$_GET["kewyword"]?>"/>
-                </div>
-            </td>
-        </tr>
+<!--        <tr>-->
+<!--            <th>-->
+<!--                검색어-->
+<!--            </th>-->
+<!--            <td>-->
+<!--                <div class="search_inner">-->
+<!--                    <input class="search_txt" type="text" name="kewyword" value="--><?php //=$_GET["kewyword"]?><!--"/>-->
+<!--                </div>-->
+<!--            </td>-->
+<!--        </tr>-->
         <tr>
             <th>서포터즈 구분</th>
             <td>
@@ -175,7 +175,7 @@ $list_res = sql($sql);
             </th>
             <th>
                 <div class="">
-                    선정일
+                    서포터즈 생성일
                 </div>
             </th>
             <th>

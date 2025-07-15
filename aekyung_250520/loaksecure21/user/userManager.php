@@ -75,13 +75,13 @@ if( !empty($_GET["hero_level"]) && is_array($_GET["hero_level"]) ) {
 
     foreach($_GET["hero_level"] as $level_type) {
         switch($level_type) {
-            case "9996": // 베이직 뷰티 & 라이프 클럽
+            case "9996": // 프리미어 뷰티 클럽
                 $hero_level_conditions[] = "(m.hero_level = '9996')";
                 break;
-            case "9994": // 프리미어 뷰티 클럽
+            case "9994": //  프리미어 라이프 클럽
                 $hero_level_conditions[] = "(m.hero_level = '9994')";
                 break;
-            case "etc": // 프리미어 라이프 클럽
+            case "etc": // 베이직 뷰티 & 라이프 클럽
                 $hero_level_conditions[] = "((m.hero_level != '') or (m.hero_level != ''))";
                 break;
         }

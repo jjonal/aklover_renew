@@ -5,7 +5,6 @@ $search = "";
 
 // 퀄리티 평가 검색 필터
 if( !empty($_GET["grade"]) && is_array($_GET["grade"]) ) {
-    echo "hihi";
     $grade_conditions = array(); // array() 사용
 
     foreach($_GET["grade"] as $grade_type) {
@@ -24,7 +23,6 @@ if( !empty($_GET["grade"]) && is_array($_GET["grade"]) ) {
                 break;
         }
     }
-    echo "hihi";
     if(!empty($grade_conditions)) {
         $search .= " AND (" . implode(" OR ", $grade_conditions) . ")";
     }

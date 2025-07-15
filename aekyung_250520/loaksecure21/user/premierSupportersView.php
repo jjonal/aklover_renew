@@ -392,8 +392,17 @@ $list_res = sql($sql);
     subTittle.innerText = "프리미어 서포터즈 명단 관리";
 
     $(document).ready(function(){
+        // 그룹 검색
         fnSearch = function() {
             $("#searchForm").attr("action","").submit();
+        }
+
+        // 회원목록 다운로드
+        fnExcel = function() {
+            var form = document.getElementById('searchForm');
+            form.action = '/loaksecure21/user/userManger_excel.php';
+            form.submit();
+            //$("#searchForm").attr("action","/loaksecure21/user/userManger_excel.php").submit();
         }
     })
 </script>

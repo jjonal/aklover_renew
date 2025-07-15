@@ -204,10 +204,22 @@ if($_GET["kewyword"] && $_GET["select"] != 'none') {
             $("#searchForm").attr("action","").submit();
         }
         fnInsert = function() {
-            // 체크된 hero_code 값들을 배열로 수집
+            // 체크된 hero_code 값과 그룹을 배열로 수집
             var selectedCodes = [];
+            var selectedGroups = [];
+
             $(".rowCheck:checked").each(function() {
-                selectedCodes.push($(this).val());
+                var heroCode = $(this).val();
+                // 해당 row의 hero_supports_group 값 찾기
+                var heroGroup = $(this).closest('tr').find('select[name="hero_supports_group"]').val();
+
+                if(heroGroup === 'none' || heroGroup === '') {
+                    alert("회원의 서포터즈 그룹을 선택해주세요.");
+                    return false; // each 루프 중단
+                }
+
+                selectedCodes.push(heroCode);
+                selectedGroups.push(heroGroup);
             });
             if(selectedCodes.length === 0) {
                 alert("선택된 회원이 없습니다.");
@@ -215,7 +227,21 @@ if($_GET["kewyword"] && $_GET["select"] != 'none') {
             }
 
             if(confirm("선정자로 추가하겠습니까?")) {
-                var param = $("#writeForm").serialize();
+                var formData = $("#writeForm").serializeArray();
+
+                // 배열 데이터들을 formData에 추가
+                for(var i = 0; i < selectedCodes.length; i++) {
+                    formData.push({
+                        name: 'hero_codes[]',
+                        value: selectedCodes[i]
+                    });
+                    formData.push({
+                        name: 'hero_groups[]',
+                        value: selectedGroups[i]
+                    });
+                }
+
+                var param = $.param(formData);
 
                 $.ajax({
                     url:"/loaksecure21/user/premierSupportersAct.php"
@@ -226,7 +252,8 @@ if($_GET["kewyword"] && $_GET["select"] != 'none') {
                         console.log(d);
                         if(d.result == 1) {
                             alert("등록되었습니다.");
-                            location.reload();
+                            window.top.location.reload();
+                            // location.reload();
                         } else {
                             alert("실행 중 실패했습니다: " + d.error);
                         }

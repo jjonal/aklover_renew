@@ -23,6 +23,7 @@ $recruit = iconv("UTF-8", "EUC-KR", $_POST["new_recruit"]);
 $result = 0;
 $data = array();
 switch($mode) {
+    // 서포터즈 생성
     case "insert":
         $sql  = " INSERT INTO supporters (recruit, hero_board, startDt, endDt) VALUES ";
         $sql .= " ('".$recruit."','".$_POST["new_hero_board"]."','".$_POST["new_startDt"]."','".$_POST["new_endDt"]."') ";
@@ -35,6 +36,7 @@ switch($mode) {
         }
         break;
 
+    // 서포터즈 삭제
     case "delete":
         $sql  = " DELETE FROM supporters WHERE idx = '".$_POST["idx"]."' ";
         $result = sql($sql,"on");
@@ -45,7 +47,7 @@ switch($mode) {
             $data["result"] = -1;
         }
         break;
-
+    // 서포터즈 수정 (활동기간 만 수정 가능.)
     case "update":
         $result = sql($sql,"on");
 
@@ -67,17 +69,45 @@ switch($mode) {
          * hero_board값이 group_04_28 (프리미어 라이프) 경우 9994
          * update member set hero_level = ? where hero_code = ?
          * */
+        // 배열 데이터 확인
+        $hero_codes = $_POST["hero_codes"];
+        $hero_groups = $_POST["hero_groups"];
 
-        // 1. 먼저 중복 데이터 체크
-        $sql = "SELECT COUNT(*) as cnt FROM supporters_mem_info WHERE supporters_idx = '".$_POST["sno"]."' AND hero_code = '".$_POST["hero_code"]."'";
-        $check_result = sql($sql, "on");
-        $total_rs = mysql_fetch_assoc($check_result);
-        $total_data = $total_rs['cnt'];
+        if(!is_array($hero_codes) || !is_array($hero_groups) || count($hero_codes) != count($hero_groups)) {
+            $data["result"] = -1;
+            $data["error"] = "Invalid data format!";
+            break;
+        }
 
-        if($total_data > 0) {
-            // 이미 존재하는 데이터
+        // hero_level 값 미리 결정
+        $hero_level = '';
+        if($_POST["hero_board"] == "group_04_06") {
+            $hero_level = "9996";  // 프리미어뷰티
+        } elseif($_POST["hero_board"] == "group_04_28") {
+            $hero_level = "9994";  // 프리미어 라이프
+        } else {
+            $data["result"] = -1;
+            $data["error"] = "wrong hero_board value!";
+            break;
+        }
+
+        // 1. 먼저 모든 데이터에 대해 중복 체크하여 기등록 데이터가 있다면 return
+        $duplicate_members = array();
+        for($i = 0; $i < count($hero_codes); $i++) {
+            $sql = "SELECT COUNT(*) as cnt FROM supporters_mem_info WHERE supporters_idx = '".$_POST["sno"]."' AND hero_code = '".$hero_codes[$i]."'";
+            $check_result = sql($sql, "on");
+            $total_rs = mysql_fetch_assoc($check_result);
+            $total_data = $total_rs['cnt'];
+
+            if($total_data > 0) {
+                $duplicate_members[] = $hero_codes[$i];
+            }
+        }
+
+        if(count($duplicate_members) > 0) {
+            // 중복 데이터가 있는 경우
             $data["result"] = -3;
-            $data["error"] = "already exists member!";
+            $data["error"] = "already exists member: " . implode(", ", $duplicate_members);
         } else {
             // 중복 데이터가 없으면 트랜잭션 시작
             $sql = "BEGIN";
@@ -86,41 +116,33 @@ switch($mode) {
             $transaction_success = true;
             $error_message = "";
 
-            // 2. supporters_mem_info 테이블에 데이터 삽입
-            if($transaction_success) {
+            // 2. 모든 hero_code에 대해 처리
+            for($i = 0; $i < count($hero_codes) && $transaction_success; $i++) {
+                $current_hero_code = $hero_codes[$i];
+                $current_hero_group = $hero_groups[$i];
+
+                // 2-1. supporters_mem_info 테이블에 데이터 삽입
                 $sql = "INSERT INTO supporters_mem_info (supporters_idx, hero_code, hero_supports_group) VALUES ";
-                $sql .= "('".$_POST["sno"]."', '".$_POST["hero_code"]."', '".$_POST["hero_supports_group"]."')";
+                $sql .= "('".$_POST["sno"]."', '".$current_hero_code."', '".$current_hero_group."')";
                 $result2 = sql($sql, "on");
 
                 if(!$result2) {
                     $transaction_success = false;
-                    $error_message = "already exists!";
+                    $error_message = "supporters_mem_info insert failed for hero_code: " . $current_hero_code;
+                    break;
                 }
-            }
 
-            // 3. hero_board 값에 따라 hero_level 결정 및 업데이트
-            if($transaction_success) {
-                $hero_level = '';
-                if($_POST["hero_board"] == "group_04_06") {
-                    $hero_level = "9996";  // 프리미어뷰티
-                } elseif($_POST["hero_board"] == "group_04_28") {
-                    $hero_level = "9994";  // 프리미어 라이프
-                } else {
+                // 2-2. member 테이블의 hero_level 업데이트
+                $sql = "UPDATE member SET hero_level = '".$hero_level."' WHERE hero_code = '".$current_hero_code."'";
+                $result3 = sql($sql, "on");
+
+                if(!$result3) {
                     $transaction_success = false;
-                    $error_message = "wrong hero_board value!";
-                }
-
-                // 4. member 테이블의 hero_level 업데이트
-                if($transaction_success) {
-                    $sql = "UPDATE member SET hero_level = '".$hero_level."' WHERE hero_code = '".$_POST["hero_code"]."'";
-                    $result3 = sql($sql, "on");
-
-                    if(!$result3) {
-                        $transaction_success = false;
-                        $error_message = "member level update failed!";
-                    }
+                    $error_message = "member level update failed for hero_code: " . $current_hero_code;
+                    break;
                 }
             }
+
             // 트랜잭션 완료 처리
             if($transaction_success) {
                 $sql = "COMMIT";
@@ -143,25 +165,73 @@ switch($mode) {
 
         break;
     case "delete_mem": // 서포터즈 멤버 삭제
-        // supporters_mem_info 테이블에서 해당 hero_code 삭제
-        $sql = "DELETE FROM supporters_mem_info WHERE supporters_idx = '".$_POST["sno"]."' AND hero_code = '".$_POST["hero_code"]."'";
-        $result = sql($sql, "on");
+        /*
+         * 넘겨받은 정보를 토대로  supporters_mem_info  의 hero_code 값을 조회해서
+         * 결과값이 있다면 하기 로직을 sql tranjection으로 실행
+         * 1. 해당 row delete 처리
+         * 2. member 테이블의 hero_level 을 1로 변경
+         * */
 
-        if($result) {
-            // member 테이블의 hero_level을 원래대로 되돌리기
-            $sql = "UPDATE member SET hero_level = '9999' WHERE hero_code = '".$_POST["hero_code"]."'"; // 9999는 일반 사용자 레벨
-            $result2 = sql($sql, "on");
+        // 1. 먼저 삭제할 데이터가 존재하는지 확인
+        $sql = "SELECT COUNT(*) as cnt FROM supporters_mem_info WHERE supporters_idx = '".$_POST["sno"]."' AND hero_code = '".$_POST["hero_code"]."'";
+        $check_result = sql($sql, "on");
 
-            if($result2) {
-                $data["result"] = 1;
-            } else {
-                $data["result"] = -1;
-                $data["error"] = "member level update failed!";
-            }
+        if($check_result && $check_result['cnt'] == 0) {
+            // 삭제할 데이터가 존재하지 않음
+            $data["result"] = -3;
+            $data["error"] = "삭제할 서포터즈 멤버 정보가 없습니다.";
         } else {
-            $data["result"] = -1;
-            $data["error"] = "supporters_mem_info delete failed!";
+            // 데이터가 존재하면 트랜잭션 시작
+            $sql = "BEGIN";
+            $result1 = sql($sql, "on");
+
+            $transaction_success = true;
+            $error_message = "";
+
+            // 2. supporters_mem_info 테이블에서 데이터 삭제
+            if($transaction_success) {
+                $sql = "DELETE FROM supporters_mem_info WHERE supporters_idx = '".$_POST["sno"]."' AND hero_code = '".$_POST["hero_code"]."'";
+                $result2 = sql($sql, "on");
+
+                if(!$result2) {
+                    $transaction_success = false;
+                    $error_message = "서포터즈 멤버 정보 삭제 실패";
+                }
+            }
+
+            // 3. member 테이블의 hero_level을 1로 변경
+            if($transaction_success) {
+                $sql = "UPDATE member SET hero_level = '1' WHERE hero_code = '".$_POST["hero_code"]."'";
+                $result3 = sql($sql, "on");
+
+                if(!$result3) {
+                    $transaction_success = false;
+                    $error_message = "회원 레벨 변경 실패";
+                }
+            }
+
+            // 트랜잭션 완료 처리
+            if($transaction_success) {
+                $sql = "COMMIT";
+                $result4 = sql($sql, "on");
+
+                if($result4) {
+                    $data["result"] = 1;
+                } else {
+                    $data["result"] = -1;
+                    $data["error"] = "커밋 실패";
+                }
+            } else {
+                // 롤백 처리
+                $sql = "ROLLBACK";
+                sql($sql, "on");
+                $data["result"] = -1;
+                $data["error"] = !empty($error_message) ? $error_message : "처리 중 오류가 발생했습니다.";
+            }
         }
+        break;
+
+    case "get_excel": // 서포터즈 멤버 엑셀 다운로드
         break;
     default:
         $data["result"] = -2; // 잘못된 요청
